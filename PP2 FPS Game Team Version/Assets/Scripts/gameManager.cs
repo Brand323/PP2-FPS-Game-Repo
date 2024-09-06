@@ -11,6 +11,7 @@ public class gameManager : MonoBehaviour
     //Serialize fields
     [SerializeField] GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
+    [SerializeField] GameObject winWindow;
 
     int enemyCount;
     float originalTimeScale;
@@ -31,7 +32,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             if(isPaused)
             {
-                PauseGame();
+                PauseGame(pauseWindow);
             }    
             else
             {
@@ -40,26 +41,35 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    public void PauseGame(GameObject window)
     {
-        activeWindow = pauseWindow;
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        activateWindow();
+        activateWindow(window);
     }
 
     public void UnpauseGame()
     {
-        activeWindow = pauseWindow;
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        activateWindow();
+        activateWindow(pauseWindow);
     }
 
-    void activateWindow()
+    public void UpdateGameGoal(int enemy)
     {
+        enemyCount += enemy;
+        if(enemyCount <= 0)
+        {
+            isPaused = !isPaused;
+            PauseGame(winWindow);
+        }
+    }
+
+    void activateWindow(GameObject window)
+    {
+        activeWindow = window;
         activeWindow.SetActive(isPaused);
         activeWindow = null;
     }
