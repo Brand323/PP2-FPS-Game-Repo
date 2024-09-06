@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
     [SerializeField] GameObject winWindow;
+    [SerializeField] GameObject loseWindow;
 
     int enemyCount;
     float originalTimeScale;
@@ -65,6 +66,12 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             PauseGame(winWindow);
         }
+    }
+
+    public void LoseUpdate()
+    {
+        isPaused = !isPaused;
+        PauseGame(loseWindow);
     }
 
     void activateWindow(GameObject window)
