@@ -46,8 +46,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        activeWindow.SetActive(isPaused);
-        activeWindow = null;
+        activateWindow();
     }
 
     public void UnpauseGame()
@@ -56,6 +55,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        activateWindow();
+    }
+
+    void activateWindow()
+    {
         activeWindow.SetActive(isPaused);
         activeWindow = null;
     }
