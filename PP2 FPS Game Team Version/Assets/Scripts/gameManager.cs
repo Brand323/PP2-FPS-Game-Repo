@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject pauseWindow;
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
+    [SerializeField] GameObject editWindow;
 
     int enemyCount;
     float originalTimeScale;
@@ -40,6 +41,20 @@ public class gameManager : MonoBehaviour
                 UnpauseGame();
             }
         }
+
+        //Edit game Window
+        if(Input.GetButtonDown("Edit"))
+        {
+            isPaused = !isPaused;
+            if(isPaused)
+            {
+                PauseGame(editWindow);
+            }
+            else
+            {
+                UnpauseGame();
+            }
+        }
     }
 
     public void PauseGame(GameObject window)
@@ -55,7 +70,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        activateWindow(pauseWindow);
+        activateWindow(activeWindow);
+        activeWindow = null;
     }
 
     public void UpdateGameGoal(int enemy)
@@ -78,6 +94,5 @@ public class gameManager : MonoBehaviour
     {
         activeWindow = window;
         activeWindow.SetActive(isPaused);
-        activeWindow = null;
     }
 }
