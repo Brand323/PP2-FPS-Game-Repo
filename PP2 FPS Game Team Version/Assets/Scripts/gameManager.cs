@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Numerics;
 
 public class gameManager : MonoBehaviour
 {
@@ -13,7 +15,36 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject pauseWindow;
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
-    [SerializeField] GameObject editWindow;
+    [SerializeField] GameObject mainEditWindow;
+    [SerializeField] public GameObject functionalOptionsWindow;
+    [SerializeField] public GameObject movementParametersWindow;
+    [SerializeField] public GameObject lookParametersWindow;
+    [SerializeField] public GameObject jumpParametersWindow;
+    [SerializeField] public GameObject crouchParametersWindow;
+    [SerializeField] public GameObject headBobParametersWindow;
+
+    //Input variables movement parameters
+    public TMP_InputField walkSpeed;
+    public TMP_InputField sprintSpeed;
+    public TMP_InputField crouchSpeed;
+    public TMP_InputField slideSpeed;
+
+    //Input variables jump parameters
+    public TMP_InputField gravity;
+    public TMP_InputField jumpForce;
+
+    //Input variables crouch parameters
+    public TMP_InputField crouchHeight;
+    public TMP_InputField standingHeight;
+    public TMP_InputField timeToCrouch;
+
+    //Input variables headBob parameters
+    public TMP_InputField walkBobSpeed;
+    public TMP_InputField walkBobAmount;
+    public TMP_InputField sprintBobSpeed;
+    public TMP_InputField sprintBobAmount;
+    public TMP_InputField croouchBobSpeed;
+    public TMP_InputField crouchBobAmount;
 
     int enemyCount;
     float originalTimeScale;
@@ -48,7 +79,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             if(isPaused)
             {
-                PauseGame(editWindow);
+                PauseGame(mainEditWindow);
             }
             else
             {
