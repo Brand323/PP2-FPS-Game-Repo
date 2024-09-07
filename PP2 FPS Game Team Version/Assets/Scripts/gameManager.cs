@@ -53,7 +53,9 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+
         originalTimeScale = Time.timeScale;
     }
 
@@ -117,8 +119,11 @@ public class gameManager : MonoBehaviour
 
     public void LoseUpdate()
     {
-        isPaused = !isPaused;
-        PauseGame(loseWindow);
+        if (!isPaused)
+        {
+            isPaused = true;
+            PauseGame(loseWindow);
+        }
     }
 
     void activateWindow(GameObject window)

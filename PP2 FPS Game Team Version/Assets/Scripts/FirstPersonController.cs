@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour, I_Damage
 {
     #region Lambda Expression Explanation
 
@@ -68,6 +68,18 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
+
+    // ----- Attribute Parameters -----
+    // These variables control the character's stamina and health.
+    [Header("----- Attribute Parameters -----")]
+    [SerializeField, Range(0f, 100f)] private float maxHealthPoints;
+    [SerializeField, Range(0f, 100f)] private float maxStaminaPoints;
+    [SerializeField] private float timeBeforeStaminaRegenStarts = 3f;
+    [SerializeField] private float staminaPointsValueIncrement = 1f;
+    [SerializeField] private float staminaTimeIncrement = 0.1f;
+    private float currentHealth;
+    private float currentStamina;
+
 
     // ----- Movement Parameters -----
     // These variables control player movement speeds in different states.
@@ -160,10 +172,19 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        // Cache the player's health and stamina
+        currentHealth = maxHealthPoints;
+        currentStamina = maxStaminaPoints;
+
     }
 
     void Update()
     {
+        if (gameManager.instance.isPaused || currentHealth == 0.0f)
+            CanMove = false;
+        else
+        CanMove = true;
+
         if (CanMove) // Check if the player can currently move.
         {
             HandleMovementInput();  // Process movement input (WASDSPACE).
@@ -190,6 +211,11 @@ public class FirstPersonController : MonoBehaviour
 
 
             ApplyFinalMovements(); // Apply the final calculated movement to the player. Must stay at the end.
+        }
+
+        if (currentHealth <= 0)
+        {
+            KillPlayer();
         }
     }
     #endregion
@@ -343,8 +369,26 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
+    // Handles the player taking damage and updating the player's health respectively.
+    // Uses the I_Damage interface.
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+            KillPlayer();
 
 
+    }
+
+    // Handles the player's death.
+    // Sets the player's health to 0 and brings up the loss menu.
+    private void KillPlayer()
+    {
+        currentHealth = 0;
+
+        gameManager.instance.LoseUpdate();
+    }
 
 
     #endregion
