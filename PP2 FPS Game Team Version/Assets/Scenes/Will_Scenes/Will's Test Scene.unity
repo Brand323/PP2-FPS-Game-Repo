@@ -24055,6 +24055,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!20 &1850859867 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2798710305921500452, guid: ee7c9976611f65d4092d7b28fcd87407, type: 3}
+  m_PrefabInstance: {fileID: 18975527352528124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1918239683
 GameObject:
   m_ObjectHideFlags: 0
@@ -27412,6 +27417,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2207206266057806118, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1850859867}
     - target: {fileID: 2574486114162132780, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: m_Name
       value: UI
