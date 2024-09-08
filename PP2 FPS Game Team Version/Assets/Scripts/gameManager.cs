@@ -16,6 +16,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
     [SerializeField] GameObject mainEditWindow;
+
+    // Need to implement a Player gameobject for the BasicEnemyAI for movement
+
     [SerializeField] public GameObject functionalOptionsWindow;
     [SerializeField] public GameObject movementParametersWindow;
     [SerializeField] public GameObject lookParametersWindow;
