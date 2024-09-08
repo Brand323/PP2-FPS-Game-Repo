@@ -46,6 +46,9 @@ public class gameManager : MonoBehaviour
     public TMP_InputField croouchBobSpeed;
     public TMP_InputField crouchBobAmount;
 
+    public GameObject player;
+    public FirstPersonController playerScript;
+
     int enemyCount;
     float originalTimeScale;
 
@@ -55,6 +58,8 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         originalTimeScale = Time.timeScale;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
