@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour, I_Damage
 {
     #region Lambda Expression Explanation
 
@@ -61,6 +61,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private bool CanCrouch = true;
     [SerializeField] private bool CanUseHeadBob = true;
     [SerializeField] private bool WillSlideOnSlopes = true;
+    [SerializeField] private bool UseStamina = true;
 
     // ----- Controls -----
     // These variables store the key bindings for the player controls.
@@ -68,6 +69,20 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
+
+    // ----- Attribute Parameters -----
+    // These variables control the character's stamina and health.
+    [Header("----- Attribute Parameters -----")]
+    [SerializeField, Range(0f, 100f)] private float maxHealthPoints;
+    [SerializeField, Range(0f, 100f)] private float maxStaminaPoints = 100;
+    [SerializeField] private float staminaUseMultiplier = 5f;
+    [SerializeField] private float timeBeforeStaminaRegenStarts = 5f;
+    [SerializeField] private float staminaPointsValueIncrement = 2f;
+    [SerializeField] private float staminaTimeIncrement = 0.1f;
+    private float currentHealth;
+    private float currentStamina;
+    private Coroutine regeneratingStamina;
+
 
     // ----- Movement Parameters -----
     // These variables control player movement speeds in different states.
@@ -160,36 +175,45 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        // Cache the player's health and stamina
+        currentHealth = maxHealthPoints;
+        currentStamina = maxStaminaPoints;
+
     }
 
     void Update()
     {
+        if (gameManager.instance.isPaused || currentHealth == 0.0f)
+            CanMove = false;
+        else
+        CanMove = true;
+
         if (CanMove) // Check if the player can currently move.
         {
             HandleMovementInput();  // Process movement input (WASDSPACE).
             HandleMouseLook();      // Handle looking around with the mouse.
 
             if (CanJump)
-            {
                 HandleJump();       // Process jump input if jumping is enabled.
-            }
 
             if (CanCrouch)
-            {
                 HandleCrouch();       // Process crouch input if crouching is enabled.
-            }
 
             if (CanUseHeadBob)
-            {
                 HandleHeadBob();       // Process jump input if jumping is enabled.
-            }
 
-
+            if (UseStamina)
+                HandleStamina();
 
 
 
 
             ApplyFinalMovements(); // Apply the final calculated movement to the player. Must stay at the end.
+        }
+
+        if (currentHealth <= 0)
+        {
+            KillPlayer();
         }
     }
     #endregion
@@ -276,7 +300,89 @@ public class FirstPersonController : MonoBehaviour
     }
 
 
-    
+    // Handles the head bobbing effect based on the player's movement.
+    // The camera moves up and down slightly to simulate natural head movement while walking or running.
+    private void HandleHeadBob()
+    {
+        // Dont apply head bob if the player is not grounded.
+        if (!characterController.isGrounded)
+            return;
+
+        // If the player is moving either forward/backward or left/right, apply the head bob effect.
+        if (Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
+        {
+            // Increment the head bob timer based on the players movement state.
+            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
+
+            // Apply the head bob effect to the camera's local Y position using a sine wave for smooth oscillation.
+            playerCamera.transform.localPosition = new Vector3(
+                playerCamera.transform.localPosition.x,
+                defaultCamYPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : IsSprinting ? sprintBobAmount : walkBobAmount),
+                playerCamera.transform.localPosition.z
+                );
+        }
+
+
+
+
+    }
+
+    // Handles the stamina regeneration of the player and the sprinting state.
+    private void HandleStamina()
+    {
+        // Check if sprinting AND moving
+        if (IsSprinting && currentInput != Vector2.zero)
+        {
+            if (regeneratingStamina != null)
+            {
+                StopCoroutine(regeneratingStamina);
+                regeneratingStamina = null;
+            }
+
+
+            currentStamina -= staminaUseMultiplier * Time.deltaTime;
+
+            if (currentStamina < 0)
+                currentStamina = 0;
+
+            if (currentStamina <= 0)
+                CanSprint = false;
+
+
+        }
+
+        if (!IsSprinting && currentStamina < maxStaminaPoints && regeneratingStamina == null)
+        {
+            regeneratingStamina = StartCoroutine(RegenerateStamina());
+        }
+    }
+
+    // Handles the player taking damage and updating the player's health respectively.
+    // Uses the I_Damage interface.
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+            KillPlayer();
+
+
+    }
+
+    // Handles the player's death.
+    // Sets the player's health to 0 and brings up the loss menu.
+    private void KillPlayer()
+    {
+        currentHealth = 0;
+
+        gameManager.instance.LoseUpdate();
+    }
+
+
+    #endregion
+
+    #region Coroutines
+
     // Coroutine that smoothly transitions the player's height and center between crouching and standing.
     // It ensures the transitions look smoother rather than instantaneous.
     private IEnumerator CrouchStand()
@@ -314,37 +420,27 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
-
-
-    // Handles the head bobbing effect based on the player's movement.
-    // The camera moves up and down slightly to simulate natural head movement while walking or running.
-    private void HandleHeadBob()
+    // Coroutine to handle stamina regeneration
+    private IEnumerator RegenerateStamina()
     {
-        // Dont apply head bob if the player is not grounded.
-        if (!characterController.isGrounded)
-            return;
+        yield return new WaitForSeconds(timeBeforeStaminaRegenStarts);
+        WaitForSeconds timeToWait = new WaitForSeconds(staminaTimeIncrement);
 
-        // If the player is moving either forward/backward or left/right, apply the head bob effect.
-        if (Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
+        while (currentStamina < maxStaminaPoints)
         {
-            // Increment the head bob timer based on the players movement state.
-            headbobTimer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
+            if (currentStamina > 0)
+                CanSprint = true;
 
-            // Apply the head bob effect to the camera's local Y position using a sine wave for smooth oscillation.
-            playerCamera.transform.localPosition = new Vector3(
-                playerCamera.transform.localPosition.x,
-                defaultCamYPosition + Mathf.Sin(headbobTimer) * (isCrouching ? crouchBobAmount : IsSprinting ? sprintBobAmount : walkBobAmount),
-                playerCamera.transform.localPosition.z
-                );
+            currentStamina += staminaTimeIncrement;
+
+            if (currentStamina > maxStaminaPoints)
+                currentStamina = maxStaminaPoints;
+
+            yield return timeToWait;
         }
 
-
-
-
+        regeneratingStamina = null;
     }
-
-
-
 
 
     #endregion

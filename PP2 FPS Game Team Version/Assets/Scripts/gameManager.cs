@@ -16,6 +16,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
     [SerializeField] GameObject mainEditWindow;
+
+    // Need to implement a Player gameobject for the BasicEnemyAI for movement
+
     [SerializeField] public GameObject functionalOptionsWindow;
     [SerializeField] public GameObject movementParametersWindow;
     [SerializeField] public GameObject lookParametersWindow;
@@ -56,7 +59,9 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<FirstPersonController>();
@@ -122,8 +127,11 @@ public class gameManager : MonoBehaviour
 
     public void LoseUpdate()
     {
-        isPaused = !isPaused;
-        PauseGame(loseWindow);
+        if (!isPaused)
+        {
+            isPaused = true;
+            PauseGame(loseWindow);
+        }
     }
 
     void activateWindow(GameObject window)

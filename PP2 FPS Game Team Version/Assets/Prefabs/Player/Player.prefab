@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5853516175998372630}
   - component: {fileID: 188605903587427962}
   - component: {fileID: 7099153498990448451}
+  - component: {fileID: 728689395271311812}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5893189777676502237}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7373203, z: -0, w: 0.6755434}
+  m_LocalRotation: {x: 0, y: -0.73731863, z: 0, w: 0.6755452}
   m_LocalPosition: {x: 3.492, y: 1, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -56,6 +57,11 @@ MonoBehaviour:
   sprintKey: 304
   jumpKey: 32
   crouchKey: 306
+  maxHealthPoints: 3
+  maxStaminaPoints: 100
+  timeBeforeStaminaRegenStarts: 3
+  staminaPointsValueIncrement: 1
+  staminaTimeIncrement: 0.1
   walkSpeed: 3
   sprintSpeed: 6
   crouchSpeed: 1.5
@@ -152,6 +158,29 @@ CharacterController:
   m_StepOffset: 0.6
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &728689395271311812
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893189777676502237}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7142880412444294379
 GameObject:
