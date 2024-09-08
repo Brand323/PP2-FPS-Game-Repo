@@ -56,31 +56,108 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     // ----- Functional Options -----
     // These options control whether certain player actions are enabled or disabled.
     [Header("----- Functional Options -----")]
-    [SerializeField] private bool CanSprint = true;
-    [SerializeField] private bool CanJump = true;
-    [SerializeField] private bool CanCrouch = true;
-    [SerializeField] private bool CanUseHeadBob = true;
-    [SerializeField] private bool WillSlideOnSlopes = true;
-    [SerializeField] private bool UseStamina = true;
+    [SerializeField] private bool canSprint = true;
+    public bool CanSprint
+    {
+        get => canSprint;
+        set => canSprint = value;
+    }
+    [SerializeField] private bool canJump = true;
+    public bool CanJump
+    {
+        get => canJump;
+        set => canJump = value;
+    }
+    [SerializeField] private bool canCrouch = true;
+    public bool CanCrouch
+    {
+        get => canCrouch;
+        set => canCrouch = value;
+    }
+    [SerializeField] private bool canUseHeadBob = true;
+    public bool CanUseHeadBob
+    {
+        get => canUseHeadBob;
+        set => canUseHeadBob = value;
+    }
+    [SerializeField] private bool willSlideOnSlopes = true;
+    public bool WillSlideOnSlopes
+    {
+        get => willSlideOnSlopes;
+        set => willSlideOnSlopes = value;
+    }
+    [SerializeField] private bool useStamina = true;
+    public bool UseStamina
+    {
+        get => useStamina;
+        set => useStamina = value;
+    }
+
 
     // ----- Controls -----
     // These variables store the key bindings for the player controls.
     [Header("----- Controls -----")]
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode SprintKey
+    {
+        get => sprintKey;
+        set => sprintKey = value;
+    }
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
+    public KeyCode JumpKey
+    {
+        get => jumpKey;
+        set => jumpKey = value;
+    }
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode CrouchKey
+    {
+        get => CrouchKey;
+        set => CrouchKey = value;
+    }
+
 
     // ----- Attribute Parameters -----
     // These variables control the character's stamina and health.
     [Header("----- Attribute Parameters -----")]
     [SerializeField, Range(0f, 100f)] private float maxHealthPoints;
+    public float MaxHealthPoints
+    {
+        get => maxHealthPoints;
+        set => maxHealthPoints = value;
+    }
     [SerializeField, Range(0f, 100f)] private float maxStaminaPoints = 100;
+    public float MaxStaminaPoints
+    {
+        get => maxStaminaPoints;
+        set => maxStaminaPoints = value;
+    }
     [SerializeField] private float staminaUseMultiplier = 5f;
+    public float StaminaUseMultiplier
+    {
+        get => staminaUseMultiplier;
+        set => staminaUseMultiplier = value;
+    }
     [SerializeField] private float timeBeforeStaminaRegenStarts = 5f;
+    public float TimeBeforeStaminaRegenStarts
+    {
+        get => timeBeforeStaminaRegenStarts;
+        set => timeBeforeStaminaRegenStarts = value;
+    }
     [SerializeField] private float staminaPointsValueIncrement = 2f;
+    public float StaminaPointsValueIncrement
+    {
+        get => staminaPointsValueIncrement;
+        set => staminaPointsValueIncrement = value;
+    }
     [SerializeField] private float staminaTimeIncrement = 0.1f;
-    private float currentHealth;
-    private float currentStamina;
+    public float StaminaTimeIncrement
+    {
+        get => staminaTimeIncrement;
+        set => staminaTimeIncrement = value;
+    }
+    private float currentHealth { get; set; }
+    private float currentStamina { get; set; }
     private Coroutine regeneratingStamina;
 
 
@@ -88,46 +165,153 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     // These variables control player movement speeds in different states.
     [Header("----- Movement Parameters -----")]
     [SerializeField] private float walkSpeed = 3.0f;
+    public float WalkSpeed
+    {
+        get => walkSpeed;
+        set => walkSpeed = value;
+    }
     [SerializeField] private float sprintSpeed = 6.0f;
+    public float SprintSpeed
+    {
+        get => sprintSpeed;
+        set => sprintSpeed = value;
+    }
     [SerializeField] private float crouchSpeed = 1.5f;
+    public float CrouchSpeed
+    {
+        get => crouchSpeed;
+        set => crouchSpeed = value;
+    }
     [SerializeField] private float slopeFallSpeed = 8.0f;
+    public float SlopeFallSpeed
+    {
+        get => slopeFallSpeed;
+        set => slopeFallSpeed = value;
+    }
 
     // ----- Look Parameters -----
     // These parameters control how the camera responds to mouse input for looking around.
     [Header("----- Look Parameters -----")]
     [SerializeField, Range(1f, 10f)] private float lookSpeedX = 2.0f; // Mouse sense for horizontal.
+    public float LookSpeedX
+    {
+        get => lookSpeedX;
+        set => lookSpeedX = value;
+    }
     [SerializeField, Range(1f, 10f)] private float lookSpeedY = 2.0f; // Mouse sense for vertical.
+    public float LookSpeedY
+    {
+        get => lookSpeedY;
+        set => lookSpeedY = value;
+    }
     [SerializeField, Range(1f, 180f)] private float upperLookLimit = 80f; // Max upwards camera rotation (clamped).
+    public float UpperLookLimit
+    {
+        get => upperLookLimit;
+        set => upperLookLimit = value;
+    }
     [SerializeField, Range(1f, 180f)] private float lowerLookLimit = 80f; // Max downwards camera rotation (clamped).
+    public float LowerLookLimit
+    {
+        get => lowerLookLimit;
+        set => lowerLookLimit = value;
+    }
 
     // ----- Jumping Parameters -----
     // These parameters control the player's jumping physics and gravity effects.
     [Header("----- Jumping Parameters -----")]
     [SerializeField] private float gravity = 30f;
+    public float Gravity
+    {
+        get => gravity;
+        set => gravity = value;
+    }
     [SerializeField] private float jumpForce = 8f; // Force applied to the player when jumping.
+    public float JumpForce
+    {
+        get => jumpForce;
+        set => jumpForce = value;
+    }
 
     // ----- Crouching Parameters -----
     // These parameters control the players height and center when crouching.
     [Header("----- Crouching Parameters -----")]
     [SerializeField] private float crouchHeight = 0.5f;
+    public float CrouchHeight
+    {
+        get => crouchHeight;
+        set => crouchHeight = value;
+    }
     [SerializeField] private float standingHeight = 2f;
+    public float StandingHeight
+    {
+        get => standingHeight;
+        set => standingHeight = value;
+    }
     [SerializeField] private float timeToCrouch = 0.25f;
+    public float TimeToCrouch
+    {
+        get => timeToCrouch;
+        set => timeToCrouch = value;
+    }
     [SerializeField] private Vector3 crouchingCenter = new Vector3(0, 0.5f, 0); // Center point of the character controller while crouching.
+    public Vector3 CrouchingCenter
+    {
+        get => crouchingCenter;
+        set => crouchingCenter = value;
+    }
     [SerializeField] private Vector3 standingCenter = new Vector3(0, 0, 0); // Center point of the character controller when standing.
-    private bool isCrouching;       // Tracks whether the player is currently crouched.
-    private bool duringCrouchAnimation; // Tracks whether the crouch animation is still playing.
+    public Vector3 StandingCenter
+    {
+        get => standingCenter;
+        set => standingCenter = value;
+    }
+    private bool isCrouching { get; set; }       // Tracks whether the player is currently crouched.
+    private bool duringCrouchAnimation { get; set; } // Tracks whether the crouch animation is still playing.
 
     // ----- HeadBob Parameters -----
     // These parameters control the head bob effect, which gives a slightly more realistic feel.
     [Header("----- HeadBob Parameters -----")]
     [SerializeField] private float walkBobSpeed = 14f;
+    public float WalkBobSpeed
+    {
+        get => walkBobSpeed;
+        set => walkBobSpeed = value;
+    }
     [SerializeField] private float walkBobAmount = 0.05f;
+    public float WalkBobAmount
+    {
+        get => walkBobAmount;
+        set => walkBobAmount = value;
+    }
     [SerializeField] private float sprintBobSpeed = 18f;
+    public float SprintBobSpeed
+    {
+        get => sprintBobSpeed;
+        set => sprintBobSpeed = value;
+    }
     [SerializeField] private float sprintBobAmount = 0.11f;
+    public float SprintBobAmount
+    {
+        get => sprintBobAmount;
+        set => sprintBobAmount = value;
+    }
     [SerializeField] private float crouchBobSpeed = 8f;
+    public float CrouchBobSpeed
+    {
+        get => crouchBobSpeed;
+        set => crouchBobSpeed = value;
+    }
     [SerializeField] private float crouchBobAmount = 0.02f;
-    private float defaultCamYPosition = 0f; // Default position of the camera (used for headbobbing effect).
-    private float headbobTimer;             // Timer used to calculate headbob movement.
+    public float CrouchBobAmount
+    {
+        get => crouchBobAmount;
+        set => crouchBobAmount = value;
+    }
+    private float defaultCamYPosition { get; set; } = 0f; // Default position of the camera (used for headbobbing effect).
+    private float headbobTimer { get; set; }             // Timer used to calculate headbob movement.
+
+
     #endregion
 
     // ----- Slope Sliding ( Player falls down slopes ) -----
@@ -153,14 +337,14 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     // Cached components for performance
     private Camera playerCamera;                        // Reference to the camera.
-    private CharacterController characterController;    // Reference to the character controller.
+    private CharacterController characterController { get; set; }    // Reference to the character controller.
 
     // Movement and Input Tracking
     private Vector3 moveDirection; // Stores the players movement direction.
-    private Vector2 currentInput; // Stores the players input.
+    private Vector2 currentInput { get; set; } // Stores the players input.
 
     // Player rotation
-    private float playerRotationX = 0f; // Tracks the players vertical camera rotation.
+    private float playerRotationX { get; set; } = 0f; // Tracks the players vertical camera rotation.
 
     #region Unity Methods
 
@@ -193,16 +377,16 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             HandleMovementInput();  // Process movement input (WASDSPACE).
             HandleMouseLook();      // Handle looking around with the mouse.
 
-            if (CanJump)
+            if (canJump)
                 HandleJump();       // Process jump input if jumping is enabled.
 
-            if (CanCrouch)
+            if (canCrouch)
                 HandleCrouch();       // Process crouch input if crouching is enabled.
 
-            if (CanUseHeadBob)
+            if (canUseHeadBob)
                 HandleHeadBob();       // Process jump input if jumping is enabled.
 
-            if (UseStamina)
+            if (useStamina)
                 HandleStamina();
 
 
@@ -272,7 +456,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             moveDirection.y -= gravity * Time.deltaTime;
 
         // If sliding is enabled, and the player is on a slope, apply sliding forces based on the slopes angle.
-        if (WillSlideOnSlopes && IsSliding)
+        if (willSlideOnSlopes && IsSliding)
             moveDirection += new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z) * slopeFallSpeed;
 
         // Move the player based on the calculated movement direction.
