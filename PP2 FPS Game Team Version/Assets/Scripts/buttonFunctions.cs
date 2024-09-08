@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,11 @@ public class buttonFunctions : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void saveFO()
+    {
+        save();
     }
 
     public void save()
