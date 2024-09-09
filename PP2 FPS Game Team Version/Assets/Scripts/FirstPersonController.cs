@@ -311,7 +311,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     private float defaultCamYPosition { get; set; } = 0f; // Default position of the camera (used for headbobbing effect).
     private float headbobTimer { get; set; }             // Timer used to calculate headbob movement.
 
-
+    public bool playerIsDead = false;
     #endregion
 
     // ----- Slope Sliding ( Player falls down slopes ) -----
@@ -363,11 +363,14 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         currentHealth = maxHealthPoints;
         currentStamina = maxStaminaPoints;
 
+        // Player death state
+        playerIsDead = false;
+
     }
 
     void Update()
     {
-        if (gameManager.instance.isPaused || currentHealth == 0.0f)
+        if (gameManager.instance != null && (gameManager.instance.isPaused || playerIsDead))
             CanMove = false;
         else
         CanMove = true;
@@ -558,6 +561,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     private void KillPlayer()
     {
         currentHealth = 0;
+        playerIsDead = true;
 
         gameManager.instance.LoseUpdate();
     }
