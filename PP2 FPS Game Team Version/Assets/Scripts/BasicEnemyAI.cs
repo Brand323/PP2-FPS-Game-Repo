@@ -28,8 +28,8 @@ public class BasicEnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// Follows the player
-        //agent.SetDestination(gameManager.instance.Player.transform.position);
+        // Follows the player
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
         // Shoots at all times
         if (!isShooting)
