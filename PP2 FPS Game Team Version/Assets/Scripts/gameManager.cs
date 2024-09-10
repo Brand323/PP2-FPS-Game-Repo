@@ -65,7 +65,7 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance != null)
+        //if(instance != null)
             instance = this;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
