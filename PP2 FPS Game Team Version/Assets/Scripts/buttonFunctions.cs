@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    private string input;
     public void resume()
     {
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
@@ -30,10 +32,51 @@ public class buttonFunctions : MonoBehaviour
 
     public void saveFO()
     {
+        if (gameManager.instance.canSprint.value == 0)
+        {
+            gameManager.instance.playerScript.CanSprint = true;
+        }
+        else
+        {
+            gameManager.instance.playerScript.CanSprint = false;
+        }
+        if (gameManager.instance.canJump.value == 0)
+        {
+            gameManager.instance.playerScript.CanJump = true;
+        }
+        else
+        {
+            gameManager.instance.playerScript.CanJump = false;
+        }
+        if (gameManager.instance.canCrouch.value == 0)
+        {
+            gameManager.instance.playerScript.CanCrouch = true;
+        }
+        else
+        {
+            gameManager.instance.playerScript.CanCrouch = false;
+        }
+        if (gameManager.instance.useHeadbob.value == 0)
+        {
+            gameManager.instance.playerScript.CanUseHeadBob = true;
+        }
+        else
+        {
+            gameManager.instance.playerScript.CanUseHeadBob = false;
+        }
+        if (gameManager.instance.canSlide.value == 0)
+        {
+            gameManager.instance.playerScript.WillSlideOnSlopes = true;
+        }
+        else
+        {
+            gameManager.instance.playerScript.WillSlideOnSlopes = false;
+        }
         save();
     }
 
-    public void save()
+
+    void save()
     {
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.UnpauseGame();

@@ -27,6 +27,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
 
+    public GameObject saveButton;
+
+    //Input variables functional options 
+    public TMP_Dropdown canSprint;
+    public TMP_Dropdown canJump;
+    public TMP_Dropdown canCrouch;
+    public TMP_Dropdown useHeadbob;
+    public TMP_Dropdown canSlide;
+
     //Input variables movement parameters
     public TMP_InputField walkSpeed;
     public TMP_InputField sprintSpeed;
