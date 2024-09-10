@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Numerics;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class gameManager : MonoBehaviour
     public TMP_InputField croouchBobSpeed;
     public TMP_InputField crouchBobAmount;
 
+    //HUD variables
+    [SerializeField] TMP_Text moneyText;
+    public Image playerHPBar;
+    public Image playerStaminaBar;
+
     public GameObject player;
     public FirstPersonController playerScript;
 
@@ -59,7 +65,7 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance != null)
+        //if(instance != null)
             instance = this;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");

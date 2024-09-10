@@ -370,6 +370,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     void Update()
     {
+        UpdateUI();
         if (gameManager.instance != null && (gameManager.instance.isPaused || playerIsDead))
             CanMove = false;
         else
@@ -549,11 +550,20 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
+        UpdateUI();
         if (currentHealth <= 0)
             KillPlayer();
 
 
+    }
+
+    public void UpdateUI()
+    {
+        if(gameManager.instance != null)
+        {
+            gameManager.instance.playerHPBar.fillAmount = currentHealth / maxHealthPoints;
+            gameManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStaminaPoints;
+        }
     }
 
     // Handles the player's death.
@@ -632,4 +642,5 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
 
     #endregion
+
 }
