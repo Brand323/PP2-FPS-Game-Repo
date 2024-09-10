@@ -4330,8 +4330,8 @@ MonoBehaviour:
   croouchBobSpeed: {fileID: 2917522843278700835}
   crouchBobAmount: {fileID: 5048577828715761766}
   moneyText: {fileID: 1170684693614015816}
-  playerHPBar: {fileID: 9202761669365293802}
-  playerStaminaBar: {fileID: 0}
+  playerHPBar: {fileID: 4662795433681436911}
+  playerStaminaBar: {fileID: 9202761669365293802}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
@@ -22912,7 +22912,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.537
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -24839,7 +24839,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.537
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
