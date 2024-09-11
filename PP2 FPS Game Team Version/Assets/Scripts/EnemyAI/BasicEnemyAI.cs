@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BasicEnemyAI : MonoBehaviour, I_Damage
+{
+    [SerializeField] Renderer model;
+    [SerializeField] UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] Transform headPos;
+
+    [SerializeField] float HP;
+
+    Color colorOrig;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        colorOrig = model.material.color;
+        gameManager.instance.UpdateGameGoal(1);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Follows the player
+        agent.SetDestination(gameManager.instance.player.transform.position);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        HP -= amount;
+
+        if (HP <= 0)
+        {
+            // Destroys the enemy if it reaches 0 HP and updates the winning condition
+            Destroy(gameObject);
+            gameManager.instance.UpdateGameGoal(-1);
+        }
+
+        StartCoroutine(flashColor());
+    }
+
+    IEnumerator flashColor()
+    {
+        // Turns the enemy model red for a milisecond
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
+    }
+}
