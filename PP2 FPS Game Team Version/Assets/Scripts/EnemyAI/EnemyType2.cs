@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyType2 : BasicEnemyAI
 {
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject fireBall;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
@@ -19,6 +19,7 @@ public class EnemyType2 : BasicEnemyAI
     // Update is called once per frame
     void Update()
     {
+        Movement();
         if (!isShooting)
         {
             StartCoroutine(shoot());
@@ -28,8 +29,8 @@ public class EnemyType2 : BasicEnemyAI
     IEnumerator shoot()
     {
         isShooting = true;
-        // Creates the bullet and launches it forward
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        // Creates the fireBall and launches it forward
+        Instantiate(fireBall, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }

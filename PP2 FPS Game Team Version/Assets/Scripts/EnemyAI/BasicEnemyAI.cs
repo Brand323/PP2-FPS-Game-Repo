@@ -25,6 +25,9 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     {
         // Follows the player
 
+    } 
+    public void Movement()
+    {
         if (playerInRange)
         {
             playerDir = gameManager.instance.player.transform.position - headPos.position;

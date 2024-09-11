@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class EnemyType1 : BasicEnemyAI
 {
-
     [SerializeField] float attackRate;
     bool isAttacking;
     [SerializeField] float meleeRange;
@@ -20,6 +19,7 @@ public class EnemyType1 : BasicEnemyAI
     // Update is called once per frame
     void Update()
     {
+        Movement();
         //player position needs to be updated to the AI
         if (GetPlayerInRange())
         {
