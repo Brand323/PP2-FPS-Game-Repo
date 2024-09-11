@@ -9,9 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4650674917262604977}
+  - component: {fileID: 3984124271418792156}
+  - component: {fileID: 1348939724177050120}
   - component: {fileID: 8585373436309583124}
   - component: {fileID: 5819117937006363102}
   - component: {fileID: 6295102609801946693}
+  - component: {fileID: 6795223334302409651}
+  - component: {fileID: 7156154177523924708}
   m_Layer: 0
   m_Name: Dagger_01
   m_TagString: Untagged
@@ -26,13 +30,48 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5458737265024032779}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3984124271418792156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458737265024032779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ffdd938aa6204439ee5c61f3bdf667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Iron Dagger
+--- !u!114 &1348939724177050120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458737265024032779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ae2d1299ffccf4bb7482cc46cb0a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daggerRB: {fileID: 6795223334302409651}
+  daggerCol: {fileID: 7156154177523924708}
+  playerPosition: {fileID: 0}
+  weaponContainer: {fileID: 0}
+  mainCam: {fileID: 0}
+  pickupRange: 5
+  dropForwardForce: 2
+  dropUpwardForce: 1
+  DaggerEquipped: 0
 --- !u!33 &8585373436309583124
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -52,6 +91,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +130,65 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5458737265024032779}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
+  serializedVersion: 5
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1440419022873279924, guid: 79f4cdb09da63b74081e5ed761e963ee, type: 3}
+--- !u!54 &6795223334302409651
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458737265024032779}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7156154177523924708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458737265024032779}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1284675, y: 0.5759811, z: 0.039230026}
+  m_Center: {x: 0, y: 0.19478191, z: -0.000000008381903}
