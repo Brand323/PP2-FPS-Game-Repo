@@ -7,11 +7,12 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] Renderer model;
     [SerializeField] UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] Transform headPos;
+    [SerializeField] int faceTargetSpeed;
 
     [SerializeField] float HP;
-
+    bool playerInRange;
     Color colorOrig;
-
+    Vector3 playerDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,41 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     void Update()
     {
         // Follows the player
-        agent.SetDestination(gameManager.instance.player.transform.position);
-    }
 
+        if (playerInRange)
+        {
+            playerDir = gameManager.instance.player.transform.position - headPos.position;
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                FaceTarget();
+            }
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.isTrigger)
+        {
+            return;
+        }
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+    void FaceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
     public void TakeDamage(float amount)
     {
         HP -= amount;
@@ -46,5 +79,9 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
+    }
+    public bool GetPlayerInRange()
+    {
+        return playerInRange;
     }
 }
