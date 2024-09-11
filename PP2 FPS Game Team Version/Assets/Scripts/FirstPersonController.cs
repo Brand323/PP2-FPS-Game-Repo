@@ -156,8 +156,8 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         get => staminaTimeIncrement;
         set => staminaTimeIncrement = value;
     }
-    private float currentHealth { get; set; }
-    private float currentStamina { get; set; }
+    public float currentHealth { get; set; }
+    public float currentStamina { get; set; }
     private Coroutine regeneratingStamina;
 
 
