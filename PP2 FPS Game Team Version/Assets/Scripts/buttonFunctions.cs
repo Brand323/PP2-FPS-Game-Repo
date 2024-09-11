@@ -75,6 +75,45 @@ public class buttonFunctions : MonoBehaviour
         save();
     }
 
+    public void saveMP()
+    {
+        gameManager.instance.playerScript.WalkSpeed = checkInput(gameManager.instance.playerScript.WalkSpeed, gameManager.instance.walkSpeed);
+        gameManager.instance.playerScript.SprintSpeed = checkInput(gameManager.instance.playerScript.SprintSpeed, gameManager.instance.sprintSpeed);
+        gameManager.instance.playerScript.CrouchSpeed = checkInput(gameManager.instance.playerScript.CrouchSpeed, gameManager.instance.crouchSpeed);
+        gameManager.instance.playerScript.SlopeFallSpeed = checkInput(gameManager.instance.playerScript.SlopeFallSpeed, gameManager.instance.slideSpeed);
+        save();
+    }
+
+    public void saveJP()
+    {
+        gameManager.instance.playerScript.Gravity = checkInput(gameManager.instance.playerScript.Gravity, gameManager.instance.gravity);
+        gameManager.instance.playerScript.JumpForce = checkInput(gameManager.instance.playerScript.Gravity, gameManager.instance.jumpForce);
+        save();
+    }
+
+    public void saveCP()
+    {
+        gameManager.instance.playerScript.CrouchHeight = checkInput(gameManager.instance.playerScript.CrouchHeight, gameManager.instance.crouchHeight);
+        gameManager.instance.playerScript.StandingHeight = checkInput(gameManager.instance.playerScript.StandingHeight, gameManager.instance.standingHeight);
+        save();
+    }
+
+    public void saveHBP()
+    {
+        gameManager.instance.playerScript.WalkBobSpeed = checkInput(gameManager.instance.playerScript.WalkBobSpeed, gameManager.instance.walkBobSpeed);
+        gameManager.instance.playerScript.SprintBobSpeed = checkInput(gameManager.instance.playerScript.SprintBobSpeed, gameManager.instance.sprintBobSpeed);
+        gameManager.instance.playerScript.CrouchBobSpeed = checkInput(gameManager.instance.playerScript.CrouchBobSpeed, gameManager.instance.crouchBobSpeed);
+        save();
+    }
+
+    public void saveAP()
+    {
+        gameManager.instance.playerScript.MaxHealthPoints = checkInput(gameManager.instance.playerScript.MaxHealthPoints, gameManager.instance.maxHealth);
+        gameManager.instance.playerScript.MaxStaminaPoints = checkInput(gameManager.instance.playerScript.MaxStaminaPoints, gameManager.instance.maxStamina);
+        gameManager.instance.playerScript.currentHealth = gameManager.instance.playerScript.MaxHealthPoints;
+        gameManager.instance.playerScript.currentStamina = gameManager.instance.playerScript.MaxStaminaPoints;
+        save();
+    }
 
     void save()
     {
@@ -92,9 +131,9 @@ public class buttonFunctions : MonoBehaviour
         editInput(gameManager.instance.movementParametersWindow);
     }
 
-    public void lookParameters()
+    public void attributeParameters()
     {
-        editInput(gameManager.instance.lookParametersWindow);
+        editInput(gameManager.instance.attributeParametersWindow);
     }
 
     public void jumpParameters()
@@ -118,5 +157,14 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseGame();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.PauseGame(window);
+    }
+
+    float checkInput(float variable, TMP_InputField input)
+    {
+        if (input.text != "")
+        {
+            variable = float.Parse(input.text);
+        }
+        return variable;
     }
 }

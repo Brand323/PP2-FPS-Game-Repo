@@ -22,7 +22,7 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] public GameObject functionalOptionsWindow;
     [SerializeField] public GameObject movementParametersWindow;
-    [SerializeField] public GameObject lookParametersWindow;
+    [SerializeField] public GameObject attributeParametersWindow;
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
@@ -49,15 +49,15 @@ public class gameManager : MonoBehaviour
     //Input variables crouch parameters
     public TMP_InputField crouchHeight;
     public TMP_InputField standingHeight;
-    public TMP_InputField timeToCrouch;
 
     //Input variables headBob parameters
     public TMP_InputField walkBobSpeed;
-    public TMP_InputField walkBobAmount;
     public TMP_InputField sprintBobSpeed;
-    public TMP_InputField sprintBobAmount;
-    public TMP_InputField croouchBobSpeed;
-    public TMP_InputField crouchBobAmount;
+    public TMP_InputField crouchBobSpeed;
+
+    //Input variables attribute parameters
+    public TMP_InputField maxHealth;
+    public TMP_InputField maxStamina;
 
     //HUD variables
     [SerializeField] TMP_Text moneyText;
