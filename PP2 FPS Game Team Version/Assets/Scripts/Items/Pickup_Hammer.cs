@@ -16,8 +16,6 @@ public class Pickup_Hammer : MonoBehaviour
 
     public bool HammerEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!HammerEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Hammer : MonoBehaviour
             // enable hammer script
             hammerRB.isKinematic = true;
             hammerCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the hammer if within range and slot is not full
-        if (!HammerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!HammerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupHammer();
 
         // Drop the hammer if equipped
-        if (HammerEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (HammerEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
             DropHammer();
     }
 
     private void PickupHammer()
     {
         HammerEquipped = true;
-        slotFull = true;
 
         // Set hammer's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Hammer : MonoBehaviour
         hammerRB.isKinematic = true;
         hammerCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentWeapon = gameObject;
+
         // enable the hammer script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Hammer : MonoBehaviour
     private void DropHammer()
     {
         HammerEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Hammer : MonoBehaviour
         // enable hammer physics
         hammerRB.isKinematic = false;
         hammerCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply forces for a realistic looking drop on the item
         hammerRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;

@@ -16,8 +16,6 @@ public class Pickup_Dagger : MonoBehaviour
 
     public bool DaggerEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!DaggerEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Dagger : MonoBehaviour
             // enable dagger script
             daggerRB.isKinematic = true;
             daggerCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the dagger if within range and slot is not full
-        if (!DaggerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!DaggerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupDagger();
 
         // Drop the dagger if equipped
-        if (DaggerEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (DaggerEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
             DropDagger();
     }
 
     private void PickupDagger()
     {
         DaggerEquipped = true;
-        slotFull = true;
 
         // Set dagger's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Dagger : MonoBehaviour
         daggerRB.isKinematic = true;
         daggerCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentWeapon = gameObject;
+
         // enable the dagger script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Dagger : MonoBehaviour
     private void DropDagger()
     {
         DaggerEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Dagger : MonoBehaviour
         // enable dagger physics
         daggerRB.isKinematic = false;
         daggerCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply forces for a realistic looking drop on the item
         daggerRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;

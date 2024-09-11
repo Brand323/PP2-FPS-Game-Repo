@@ -16,8 +16,6 @@ public class Pickup_Bow : MonoBehaviour
 
     public bool BowEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!BowEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Bow : MonoBehaviour
             // enable bow script
             bowRB.isKinematic = true;
             bowCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the bow if within range and slot is not full
-        if (!BowEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!BowEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupBow();
 
         // Drop the bow if equipped
-        if (BowEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (BowEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
             DropBow();
     }
 
     private void PickupBow()
     {
         BowEquipped = true;
-        slotFull = true;
 
         // Set bow's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Bow : MonoBehaviour
         bowRB.isKinematic = true;
         bowCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentWeapon = gameObject;
+
         // enable the bow script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Bow : MonoBehaviour
     private void DropBow()
     {
         BowEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Bow : MonoBehaviour
         // enable bow physics
         bowRB.isKinematic = false;
         bowCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply forces for a realistic looking drop on the item
         bowRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
