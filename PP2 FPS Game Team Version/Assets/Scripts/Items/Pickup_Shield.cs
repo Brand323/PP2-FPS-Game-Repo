@@ -16,8 +16,6 @@ public class Pickup_Shield : MonoBehaviour
 
     public bool ShieldEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!ShieldEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Shield : MonoBehaviour
             // enable shield script
             shieldRB.isKinematic = true;
             shieldCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentShield = gameManager.instance.playerScript.currentShield;
 
         // Pickup the shield if within range and slot is not full
-        if (!ShieldEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!ShieldEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentShield == null)
             PickupShield();
 
         // Drop the shield if equipped
-        if (ShieldEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (ShieldEquipped && Input.GetKeyDown(KeyCode.Q) && currentShield != null)
             DropShield();
     }
 
     private void PickupShield()
     {
         ShieldEquipped = true;
-        slotFull = true;
 
         // Set shield's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Shield : MonoBehaviour
         shieldRB.isKinematic = true;
         shieldCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentShield = gameObject;
+
         // enable the shield script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Shield : MonoBehaviour
     private void DropShield()
     {
         ShieldEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Shield : MonoBehaviour
         // enable shield physics
         shieldRB.isKinematic = false;
         shieldCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentShield = null;
 
         // Apply forces for a realistic looking drop on the item
         shieldRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;

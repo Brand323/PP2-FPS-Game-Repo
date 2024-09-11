@@ -16,8 +16,6 @@ public class Pickup_Sword : MonoBehaviour
 
     public bool SwordEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!SwordEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Sword : MonoBehaviour
             // enable gun script
             swordRB.isKinematic= true;
             swordCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the gun if within range and slot is not full
-        if (!SwordEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!SwordEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupSword();
 
         // Drop the sword if equipped
-        if (SwordEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (SwordEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
             DropSword();
     }
 
     private void PickupSword()
     {
         SwordEquipped = true;
-        slotFull = true;
 
         // Set sword's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Sword : MonoBehaviour
         swordRB.isKinematic = true;
         swordCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentWeapon = gameObject;
+
         // enable the sword script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Sword : MonoBehaviour
     private void DropSword()
     {
         SwordEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Sword : MonoBehaviour
         // enable sword physics
         swordRB.isKinematic = false;
         swordCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply forces for a realistic looking drop on the item
         swordRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;

@@ -16,8 +16,6 @@ public class Pickup_Axe : MonoBehaviour
 
     public bool AxeEquipped;
 
-    public static bool slotFull; // tracks if weapon slot is occupied
-
     private void Start()
     {
         if (!AxeEquipped)
@@ -31,27 +29,26 @@ public class Pickup_Axe : MonoBehaviour
             // enable axe script
             axeRB.isKinematic = true;
             axeCol.isTrigger = true;
-            slotFull = true;
         }
     }
 
     private void Update()
     {
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
+        GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the axe if within range and slot is not full
-        if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupAxe();
 
         // Drop the axe if equipped
-        if (AxeEquipped && Input.GetKeyDown(KeyCode.Q))
+        if (AxeEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
             DropAxe();
     }
 
     private void PickupAxe()
     {
         AxeEquipped = true;
-        slotFull = true;
 
         // Set axe's parent to the weapon container within the player's arms 
         transform.SetParent(weaponContainer);
@@ -63,6 +60,9 @@ public class Pickup_Axe : MonoBehaviour
         axeRB.isKinematic = true;
         axeCol.isTrigger = true;
 
+        // Set the current weapon reference to this weapon
+        gameManager.instance.playerScript.currentWeapon = gameObject;
+
         // enable the axe script
 
         // Update UI to display interaction text
@@ -72,7 +72,6 @@ public class Pickup_Axe : MonoBehaviour
     private void DropAxe()
     {
         AxeEquipped = false;
-        slotFull = false;
 
         // Detatch from the player and weaponContainer
         transform.SetParent(null);
@@ -80,6 +79,9 @@ public class Pickup_Axe : MonoBehaviour
         // enable axe physics
         axeRB.isKinematic = false;
         axeCol.isTrigger = false;
+
+        // Set the current weapon reference to null 
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply forces for a realistic looking drop on the item
         axeRB.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
