@@ -13,6 +13,7 @@ public class money : MonoBehaviour
         {
             Coin++;
             Debug.Log(Coin);
+            gameManager.instance.moneyText.text = Coin.ToString();
             Destroy(other.gameObject);
         }
     }
