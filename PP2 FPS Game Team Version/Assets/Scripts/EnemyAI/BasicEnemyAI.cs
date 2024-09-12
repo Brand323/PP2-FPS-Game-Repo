@@ -53,7 +53,9 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        SphereCollider sphereCollider = other as SphereCollider;
+
+        if (other.CompareTag("Player")&& sphereCollider != null)
         {
             playerInRange = false;
         }
