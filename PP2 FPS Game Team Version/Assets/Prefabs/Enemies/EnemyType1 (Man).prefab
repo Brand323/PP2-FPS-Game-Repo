@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 520028493802262900}
   m_Layer: 3
   m_Name: EnemyType1 (Man)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1417,7 +1417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5126291367972392769}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5400001, y: -0, z: 2.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   agent: {fileID: 3247988313459910436}
   headPos: {fileID: 595429375326613046}
   faceTargetSpeed: 5
-  HP: 7
+  HP: 2
   attackRate: 2
   meleeRange: 2
 --- !u!95 &1913962422942093185
@@ -1532,7 +1532,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

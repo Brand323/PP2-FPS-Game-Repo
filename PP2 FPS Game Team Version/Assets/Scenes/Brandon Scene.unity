@@ -928,25 +928,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1284814481626736006, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
-      propertyPath: HP
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1284814481626736006, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
-      propertyPath: attackRate
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2743812891657584284, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
       propertyPath: m_Name
       value: EnemyType1 (Man)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5507883078553769467, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
       propertyPath: m_LocalPosition.x

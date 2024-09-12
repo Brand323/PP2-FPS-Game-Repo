@@ -188,6 +188,8 @@ public class gameManager : MonoBehaviour
     {
         waveInProgress = false;
 
+        triggerGate.EndWave();
+
     }
 
     void UpdateWaveUI()
@@ -197,6 +199,11 @@ public class gameManager : MonoBehaviour
     public void EnemyDefeated()
     {
         remainingEnemies--;
+
+        if(remainingEnemies <= 0)
+        {
+            EndWave();
+        }
     }
 
 

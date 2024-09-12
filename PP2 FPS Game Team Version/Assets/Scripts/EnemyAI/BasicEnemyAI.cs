@@ -72,7 +72,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
             gameManager.instance.EnemyDefeated();
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
             Destroy(gameObject);
-            gameManager.instance.UpdateGameGoal(-1);
         }
 
         StartCoroutine(flashColor());
