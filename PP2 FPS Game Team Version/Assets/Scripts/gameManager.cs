@@ -61,7 +61,7 @@ public class gameManager : MonoBehaviour
     public TMP_InputField maxStamina;
 
     //HUD variables
-    [SerializeField] TMP_Text moneyText;
+    [SerializeField] public TMP_Text moneyText;
     public Image playerHPBar;
     public Image playerStaminaBar;
 
