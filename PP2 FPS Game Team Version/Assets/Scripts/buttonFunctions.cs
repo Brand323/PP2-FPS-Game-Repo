@@ -19,6 +19,10 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
+        //if(gameManager.instance.playerScript.playerIsDead)
+        //{
+        //    gameManager.instance.playerScript.currentHealth = gameManager.instance.playerScript.MaxHealthPoints;
+        //}
     }
 
     public void quit()
