@@ -10425,6 +10425,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 723434016}
     - target: {fileID: 7218465679271079088, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+      propertyPath: totalWaves
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218465679271079088, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
@@ -10440,6 +10444,10 @@ PrefabInstance:
       propertyPath: waveStartMenu
       value: 
       objectReference: {fileID: 994720302}
+    - target: {fileID: 7218465679271079088, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+      propertyPath: enemiesPerWave
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7218465679271079088, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: startWaveButton
       value: 

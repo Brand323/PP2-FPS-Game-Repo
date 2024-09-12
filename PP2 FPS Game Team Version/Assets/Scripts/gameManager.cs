@@ -73,7 +73,7 @@ public class gameManager : MonoBehaviour
     private int remainingEnemies;
     private bool waveInProgress = false;
     public GameObject Lever;
-    
+    public int totalWaves = 3;
 
     //UI Elements for wave System
     public TMP_Text waveText;
@@ -158,7 +158,6 @@ public class gameManager : MonoBehaviour
     public void StartNextWave()
     {
     
-
         currentWave++;
         // Increase enemy count each wave
         remainingEnemies = enemiesPerWave * currentWave; 
@@ -189,6 +188,13 @@ public class gameManager : MonoBehaviour
         waveInProgress = false;
 
         triggerGate.EndWave();
+
+        //Checks for Win
+        if(currentWave >= totalWaves)
+        {
+            isPaused = !isPaused;
+            PauseGame(winWindow);
+        }
 
     }
 
