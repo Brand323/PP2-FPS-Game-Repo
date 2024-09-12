@@ -14,7 +14,7 @@ public class Pickup_Sword : MonoBehaviour
 
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
 
-    public bool SwordEquipped;
+    public bool SwordEquipped = true;
 
     private void Start()
     {
@@ -77,6 +77,7 @@ public class Pickup_Sword : MonoBehaviour
         gameManager.instance.playerScript.currentWeapon = gameObject;
 
         // enable the sword script
+        swordCol.enabled = false;
 
         // Update UI to display interaction text
 
@@ -93,6 +94,9 @@ public class Pickup_Sword : MonoBehaviour
         swordRB.isKinematic = false;
         swordCol.isTrigger = false;
 
+        //re-enable collider when dropped
+        swordCol.enabled = true;
+
         // Set the current weapon reference to null 
         gameManager.instance.playerScript.currentWeapon = null;
 
@@ -107,6 +111,7 @@ public class Pickup_Sword : MonoBehaviour
         swordRB.AddTorque(new Vector3(random, random, random) * 10);
 
         // Disable sword functionality by disabling sword script
+        swordCol.enabled = true;
 
         // Clear the reference for the UI
     }

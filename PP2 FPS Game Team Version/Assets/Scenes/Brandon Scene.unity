@@ -228,11 +228,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609571465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
+  m_PrefabInstance: {fileID: 910410529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &609571468 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 2142021146967332986, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
+  m_PrefabInstance: {fileID: 910410529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &609571473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1127450730860520516, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
   m_PrefabInstance: {fileID: 910410529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &609571474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609571465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552472f49a443840bd90babfb0d566f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  swordCollider: {fileID: 609571468}
 --- !u!1001 &910410529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,7 +328,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 609571474}
   m_SourcePrefab: {fileID: 100100000, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
 --- !u!1001 &1051885441
 PrefabInstance:
@@ -884,9 +911,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1284814481626736006, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
+      propertyPath: HP
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284814481626736006, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
+      propertyPath: attackRate
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743812891657584284, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
       propertyPath: m_Name
       value: EnemyType1 (Man)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5507883078553769467, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
       propertyPath: m_LocalPosition.x
