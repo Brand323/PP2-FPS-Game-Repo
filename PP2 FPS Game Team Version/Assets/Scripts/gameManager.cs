@@ -159,8 +159,11 @@ public class gameManager : MonoBehaviour
 
     public void activateItemUI()
     {
-        itemPickUpWindow.SetActive(true);
-        itemUIisDisplayed = true;
+        if(!itemUIisDisplayed)
+        {
+            itemPickUpWindow.SetActive(true);
+            itemUIisDisplayed = true;
+        }
     }
 
     public void deactivateItemUI()

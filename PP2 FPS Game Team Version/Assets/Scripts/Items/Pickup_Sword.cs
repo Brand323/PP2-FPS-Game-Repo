@@ -38,8 +38,21 @@ public class Pickup_Sword : MonoBehaviour
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the gun if within range and slot is not full
-        if (!SwordEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-            PickupSword();
+        //if (!SwordEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        //    PickupSword();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !SwordEquipped && currentWeapon == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupSword();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the sword if equipped
         if (SwordEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
