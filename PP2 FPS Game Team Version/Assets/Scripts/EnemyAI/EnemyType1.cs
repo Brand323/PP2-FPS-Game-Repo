@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyType1 : BasicEnemyAI
 {
+
     [SerializeField] float attackRate;
     bool isAttacking;
     [SerializeField] float meleeRange;

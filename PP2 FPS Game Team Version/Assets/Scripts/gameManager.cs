@@ -65,6 +65,21 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public Image playerStaminaBar;
 
+    //Wave Variables
+    public GameObject enemyType1Prefab;
+    public Transform[] spawnPoints;
+    public int currentWave = 0;
+    public int enemiesPerWave = 5;
+    private int remainingEnemies;
+    private bool waveInProgress = false;
+    public GameObject Lever;
+    
+
+    //UI Elements for wave System
+    public TMP_Text waveText;
+    public GateTrigger triggerGate;
+
+
     public GameObject player;
     public FirstPersonController playerScript;
 
@@ -77,11 +92,15 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         //if(instance != null)
-            instance = this;
+        instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<FirstPersonController>();
+
+        //Intialize First Wave
+        UpdateWaveUI();
+
     }
 
     // Update is called once per frame
@@ -113,6 +132,10 @@ public class gameManager : MonoBehaviour
                 UnpauseGame();
             }
         }
+        if(remainingEnemies <= 0 && waveInProgress)
+        {
+            EndWave();
+        }
     }
 
     public void PauseGame(GameObject window)
@@ -131,6 +154,51 @@ public class gameManager : MonoBehaviour
         activateWindow(activeWindow);
         activeWindow = null;
     }
+
+    public void StartNextWave()
+    {
+    
+
+        currentWave++;
+        // Increase enemy count each wave
+        remainingEnemies = enemiesPerWave * currentWave; 
+        waveInProgress = true;
+        StartCoroutine(SpawnWaveEnemies());
+
+        UpdateWaveUI();
+    }
+
+    IEnumerator SpawnWaveEnemies()
+    {
+        for (int i = 0; i < remainingEnemies; i++)
+        {
+            SpawnEnemy();
+            // Delay between spawns
+            yield return new WaitForSeconds(1f); 
+        }
+    }
+
+    void SpawnEnemy()
+    {
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        Instantiate(enemyType1Prefab, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
+    }
+
+    void EndWave()
+    {
+        waveInProgress = false;
+
+    }
+
+    void UpdateWaveUI()
+    {
+        waveText.text = "Wave: " + currentWave;
+    }
+    public void EnemyDefeated()
+    {
+        remainingEnemies--;
+    }
+
 
     public void UpdateGameGoal(int enemy)
     {
