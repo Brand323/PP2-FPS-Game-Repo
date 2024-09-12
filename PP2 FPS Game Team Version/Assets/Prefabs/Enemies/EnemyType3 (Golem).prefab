@@ -334,8 +334,10 @@ MonoBehaviour:
   model: {fileID: 2929531739501181021}
   agent: {fileID: 793365052057138150}
   headPos: {fileID: 4112174031807389264}
-  faceTargetSpeed: 1
+  faceTargetSpeed: 2
   HP: 25
+  attackRate: 2.2
+  meleeRange: 2.1
 --- !u!195 &793365052057138150
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -350,7 +352,7 @@ NavMeshAgent:
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 3
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

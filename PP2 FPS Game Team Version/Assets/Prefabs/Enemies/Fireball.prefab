@@ -4998,7 +4998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rigidBody: {fileID: 4680520082024179495}
-  damageAmount: 0
+  damageAmount: 1
   speed: 4
   destroyTime: 8
 --- !u!114 &7537903757880833957
