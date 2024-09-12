@@ -119,12 +119,6 @@ public class buttonFunctions : MonoBehaviour
         save();
     }
 
-    void save()
-    {
-        gameManager.instance.isPaused = !gameManager.instance.isPaused;
-        gameManager.instance.UnpauseGame();
-    }
-
     public void functionalOptions()
     {
         editInput(gameManager.instance.functionalOptionsWindow);
@@ -155,6 +149,11 @@ public class buttonFunctions : MonoBehaviour
         editInput(gameManager.instance.headBobParametersWindow);
     }
 
+    public void activateWave()
+    {
+        gameManager.instance.triggerGate.StartWave();
+    }
+
     void editInput(GameObject window)
     {
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
@@ -170,5 +169,11 @@ public class buttonFunctions : MonoBehaviour
             variable = float.Parse(input.text);
         }
         return variable;
+    }
+
+    void save()
+    {
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.UnpauseGame();
     }
 }
