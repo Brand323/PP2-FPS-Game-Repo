@@ -38,6 +38,7 @@ public class GateController : MonoBehaviour
         }
     }
 
+
     private IEnumerator MoveGate(Vector3 targetPosition)
     {
         while(Vector3.Distance(transform.position, targetPosition) > 0.01f)

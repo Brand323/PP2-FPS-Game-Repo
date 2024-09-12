@@ -61,14 +61,6 @@ public class GateTrigger : MonoBehaviour
         gateController.LowerGate();
     }
 
-    //private void OnTriggerExitAfterWaveStart(Collider other)
-    //{
-    //    if(other.CompareTag("Player")&& waveStarted)
-    //    {
-    //        gateController.LowerGate();
-    //    }
-    //}
-
     public void ResetTrigger()
     {
         waveStarted = false; // Reset the wave trigger for the next wave
