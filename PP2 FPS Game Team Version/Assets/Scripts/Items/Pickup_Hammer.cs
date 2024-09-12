@@ -8,7 +8,7 @@ public class Pickup_Hammer : MonoBehaviour
     public Rigidbody hammerRB;
     public BoxCollider hammerCol;
 
-    public Transform playerPosition, weaponContainer, mainCam;
+    [SerializeField] Transform playerPosition, weaponContainer, mainCam;
 
     public float pickupRange = 5f;
 
@@ -18,6 +18,10 @@ public class Pickup_Hammer : MonoBehaviour
 
     private void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         if (!HammerEquipped)
         {
             // disable hammer script if not equipped.
@@ -38,8 +42,21 @@ public class Pickup_Hammer : MonoBehaviour
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the hammer if within range and slot is not full
-        if (!HammerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-            PickupHammer();
+        //if (!HammerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        //    PickupHammer();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !HammerEquipped && currentWeapon == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupHammer();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the hammer if equipped
         if (HammerEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)

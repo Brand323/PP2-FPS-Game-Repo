@@ -8,7 +8,7 @@ public class Pickup_Axe : MonoBehaviour
     public Rigidbody axeRB;
     public BoxCollider axeCol;
 
-    public Transform playerPosition, weaponContainer, mainCam;
+    [SerializeField] Transform playerPosition, weaponContainer, mainCam;
 
     public float pickupRange = 5f;
 
@@ -18,6 +18,10 @@ public class Pickup_Axe : MonoBehaviour
 
     private void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         if (!AxeEquipped)
         {
             // disable axe script if not equipped.
@@ -38,8 +42,21 @@ public class Pickup_Axe : MonoBehaviour
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Pickup the axe if within range and slot is not full
-        if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-            PickupAxe();
+        //if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        //    PickupAxe();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !AxeEquipped && currentWeapon == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupAxe();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the axe if equipped
         if (AxeEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)

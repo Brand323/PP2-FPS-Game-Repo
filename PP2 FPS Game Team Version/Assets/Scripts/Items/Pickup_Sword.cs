@@ -8,7 +8,7 @@ public class Pickup_Sword : MonoBehaviour
     public Rigidbody swordRB;
     public BoxCollider swordCol;
 
-    public Transform playerPosition, weaponContainer, mainCam;
+    [SerializeField] Transform playerPosition, weaponContainer, mainCam;
 
     public float pickupRange = 5f;
 
@@ -18,6 +18,10 @@ public class Pickup_Sword : MonoBehaviour
 
     private void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         if (!SwordEquipped)
         {
             // disable sword script if not equipped.

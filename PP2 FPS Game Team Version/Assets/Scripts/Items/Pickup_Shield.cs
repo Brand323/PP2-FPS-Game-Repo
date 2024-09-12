@@ -8,7 +8,7 @@ public class Pickup_Shield : MonoBehaviour
     public Rigidbody shieldRB;
     public BoxCollider shieldCol;
 
-    public Transform playerPosition, weaponContainer, mainCam;
+    [SerializeField] Transform playerPosition, weaponContainer, mainCam;
 
     public float pickupRange = 5f;
 
@@ -18,6 +18,10 @@ public class Pickup_Shield : MonoBehaviour
 
     private void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("LeftItemContainer").transform;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         if (!ShieldEquipped)
         {
             // disable shield script if not equipped.
@@ -38,8 +42,21 @@ public class Pickup_Shield : MonoBehaviour
         GameObject currentShield = gameManager.instance.playerScript.currentShield;
 
         // Pickup the shield if within range and slot is not full
-        if (!ShieldEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentShield == null)
-            PickupShield();
+        //if (!ShieldEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentShield == null)
+        //   PickupShield();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !ShieldEquipped && currentShield == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupShield();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the shield if equipped
         if (ShieldEquipped && Input.GetKeyDown(KeyCode.Q) && currentShield != null)

@@ -8,7 +8,7 @@ public class Pickup_Bow : MonoBehaviour
     public Rigidbody bowRB;
     public BoxCollider bowCol;
 
-    public Transform playerPosition, weaponContainer, mainCam;
+    [SerializeField] Transform playerPosition, weaponContainer, mainCam;
 
     public float pickupRange = 5f;
 
@@ -18,6 +18,10 @@ public class Pickup_Bow : MonoBehaviour
 
     private void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         if (!BowEquipped)
         {
             // disable bow script if not equipped.
@@ -38,8 +42,21 @@ public class Pickup_Bow : MonoBehaviour
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         //Pickup the bow if within range and slot is not full
-        if (!BowEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-            PickupBow();
+        //if (!BowEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        //    PickupBow();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !BowEquipped && currentWeapon == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupBow();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the bow if equipped
         if (BowEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)

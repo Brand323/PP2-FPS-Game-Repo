@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Coin
   - Enemy
+  - PlayerPos
+  - RightItemContainer
+  - LeftItemContainer
   layers:
   - Default
   - TransparentFX
