@@ -62,6 +62,7 @@ public class gameManager : MonoBehaviour
 
     //HUD variables
     [SerializeField] public TMP_Text moneyText;
+    [SerializeField] TMP_Text enemyCountText;
     public Image playerHPBar;
     public Image playerStaminaBar;
 
@@ -109,6 +110,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyCountText.text = remainingEnemies.ToString("F0");
         if(Input.GetButtonDown("Cancel"))
         {
             isPaused = !isPaused;
