@@ -5,7 +5,6 @@ using UnityEngine;
 public class GateTrigger : MonoBehaviour
 {
     public GameObject waveMenu; // Reference to the wave menu UI panel
-    public gameManager gameManager; // Reference to the gameManager
     public GateController gateController; //Reference to the GateController
 
     private bool waveStarted = false; // Prevents re-triggering the wave menu once the wave starts
@@ -50,7 +49,7 @@ public class GateTrigger : MonoBehaviour
         StartCoroutine(CloseGateAfterDelay());
 
         // Call the gameManager to start the next wave
-        gameManager.StartNextWave();
+        gameManager.instance.StartNextWave();
     }
 
     private IEnumerator CloseGateAfterDelay()
