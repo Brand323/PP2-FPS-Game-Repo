@@ -67,6 +67,8 @@ public class gameManager : MonoBehaviour
 
     //Wave Variables
     public GameObject enemyType1Prefab;
+    public GameObject enemyType2Prefab;
+    public GameObject enemyType3Prefab;
     public Transform[] spawnPoints;
     public int currentWave = 0;
     public int enemiesPerWave = 5;
@@ -74,6 +76,7 @@ public class gameManager : MonoBehaviour
     private bool waveInProgress = false;
     public GameObject Lever;
     public int totalWaves = 3;
+    private bool enemyType3Spawned = false;
 
     //UI Elements for wave System
     public TMP_Text waveText;
@@ -159,9 +162,20 @@ public class gameManager : MonoBehaviour
     {
     
         currentWave++;
-        // Increase enemy count each wave
-        remainingEnemies = enemiesPerWave * currentWave; 
+
+        if (currentWave == totalWaves)
+        {
+            //sets it to one for final boss
+            remainingEnemies = 1;
+        }
+        else
+        {
+            // Increase enemy count each wave
+            remainingEnemies = enemiesPerWave * currentWave;
+        }
         waveInProgress = true;
+        enemyType3Spawned = false;    
+
         StartCoroutine(SpawnWaveEnemies());
 
         UpdateWaveUI();
@@ -169,18 +183,44 @@ public class gameManager : MonoBehaviour
 
     IEnumerator SpawnWaveEnemies()
     {
-        for (int i = 0; i < remainingEnemies; i++)
+
+        if (currentWave == totalWaves)
         {
-            SpawnEnemy();
+            SpawnFinalEnemy();
+            enemyType3Spawned = true;
+        }
+        else
+        {
+            for (int i = 0; i < remainingEnemies; i++)
+            {
+                SpawnEnemy();
+            }
             // Delay between spawns
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(1f);
         }
     }
 
     void SpawnEnemy()
     {
+        GameObject nextEnemy;
+        float randomValue = Random.value;
+
+        if(randomValue < 0.7f)
+        {
+            nextEnemy = enemyType1Prefab;
+        }
+        else
+        {
+            nextEnemy = enemyType2Prefab;
+        }
+
         int spawnIndex = Random.Range(0, spawnPoints.Length);
-        Instantiate(enemyType1Prefab, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
+        Instantiate(nextEnemy, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
+    }
+    void SpawnFinalEnemy()
+    {
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        Instantiate(enemyType3Prefab, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
     }
 
     void EndWave()

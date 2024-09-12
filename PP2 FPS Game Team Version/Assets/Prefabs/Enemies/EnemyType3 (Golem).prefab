@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1845945369076765872, guid: d9af52bf624fb004abc7f4d28bdf39e2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2125977167109061285, guid: d9af52bf624fb004abc7f4d28bdf39e2, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -335,7 +339,7 @@ MonoBehaviour:
   agent: {fileID: 793365052057138150}
   headPos: {fileID: 4112174031807389264}
   faceTargetSpeed: 2
-  HP: 25
+  HP: 4
   attackRate: 2.2
   meleeRange: 2.1
 --- !u!195 &793365052057138150
@@ -402,7 +406,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

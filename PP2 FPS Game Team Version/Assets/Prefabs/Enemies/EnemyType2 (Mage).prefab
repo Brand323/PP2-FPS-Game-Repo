@@ -260,6 +260,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7940719953895527930, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8067433525061952000, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -364,7 +368,7 @@ MonoBehaviour:
   agent: {fileID: 6571593837655216251}
   headPos: {fileID: 4705643638533594283}
   faceTargetSpeed: 2
-  HP: 5
+  HP: 2
   fireBall: {fileID: 6741384887079248795, guid: 0e70b02634ebf0848b88e7f244a48bca, type: 3}
   shootPos: {fileID: 8715279412499508812}
   shootRate: 8
@@ -453,7 +457,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

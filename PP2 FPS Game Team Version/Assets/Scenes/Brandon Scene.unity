@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyType2 (Mage)
       objectReference: {fileID: 0}
+    - target: {fileID: 1085818526842479708, guid: 3184b3dd66071e448aa0296821f1399b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3025626105297724489, guid: 3184b3dd66071e448aa0296821f1399b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.959337
@@ -344,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 3025626105297724489, guid: 3184b3dd66071e448aa0296821f1399b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505147828770029830, guid: 3184b3dd66071e448aa0296821f1399b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -973,7 +981,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 463613252229081897, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
