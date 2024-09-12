@@ -37,7 +37,7 @@ public class Pickup_Bow : MonoBehaviour
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
-        // Pickup the bow if within range and slot is not full
+        //Pickup the bow if within range and slot is not full
         if (!BowEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupBow();
 

@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
+    [SerializeField] public GameObject itemPickUpWindow;
 
     public GameObject saveButton;
 
@@ -60,7 +61,7 @@ public class gameManager : MonoBehaviour
     public TMP_InputField maxStamina;
 
     //HUD variables
-    [SerializeField] TMP_Text moneyText;
+    [SerializeField] public TMP_Text moneyText;
     public Image playerHPBar;
     public Image playerStaminaBar;
 
@@ -71,11 +72,13 @@ public class gameManager : MonoBehaviour
     float originalTimeScale;
 
     public bool isPaused;
+    public bool itemUIisDisplayed;
 
     void Awake()
     {
         //if(instance != null)
             instance = this;
+        Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<FirstPersonController>();
@@ -148,9 +151,21 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void activateWindow(GameObject window)
+    public void activateWindow(GameObject window)
     {
         activeWindow = window;
         activeWindow.SetActive(isPaused);
+    }
+
+    public void activateItemUI()
+    {
+        itemPickUpWindow.SetActive(true);
+        itemUIisDisplayed = true;
+    }
+
+    public void deactivateItemUI()
+    {
+        itemPickUpWindow.SetActive(false);
+        itemUIisDisplayed = false;
     }
 }

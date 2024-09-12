@@ -37,7 +37,7 @@ public class Pickup_Dagger : MonoBehaviour
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
-        // Pickup the dagger if within range and slot is not full
+        //Pickup the dagger if within range and slot is not full
         if (!DaggerEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
             PickupDagger();
 

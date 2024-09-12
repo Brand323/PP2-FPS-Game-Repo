@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BasicEnemyAI : MonoBehaviour, I_Damage
 {
@@ -76,7 +77,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         StartCoroutine(flashColor());
     }
 
-    IEnumerator flashColor()
+    public IEnumerator flashColor()
     {
         // Turns the enemy model red for a milisecond
         model.material.color = Color.red;
@@ -86,5 +87,17 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     public bool GetPlayerInRange()
     {
         return playerInRange;
+    }
+    public float GetHP()
+    {
+        return HP;
+    }
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
+    }
+    public int GetFaceTargetSpeed()
+    {
+        return faceTargetSpeed;
     }
 }
