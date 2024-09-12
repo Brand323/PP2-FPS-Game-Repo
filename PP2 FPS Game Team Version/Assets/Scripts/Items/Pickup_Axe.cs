@@ -37,13 +37,22 @@ public class Pickup_Axe : MonoBehaviour
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
-        if(distanceToPlayer.magnitude <= pickupRange)
-        {
-            gameManager.instance.activateWindow(gameManager.instance.itemPickUpWindow);
-        }
         // Pickup the axe if within range and slot is not full
-        if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-            PickupAxe();
+        //if (!AxeEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        //    PickupAxe();
+        if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
+        }
+        if (distanceToPlayer.magnitude <= pickupRange && !AxeEquipped && currentWeapon == null)
+        {
+            gameManager.instance.activateItemUI();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupAxe();
+                gameManager.instance.deactivateItemUI();
+            }
+        }
 
         // Drop the axe if equipped
         if (AxeEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)

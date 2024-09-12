@@ -72,6 +72,7 @@ public class gameManager : MonoBehaviour
     float originalTimeScale;
 
     public bool isPaused;
+    public bool itemUIisDisplayed;
 
     void Awake()
     {
@@ -154,5 +155,17 @@ public class gameManager : MonoBehaviour
     {
         activeWindow = window;
         activeWindow.SetActive(isPaused);
+    }
+
+    public void activateItemUI()
+    {
+        itemPickUpWindow.SetActive(true);
+        itemUIisDisplayed = true;
+    }
+
+    public void deactivateItemUI()
+    {
+        itemPickUpWindow.SetActive(false);
+        itemUIisDisplayed = false;
     }
 }
