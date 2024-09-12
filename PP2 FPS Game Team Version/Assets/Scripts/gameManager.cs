@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
+    [SerializeField] public GameObject itemPickUpWindow;
 
     public GameObject saveButton;
 
@@ -76,6 +77,7 @@ public class gameManager : MonoBehaviour
     {
         //if(instance != null)
             instance = this;
+        Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<FirstPersonController>();
@@ -148,7 +150,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void activateWindow(GameObject window)
+    public void activateWindow(GameObject window)
     {
         activeWindow = window;
         activeWindow.SetActive(isPaused);
