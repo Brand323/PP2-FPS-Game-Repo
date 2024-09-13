@@ -77,7 +77,6 @@ public class gameManager : MonoBehaviour
     private bool waveInProgress = false;
     public GameObject Lever;
     public int totalWaves = 3;
-    private bool enemyType3Spawned = false;
 
     //UI Elements for wave System
     public TMP_Text waveText;
@@ -176,7 +175,6 @@ public class gameManager : MonoBehaviour
             remainingEnemies = enemiesPerWave * currentWave;
         }
         waveInProgress = true;
-        enemyType3Spawned = false;    
 
         StartCoroutine(SpawnWaveEnemies());
 
@@ -189,7 +187,6 @@ public class gameManager : MonoBehaviour
         if (currentWave == totalWaves)
         {
             SpawnFinalEnemy();
-            enemyType3Spawned = true;
         }
         else
         {

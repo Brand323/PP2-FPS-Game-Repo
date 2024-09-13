@@ -9,6 +9,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] int faceTargetSpeed;
+    public GameObject coinPrefab;
 
     [SerializeField] float HP;
     bool playerInRange;
@@ -71,6 +72,10 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
 
         if (HP <= 0)
         {
+            Vector3 coinSpawnPosition = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);
+            Quaternion coinRotation = Quaternion.Euler(0, 0, 0);
+            Instantiate(coinPrefab, coinSpawnPosition, coinRotation);
+             
             gameManager.instance.EnemyDefeated();
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
             Destroy(gameObject);
