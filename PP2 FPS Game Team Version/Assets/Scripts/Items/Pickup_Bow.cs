@@ -50,7 +50,7 @@ public class Pickup_Bow : MonoBehaviour
         }
         if (distanceToPlayer.magnitude <= pickupRange && !BowEquipped && currentWeapon == null)
         {
-            gameManager.instance.activateItemUI();
+            gameManager.instance.activateItemUI("Pick Up Sword (Press E)");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupBow();

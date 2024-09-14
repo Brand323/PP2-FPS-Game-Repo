@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class Pickup_Sword : MonoBehaviour
 {
@@ -16,23 +17,44 @@ public class Pickup_Sword : MonoBehaviour
 
     public bool SwordEquipped = true;
 
+    [Header("Purchase Settings")]
+    [SerializeField] bool isPurchased = false;
+    [SerializeField] int swordPrice = 1;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material grayedOutMaterial;
+
+    private money playerMoney;
+   
+    private Renderer swordRenderer;
+
     private void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        playerMoney = playerPosition.GetComponent<money>();
+        swordRenderer = GetComponent<Renderer>();
 
-        if (!SwordEquipped)
+        if (!isPurchased)
         {
-            // disable sword script if not equipped.
+            swordRenderer.material = grayedOutMaterial;
+            // disable sword if not purchased.
             swordRB.isKinematic = false;
             swordCol.isTrigger = false;
         }
         else
         {
-            // enable gun script
+            swordRenderer.material = defaultMaterial;
+            // enable sword
             swordRB.isKinematic= true;
             swordCol.isTrigger = true;
+        }
+    }
+    private void testingE()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E key pressed");
         }
     }
 
@@ -41,28 +63,57 @@ public class Pickup_Sword : MonoBehaviour
         Vector3 distanceToPlayer = playerPosition.position - transform.position;
         GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
-        // Pickup the gun if within range and slot is not full
-        //if (!SwordEquipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
-        //    PickupSword();
-        if (distanceToPlayer.magnitude > pickupRange)
-        {
-            gameManager.instance.deactivateItemUI();
-        }
         if (distanceToPlayer.magnitude <= pickupRange && !SwordEquipped && currentWeapon == null)
         {
-            gameManager.instance.activateItemUI();
-            if (Input.GetKeyDown(KeyCode.E))
+            if (!isPurchased)
             {
-                PickupSword();
-                gameManager.instance.deactivateItemUI();
+                gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins");
+
+                if (Input.GetKeyDown(KeyCode.E) && playerMoney.GetCoinCount() >= swordPrice)
+                {
+                    PurchaseSword();
+                }
             }
+
+            else
+            {
+                gameManager.instance.activateItemUI("Pick Up Sword");
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    PickupSword();
+                    gameManager.instance.deactivateItemUI();
+                }
+            }
+        }
+        else if (distanceToPlayer.magnitude > pickupRange)
+        {
+            gameManager.instance.deactivateItemUI();
         }
 
         // Drop the sword if equipped
         if (SwordEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
+        {
             DropSword();
+        }
     }
 
+    private void PurchaseSword()
+    {
+        int newCoinCount = playerMoney.GetCoinCount() - swordPrice;
+        playerMoney.SetCoinCount(newCoinCount);
+
+        isPurchased = true;
+
+        swordRenderer.material = defaultMaterial;
+
+        swordRB.isKinematic = true;
+        swordCol.isTrigger = true;
+
+        gameManager.instance.deactivateItemUI();
+
+        Debug.Log("sword Purchased");
+    }
     private void PickupSword()
     {
         SwordEquipped = true;

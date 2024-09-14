@@ -50,7 +50,7 @@ public class Pickup_Axe : MonoBehaviour
         }
         if (distanceToPlayer.magnitude <= pickupRange && !AxeEquipped && currentWeapon == null)
         {
-            gameManager.instance.activateItemUI();
+            gameManager.instance.activateItemUI("Pick Up Sword (Press E)");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupAxe();

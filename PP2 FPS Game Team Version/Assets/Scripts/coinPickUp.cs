@@ -5,15 +5,27 @@ using UnityEngine;
 public class money : MonoBehaviour
 {
 
-    private int Coin = 0;
+    private int CoinCount = 0;
 
+    //Getter
+    public int GetCoinCount()
+    {
+        return CoinCount;
+    }
+    //Setter
+    public void SetCoinCount(int amount)
+    {
+        CoinCount = amount;
+        gameManager.instance.moneyText.text = CoinCount.ToString();
+    }
+
+    //PickUp Coin 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Coin")
         {
-            Coin++;
-            Debug.Log(Coin);
-            gameManager.instance.moneyText.text = Coin.ToString();
+            CoinCount++;
+            gameManager.instance.moneyText.text = CoinCount.ToString();
             Destroy(other.gameObject);
         }
     }

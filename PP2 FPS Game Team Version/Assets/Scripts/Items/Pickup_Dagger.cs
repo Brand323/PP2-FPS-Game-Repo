@@ -50,7 +50,7 @@ public class Pickup_Dagger : MonoBehaviour
         }
         if (distanceToPlayer.magnitude <= pickupRange && !DaggerEquipped && currentWeapon == null)
         {
-            gameManager.instance.activateItemUI();
+            gameManager.instance.activateItemUI("Pick Up Sword (Press E)");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupDagger();

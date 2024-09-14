@@ -87,6 +87,10 @@ MonoBehaviour:
   dropForwardForce: 2
   dropUpwardForce: 1
   SwordEquipped: 0
+  isPurchased: 0
+  swordPrice: 1
+  defaultMaterial: {fileID: 2100000, guid: 49c61f7d98b36a6438e5deb41f0f7207, type: 2}
+  grayedOutMaterial: {fileID: 2100000, guid: 3aa8c55f91287f04ba6aff861716f358, type: 2}
 --- !u!33 &4038138843570711521
 MeshFilter:
   m_ObjectHideFlags: 0

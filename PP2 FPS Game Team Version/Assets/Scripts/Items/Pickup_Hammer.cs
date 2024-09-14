@@ -50,7 +50,7 @@ public class Pickup_Hammer : MonoBehaviour
         }
         if (distanceToPlayer.magnitude <= pickupRange && !HammerEquipped && currentWeapon == null)
         {
-            gameManager.instance.activateItemUI();
+            gameManager.instance.activateItemUI("Pick Up Sword (Press E)");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupHammer();

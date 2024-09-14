@@ -83,6 +83,12 @@ public class gameManager : MonoBehaviour
     public GateTrigger triggerGate;
 
 
+    //Item UI Variables
+    public TextMeshProUGUI itemUIText;
+
+
+
+
     public GameObject player;
     public FirstPersonController playerScript;
 
@@ -277,10 +283,13 @@ public class gameManager : MonoBehaviour
         activeWindow.SetActive(isPaused);
     }
 
-    public void activateItemUI()
+    public void activateItemUI(string message)
     {
-        if(!itemUIisDisplayed)
+
+        if (!itemUIisDisplayed && itemUIText != null)
         {
+            itemUIText.text = message;
+
             itemPickUpWindow.SetActive(true);
             itemUIisDisplayed = true;
         }
