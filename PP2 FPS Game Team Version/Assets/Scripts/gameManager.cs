@@ -300,4 +300,18 @@ public class gameManager : MonoBehaviour
         itemPickUpWindow.SetActive(false);
         itemUIisDisplayed = false;
     }
+
+    //makes the text blink red
+    public IEnumerator BlinkRed()
+    {
+        Color originalColor = itemUIText.color;
+        Color blinkColor = Color.red;
+        float blinkDuration = 0.5f;  // Time in seconds for each blink
+
+         itemUIText.color = blinkColor;
+         yield return new WaitForSeconds(blinkDuration);
+
+        itemUIText.color = originalColor;
+    }
+
 }

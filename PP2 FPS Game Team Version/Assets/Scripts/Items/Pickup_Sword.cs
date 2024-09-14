@@ -73,6 +73,10 @@ public class Pickup_Sword : MonoBehaviour
                 {
                     PurchaseSword();
                 }
+                else if(Input.GetKeyDown(KeyCode.E) && playerMoney.GetCoinCount() < swordPrice)
+                {
+                    StartCoroutine(gameManager.instance.BlinkRed()); ;
+                }
             }
 
             else
