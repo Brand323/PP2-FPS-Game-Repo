@@ -4,10 +4,11 @@ using UnityEngine;
 // To the UI, etc.
 public interface I_Interactable
 {
-
     // Function to interact with the object
-    public void Interact();
+    void Interact();
 
     // Function to get the interactable's name to the UI
-    public string GetInteractableName();
+    string GetInteractableName();
+
+    float GetDistanceFromPlayer(Transform playerTransform);
 }

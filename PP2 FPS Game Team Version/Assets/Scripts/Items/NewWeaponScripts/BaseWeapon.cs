@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseWeapon : MonoBehaviour
+public abstract class BaseWeapon : MonoBehaviour, I_Interactable
 {
 
     // References
     protected Rigidbody weaponRigidBody;
-    protected BoxCollider weaponCollider;
+    protected Collider weaponCollider;
     protected Transform playerPosition, weaponContainer, mainCam;
 
     // Pickup and Drop Settings
-    public float pickupRange = 5f;
+    public float pickupRange = 1f;
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
     public bool isEquipped = false;
 
@@ -33,7 +33,7 @@ public abstract class BaseWeapon : MonoBehaviour
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
-        weaponCollider = GetComponent<BoxCollider>();
+        weaponCollider = GetComponent<Collider>();
         weaponRigidBody = GetComponent<Rigidbody>();
         weaponRenderer = GetComponent<Renderer>();
         gameManagerInstance = gameManager.instance;
@@ -100,57 +100,52 @@ public abstract class BaseWeapon : MonoBehaviour
         weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
-
     }
 
     protected void HandlePickupAndDrop()
     {
-        {
-            Vector3 distanceToPlayer = playerPosition.position - transform.position;
-            GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
+
+      Vector3 distanceToPlayer = playerPosition.position - transform.position;
+      GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
 
 
-            if (distanceToPlayer.magnitude <= pickupRange && !isEquipped && currentWeapon == null)
-            {
-                if (!isPurchased)
-                {
-                    //gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins");
-                    gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
+      if (distanceToPlayer.magnitude <= pickupRange && !isEquipped && currentWeapon == null)
+      {
+          if (!isPurchased)
+          {
+              gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
 
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        TryPurchaseWeapon();
-                    }
-                }
-                else
-                {
-                    //gameManagerInstance.activateItemUI("Pick Up ");
-                    gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
+              if (Input.GetKeyDown(KeyCode.E))
+              {
+                  TryPurchaseWeapon();
+              }
+          }
+          else
+          {
+              gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
 
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        PickupWeapon();
-                        gameManagerInstance.deactivateItemUI();
-                    }
-                }
-            }
-            else if (distanceToPlayer.magnitude > pickupRange)
-            {
-                gameManagerInstance.deactivateItemUI();
-            }
+              if (Input.GetKeyDown(KeyCode.E))
+              {
+                  PickupWeapon();
+                  gameManagerInstance.deactivateItemUI();
+              }
+          }
+      }
+      else if (distanceToPlayer.magnitude > pickupRange)
+      {
+          gameManagerInstance.deactivateItemUI();
+      }
 
-            // Drop Weapon if Equipped
-            if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
-            {
-                DropWeapon();
-            }
-        }
-
+      // Drop Weapon if Equipped
+      if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
+      {
+          DropWeapon();
+      }
     }
 
     protected void TryPurchaseWeapon()
     {
-        if(playerMoney.GetCoinCount()>= weaponPrice)
+        if(playerMoney.GetCoinCount() >= weaponPrice)
         {
             playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
             isPurchased = true;
@@ -160,6 +155,38 @@ public abstract class BaseWeapon : MonoBehaviour
         else
         {
             StartCoroutine(gameManagerInstance.BlinkRed());
+        }
+    }
+
+    //GETTERS
+
+    public string GetInteractableName()
+    {
+        return GetWeaponName();
+    }
+
+    public void Interact()
+    {
+        if(!isPurchased)
+        {
+            TryPurchaseWeapon();
+        }
+        else
+        {
+            PickupWeapon();
+        }
+    }
+    public float GetDistanceFromPlayer(Transform playerTransform)
+    {
+        if (playerTransform != null)
+        {
+            return Vector3.Distance(playerTransform.position, transform.position);
+        }
+        //returns large num is transform is null
+        else
+        {
+            Debug.LogError("playerTransform is null in GetDistanceFromPlayer");
+            return Mathf.Infinity;
         }
     }
 

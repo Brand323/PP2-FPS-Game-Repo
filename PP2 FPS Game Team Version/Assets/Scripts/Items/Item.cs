@@ -7,6 +7,13 @@ public class Item : MonoBehaviour, I_Pickup, I_Interactable
     [Header("----- Item Name -----")]
     [SerializeField] public string itemName;
 
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void Interact()
     {
         Debug.Log("Interacted with the object.");
@@ -35,7 +42,19 @@ public class Item : MonoBehaviour, I_Pickup, I_Interactable
 
         if (col != null)
             col.enabled = false;
-
-
     }
+
+    public float GetDistanceFromPlayer(Transform playerTransform)
+    {
+       
+       if (playerTransform != null)
+       {
+            //Returns distance between player and item
+            return Vector3.Distance(playerTransform.position, transform.position);
+       }
+
+       //returns Large distance Value if not found
+       return Mathf.Infinity;
+    }
+
 }
