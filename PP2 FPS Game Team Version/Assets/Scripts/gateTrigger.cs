@@ -15,7 +15,8 @@ public class GateTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !waveStarted)
         {
             // Show the wave menu when the player enters the trigger
-            waveMenu.SetActive(true);
+            //waveMenu.SetActive(true);
+            gameManager.instance.waveWindow.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
@@ -27,7 +28,8 @@ public class GateTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !waveStarted)
         {
             // Hide the wave menu (if not hidden already) when the player leaves the trigger
-            waveMenu.SetActive(false); 
+            //waveMenu.SetActive(false);
+            gameManager.instance.waveWindow.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -39,7 +41,8 @@ public class GateTrigger : MonoBehaviour
 
         // Hide the wave menu and cursor once the wave starts
         waveStarted = true;
-        waveMenu.SetActive(false); 
+        //waveMenu.SetActive(false); 
+        gameManager.instance.waveWindow.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 

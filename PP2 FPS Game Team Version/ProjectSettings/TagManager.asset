@@ -9,6 +9,7 @@ TagManager:
   - PlayerPos
   - RightItemContainer
   - LeftItemContainer
+  - Lever
   layers:
   - Default
   - TransparentFX

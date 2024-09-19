@@ -114,7 +114,8 @@ public abstract class BaseWeapon : MonoBehaviour
             {
                 if (!isPurchased)
                 {
-                    gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins");
+                    //gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins");
+                    gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -123,7 +124,8 @@ public abstract class BaseWeapon : MonoBehaviour
                 }
                 else
                 {
-                    gameManagerInstance.activateItemUI("Pick Up ");
+                    //gameManagerInstance.activateItemUI("Pick Up ");
+                    gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {

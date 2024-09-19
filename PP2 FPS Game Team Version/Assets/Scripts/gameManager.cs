@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
     [SerializeField] GameObject mainEditWindow;
+    [SerializeField] public GameObject waveWindow;
 
     // Need to implement a Player gameobject for the BasicEnemyAI for movement
 
@@ -26,7 +27,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
+
+    //Item menus
+    [SerializeField] GameObject activeItemWindow;
     [SerializeField] public GameObject itemPickUpWindow;
+    [SerializeField] public GameObject itemBuyWindow;
 
     public GameObject saveButton;
 
@@ -70,7 +75,9 @@ public class gameManager : MonoBehaviour
     public GameObject enemyType1Prefab;
     public GameObject enemyType2Prefab;
     public GameObject enemyType3Prefab;
-    public Transform[] spawnPoints;
+    //public Transform[] spawnPoints;
+    public List<Transform> spawnPoints;
+    public Transform spawnPosition;
     public int currentWave = 0;
     public int enemiesPerWave = 5;
     private int remainingEnemies;
@@ -79,15 +86,14 @@ public class gameManager : MonoBehaviour
     public int totalWaves = 3;
 
     //UI Elements for wave System
-    public TMP_Text waveText;
+    public TMP_Text waveTextHUD;
+    public TMP_Text waveTextNumber;
+    public GameObject lever;
     public GateTrigger triggerGate;
 
 
     //Item UI Variables
     public TextMeshProUGUI itemUIText;
-
-
-
 
     public GameObject player;
     public FirstPersonController playerScript;
@@ -100,13 +106,14 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        //if(instance != null)
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<FirstPersonController>();
-
+        lever = GameObject.FindWithTag("Lever");
+        triggerGate = lever.GetComponent<GateTrigger>();
+        spawnEnemiesRandomizer();
         //Intialize First Wave
         UpdateWaveUI();
 
@@ -167,7 +174,7 @@ public class gameManager : MonoBehaviour
 
     public void StartNextWave()
     {
-    
+        spawnEnemiesRandomizer();
         currentWave++;
 
         if (currentWave == totalWaves)
@@ -219,12 +226,12 @@ public class gameManager : MonoBehaviour
             nextEnemy = enemyType2Prefab;
         }
 
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        int spawnIndex = Random.Range(0, spawnPoints.Count);
         Instantiate(nextEnemy, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
     }
     void SpawnFinalEnemy()
     {
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        int spawnIndex = Random.Range(0, spawnPoints.Count);
         Instantiate(enemyType3Prefab, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
     }
 
@@ -245,7 +252,8 @@ public class gameManager : MonoBehaviour
 
     void UpdateWaveUI()
     {
-        waveText.text = "Wave: " + currentWave;
+        waveTextHUD.text = currentWave.ToString("F0");
+        waveTextNumber.text = (currentWave + 1).ToString("F0");
     }
     public void EnemyDefeated()
     {
@@ -283,21 +291,28 @@ public class gameManager : MonoBehaviour
         activeWindow.SetActive(isPaused);
     }
 
-    public void activateItemUI(string message)
+    public void activateItemUI(string message, GameObject window = null)
     {
 
         if (!itemUIisDisplayed && itemUIText != null)
         {
             itemUIText.text = message;
-
-            itemPickUpWindow.SetActive(true);
+            if (window != null)
+            {
+                activeItemWindow = window;
+                activeItemWindow.SetActive(true);
+            }
             itemUIisDisplayed = true;
         }
     }
 
     public void deactivateItemUI()
     {
-        itemPickUpWindow.SetActive(false);
+        itemUIText.text = "";
+        if (activeItemWindow != null)
+        {
+            activeItemWindow.SetActive(false); 
+        }
         itemUIisDisplayed = false;
     }
 
@@ -312,6 +327,22 @@ public class gameManager : MonoBehaviour
          yield return new WaitForSeconds(blinkDuration);
 
         itemUIText.color = originalColor;
+    }
+
+    void spawnEnemiesRandomizer()
+    {
+        if (spawnPoints == null)
+        {
+            spawnPoints = new List<Transform>();
+        }
+        spawnPoints.Clear();
+        UnityEngine.Vector3 coordenates;
+        for(int index = 0; index < 6; ++index)
+        {
+            coordenates = new UnityEngine.Vector3(Random.Range(-100f, -70f), 1, Random.Range(-25f,15f));
+            spawnPosition.SetPositionAndRotation(coordenates, UnityEngine.Quaternion.identity);
+            spawnPoints.Add(spawnPosition);
+        }
     }
 
 }

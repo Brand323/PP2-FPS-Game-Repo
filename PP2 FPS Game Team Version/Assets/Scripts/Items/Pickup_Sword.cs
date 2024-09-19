@@ -67,7 +67,8 @@ public class Pickup_Sword : MonoBehaviour
         {
             if (!isPurchased)
             {
-                gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins");
+                //gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins");
+                gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins", gameManager.instance.itemBuyWindow);
 
                 if (Input.GetKeyDown(KeyCode.E) && playerMoney.GetCoinCount() >= swordPrice)
                 {
@@ -81,7 +82,8 @@ public class Pickup_Sword : MonoBehaviour
 
             else
             {
-                gameManager.instance.activateItemUI("Pick Up Sword");
+                //gameManager.instance.activateItemUI("Pick Up Sword");
+                gameManager.instance.activateItemUI("Pick Up Sword", gameManager.instance.itemPickUpWindow);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
