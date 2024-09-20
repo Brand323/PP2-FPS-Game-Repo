@@ -107,7 +107,16 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        //Code for Ensuring Singleton Setup
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         player = GameObject.FindWithTag("Player");
@@ -310,19 +319,25 @@ public class gameManager : MonoBehaviour
     public void deactivateItemUI()
     {
         itemUIText.text = "";
+
         if (activeItemWindow != null)
         {
             activeItemWindow.SetActive(false); 
         }
+
+        if (itemBuyWindow != null)
+        {
+            itemBuyWindow.SetActive(false);
+        }
         itemUIisDisplayed = false;
     }
 
-    //makes the text blink red
+    //Makes the text blink red
     public IEnumerator BlinkRed()
     {
         Color originalColor = itemUIText.color;
         Color blinkColor = Color.red;
-        float blinkDuration = 0.5f;  // Time in seconds for each blink
+        float blinkDuration = 0.1f;  // Time in seconds for each blink
 
          itemUIText.color = blinkColor;
          yield return new WaitForSeconds(blinkDuration);

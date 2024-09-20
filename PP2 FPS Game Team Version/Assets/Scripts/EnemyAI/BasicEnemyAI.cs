@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class BasicEnemyAI : MonoBehaviour, I_Damage
 {
     [SerializeField] Renderer model;
-    [SerializeField] UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] protected UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] int faceTargetSpeed;
     public GameObject coinPrefab;
@@ -15,6 +15,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     bool playerInRange;
     Color colorOrig;
     Vector3 playerDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     // Update is called once per frame
     void Update()
     {
-        // Follows the player
-
     } 
     public void Movement()
     {
@@ -38,7 +37,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
             {
                 FaceTarget();
             }
-
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -78,33 +76,25 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
              
             gameManager.instance.EnemyDefeated();
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
-            Destroy(gameObject);
         }
-
-        StartCoroutine(flashColor());
     }
 
-    public IEnumerator flashColor()
+    public void Death()
     {
-        // Turns the enemy model red for a milisecond
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
+        Destroy(gameObject);
     }
-    public bool GetPlayerInRange()
-    {
-        return playerInRange;
-    }
-    public float GetHP()
-    {
-        return HP;
-    }
-    public NavMeshAgent GetAgent()
-    {
-        return agent;
-    }
-    public int GetFaceTargetSpeed()
-    {
-        return faceTargetSpeed;
-    }
+
+    // Getters
+    public bool GetPlayerInRange(){ return playerInRange; }
+
+    public float GetHP(){ return HP; }
+
+    public NavMeshAgent GetAgent(){ return agent; }
+
+    public int GetFaceTargetSpeed(){ return faceTargetSpeed; }
+
+    // Setters
+    public int SetFaceTargetSpeed(int amount){ return faceTargetSpeed = amount; }
+
+    public bool SetPlayerInRange(bool value){ return playerInRange = value; }
 }
