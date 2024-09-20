@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
     [SerializeField] GameObject mainEditWindow;
+    [SerializeField] GameObject waveEndWindow;
     [SerializeField] public GameObject waveWindow;
 
     // Need to implement a Player gameobject for the BasicEnemyAI for movement
@@ -247,7 +248,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             PauseGame(winWindow);
         }
-
+        activateWaveEndMenu();
     }
 
     void UpdateWaveUI()
@@ -343,6 +344,20 @@ public class gameManager : MonoBehaviour
             spawnPosition.SetPositionAndRotation(coordenates, UnityEngine.Quaternion.identity);
             spawnPoints.Add(spawnPosition);
         }
+    }
+
+    void activateWaveEndMenu()
+    {
+        waveEndWindow.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void deactivateWaveEndMenu()
+    {
+        waveEndWindow.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }
