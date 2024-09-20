@@ -318,9 +318,15 @@ public class gameManager : MonoBehaviour
     public void deactivateItemUI()
     {
         itemUIText.text = "";
+
         if (activeItemWindow != null)
         {
             activeItemWindow.SetActive(false); 
+        }
+
+        if (itemBuyWindow != null)
+        {
+            itemBuyWindow.SetActive(false);
         }
         itemUIisDisplayed = false;
     }

@@ -11,13 +11,13 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     protected Transform playerPosition, weaponContainer, mainCam;
 
     // Pickup and Drop Settings
-    public float pickupRange = 1f;
+    public float pickupRange = 3f;
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
     public bool isEquipped = false;
 
     //Purchasing Settings
-    [SerializeField] protected bool isPurchased = false;
-    [SerializeField] protected int weaponPrice = 1;
+    [SerializeField] public bool isPurchased = false;
+    [SerializeField] public int weaponPrice = 1;
     [SerializeField] protected Material defaultMaterial;
     [SerializeField] protected Material grayedOutMaterial;
     protected money playerMoney;
@@ -46,7 +46,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // Update is called once per frame
     protected virtual void Update()
     {
-        HandlePickupAndDrop();
+        //HandlePickupAndDrop();
     }
 
     protected void ActivateWeapon()
@@ -61,10 +61,10 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         {
             weaponRenderer.material = defaultMaterial;
             weaponRigidBody.isKinematic = true;
-            weaponCollider.isTrigger = true;
+            weaponCollider.isTrigger = false;
         }
     }
-    protected virtual void PickupWeapon()
+    public virtual void PickupWeapon()
     {
         isEquipped = true;
 
@@ -113,7 +113,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
       {
           if (!isPurchased)
           {
-              gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
+             // gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
 
               if (Input.GetKeyDown(KeyCode.E))
               {
@@ -122,12 +122,12 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
           }
           else
           {
-              gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
+            //  gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
 
               if (Input.GetKeyDown(KeyCode.E))
               {
                   PickupWeapon();
-                  gameManagerInstance.deactivateItemUI();
+                //  gameManagerInstance.deactivateItemUI();
               }
           }
       }
@@ -143,9 +143,11 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
       }
     }
 
-    protected void TryPurchaseWeapon()
+    public void TryPurchaseWeapon()
     {
-        if(playerMoney.GetCoinCount() >= weaponPrice)
+        Debug.Log($"Attempting to purchase: {GetInteractableName()}");
+
+        if (playerMoney.GetCoinCount() >= weaponPrice)
         {
             playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
             isPurchased = true;

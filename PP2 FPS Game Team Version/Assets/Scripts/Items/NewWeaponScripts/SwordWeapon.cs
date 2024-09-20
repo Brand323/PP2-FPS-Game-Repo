@@ -38,7 +38,7 @@ public class SwordWeapon : BaseWeapon
         }
     }
 
-    protected override void PickupWeapon()
+    public override void PickupWeapon()
     {
         base.PickupWeapon();
         swordCollider.enabled = true;
