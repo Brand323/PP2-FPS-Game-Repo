@@ -28,6 +28,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
+    [SerializeField] public GameObject enemiesPerWaveWindow;
 
     //Item menus
     [SerializeField] GameObject activeItemWindow;
@@ -35,6 +36,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject itemBuyWindow;
 
     public GameObject saveButton;
+
+    //Input variable enemiesPerWave
+    public TMP_InputField enemiesPerWaveText;
 
     //Input variables functional options 
     public TMP_Dropdown canSprint;
@@ -76,11 +80,9 @@ public class gameManager : MonoBehaviour
     public GameObject enemyType1Prefab;
     public GameObject enemyType2Prefab;
     public GameObject enemyType3Prefab;
-    //public Transform[] spawnPoints;
-    public List<Transform> spawnPoints;
-    public Transform spawnPosition;
+    UnityEngine.Vector3 coordenates;
     public int currentWave = 0;
-    public int enemiesPerWave = 5;
+    public int enemiesPerWave;
     private int remainingEnemies;
     private bool waveInProgress = false;
     public GameObject Lever;
@@ -123,7 +125,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<FirstPersonController>();
         lever = GameObject.FindWithTag("Lever");
         triggerGate = lever.GetComponent<GateTrigger>();
-        spawnEnemiesRandomizer();
+
         //Intialize First Wave
         UpdateWaveUI();
 
@@ -159,10 +161,12 @@ public class gameManager : MonoBehaviour
                 UnpauseGame();
             }
         }
-        if(remainingEnemies <= 0 && waveInProgress)
+
+        if (remainingEnemies <= 0 && waveInProgress)
         {
             EndWave();
         }
+       
     }
 
     public void PauseGame(GameObject window)
@@ -184,42 +188,40 @@ public class gameManager : MonoBehaviour
 
     public void StartNextWave()
     {
-        spawnEnemiesRandomizer();
         currentWave++;
-
+        enemiesPerWave = enemiesPerWave * currentWave;
         if (currentWave == totalWaves)
         {
             //sets it to one for final boss
-            remainingEnemies = 1;
-        }
-        else
-        {
-            // Increase enemy count each wave
-            remainingEnemies = enemiesPerWave * currentWave;
+            enemiesPerWave = 1;
         }
         waveInProgress = true;
-
-        StartCoroutine(SpawnWaveEnemies());
-
+        StartCoroutine(spawnEnemies());
         UpdateWaveUI();
     }
 
-    IEnumerator SpawnWaveEnemies()
+    IEnumerator spawnEnemies()
     {
+        for (int i = 1; i <= enemiesPerWave; i++)
+        {
+            spawnCheck();
 
+            //Time between spawns
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    void spawnCheck()
+    {
         if (currentWave == totalWaves)
         {
             SpawnFinalEnemy();
         }
         else
         {
-            for (int i = 0; i < remainingEnemies; i++)
-            {
-                SpawnEnemy();
-            }
-            // Delay between spawns
-            yield return new WaitForSeconds(1f);
+            SpawnEnemy();
         }
+        remainingEnemies++;
     }
 
     void SpawnEnemy()
@@ -227,7 +229,7 @@ public class gameManager : MonoBehaviour
         GameObject nextEnemy;
         float randomValue = Random.value;
 
-        if(randomValue < 0.7f)
+        if(randomValue < 0.6f)
         {
             nextEnemy = enemyType1Prefab;
         }
@@ -236,15 +238,14 @@ public class gameManager : MonoBehaviour
             nextEnemy = enemyType2Prefab;
         }
 
-        //int spawnIndex = Random.Range(0, spawnPoints.Count);
-        UnityEngine.Vector3 coordenates;
         coordenates = new UnityEngine.Vector3(Random.Range(-100f, -70f), 1, Random.Range(-25f, 15f));
         Instantiate(nextEnemy, coordenates, UnityEngine.Quaternion.identity);
     }
+
     void SpawnFinalEnemy()
     {
-        int spawnIndex = Random.Range(0, spawnPoints.Count);
-        Instantiate(enemyType3Prefab, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
+        coordenates = new UnityEngine.Vector3(Random.Range(-100f, -70f), 1, Random.Range(-25f, 15f));
+        Instantiate(enemyType3Prefab, coordenates, UnityEngine.Quaternion.identity);
     }
 
     void EndWave()
@@ -345,22 +346,6 @@ public class gameManager : MonoBehaviour
          yield return new WaitForSeconds(blinkDuration);
 
         itemUIText.color = originalColor;
-    }
-
-    void spawnEnemiesRandomizer()
-    {
-        if (spawnPoints == null)
-        {
-            spawnPoints = new List<Transform>();
-        }
-        spawnPoints.Clear();
-        UnityEngine.Vector3 coordenates;
-        for(int index = 0; index < 6; ++index)
-        {
-            coordenates = new UnityEngine.Vector3(Random.Range(-100f, -70f), 1, Random.Range(-25f,15f));
-            spawnPosition.SetPositionAndRotation(coordenates, UnityEngine.Quaternion.identity);
-            spawnPoints.Add(spawnPosition);
-        }
     }
 
     void activateWaveEndMenu()
