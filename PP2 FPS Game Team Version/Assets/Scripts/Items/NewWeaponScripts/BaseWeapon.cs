@@ -46,7 +46,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // Update is called once per frame
     protected virtual void Update()
     {
-        //HandlePickupAndDrop();
+        HandleDrop();
     }
 
     protected void ActivateWeapon()
@@ -100,48 +100,20 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
+        gameManagerInstance.playerScript.currentWeapon = null;
     }
 
-    protected void HandlePickupAndDrop()
+    protected void HandleDrop()
     {
-
-      Vector3 distanceToPlayer = playerPosition.position - transform.position;
       GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
 
-
-      if (distanceToPlayer.magnitude <= pickupRange && !isEquipped && currentWeapon == null)
-      {
-          if (!isPurchased)
-          {
-             // gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
-
-              if (Input.GetKeyDown(KeyCode.E))
-              {
-                  TryPurchaseWeapon();
-              }
-          }
-          else
-          {
-            //  gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
-
-              if (Input.GetKeyDown(KeyCode.E))
-              {
-                  PickupWeapon();
-                //  gameManagerInstance.deactivateItemUI();
-              }
-          }
-      }
-      else if (distanceToPlayer.magnitude > pickupRange)
-      {
-          gameManagerInstance.deactivateItemUI();
-      }
-
-      // Drop Weapon if Equipped
-      if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
-      {
-          DropWeapon();
-      }
+        // Drop Weapon if Equipped
+        if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
+        {
+            DropWeapon();
+        }
     }
+    
 
     public void TryPurchaseWeapon()
     {
