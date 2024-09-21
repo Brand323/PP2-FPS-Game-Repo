@@ -10,5 +10,4 @@ public interface I_Interactable
     // Function to get the interactable's name to the UI
     string GetInteractableName();
 
-    float GetDistanceFromPlayer(Transform playerTransform);
 }

@@ -7,8 +7,6 @@ public class InteractionManager : MonoBehaviour
 {
     public Transform PlayerTransform;
 
-    private I_Interactable closestInteractable;
-    private I_Interactable previousInteractable;
     private I_Interactable lastInteractedObject = null;
 
     [SerializeField] float interactDistance = 3f;
@@ -36,91 +34,6 @@ public class InteractionManager : MonoBehaviour
         HandleRayCast();
     }
 
-    void FindClosestInteractable()
-    {
-        I_Interactable[] allInteractables = FindObjectsOfType<MonoBehaviour>().OfType<I_Interactable>().ToArray();
-
-        float closestDistance = Mathf.Infinity;
-        I_Interactable nearestInteractable = null;
-
-        //Interate over objects to find closest
-        for (int i = 0; i < allInteractables.Length; i++)
-        {
-            float distance = allInteractables[i].GetDistanceFromPlayer(PlayerTransform);
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                nearestInteractable = allInteractables[i];
-            }
-        }
-
-        //Deavtivate UI for Last Item
-        if (nearestInteractable != closestInteractable)
-        {
-            if (closestInteractable != null)
-            {
-                //Debug.Log("Deactivate is being called");
-                gameManagerInstance.deactivateItemUI();
-            }
-        }
-
-        //Sets closest Interactable
-        closestInteractable = nearestInteractable;
-
-
-        //ActivateUI for new Item
-
-        if (closestInteractable != null && closestDistance <= interactDistance)
-        {
-
-            if (closestInteractable != null)
-            {
-                Debug.Log($"Closest interactable type: {closestInteractable.GetType().Name}");
-            }
-            BaseWeapon weapon = closestInteractable as BaseWeapon;
-
-            Debug.Log(weapon.GetInteractableName());
-
-            if (weapon != null)
-            {
-                Debug.Log("weapon is found");
-
-
-                if (!weapon.isPurchased)
-                {
-                    Debug.Log("if not purchased is being called");
-                    gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", gameManager.instance.itemBuyWindow);
-                }
-                else if (weapon.isPurchased)
-                {
-                    gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
-                }
-                else
-                {
-                    gameManagerInstance.deactivateItemUI();
-                }
-
-                //ActivateInteractableUI(closestInteractable);
-            }
-        }
-
-        //if (closestInteractable != null)
-        //{
-        //    Debug.Log($"Nearest interactable: {closestInteractable.GetInteractableName()}, Distance: {closestDistance}");
-        //}
-
-        //Check if object found
-        if (closestInteractable != null && closestDistance <= interactDistance)
-        {
-            //Debug.Log($"Closest inter: {closestInteractable.GetInteractableName()}, Distance: {closestDistance}");
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                closestInteractable.Interact();
-            }
-        }
-    }
     
     void HandleRayCast()
     {

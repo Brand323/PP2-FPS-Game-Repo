@@ -11,7 +11,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     protected Transform playerPosition, weaponContainer, mainCam;
 
     // Pickup and Drop Settings
-    public float pickupRange = 3f;
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
     public bool isEquipped = false;
 
@@ -46,7 +45,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // Update is called once per frame
     protected virtual void Update()
     {
-        //HandlePickupAndDrop();
+        HandleDrop();
     }
 
     protected void ActivateWeapon()
@@ -100,48 +99,20 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
+        gameManagerInstance.playerScript.currentWeapon = null;
     }
 
-    protected void HandlePickupAndDrop()
+    protected void HandleDrop()
     {
-
-      Vector3 distanceToPlayer = playerPosition.position - transform.position;
       GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
 
-
-      if (distanceToPlayer.magnitude <= pickupRange && !isEquipped && currentWeapon == null)
-      {
-          if (!isPurchased)
-          {
-             // gameManagerInstance.activateItemUI($"Buy {GetWeaponName()}: {weaponPrice} Coins", gameManager.instance.itemBuyWindow);
-
-              if (Input.GetKeyDown(KeyCode.E))
-              {
-                  TryPurchaseWeapon();
-              }
-          }
-          else
-          {
-            //  gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
-
-              if (Input.GetKeyDown(KeyCode.E))
-              {
-                  PickupWeapon();
-                //  gameManagerInstance.deactivateItemUI();
-              }
-          }
-      }
-      else if (distanceToPlayer.magnitude > pickupRange)
-      {
-          gameManagerInstance.deactivateItemUI();
-      }
-
-      // Drop Weapon if Equipped
-      if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
-      {
-          DropWeapon();
-      }
+        // Drop Weapon if Equipped
+        if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
+        {
+            DropWeapon();
+        }
     }
+    
 
     public void TryPurchaseWeapon()
     {
@@ -169,27 +140,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
 
     public void Interact()
     {
-        if(!isPurchased)
-        {
-            TryPurchaseWeapon();
-        }
-        else
-        {
-            PickupWeapon();
-        }
-    }
-    public float GetDistanceFromPlayer(Transform playerTransform)
-    {
-        if (playerTransform != null)
-        {
-            return Vector3.Distance(playerTransform.position, transform.position);
-        }
-        //returns large num is transform is null
-        else
-        {
-            Debug.LogError("playerTransform is null in GetDistanceFromPlayer");
-            return Mathf.Infinity;
-        }
     }
 
     protected abstract string GetWeaponName();
