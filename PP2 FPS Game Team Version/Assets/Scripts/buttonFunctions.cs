@@ -154,6 +154,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.triggerGate.StartWave();
     }
 
+    public void turnEndWaveMenuOff()
+    {
+        gameManager.instance.deactivateWaveEndMenu();
+    }
+
     void editInput(GameObject window)
     {
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
