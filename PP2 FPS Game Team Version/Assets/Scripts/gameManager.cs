@@ -236,8 +236,10 @@ public class gameManager : MonoBehaviour
             nextEnemy = enemyType2Prefab;
         }
 
-        int spawnIndex = Random.Range(0, spawnPoints.Count);
-        Instantiate(nextEnemy, spawnPoints[spawnIndex].position, UnityEngine.Quaternion.identity);
+        //int spawnIndex = Random.Range(0, spawnPoints.Count);
+        UnityEngine.Vector3 coordenates;
+        coordenates = new UnityEngine.Vector3(Random.Range(-100f, -70f), 1, Random.Range(-25f, 15f));
+        Instantiate(nextEnemy, coordenates, UnityEngine.Quaternion.identity);
     }
     void SpawnFinalEnemy()
     {
