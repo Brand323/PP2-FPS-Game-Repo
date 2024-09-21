@@ -11,7 +11,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     protected Transform playerPosition, weaponContainer, mainCam;
 
     // Pickup and Drop Settings
-    public float pickupRange = 3f;
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
     public bool isEquipped = false;
 
@@ -141,27 +140,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
 
     public void Interact()
     {
-        if(!isPurchased)
-        {
-            TryPurchaseWeapon();
-        }
-        else
-        {
-            PickupWeapon();
-        }
-    }
-    public float GetDistanceFromPlayer(Transform playerTransform)
-    {
-        if (playerTransform != null)
-        {
-            return Vector3.Distance(playerTransform.position, transform.position);
-        }
-        //returns large num is transform is null
-        else
-        {
-            Debug.LogError("playerTransform is null in GetDistanceFromPlayer");
-            return Mathf.Infinity;
-        }
     }
 
     protected abstract string GetWeaponName();
