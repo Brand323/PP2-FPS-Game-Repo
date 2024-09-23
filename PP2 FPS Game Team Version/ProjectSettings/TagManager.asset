@@ -10,6 +10,7 @@ TagManager:
   - RightItemContainer
   - LeftItemContainer
   - Lever
+  - Player Spawn Position
   layers:
   - Default
   - TransparentFX
