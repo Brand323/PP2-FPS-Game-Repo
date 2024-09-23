@@ -10,22 +10,27 @@ public class CombatManager : MonoBehaviour
     public int attackingPlayerCurr;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
         if (instance == null)
         {
             instance = this;
-        } else
+        }
+        else
         {
             Destroy(gameObject);
         }
-        if (difficulty <= 0) { 
+        if (difficulty <= 0)
+        {
             difficulty = 1;
         }
-        if (attackingPlayerMax == 0) {
+        if (attackingPlayerMax == 0)
+        {
             attackingPlayerMax = difficulty + 1;
         }
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame

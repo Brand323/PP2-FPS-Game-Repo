@@ -14,6 +14,10 @@ public class EnemyType1 : BasicEnemyAI
     Animator anim;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -77,16 +81,24 @@ public class EnemyType1 : BasicEnemyAI
     //increase health
     public void adjustForDifficulty()
     {
+        float speedOrig = agent.speed;
+        float angularSpeedOrig = agent.angularSpeed;
+        if (CombatManager.instance == null)
+        {
+            Debug.Log($"is null");
+        }
         if (CombatManager.instance != null)
         {
             if (CombatManager.instance.GetDifficulty()==2)
             {
                 SetHP(GetHP()+1);
+                Debug.Log($"HP after adjustment: {GetHP()}");
             } 
-            else if (CombatManager.instance.GetDifficulty()<2){
+            else if (CombatManager.instance.GetDifficulty()>2){
                 SetHP(GetHP() + 2);
-                agent.speed = GetSpeedOrig()* 1.2f;
-                agent.angularSpeed = GetAngularSpeedOrig() * 1.2f;
+                agent.speed *= 1.2f;
+                agent.angularSpeed *= 1.2f;
+                Debug.Log($"speed after adjustment: {speedOrig}");
             }
         }
     }

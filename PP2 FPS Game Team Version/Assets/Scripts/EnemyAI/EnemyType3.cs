@@ -8,6 +8,7 @@ public class EnemyType3 : BasicEnemyAI
     bool isAttacking;
     [SerializeField] float meleeRange;
 
+    [SerializeField] GameObject miniGolem;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +40,14 @@ public class EnemyType3 : BasicEnemyAI
         isAttacking = false;
 
     }
-    public void Strengthen()
+    public void Split()
     {
 
+        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
     }
-
-    public void Weaken()
-    {
-
+    public override void Death() {
+        Destroy(gameObject);
     }
     public void adjustForDifficulty()
     {

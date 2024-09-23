@@ -30,7 +30,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         speedOrig = agent.speed;
         angularSpeedOrig = agent.angularSpeed;
     }
-
+    //do speed orig in the enemytype
     // Update is called once per frame
     void Update()
     {
@@ -80,8 +80,8 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     }
     private void OnTriggerExit(Collider other)
     {
-    //    SphereCollider sphereCollider = other as SphereCollider;
-        Collider sphereCollider = other;
+        SphereCollider sphereCollider = other as SphereCollider;
+       // Collider sphereCollider = other;
         if (other.CompareTag("Player")&& sphereCollider != null)
         {
             playerInRange = false;
@@ -118,7 +118,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         }
     }
 
-    public void Death()
+    public virtual void Death()
     {
         Destroy(gameObject);
     }

@@ -7,14 +7,12 @@ public class EnemyType2 : BasicEnemyAI
     [SerializeField] GameObject fireBall;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
-    float shootRateOrig;
 
     bool isShooting;
 
     // Start is called before the first frame update
     void Start()
     {
-        shootRateOrig = shootRate;
         adjustForDifficulty();
         
     }
@@ -35,7 +33,7 @@ public class EnemyType2 : BasicEnemyAI
             if (CombatManager.instance.GetDifficulty() == 2)
             {
                 SetHP(GetHP() + 1);
-                shootRate = shootRateOrig * 0.9f;
+                shootRate *= 0.9f;
                 
             }
             else if (CombatManager.instance.GetDifficulty() == 3)
@@ -43,13 +41,13 @@ public class EnemyType2 : BasicEnemyAI
                 SetHP(GetHP() + 2);
                 agent.speed *= 1.2f;
                 agent.angularSpeed *= 1.2f;
-                shootRate = shootRateOrig * 0.7f;
+                shootRate *= 0.7f;
             } else if (CombatManager.instance.GetDifficulty() >= 4)
             {
                 SetHP(GetHP() + 2);
-                agent.speed = GetSpeedOrig()* 1.4f;
-                agent.angularSpeed = GetAngularSpeedOrig()* 1.4f;
-                shootRate = shootRateOrig * 0.4f;
+                agent.speed *= 1.4f;
+                agent.angularSpeed *= 1.4f;
+                shootRate *= 0.4f;
             }
         }
     }
