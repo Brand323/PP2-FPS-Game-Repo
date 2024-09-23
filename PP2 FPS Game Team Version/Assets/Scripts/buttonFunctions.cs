@@ -34,6 +34,13 @@ public class buttonFunctions : MonoBehaviour
 #endif
     }
 
+    public void respawn()
+    {
+        gameManager.instance.playerScript.spawnPlayer();
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.UnpauseGame();
+    }
+
     public void saveFO()
     {
         if (gameManager.instance.canSprint.value == 0)
