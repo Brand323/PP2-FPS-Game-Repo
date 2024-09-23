@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     //Serialize fields
-    [SerializeField] GameObject activeWindow;
+    [SerializeField] public GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject loseWindow;
@@ -107,6 +107,8 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool itemUIisDisplayed;
 
+    public GameObject playerSpawnPosition;
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -128,7 +130,7 @@ public class gameManager : MonoBehaviour
 
         //Intialize First Wave
         UpdateWaveUI();
-
+        playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
     }
 
     // Update is called once per frame

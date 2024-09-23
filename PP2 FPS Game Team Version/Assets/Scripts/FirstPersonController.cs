@@ -376,6 +376,15 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     }
 
+    public void spawnPlayer()
+    {
+        playerIsDead = false;
+        characterController.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPosition.transform.position;
+        characterController.enabled = true;
+        currentHealth = maxHealthPoints;
+    }
+
     void Update()
     {
         UpdateUI();
