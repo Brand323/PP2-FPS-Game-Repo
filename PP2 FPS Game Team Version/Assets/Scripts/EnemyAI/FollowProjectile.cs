@@ -14,6 +14,7 @@ public class FollowProjectile : MonoBehaviour
     {
         target = gameManager.instance.player.transform;
         rb = GetComponent<Rigidbody>();
+        adjustForDifficulty();
     }
     // Update is called once per frame
     void Update()
@@ -22,5 +23,9 @@ public class FollowProjectile : MonoBehaviour
         Vector3 rot = Vector3.Cross(transform.forward, dir);
         rb.angularVelocity = rot * rotSpeed;
         rb.velocity = transform.forward * speed;
+    }
+    public void adjustForDifficulty()
+    {
+        speed += CombatManager.instance.GetDifficulty()/2;
     }
 }

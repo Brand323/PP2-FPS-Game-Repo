@@ -17,6 +17,7 @@ public class EnemyType1 : BasicEnemyAI
     void Start()
     {
         anim = GetComponent<Animator>();
+        adjustForDifficulty();
     }
 
     // Update is called once per frame
@@ -60,9 +61,33 @@ public class EnemyType1 : BasicEnemyAI
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
-
+    //difficulty under 3 does not change damage done to player for this enemy. 
+    //difficulty 4 and up doubles damage for this enemy.
     public void DoDamage()
     {
-        gameManager.instance.playerScript.currentHealth--;
+        if (CombatManager.instance.GetDifficulty()>=4) {
+            gameManager.instance.playerScript.currentHealth-=2;
+
+        }
+        else
+        {
+            gameManager.instance.playerScript.currentHealth--;
+        }
+    }
+    //increase health
+    public void adjustForDifficulty()
+    {
+        if (CombatManager.instance != null)
+        {
+            if (CombatManager.instance.GetDifficulty()==2)
+            {
+                SetHP(GetHP()+1);
+            } 
+            else if (CombatManager.instance.GetDifficulty()<2){
+                SetHP(GetHP() + 2);
+                agent.speed = GetSpeedOrig()* 1.2f;
+                agent.angularSpeed = GetAngularSpeedOrig() * 1.2f;
+            }
+        }
     }
 }

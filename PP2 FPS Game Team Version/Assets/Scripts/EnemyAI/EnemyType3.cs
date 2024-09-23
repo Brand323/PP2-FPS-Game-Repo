@@ -7,12 +7,11 @@ public class EnemyType3 : BasicEnemyAI
     [SerializeField] float attackRate;
     bool isAttacking;
     [SerializeField] float meleeRange;
-    bool temporaryWeaken=true;
-    bool temporaryStrengthen=true;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        adjustForDifficulty();
     }
 
     // Update is called once per frame
@@ -29,59 +28,47 @@ public class EnemyType3 : BasicEnemyAI
                 {
                     StartCoroutine(attack());
                 }
-
             }
-            if (GetHP() <=5&& temporaryStrengthen) 
-            { 
-                Strengthen();
-                temporaryStrengthen = false;
-            } else if (GetHP()<=2&&temporaryWeaken)
-            {
-                Weaken();
-                Weaken();
-                Weaken();
-                temporaryWeaken = false;
-            }
-
         }
     }
     IEnumerator attack()
     {
         isAttacking = true;
-        gameManager.instance.playerScript.currentHealth -= 2;
+        gameManager.instance.playerScript.currentHealth -= (CombatManager.instance.GetDifficulty() + 1);
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
 
     }
     public void Strengthen()
     {
-        if (GetAgent().speed <= 6)
-        {
-            GetAgent().speed = GetAgent().speed * 1.2f;
-            GetAgent().angularSpeed = GetAgent().angularSpeed * 1.2f;
-        }
-        if (attackRate > .5)
-        {
-            attackRate *= 0.8f;
-        }
-        {
 
-        }
     }
 
     public void Weaken()
     {
-        if (GetAgent().speed >= 1.5)
-        {
-            GetAgent().speed = GetAgent().speed * 0.8f;
-            GetAgent().angularSpeed = GetAgent().angularSpeed * 0.8f;
-
-        }
-        if (attackRate < 3)
-        {
-            attackRate *= 1.2f;
-        }
 
     }
+    public void adjustForDifficulty()
+    {
+        if (CombatManager.instance != null)
+        {
+            if (CombatManager.instance.GetDifficulty() == 2)
+            {
+                SetHP(GetHP() + 3);
 
+            }
+            else if (CombatManager.instance.GetDifficulty() == 3)
+            {
+                SetHP(GetHP() + 6);
+                agent.speed *= 1.3f;
+                agent.angularSpeed *= 1.3f;
+            }
+            else if (CombatManager.instance.GetDifficulty() >= 4)
+            {
+                SetHP(GetHP() + 9);
+                agent.speed = GetSpeedOrig() * 1.5f;
+                agent.angularSpeed = GetAngularSpeedOrig() * 1.5f;
+            }
+        }
+    }
 }
