@@ -92,6 +92,8 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         get => useStamina;
         set => useStamina = value;
     }
+    public GameObject currentWeapon;
+    public GameObject curretnSheild;
 
 
     // ----- Controls -----
