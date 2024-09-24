@@ -116,15 +116,6 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         set => CrouchKey = value;
     }
 
-
-    // ----- Weapon Parameters -----
-    // These variables manage the current weapon the player has equipped. (This it prevent bugs such as picking multple items at once)
-    [Header("----- Weapon Parameters -----")]
-    public GameObject currentWeapon;
-    public GameObject currentShield;
-
-
-
     // ----- Attribute Parameters -----
     // These variables control the character's stamina and health.
     [Header("----- Attribute Parameters -----")]
@@ -572,6 +563,24 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             KillPlayer();
 
 
+    }
+
+    // Adds health to player (used for potions.)
+    public void AddHealth(float addHealth)
+    {
+        currentHealth += addHealth;
+        if (currentHealth > maxHealthPoints)
+            currentHealth = maxHealthPoints;
+        UpdateUI();
+    }
+
+    // Adds stamina to player (used for potions.)
+    public void AddStamina(float addStamina)
+    {
+        currentStamina += addStamina;
+        if (currentStamina > maxStaminaPoints)
+            currentStamina = maxStaminaPoints;
+        UpdateUI();
     }
 
     public void UpdateUI()
