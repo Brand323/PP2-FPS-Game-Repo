@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyType3 : BasicEnemyAI
 {
     [SerializeField] float attackRate;
-    bool isAttacking;
     [SerializeField] float meleeRange;
-
     [SerializeField] GameObject miniGolem;
+    [SerializeField] int animSpeedTrans;
+
+    Animator anim;
+    bool isAttacking;
     // Start is called before the first frame update
     void Start()
     {
         adjustForDifficulty();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        NavMeshAgent agent = GetAgent();
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        float animSpeed = anim.GetFloat("Speed");
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
         Movement();
         //player position needs to be updated to the AI
         if (GetPlayerInRange())
@@ -31,18 +39,25 @@ public class EnemyType3 : BasicEnemyAI
                 }
             }
         }
+
+        if (GetHP() <= 0)
+        {
+            agent.velocity = Vector3.zero;
+            SetPlayerInRange(false);
+            SetFaceTargetSpeed(0);
+            anim.SetTrigger("Death");
+        }
     }
     IEnumerator attack()
     {
         isAttacking = true;
-        gameManager.instance.playerScript.currentHealth -= (CombatManager.instance.GetDifficulty() + 1);
+        anim.SetTrigger("Attack");
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
 
     }
     public void Split()
     {
-
         Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
         Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
     }
@@ -71,5 +86,10 @@ public class EnemyType3 : BasicEnemyAI
                 agent.angularSpeed = GetAngularSpeedOrig() * 1.5f;
             }
         }
+    }
+
+    void PunchDamage()
+    {
+        gameManager.instance.playerScript.currentHealth -= (CombatManager.instance.GetDifficulty() + 1);
     }
 }
