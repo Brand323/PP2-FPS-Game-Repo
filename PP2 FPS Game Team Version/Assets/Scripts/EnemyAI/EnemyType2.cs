@@ -7,7 +7,7 @@ public class EnemyType2 : BasicEnemyAI
 {
     [SerializeField] GameObject fireBall;
     [SerializeField] Transform shootPos;
-    [SerializeField] float shootRate;
+    [Range(2, 10)] [SerializeField] float shootRate;
     [SerializeField] int animSpeedTrans;
 
     Animator anim;

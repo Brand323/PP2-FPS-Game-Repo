@@ -5,8 +5,8 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager instance;
-    [SerializeField] int difficulty;
-    [SerializeField] int attackingPlayerMax;
+    [Range(1,4)] [SerializeField] int difficulty;
+    [Range(1, 8)][SerializeField] int attackingPlayerMax;
     public int attackingPlayerCurr;
 
     // Start is called before the first frame update
@@ -19,14 +19,6 @@ public class CombatManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-        if (difficulty <= 0)
-        {
-            difficulty = 1;
-        }
-        if (attackingPlayerMax == 0)
-        {
-            attackingPlayerMax = difficulty + 1;
         }
     }
     void Start()
@@ -45,6 +37,10 @@ public class CombatManager : MonoBehaviour
 
     public int GetAttackingPlayerMax() {
         return attackingPlayerMax;
+    }
+    public void SetDifficulty(int diff)
+    {
+        difficulty = diff;
     }
 
 }
