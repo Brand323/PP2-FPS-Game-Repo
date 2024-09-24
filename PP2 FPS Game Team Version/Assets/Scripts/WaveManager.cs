@@ -54,7 +54,10 @@ public class WaveManager : MonoBehaviour
         }
         waveInProgress = true;
         StartCoroutine(spawnEnemies());
-        UIManager.instance.UpdateWaveUI();
+        if(UIManager.instance != null)
+        {
+            UIManager.instance.UpdateWaveUI();
+        }
     }
 
     IEnumerator spawnEnemies()
@@ -112,12 +115,15 @@ public class WaveManager : MonoBehaviour
         triggerGate.EndWave();
 
         //Checks for Win
-        if (currentWave >= totalWaves)
+        if (currentWave >= totalWaves && UIManager.instance != null)
         {
             UIManager.instance.isPaused = !UIManager.instance.isPaused;
             UIManager.instance.PauseGame(UIManager.instance.winWindow);
         }
-        UIManager.instance.activateWaveEndMenu();
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.activateWaveEndMenu();
+        }
     }
 
 

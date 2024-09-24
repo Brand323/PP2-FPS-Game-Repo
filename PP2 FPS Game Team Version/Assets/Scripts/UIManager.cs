@@ -95,7 +95,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyCountText.text = WaveManager.instance.remainingEnemies.ToString("F0");
+        if(WaveManager.instance != null)
+        {
+            enemyCountText.text = WaveManager.instance.remainingEnemies.ToString("F0");
+        }
         if (Input.GetButtonDown("Cancel"))
         {
             isPaused = !isPaused;
@@ -143,8 +146,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateWaveUI()
     {
-        waveTextHUD.text = WaveManager.instance.currentWave.ToString("F0");
-        waveTextNumber.text = (WaveManager.instance.currentWave + 1).ToString("F0");
+        if(WaveManager.instance != null)
+        {
+            waveTextHUD.text = WaveManager.instance.currentWave.ToString("F0");
+            waveTextNumber.text = (WaveManager.instance.currentWave + 1).ToString("F0");
+        }
     }
 
     public void UpdateGameGoal(int enemy)
