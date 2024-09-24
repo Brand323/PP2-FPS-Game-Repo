@@ -26,6 +26,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     protected gameManager gameManagerInstance;
     protected string weaponName;
 
+    //test
     //Animation
     protected Animator weaponAnimator;
 
