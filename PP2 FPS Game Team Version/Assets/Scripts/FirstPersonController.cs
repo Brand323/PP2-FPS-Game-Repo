@@ -574,6 +574,24 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     }
 
+    // Adds health to player (used for potions.)
+    public void AddHealth(float addHealth)
+    {
+        currentHealth += addHealth;
+        if (currentHealth > maxHealthPoints)
+            currentHealth = maxHealthPoints;
+        UpdateUI();
+    }
+
+    // Adds stamina to player (used for potions.)
+    public void AddStamina(float addStamina)
+    {
+        currentStamina += addStamina;
+        if (currentStamina > maxStaminaPoints)
+            currentStamina = maxStaminaPoints;
+        UpdateUI();
+    }
+
     public void UpdateUI()
     {
         if(gameManager.instance != null)
