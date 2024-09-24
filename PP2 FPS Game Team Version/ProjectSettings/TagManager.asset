@@ -11,6 +11,8 @@ TagManager:
   - Lever
   - Player Spawn Position
   - WeaponContainer
+  - RightItemContainer
+  - ArrowContainer
   layers:
   - Default
   - TransparentFX
