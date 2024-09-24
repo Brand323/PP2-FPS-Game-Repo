@@ -83,22 +83,16 @@ public class EnemyType1 : BasicEnemyAI
     {
         float speedOrig = agent.speed;
         float angularSpeedOrig = agent.angularSpeed;
-        if (CombatManager.instance == null)
-        {
-            Debug.Log($"is null");
-        }
         if (CombatManager.instance != null)
         {
             if (CombatManager.instance.GetDifficulty()==2)
             {
                 SetHP(GetHP()+1);
-                Debug.Log($"HP after adjustment: {GetHP()}");
             } 
             else if (CombatManager.instance.GetDifficulty()>2){
                 SetHP(GetHP() + 2);
                 agent.speed *= 1.2f;
                 agent.angularSpeed *= 1.2f;
-                Debug.Log($"speed after adjustment: {speedOrig}");
             }
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -47,9 +48,12 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
             stopDistOrig=agent.stoppingDistance;
             if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
             {
-                agent.stoppingDistance=stopDistOrig;
-                isEngaged=true;
-                CombatManager.instance.attackingPlayerCurr++;
+                if (this is not EnemyType2)
+                {
+                    agent.stoppingDistance = stopDistOrig;
+                    isEngaged = true;
+                    CombatManager.instance.attackingPlayerCurr++;
+                }
             }
         }
     }
@@ -64,24 +68,33 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         {
             playerInRange = true;
             //engage enemy
-            if (CombatManager.instance.attackingPlayerCurr > CombatManager.instance.GetAttackingPlayerMax())
+            if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
             {
-                isEngaged = true;
-                CombatManager.instance.attackingPlayerCurr++;
+                if (this is not EnemyType2)
+                {
+                    isEngaged = true;
+                    CombatManager.instance.attackingPlayerCurr++;
+                }
+
+
             }
             //disengage enemy
-            if (CombatManager.instance.attackingPlayerCurr == CombatManager.instance.GetAttackingPlayerMax())
+            else if (CombatManager.instance.attackingPlayerCurr >= CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
             {
                 isEngaged = false;
                 agent.stoppingDistance = 10;
+                if (this is not EnemyType2)
+                {
+                    isEngaged = false;
+                    agent.stoppingDistance = 7;
+                }
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        SphereCollider sphereCollider = other as SphereCollider;
-       // Collider sphereCollider = other;
-        if (other.CompareTag("Player")&& sphereCollider != null)
+        // Collider sphereCollider = other;
+        if (other.CompareTag("Player") && other != null && other.name == "Sphere Collider")
         {
             playerInRange = false;
             if (isEngaged)
@@ -106,6 +119,8 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
 
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
         }
+        isEngaged = true;
+        agent.stoppingDistance = stopDistOrig;
     }
 
     public virtual void Death()

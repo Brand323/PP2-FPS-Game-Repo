@@ -28,7 +28,7 @@ public class EnemyType2 : BasicEnemyAI
         float animSpeed = anim.GetFloat("Speed");
         anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
         Movement();
-        if (!isShooting)
+        if (!isShooting && GetPlayerInRange())
         {
             StartCoroutine(shoot());
         }
