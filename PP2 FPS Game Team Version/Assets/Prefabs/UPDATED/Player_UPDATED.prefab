@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5755909347549673428
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6783926128668063256}
-  m_Father: {fileID: 3387174019659573976}
+  m_Father: {fileID: 5018492008536512849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2504207846632488136
 GameObject:
@@ -442,11 +442,11 @@ GameObject:
   - component: {fileID: 7636837537613188620}
   m_Layer: 0
   m_Name: WeaponContainer
-  m_TagString: Untagged
+  m_TagString: WeaponContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2720720522348917007
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7534216127287899989}
-  m_Father: {fileID: 3387174019659573976}
+  m_Father: {fileID: 5018492008536512849}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &7636837537613188620
 MonoBehaviour:
@@ -477,8 +477,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 2720720522348917007}
   shieldContainer: {fileID: 8704887775886175557}
+  bowContainer: {fileID: 0}
   equippedWeapon: {fileID: 0}
   equippedShield: {fileID: 0}
+  equippedBow: {fileID: 0}
 --- !u!1 &4732060764469922689
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +656,59 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5385918651369346240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5018492008536512849}
+  - component: {fileID: 4320716506837791791}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5018492008536512849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385918651369346240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5755909347549673428}
+  - {fileID: 2720720522348917007}
+  - {fileID: 8704887775886175557}
+  m_Father: {fileID: 3387174019659573976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4320716506837791791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385918651369346240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712eca559bf54af44802461597ce9ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponContainer: {fileID: 2720720522348917007}
+  shieldContainer: {fileID: 8704887775886175557}
+  bowContainer: {fileID: 5755909347549673428}
+  equippedWeapon: {fileID: 0}
+  equippedShield: {fileID: 0}
+  equippedBow: {fileID: 0}
 --- !u!1 &6795799971866163994
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,11 +825,11 @@ GameObject:
   - component: {fileID: 8704887775886175557}
   m_Layer: 0
   m_Name: ShieldContainer
-  m_TagString: Untagged
+  m_TagString: LeftItemContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8704887775886175557
 Transform:
   m_ObjectHideFlags: 0
@@ -789,7 +844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5027627492681443376}
-  m_Father: {fileID: 3387174019659573976}
+  m_Father: {fileID: 5018492008536512849}
   m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!1 &8548117638721418465
 GameObject:
@@ -1031,9 +1086,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5755909347549673428}
-  - {fileID: 2720720522348917007}
-  - {fileID: 8704887775886175557}
+  - {fileID: 5018492008536512849}
   m_Father: {fileID: 7341107858397001889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8956412473336218576
