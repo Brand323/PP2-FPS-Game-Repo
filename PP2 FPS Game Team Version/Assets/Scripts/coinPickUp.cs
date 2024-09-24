@@ -16,7 +16,7 @@ public class money : MonoBehaviour
     public void SetCoinCount(int amount)
     {
         CoinCount = amount;
-        gameManager.instance.moneyText.text = CoinCount.ToString();
+        UIManager.instance.moneyText.text = CoinCount.ToString();
     }
 
     //PickUp Coin 
@@ -25,7 +25,7 @@ public class money : MonoBehaviour
         if(other.transform.tag == "Coin")
         {
             CoinCount++;
-            gameManager.instance.moneyText.text = CoinCount.ToString();
+            UIManager.instance.moneyText.text = CoinCount.ToString();
             Destroy(other.gameObject);
         }
     }

@@ -92,6 +92,8 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         get => useStamina;
         set => useStamina = value;
     }
+    public GameObject currentWeapon;
+    public GameObject curretnSheild;
 
 
     // ----- Controls -----
@@ -379,7 +381,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     void Update()
     {
         UpdateUI();
-        if (gameManager.instance != null && (gameManager.instance.isPaused || playerIsDead))
+        if (gameManager.instance != null && (UIManager.instance.isPaused || playerIsDead))
             CanMove = false;
         else
         CanMove = true;
@@ -585,10 +587,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     public void UpdateUI()
     {
-        if(gameManager.instance != null)
+        if(UIManager.instance != null)
         {
-            gameManager.instance.playerHPBar.fillAmount = currentHealth / maxHealthPoints;
-            gameManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStaminaPoints;
+            UIManager.instance.playerHPBar.fillAmount = currentHealth / maxHealthPoints;
+            UIManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStaminaPoints;
         }
     }
 
