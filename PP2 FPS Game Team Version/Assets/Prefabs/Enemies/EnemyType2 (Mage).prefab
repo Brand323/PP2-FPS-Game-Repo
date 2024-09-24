@@ -162,15 +162,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5251107426523682287, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0053929873
       objectReference: {fileID: 0}
     - target: {fileID: 5251107426523682287, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 5251107426523682287, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.7312813
       objectReference: {fileID: 0}
     - target: {fileID: 5251107426523682287, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -372,7 +372,8 @@ MonoBehaviour:
   HP: 2
   fireBall: {fileID: 6741384887079248795, guid: 0e70b02634ebf0848b88e7f244a48bca, type: 3}
   shootPos: {fileID: 8715279412499508812}
-  shootRate: 8
+  shootRate: 12
+  animSpeedTrans: 2
 --- !u!95 &6706122156149068303
 Animator:
   serializedVersion: 5
@@ -382,8 +383,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085818526842479708}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 35c44a97c30e4e946a0f4d3310613b95, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: e7fa19f55943b084aa062a81380f0bcd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 7586345885fd2984b8485deefb583caf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

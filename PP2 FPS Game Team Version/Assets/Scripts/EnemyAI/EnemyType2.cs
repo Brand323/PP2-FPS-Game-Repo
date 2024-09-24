@@ -18,7 +18,6 @@ public class EnemyType2 : BasicEnemyAI
     {
         adjustForDifficulty();
         anim = GetComponent<Animator>();
-        anim.SetFloat("Shoot Rate", shootRate);
     }
 
     // Update is called once per frame
