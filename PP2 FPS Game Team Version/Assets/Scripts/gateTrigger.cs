@@ -16,9 +16,7 @@ public class GateTrigger : MonoBehaviour
         {
             // Show the wave menu when the player enters the trigger
             //waveMenu.SetActive(true);
-            gameManager.instance.waveWindow.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            UIManager.instance.activateStartWaveMenu();
         }
         
     }
@@ -29,9 +27,7 @@ public class GateTrigger : MonoBehaviour
         {
             // Hide the wave menu (if not hidden already) when the player leaves the trigger
             //waveMenu.SetActive(false);
-            gameManager.instance.waveWindow.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            UIManager.instance.deactivateStartWaveMenu();
         }
     }
 
@@ -42,9 +38,7 @@ public class GateTrigger : MonoBehaviour
         // Hide the wave menu and cursor once the wave starts
         waveStarted = true;
         //waveMenu.SetActive(false); 
-        gameManager.instance.waveWindow.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UIManager.instance.deactivateStartWaveMenu();
 
         //close the gate behind player(If not already closed)
         gateController.Raisegate();
@@ -52,7 +46,7 @@ public class GateTrigger : MonoBehaviour
         StartCoroutine(CloseGateAfterDelay());
 
         // Call the gameManager to start the next wave
-        gameManager.instance.StartNextWave();
+        WaveManager.instance.StartNextWave();
     }
 
     private IEnumerator CloseGateAfterDelay()

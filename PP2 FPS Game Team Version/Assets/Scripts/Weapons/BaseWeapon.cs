@@ -30,7 +30,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     //Animation
     protected Animator weaponAnimator;
 
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -41,7 +40,6 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponCollider = GetComponent<Collider>();
         weaponRigidBody = GetComponent<Rigidbody>();
         weaponRenderer = GetComponent<Renderer>();
-        weaponAnimator = GetComponent<Animator>();
         gameManagerInstance = gameManager.instance;
         playerMoney = playerPosition.GetComponent<money>();
 
@@ -83,14 +81,8 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponRigidBody.isKinematic = true;
         weaponCollider.isTrigger = true;
 
-        //Animation
-        if (weaponAnimator != null)
-        {
-            weaponAnimator.enabled = true;
-        }
-
         //Set current weapon reference
-        gameManagerInstance.playerScript.currentWeapon = gameObject;
+        gameManager.instance.playerScript.currentWeapon = gameObject;
 
     }
 
@@ -104,26 +96,20 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponRigidBody.isKinematic = false;
         weaponCollider.isTrigger = false;
 
-        //Animation
-        if (weaponAnimator != null)
-        {
-            weaponAnimator.enabled = false;
-        }
-
         //Clear Weapon Reference
-        gameManagerInstance.playerScript.currentWeapon = null;
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply drop force
         weaponRigidBody.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
         weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
-        gameManagerInstance.playerScript.currentWeapon = null;
+        gameManager.instance.playerScript.currentWeapon = null;
     }
 
     protected void HandleDrop()
     {
-        GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
+      GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Drop Weapon if Equipped
         if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
@@ -131,7 +117,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             DropWeapon();
         }
     }
-
+    
 
     public void TryPurchaseWeapon()
     {
@@ -139,14 +125,14 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
 
         if (playerMoney.GetCoinCount() >= weaponPrice)
         {
-            playerMoney.SetCoinCount(playerMoney.GetCoinCount() - weaponPrice);
+            playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
             isPurchased = true;
             weaponRenderer.material = defaultMaterial;
-            gameManagerInstance.deactivateItemUI();
+            gameManager.instance.deactivateItemUI();
         }
         else
         {
-            StartCoroutine(gameManagerInstance.BlinkRed());
+            gameManager.instance.BlinkRed();
         }
     }
 
