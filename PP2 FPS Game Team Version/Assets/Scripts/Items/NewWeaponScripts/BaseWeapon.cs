@@ -77,7 +77,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponCollider.isTrigger = true;
 
         //Set current weapon reference
-        gameManagerInstance.playerScript.currentWeapon = gameObject;
+        gameManager.instance.playerScript.currentWeapon = gameObject;
 
     }
 
@@ -92,19 +92,19 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponCollider.isTrigger = false;
 
         //Clear Weapon Reference
-        gameManagerInstance.playerScript.currentWeapon = null;
+        gameManager.instance.playerScript.currentWeapon = null;
 
         // Apply drop force
         weaponRigidBody.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
         weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
-        gameManagerInstance.playerScript.currentWeapon = null;
+        gameManager.instance.playerScript.currentWeapon = null;
     }
 
     protected void HandleDrop()
     {
-      GameObject currentWeapon = gameManagerInstance.playerScript.currentWeapon;
+      GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
         // Drop Weapon if Equipped
         if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
@@ -123,11 +123,11 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
             isPurchased = true;
             weaponRenderer.material = defaultMaterial;
-            gameManagerInstance.deactivateItemUI();
+            gameManager.instance.deactivateItemUI();
         }
         else
         {
-            StartCoroutine(gameManagerInstance.BlinkRed());
+            gameManager.instance.BlinkRed();
         }
     }
 

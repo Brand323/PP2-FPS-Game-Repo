@@ -66,12 +66,12 @@ public class InteractionManager : MonoBehaviour
                         Debug.Log($"Interacting with weapon: {weapon.GetInteractableName()}");
                         if (!weapon.isPurchased)
                         {
-                            gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", gameManager.instance.itemBuyWindow);
+                            gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", UIManager.instance.itemBuyWindow);
 
                         }
                         else
                         {
-                            gameManagerInstance.activateItemUI("Pick UP ", gameManager.instance.itemPickUpWindow);
+                            gameManagerInstance.activateItemUI("Pick UP ", UIManager.instance.itemPickUpWindow);
 
                         }
                     }

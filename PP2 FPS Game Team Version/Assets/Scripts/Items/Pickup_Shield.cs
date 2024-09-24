@@ -51,7 +51,7 @@ public class Pickup_Shield : MonoBehaviour
         if (distanceToPlayer.magnitude <= pickupRange && !ShieldEquipped && currentShield == null)
         {
             //gameManager.instance.activateItemUI("Pick Up Sword (Press E)");
-            gameManager.instance.activateItemUI("Pick Up Shield", gameManager.instance.itemPickUpWindow);
+            gameManager.instance.activateItemUI("Pick Up Shield", UIManager.instance.itemPickUpWindow);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupShield();

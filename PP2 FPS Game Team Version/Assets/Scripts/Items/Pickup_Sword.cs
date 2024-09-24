@@ -68,7 +68,7 @@ public class Pickup_Sword : MonoBehaviour
             if (!isPurchased)
             {
                 //gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins");
-                gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins", gameManager.instance.itemBuyWindow);
+                gameManager.instance.activateItemUI("Buy Sword: " + swordPrice + " Coins", UIManager.instance.itemBuyWindow);
 
                 if (Input.GetKeyDown(KeyCode.E) && playerMoney.GetCoinCount() >= swordPrice)
                 {
@@ -76,14 +76,14 @@ public class Pickup_Sword : MonoBehaviour
                 }
                 else if(Input.GetKeyDown(KeyCode.E) && playerMoney.GetCoinCount() < swordPrice)
                 {
-                    StartCoroutine(gameManager.instance.BlinkRed()); ;
+                    gameManager.instance.BlinkRed();
                 }
             }
 
             else
             {
                 //gameManager.instance.activateItemUI("Pick Up Sword");
-                gameManager.instance.activateItemUI("Pick Up Sword", gameManager.instance.itemPickUpWindow);
+                gameManager.instance.activateItemUI("Pick Up Sword", UIManager.instance.itemPickUpWindow);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
