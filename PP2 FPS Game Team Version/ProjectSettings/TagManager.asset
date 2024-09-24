@@ -7,10 +7,10 @@ TagManager:
   - Coin
   - Enemy
   - PlayerPos
-  - RightItemContainer
   - LeftItemContainer
   - Lever
   - Player Spawn Position
+  - WeaponContainer
   layers:
   - Default
   - TransparentFX

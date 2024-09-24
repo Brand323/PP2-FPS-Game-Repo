@@ -116,15 +116,6 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         set => CrouchKey = value;
     }
 
-
-    // ----- Weapon Parameters -----
-    // These variables manage the current weapon the player has equipped. (This it prevent bugs such as picking multple items at once)
-    [Header("----- Weapon Parameters -----")]
-    public GameObject currentWeapon;
-    public GameObject currentShield;
-
-
-
     // ----- Attribute Parameters -----
     // These variables control the character's stamina and health.
     [Header("----- Attribute Parameters -----")]

@@ -33,29 +33,6 @@ public class Sword : Weapon
             TriggerSwordAttack();
     }
 
-    public override void Pickup(Transform parentTransform)
-    {
-        base.Pickup(parentTransform);
-        isEquipped = true;
-        canAttack = true;
-        Debug.Log("Sword is equipped.");
-    }
-
-    public override void Drop()
-    {
-        if (!isAttacking)
-        {
-            base.Drop();
-            isEquipped = false;
-            Debug.Log("Sword dropped.");
-        }
-        else
-        {
-            Debug.Log("Cannot drop the sword while attacking!");
-        }
-
-    }
-
     public void TriggerSwordAttack()
     {
         if (swordAnimator != null && canAttack)
