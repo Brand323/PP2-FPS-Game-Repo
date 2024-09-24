@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &5538859132142883420
+--- !u!1001 &8316612453934356744
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1431,9 +1431,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1931468024605356806, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2504207846632488136, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
       propertyPath: m_Name
       value: Player_UPDATED
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681177014896666507, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681177014896666507, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
+      propertyPath: m_TagString
+      value: WeaponContainer
       objectReference: {fileID: 0}
     - target: {fileID: 7341107858397001889, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1475,6 +1487,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7630225431915365855, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630225431915365855, guid: 31dcb74a17db52a4790352de424f4a01, type: 3}
+      propertyPath: m_TagString
+      value: LeftItemContainer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1485,4 +1505,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1528278685}
-  - {fileID: 5538859132142883420}
+  - {fileID: 8316612453934356744}
