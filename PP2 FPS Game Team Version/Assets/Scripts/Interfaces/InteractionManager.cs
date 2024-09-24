@@ -23,7 +23,11 @@ public class InteractionManager : MonoBehaviour
     {
         if (PlayerTransform == null)
         {
-            Debug.LogError("PlayerTransform is not assigned in InteractionManager!");
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                PlayerTransform = playerObject.transform;
+            }
             return;
         }
         if (gameManagerInstance == null)

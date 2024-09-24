@@ -11,12 +11,12 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] int faceTargetSpeed;
     public GameObject coinPrefab;
 
-    [SerializeField] float HP;
+    [Range(1, 50)][SerializeField] float HP;
     bool playerInRange;
     Color colorOrig;
     Vector3 playerDir;
-    float stopDistOrig;
-    float speedOrig;
+    [Range(1, 20)] float stopDistOrig;
+    [Range(0, 12)] float speedOrig;
     float angularSpeedOrig;
 
     bool isEngaged;
@@ -26,9 +26,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     {
         colorOrig = model.material.color;
         gameManager.instance.UpdateGameGoal(1);
-        stopDistOrig = agent.stoppingDistance;
-        speedOrig = agent.speed;
-        angularSpeedOrig = agent.angularSpeed;
+
     }
     //do speed orig in the enemytype
     // Update is called once per frame
@@ -46,6 +44,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                 FaceTarget();
             }
             //if there is attack slot and they are not attacking, attack
+            stopDistOrig=agent.stoppingDistance;
             if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
             {
                 agent.stoppingDistance=stopDistOrig;
@@ -104,22 +103,23 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         Movement();
         if (HP <= 0)
         {
-            if (isEngaged)
-            {
-                CombatManager.instance.attackingPlayerCurr--;
-            }
-            Vector3 coinSpawnPosition = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);
-            Quaternion coinRotation = Quaternion.Euler(0, 0, 0);
-            Instantiate(coinPrefab, coinSpawnPosition, coinRotation);
-            
 
-            gameManager.instance.EnemyDefeated();
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
         }
     }
 
     public virtual void Death()
     {
+        if (isEngaged)
+        {
+            CombatManager.instance.attackingPlayerCurr--;
+        }
+        Vector3 coinSpawnPosition = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);
+        Quaternion coinRotation = Quaternion.Euler(0, 0, 0);
+        Instantiate(coinPrefab, coinSpawnPosition, coinRotation);
+
+
+        gameManager.instance.EnemyDefeated();
         Destroy(gameObject);
     }
 

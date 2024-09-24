@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyType1 : BasicEnemyAI
 {
 
-    [SerializeField] float attackRate;
+    [Range(0.8f, 4)][SerializeField] float attackRate;
     [SerializeField] float meleeRange;
     [SerializeField] int animSpeedTrans;
     bool isAttacking;
