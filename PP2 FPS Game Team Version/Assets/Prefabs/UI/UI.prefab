@@ -3409,7 +3409,7 @@ GameObject:
   - component: {fileID: 2495961227037939732}
   - component: {fileID: 2605266799768772000}
   m_Layer: 5
-  m_Name: input4
+  m_Name: headbob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4548,7 +4548,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6186469655596444453}
-  - component: {fileID: 7218465679271079088}
   - component: {fileID: 5701218888527249562}
   - component: {fileID: 8877810348911308076}
   - component: {fileID: 6946932207410085400}
@@ -4572,6 +4571,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9181663695773829219}
   - {fileID: 6228283541983504777}
   - {fileID: 8203544115506992453}
   - {fileID: 1830442979168080924}
@@ -4599,76 +4599,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &7218465679271079088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339171178281554995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944f17a5a98359f48ab067ff359723ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeWindow: {fileID: 0}
-  pauseWindow: {fileID: 7100172237167609471}
-  winWindow: {fileID: 8672119606175838724}
-  loseWindow: {fileID: 14178836021986816}
-  mainEditWindow: {fileID: 2219234247613255587}
-  waveEndWindow: {fileID: 8604030964914396195}
-  waveWindow: {fileID: 4616742700882764703}
-  functionalOptionsWindow: {fileID: 927185210170084003}
-  movementParametersWindow: {fileID: 4622558212601367882}
-  attributeParametersWindow: {fileID: 5367733880539190317}
-  jumpParametersWindow: {fileID: 1699637167070465340}
-  crouchParametersWindow: {fileID: 2956768177484889103}
-  headBobParametersWindow: {fileID: 2068895019078331057}
-  enemiesPerWaveWindow: {fileID: 4148811264405577889}
-  activeItemWindow: {fileID: 0}
-  itemPickUpWindow: {fileID: 5609845451814064002}
-  itemBuyWindow: {fileID: 6082128295508545116}
-  saveButton: {fileID: 1264967442082436727}
-  enemiesPerWaveText: {fileID: 8022682045747484252}
-  canSprint: {fileID: 1676468241335044677}
-  canJump: {fileID: 5206845985316586097}
-  canCrouch: {fileID: 1939322625644288834}
-  useHeadbob: {fileID: 2605266799768772000}
-  canSlide: {fileID: 7730766626033470374}
-  walkSpeed: {fileID: 4853670954710486415}
-  sprintSpeed: {fileID: 4390491825511425251}
-  crouchSpeed: {fileID: 2598635534616286588}
-  slideSpeed: {fileID: 3770849755336242823}
-  gravity: {fileID: 4927721999578134068}
-  jumpForce: {fileID: 6018004369229502856}
-  crouchHeight: {fileID: 6570396466366746587}
-  standingHeight: {fileID: 7413641159854435500}
-  walkBobSpeed: {fileID: 2898432647581725704}
-  sprintBobSpeed: {fileID: 5758269613524311676}
-  crouchBobSpeed: {fileID: 2917522843278700835}
-  maxHealth: {fileID: 6793424926000297017}
-  maxStamina: {fileID: 1889170747310975144}
-  moneyText: {fileID: 1170684693614015816}
-  enemyCountText: {fileID: 6659126894702520473}
-  playerHPBar: {fileID: 4662795433681436911}
-  playerStaminaBar: {fileID: 9202761669365293802}
-  enemyType1Prefab: {fileID: 5126291367972392769, guid: c8a383b13aa28074da66b91de433e4bb, type: 3}
-  enemyType2Prefab: {fileID: 1085818526842479708, guid: 3184b3dd66071e448aa0296821f1399b, type: 3}
-  enemyType3Prefab: {fileID: 2070024015821397562, guid: 13c06d1ee1046774e8c4b01791d4c05d, type: 3}
-  currentWave: 0
-  enemiesPerWave: 5
-  Lever: {fileID: 0}
-  totalWaves: 3
-  waveTextHUD: {fileID: 8131468748272452396}
-  waveTextNumber: {fileID: 1917723215553406951}
-  lever: {fileID: 0}
-  triggerGate: {fileID: 0}
-  itemUIText: {fileID: 7255003559311682906}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
-  isPaused: 0
-  itemUIisDisplayed: 0
-  playerSpawnPosition: {fileID: 0}
 --- !u!223 &5701218888527249562
 Canvas:
   m_ObjectHideFlags: 0
@@ -6581,7 +6511,7 @@ GameObject:
   - component: {fileID: 1770866908061662425}
   - component: {fileID: 5206845985316586097}
   m_Layer: 5
-  m_Name: input2
+  m_Name: jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12468,7 +12398,7 @@ GameObject:
   - component: {fileID: 7713737731368952214}
   - component: {fileID: 7730766626033470374}
   m_Layer: 5
-  m_Name: input5
+  m_Name: slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13585,7 +13515,7 @@ GameObject:
   - component: {fileID: 8531965889198994411}
   - component: {fileID: 1676468241335044677}
   m_Layer: 5
-  m_Name: input1
+  m_Name: sprint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20047,6 +19977,111 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!1 &6410052504044064394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9181663695773829219}
+  - component: {fileID: 7570582702750911853}
+  - component: {fileID: 2699511768627508091}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9181663695773829219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410052504044064394}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1018.5, y: -538.1, z: -2.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6186469655596444453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7570582702750911853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410052504044064394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944f17a5a98359f48ab067ff359723ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  playerSpawnPosition: {fileID: 0}
+--- !u!114 &2699511768627508091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410052504044064394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edeb1ed7be691434591c81add0f2acfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeWindow: {fileID: 0}
+  pauseWindow: {fileID: 7100172237167609471}
+  winWindow: {fileID: 8672119606175838724}
+  loseWindow: {fileID: 14178836021986816}
+  mainEditWindow: {fileID: 2219234247613255587}
+  waveEndWindow: {fileID: 8604030964914396195}
+  waveWindow: {fileID: 4616742700882764703}
+  functionalOptionsWindow: {fileID: 927185210170084003}
+  movementParametersWindow: {fileID: 4622558212601367882}
+  attributeParametersWindow: {fileID: 5367733880539190317}
+  jumpParametersWindow: {fileID: 1699637167070465340}
+  crouchParametersWindow: {fileID: 2956768177484889103}
+  headBobParametersWindow: {fileID: 2068895019078331057}
+  enemiesPerWaveWindow: {fileID: 4148811264405577889}
+  activeItemWindow: {fileID: 0}
+  itemPickUpWindow: {fileID: 5609845451814064002}
+  itemBuyWindow: {fileID: 6082128295508545116}
+  enemiesPerWaveText: {fileID: 8022682045747484252}
+  canSprint: {fileID: 1676468241335044677}
+  canJump: {fileID: 5206845985316586097}
+  canCrouch: {fileID: 1939322625644288834}
+  useHeadbob: {fileID: 2605266799768772000}
+  canSlide: {fileID: 7730766626033470374}
+  walkSpeed: {fileID: 4853670954710486415}
+  sprintSpeed: {fileID: 4390491825511425251}
+  crouchSpeed: {fileID: 2598635534616286588}
+  slideSpeed: {fileID: 3770849755336242823}
+  gravity: {fileID: 4927721999578134068}
+  jumpForce: {fileID: 6018004369229502856}
+  crouchHeight: {fileID: 6570396466366746587}
+  standingHeight: {fileID: 7413641159854435500}
+  walkBobSpeed: {fileID: 2898432647581725704}
+  sprintBobSpeed: {fileID: 5758269613524311676}
+  crouchBobSpeed: {fileID: 2917522843278700835}
+  maxHealth: {fileID: 6793424926000297017}
+  maxStamina: {fileID: 1889170747310975144}
+  moneyText: {fileID: 1170684693614015816}
+  enemyCountText: {fileID: 6659126894702520473}
+  playerHPBar: {fileID: 4662795433681436911}
+  playerStaminaBar: {fileID: 9202761669365293802}
+  waveTextHUD: {fileID: 8131468748272452396}
+  waveTextNumber: {fileID: 1917723215553406951}
+  itemUIText: {fileID: 7255003559311682906}
+  isPaused: 0
+  itemUIisDisplayed: 0
 --- !u!1 &6418970034774538739
 GameObject:
   m_ObjectHideFlags: 0
@@ -20509,7 +20544,7 @@ GameObject:
   - component: {fileID: 8164601154715429172}
   - component: {fileID: 1939322625644288834}
   m_Layer: 5
-  m_Name: input3
+  m_Name: crouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
