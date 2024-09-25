@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyType3 : BasicEnemyAI
+
+
+//MINI GOLEM USE ONLY
+public class EnemyType4 : BasicEnemyAI
 {
-    [Range(1.5f, 5)] [SerializeField] float attackRate;
+    [Range(1.5f, 5)][SerializeField] float attackRate;
     [SerializeField] float meleeRange;
-    [SerializeField] GameObject miniGolem;
     [SerializeField] int animSpeedTrans;
 
     Animator anim;
@@ -15,9 +17,10 @@ public class EnemyType3 : BasicEnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        
-        anim = GetComponent<Animator>();
         adjustForDifficulty();
+        anim = GetComponent<Animator>();
+        Debug.Log(transform.localScale);
+        anim.transform.localScale = new Vector3(.4f, .4f, .4f);
     }
 
     // Update is called once per frame
@@ -57,12 +60,8 @@ public class EnemyType3 : BasicEnemyAI
         isAttacking = false;
 
     }
-    public void Split()
+    public override void Death()
     {
-        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
-        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
-    }
-    public override void Death() {
         Destroy(gameObject);
     }
     public void adjustForDifficulty()
@@ -71,19 +70,19 @@ public class EnemyType3 : BasicEnemyAI
         {
             if (CombatManager.instance.GetDifficulty() == 2)
             {
-                SetHP(GetHP() + 3);
+                SetHP(GetHP() + 1);
 
             }
             else if (CombatManager.instance.GetDifficulty() == 3)
             {
-                SetHP(GetHP() + 6);
+                SetHP(GetHP() + 2);
                 agent.speed *= 1.3f;
-                agent.angularSpeed *= 1.3f;
+                agent.angularSpeed *= 1.1f;
             }
             else if (CombatManager.instance.GetDifficulty() >= 4)
             {
-                SetHP(GetHP() + 9);
-                agent.speed *= 1.5f;
+                SetHP(GetHP() + 3);
+                agent.speed *= 1.3f;
                 agent.angularSpeed *= 1.5f;
             }
         }
@@ -91,6 +90,6 @@ public class EnemyType3 : BasicEnemyAI
 
     void PunchDamage()
     {
-        gameManager.instance.playerScript.currentHealth -= (CombatManager.instance.GetDifficulty() + 1);
+        gameManager.instance.playerScript.currentHealth -= (CombatManager.instance.GetDifficulty());
     }
 }
