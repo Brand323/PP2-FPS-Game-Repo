@@ -37,7 +37,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     //      1.  CanSprint is true (player is allowed to sprint).
     //      2.  The sprint key is being HELD down (ex. Left Shift key).
     //      3.  The character is grounded (not in the air), using the character controller component.
-    private bool IsSprinting => CanSprint && Input.GetKey(sprintKey) && characterController.isGrounded;
+    public bool IsSprinting => CanSprint && Input.GetKey(sprintKey) && characterController.isGrounded;
 
     // Checks if the player should jump.
     // Jumping is allowed when:
@@ -310,14 +310,6 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         set => crouchBobAmount = value;
     }
 
-    [Header("----- Audio -----")]
-    [SerializeField]AudioSource audio;
-    [SerializeField] AudioClip[] jumpSounds;
-    [SerializeField] float jumpSoundsVolume;
-    bool isPlayingStepSound;
-    [SerializeField] AudioClip footStepSound;
-    [SerializeField] float footStepVolume;
-
     private float defaultCamYPosition { get; set; } = 0f; // Default position of the camera (used for headbobbing effect).
     private float headbobTimer { get; set; }             // Timer used to calculate headbob movement.
 
@@ -411,10 +403,12 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
             if (useStamina)
                 HandleStamina();
-
-            if(characterController.isGrounded && currentInput.magnitude > 0.4f && !isPlayingStepSound)
+            if (AudioManager.instance != null)
             {
-                StartCoroutine(playFootSteps());
+                if (characterController.isGrounded && currentInput.magnitude > 0.4f && !AudioManager.instance.isPlayingStepSound)
+                {
+                    StartCoroutine(playFootSteps());
+                }
             }
 
             ApplyFinalMovements(); // Apply the final calculated movement to the player. Must stay at the end.
@@ -497,7 +491,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         if (ShouldJump)
         {
             moveDirection.y = jumpForce;
-            audio.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)], jumpSoundsVolume);
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSound(AudioManager.instance.jumpSounds, AudioManager.instance.jumpSoundsVolume);
+            }
         }
     }
 
@@ -571,9 +568,9 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
     IEnumerator playFootSteps()
     {
-        isPlayingStepSound = true;
-        audio.PlayOneShot(footStepSound, footStepVolume);
-        if(!IsSprinting)
+        AudioManager.instance.isPlayingStepSound = true;
+        AudioManager.instance.playSound(AudioManager.instance.footStepSound, AudioManager.instance.footStepVolume);
+        if (!gameManager.instance.playerScript.IsSprinting)
         {
             yield return new WaitForSeconds(0.45f);
         }
@@ -581,13 +578,17 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         {
             yield return new WaitForSeconds(0.35f);
         }
-        isPlayingStepSound = false;
+        AudioManager.instance.isPlayingStepSound = false;
     }
 
     // Handles the player taking damage and updating the player's health respectively.
     // Uses the I_Damage interface.
     public void TakeDamage(float damage)
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.hurtSounds, AudioManager.instance.hurtSoundsVolume);
+        }
         currentHealth -= damage;
         UpdateUI();
         if (currentHealth <= 0)

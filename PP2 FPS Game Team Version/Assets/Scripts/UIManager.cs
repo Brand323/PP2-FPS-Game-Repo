@@ -129,6 +129,11 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame(GameObject window)
     {
+        if(AudioManager.instance != null && AudioManager.instance.backgroundMusicIsPlaying)
+        {
+            AudioManager.instance.backgroundMusicIsPlaying = false;
+            AudioManager.instance.backgtoundAudioSource.Pause();
+        }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -137,6 +142,11 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
+        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying && WaveManager.instance.currentWave > 0)
+        {
+            AudioManager.instance.backgroundMusicIsPlaying = true;
+            AudioManager.instance.backgtoundAudioSource.UnPause();
+        }
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
