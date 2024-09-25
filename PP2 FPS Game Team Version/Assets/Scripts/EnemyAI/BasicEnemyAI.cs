@@ -129,10 +129,16 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         {
             CombatManager.instance.attackingPlayerCurr--;
         }
-        Vector3 coinSpawnPosition = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);
+        //Sets coin spawn amount on enemy death
+        int coinCount = Random.Range(1, 4);
+
+        for (int i = 0; i < coinCount; i++)
+        {
+        //Changes coins position
+        Vector3 coinSpawnPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y + 1f, transform.position.z + Random.Range(-2f, 2f));
         Quaternion coinRotation = Quaternion.Euler(0, 0, 0);
         Instantiate(coinPrefab, coinSpawnPosition, coinRotation);
-
+        }
 
         gameManager.instance.EnemyDefeated();
         Destroy(gameObject);

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Shield : BaseWeapon
 {
-    private Animator shieldAnimator;
     
     protected override void Start()
     {
         base.Start();
         weaponName = "Shield";
-        shieldAnimator = GetComponent<Animator>();
+        weaponAnimator = GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -18,15 +17,19 @@ public class Shield : BaseWeapon
         base.Update();
         HandleShieldBlock();
     }
-
+    public override void PickupWeapon()
+    {
+        base.PickupWeapon();      
+        transform.SetParent(shieldContainer);
+    }
     void HandleShieldBlock()
     {
-        if (shieldAnimator != null)
+        if (weaponAnimator != null)
         {
             if (Input.GetMouseButton(1))
-                shieldAnimator.SetBool("IsBlocking", true);
+                weaponAnimator.SetBool("IsBlocking", true);
             else
-                shieldAnimator.SetBool("IsBlocking", false);
+                weaponAnimator.SetBool("IsBlocking", false);
         }
         else
         {

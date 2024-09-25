@@ -8,7 +8,7 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // References
     protected Rigidbody weaponRigidBody;
     protected Collider weaponCollider;
-    protected Transform playerPosition, weaponContainer, mainCam;
+    protected Transform playerPosition, weaponContainer, shieldContainer, mainCam;
 
     // Pickup and Drop Settings
     public float dropForwardForce = 2f, dropUpwardForce = 1f;
@@ -33,8 +33,9 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        playerPosition = GameObject.FindGameObjectWithTag("Player")?.transform;
+        // Initialize common references
 
+        playerPosition = GameObject.FindGameObjectWithTag("Player")?.transform;
         if (playerPosition == null)
         {
             Debug.LogError("Player object with 'Player' tag not found.");
@@ -70,9 +71,11 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             Debug.LogError("Animator component is missing from the weapon object.");
             return;
         }
-
-        // Initialize common references
-
+        shieldContainer = GameObject.FindGameObjectWithTag("ShieldContainer")?.transform;
+        if (shieldContainer == null)
+        {
+            Debug.LogError("Shield container not found. Please ensure the ShieldContainer tag is set correctly.");
+        }
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         weaponContainer = GameObject.FindGameObjectWithTag("WeaponContainer").transform;
         weaponCollider = GetComponent<Collider>();
