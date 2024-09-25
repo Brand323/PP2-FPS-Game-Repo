@@ -177,6 +177,37 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.deactivateWaveEndMenu();
     }
 
+    public void startGame()
+    {
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.UnpauseGame();
+    }
+
+    public void difficultyMenu()
+    {
+        editInput(UIManager.instance.difficultyWindow);
+    }
+
+    public void easy()
+    {
+        difficultyInput(1);
+    }
+
+    public void medium()
+    {
+        difficultyInput(2);
+    }
+
+    public void hard()
+    {
+        difficultyInput(3);
+    }
+
+    public void veryHard()
+    {
+        difficultyInput(4);
+    }
+
     void editInput(GameObject window)
     {
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
@@ -203,7 +234,11 @@ public class buttonFunctions : MonoBehaviour
         return variable;
     }
 
-
+    void difficultyInput(int difficulty)
+    {
+        CombatManager.instance.SetDifficulty(difficulty);
+        editInput(UIManager.instance.mainWindow);
+    }
 
     void save()
     {

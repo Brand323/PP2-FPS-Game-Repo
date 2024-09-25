@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject headBobParametersWindow;
     [SerializeField] public GameObject enemiesPerWaveWindow;
 
+    //Main window variables
+    [SerializeField] public GameObject mainWindow;
+    [SerializeField] public GameObject difficultyWindow;
+
     //Item menus
     [SerializeField] GameObject activeItemWindow;
     [SerializeField] public GameObject itemPickUpWindow;
@@ -90,6 +94,7 @@ public class UIManager : MonoBehaviour
         originalTimeScale = Time.timeScale;
 
         UpdateWaveUI();
+        StartCoroutine(startGame());
     }
 
     // Update is called once per frame
@@ -125,6 +130,13 @@ public class UIManager : MonoBehaviour
                 UnpauseGame();
             }
         }
+    }
+
+    IEnumerator startGame()
+    {
+        yield return new WaitForSeconds(1f);
+        isPaused = true;
+        PauseGame(mainWindow);
     }
 
     public void PauseGame(GameObject window)
