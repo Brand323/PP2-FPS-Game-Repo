@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject headBobParametersWindow;
     [SerializeField] public GameObject enemiesPerWaveWindow;
 
+    //Main window variables
+    [SerializeField] public GameObject mainWindow;
+    [SerializeField] public GameObject difficultyWindow;
+
     //Item menus
     [SerializeField] GameObject activeItemWindow;
     [SerializeField] public GameObject itemPickUpWindow;
@@ -90,6 +94,7 @@ public class UIManager : MonoBehaviour
         originalTimeScale = Time.timeScale;
 
         UpdateWaveUI();
+        StartCoroutine(startGame());
     }
 
     // Update is called once per frame
@@ -127,8 +132,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    IEnumerator startGame()
+    {
+        yield return new WaitForSeconds(1f);
+        isPaused = true;
+        PauseGame(mainWindow);
+    }
+
     public void PauseGame(GameObject window)
     {
+        if(AudioManager.instance != null && AudioManager.instance.backgroundMusicIsPlaying)
+        {
+            AudioManager.instance.backgroundMusicIsPlaying = false;
+            AudioManager.instance.backgtoundAudioSource.Pause();
+        }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -137,6 +154,11 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
+        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying && WaveManager.instance.currentWave > 0)
+        {
+            AudioManager.instance.backgroundMusicIsPlaying = true;
+            AudioManager.instance.backgtoundAudioSource.UnPause();
+        }
         Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
