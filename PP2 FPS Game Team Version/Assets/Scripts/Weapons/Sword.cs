@@ -8,7 +8,7 @@ public class Sword : BaseWeapon
     private bool canAttack = true;
     private bool isAttacking = false;
     public float attackCooldown = 1.0f;
-
+    [SerializeField] private float damageAmount = 1f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -21,6 +21,11 @@ public class Sword : BaseWeapon
         {
             isEquipped = true;
             canAttack = true;
+        }
+
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
         }
     }
 
@@ -40,6 +45,7 @@ public class Sword : BaseWeapon
         base.PickupWeapon();
         isEquipped = true;
         canAttack = true;
+        weaponCollider.isTrigger = true;
         Debug.Log("Sword is equipped.");
     }
 
@@ -57,7 +63,21 @@ public class Sword : BaseWeapon
         }
 
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other is CapsuleCollider)
+            {
+                I_Damage enemyDamage = other.GetComponent<I_Damage>();
+                if (enemyDamage != null && weaponCollider.enabled)
+                {
+                    enemyDamage.TakeDamage(damageAmount);
+                    Debug.Log($"{GetWeaponName()} did {damageAmount} damage to {other.name}");
+                }
+            }
+        }
+    }
     public void TriggerSwordAttack()
     {
         if (weaponAnimator != null && canAttack)

@@ -33,15 +33,64 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (playerPosition == null)
+        {
+            Debug.LogError("Player object with 'Player' tag not found.");
+            return;  
+        }
+
+        // Get the money component from the player
+        playerMoney = playerPosition.GetComponent<money>();
+        if (playerMoney == null)
+        {
+            Debug.LogError("money component is missing from the player object.");
+            return; 
+        }
+
+        // Initialize the game manager instance
+        gameManagerInstance = gameManager.instance;
+        if (gameManagerInstance == null)
+        {
+            Debug.LogError("gameManager instance is null.");
+            return; 
+        }
+
+        // Get the weapon renderer
+        weaponRenderer = GetComponent<Renderer>();
+        if (weaponRenderer == null)
+        {
+            Debug.LogError("Renderer component is missing from the weapon object.");
+            return; 
+        }
+        weaponAnimator = GetComponent<Animator>();
+        if (weaponAnimator == null)
+        {
+            Debug.LogError("Animator component is missing from the weapon object.");
+            return;
+        }
+
         // Initialize common references
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        weaponContainer = GameObject.FindGameObjectWithTag("RightItemContainer").transform;
+        weaponContainer = GameObject.FindGameObjectWithTag("WeaponContainer").transform;
         weaponCollider = GetComponent<Collider>();
         weaponRigidBody = GetComponent<Rigidbody>();
-        weaponRenderer = GetComponent<Renderer>();
-        gameManagerInstance = gameManager.instance;
-        playerMoney = playerPosition.GetComponent<money>();
+
+        if (isEquipped)
+        {
+            weaponAnimator.enabled = true;
+        }
+        else
+        {
+            weaponAnimator.enabled = false;
+        }
+
+        if (gameManager.instance == null)
+        {
+            Debug.LogError("GameManager is not assigned.");
+        }
 
         ActivateWeapon();
 
@@ -84,6 +133,9 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         //Set current weapon reference
         gameManager.instance.playerScript.currentWeapon = gameObject;
 
+
+        weaponAnimator.enabled = true;
+
     }
 
     protected virtual void DropWeapon()
@@ -105,6 +157,8 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
         gameManager.instance.playerScript.currentWeapon = null;
+
+        weaponAnimator.enabled = false;
     }
 
     protected void HandleDrop()
@@ -122,12 +176,15 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     public void TryPurchaseWeapon()
     {
         Debug.Log($"Attempting to purchase: {GetInteractableName()}");
-
+        Debug.Log($"Player has {playerMoney.GetCoinCount()} coins.");
         if (playerMoney.GetCoinCount() >= weaponPrice)
         {
+
             playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
             isPurchased = true;
-            weaponRenderer.material = defaultMaterial;
+        
+                weaponRenderer.material = defaultMaterial;
+        
             gameManager.instance.deactivateItemUI();
         }
         else
