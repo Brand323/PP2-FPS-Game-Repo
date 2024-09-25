@@ -309,6 +309,15 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         get => crouchBobAmount;
         set => crouchBobAmount = value;
     }
+
+    [Header("----- Audio -----")]
+    [SerializeField]AudioSource audio;
+    [SerializeField] AudioClip[] jumpSounds;
+    [SerializeField] float jumpSoundsVolume;
+    bool isPlayingStepSound;
+    [SerializeField] AudioClip footStepSound;
+    [SerializeField] float footStepVolume;
+
     private float defaultCamYPosition { get; set; } = 0f; // Default position of the camera (used for headbobbing effect).
     private float headbobTimer { get; set; }             // Timer used to calculate headbob movement.
 
@@ -403,8 +412,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             if (useStamina)
                 HandleStamina();
 
-
-
+            if(characterController.isGrounded && currentInput.magnitude > 0.4f && !isPlayingStepSound)
+            {
+                StartCoroutine(playFootSteps());
+            }
 
             ApplyFinalMovements(); // Apply the final calculated movement to the player. Must stay at the end.
         }
@@ -484,7 +495,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     {
         // If the player is allowd to jump, apply upward force to simulate a jump.
         if (ShouldJump)
+        {
             moveDirection.y = jumpForce;
+            audio.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)], jumpSoundsVolume);
+        }
     }
 
 
@@ -553,6 +567,21 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         {
             regeneratingStamina = StartCoroutine(RegenerateStamina());
         }
+    }
+
+    IEnumerator playFootSteps()
+    {
+        isPlayingStepSound = true;
+        audio.PlayOneShot(footStepSound, footStepVolume);
+        if(!IsSprinting)
+        {
+            yield return new WaitForSeconds(0.45f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.35f);
+        }
+        isPlayingStepSound = false;
     }
 
     // Handles the player taking damage and updating the player's health respectively.
