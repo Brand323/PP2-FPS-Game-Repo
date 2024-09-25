@@ -2,26 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : Weapon
+public class Shield : BaseWeapon
 {
     private Animator shieldAnimator;
     
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         weaponName = "Shield";
         shieldAnimator = GetComponent<Animator>();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         HandleShieldBlock();
     }
 
     void HandleShieldBlock()
     {
-        if (Input.GetMouseButton(1))
-            shieldAnimator.SetBool("IsBlocking", true);
+        if (shieldAnimator != null)
+        {
+            if (Input.GetMouseButton(1))
+                shieldAnimator.SetBool("IsBlocking", true);
+            else
+                shieldAnimator.SetBool("IsBlocking", false);
+        }
         else
-            shieldAnimator.SetBool("IsBlocking", false);
+        {
+            Debug.Log("Shield Animator is null");
+        }
+    }
+
+    protected override string GetWeaponName()
+    {
+        return "Shield";
     }
 }
