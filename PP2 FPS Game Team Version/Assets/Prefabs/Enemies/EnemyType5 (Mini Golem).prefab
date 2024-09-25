@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 228250880367310147, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 228250880367310147, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 839880926040412599, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -59,11 +67,11 @@ PrefabInstance:
     - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: b3681b15fa0a0ad4e936d65ce5c2a0fb, type: 3}
+      objectReference: {fileID: 9000000, guid: af0ab1307baa399449427ba74ccbabbe, type: 3}
     - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5a6f2c4f5f2b3fb49ab943f94bf15e59, type: 2}
+      objectReference: {fileID: 9100000, guid: 2ff9c7af760ba4d49a79919a880c240d, type: 2}
     - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
@@ -169,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256878375604960509, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_Name
-      value: EnemyType4 (Mini Golem) Variant
+      value: EnemyType5 (Mini Golem)
       objectReference: {fileID: 0}
     - target: {fileID: 8451441718892675927, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.x
@@ -249,7 +257,7 @@ MonoBehaviour:
   headPos: {fileID: 2684985829337606811}
   faceTargetSpeed: 2
   coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
-  HP: 2
+  HP: 4
   attackRate: 1.5
-  meleeRange: 1.7
-  animSpeedTrans: 2
+  meleeRange: 1.9
+  animSpeedTrans: 1
