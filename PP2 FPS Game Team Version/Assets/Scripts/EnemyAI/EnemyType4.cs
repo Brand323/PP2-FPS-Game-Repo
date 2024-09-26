@@ -10,8 +10,6 @@ public class EnemyType4 : BasicEnemyAI
 {
     [Range(1.5f, 5)][SerializeField] float attackRate;
     [SerializeField] float meleeRange;
-    [SerializeField] int animSpeedTrans;
-
     Animator anim;
     bool isAttacking;
     // Start is called before the first frame update
@@ -29,7 +27,7 @@ public class EnemyType4 : BasicEnemyAI
         NavMeshAgent agent = GetAgent();
         float agentSpeed = agent.velocity.normalized.magnitude;
         float animSpeed = anim.GetFloat("Speed");
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * GetAnimationSpeed()));
         Movement();
         //player position needs to be updated to the AI
         if (GetPlayerInRange())
