@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -82,12 +83,20 @@ public class EnemyType3 : BasicEnemyAI
             
             miniGolem1.GetComponent<EnemyType3>().canSplit = false;
             miniGolem2.GetComponent<EnemyType3>().canSplit = false;
-
+            WaveManager.instance.remainingEnemies+=2;
         }
         if (isEngaged)
         {
             CombatManager.instance.attackingPlayerCurr--;
             isEngaged = false;
+        }
+        if (!canSplit)
+        {
+            gameManager.instance.EnemyDefeated();
+        }
+        if (canSplit)
+        {
+            gameManager.instance.EnemyDefeated();
         }
         Destroy(gameObject);
         
