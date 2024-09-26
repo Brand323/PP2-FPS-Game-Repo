@@ -73,7 +73,7 @@ public class InteractionManager : MonoBehaviour
                             gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", UIManager.instance.itemBuyWindow);
 
                         }
-                        else
+                        else if(!weapon.isEquipped)
                         {
                             gameManagerInstance.activateItemUI("Pick UP ", UIManager.instance.itemPickUpWindow);
 
