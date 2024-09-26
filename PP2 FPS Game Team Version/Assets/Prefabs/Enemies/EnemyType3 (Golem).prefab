@@ -356,8 +356,9 @@ MonoBehaviour:
   staminaPotion: {fileID: 0}
   HP: 10
   stopDistOrig: 0
+  isEngaged: 0
   attackRate: 2.2
-  meleeRange: 2.1
+  meleeRange: 2.4
   Golem: {fileID: 2070024015821397562}
   animSpeedTrans: 4
   canSplit: 1
