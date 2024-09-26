@@ -9,95 +9,60 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 228250880367310147, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_Speed
-      value: 3.5
+      propertyPath: m_Height
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 228250880367310147, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 839880926040412599, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 839880926040412599, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 839880926040412599, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 839880926040412599, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2360751016062291311, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+    - target: {fileID: 1298379873663506641, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Mass
+      value: 12.8625
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807686273446476820, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2360751016062291311, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2360751016062291311, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2360751016062291311, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3014429562797755519, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014429562797755519, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+    - target: {fileID: 3807686273446476820, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3014429562797755519, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+    - target: {fileID: 3807686273446476820, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3014429562797755519, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
+    - target: {fileID: 3992425466882908484, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992425466882908484, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992425466882908484, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: af0ab1307baa399449427ba74ccbabbe, type: 3}
-    - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2ff9c7af760ba4d49a79919a880c240d, type: 2}
+      objectReference: {fileID: 9000000, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
     - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'B-indexFinger02.L'\n\tTransform 'B-upperArm.L'\n\tTransform
-        'B-hand.L'\n\tTransform 'B-ringFinger02.R'\n\tTransform 'B-shin.L'\n\tTransform
-        'B-middleFinger01.L'\n\tTransform 'B-thumb02.L'\n\tTransform 'B-ringFinger02.L'\n\tTransform
-        'B-foot.R'\n\tTransform 'B-indexFinger02.R'\n\tand more ...\n\tFrom animation
-        clip 'Idle (Golem)'\n\tFrom animation clip 'Walk (Golem)'\n\tFrom animation
-        clip 'Punch (Golem)'\n\tFrom animation clip 'Death 1 (Golem)'"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159363839416726158, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4933342752895799265, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4933342752895799265, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4933342752895799265, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4933342752895799265, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -141,123 +106,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933342752895799265, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278928952843378207, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Height
+      value: 1.1477779
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278928952843378207, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4995990843563532592, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 7278928952843378207, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Center.y
+      value: 0.6131567
       objectReference: {fileID: 0}
-    - target: {fileID: 5673226202646383247, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673226202646383247, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673226202646383247, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673226202646383247, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7061201834719217261, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7061201834719217261, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7061201834719217261, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
+    - target: {fileID: 7278928952843378207, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+      propertyPath: m_Center.z
+      value: -0.042872384
       objectReference: {fileID: 0}
     - target: {fileID: 8256878375604960509, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
       propertyPath: m_Name
       value: EnemyType5 (Mini Golem)
       objectReference: {fileID: 0}
-    - target: {fileID: 8451441718892675927, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451441718892675927, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451441718892675927, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451441718892675927, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8781175355833878615, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8781175355833878615, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8781175355833878615, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8781175355833878615, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4995990843563532592, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8256878375604960509, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 5059251458338289851}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
---- !u!195 &1134189274819302311 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 228250880367310147, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-  m_PrefabInstance: {fileID: 907365191256057572}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2684985829337606811 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3014429562797755519, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-  m_PrefabInstance: {fileID: 907365191256057572}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &2962836719980599891 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2704842142675795127, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-  m_PrefabInstance: {fileID: 907365191256057572}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9079759288042691097 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8256878375604960509, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
-  m_PrefabInstance: {fileID: 907365191256057572}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5059251458338289851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9079759288042691097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2471612c518196d49b0b3a3b9838c1f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 2962836719980599891}
-  agent: {fileID: 1134189274819302311}
-  headPos: {fileID: 2684985829337606811}
-  faceTargetSpeed: 2
-  coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
-  HP: 4
-  attackRate: 1.5
-  meleeRange: 1.9
-  animSpeedTrans: 1
