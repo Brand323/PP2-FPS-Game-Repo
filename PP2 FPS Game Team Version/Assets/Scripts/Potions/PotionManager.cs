@@ -79,8 +79,8 @@ public class PotionManager : MonoBehaviour
                 staminaPotionCount++;
                 UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
             }
-        }
 
-        Destroy(other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }
