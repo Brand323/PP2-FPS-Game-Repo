@@ -77,6 +77,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                 {
                     isEngaged = true;
                     CombatManager.instance.attackingPlayerCurr++;
+                    agent.stoppingDistance=stopDistOrig;
                 }
 
 

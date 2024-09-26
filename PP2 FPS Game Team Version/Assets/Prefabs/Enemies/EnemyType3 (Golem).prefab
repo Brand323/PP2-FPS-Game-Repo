@@ -357,7 +357,7 @@ MonoBehaviour:
   HP: 10
   attackRate: 2.2
   meleeRange: 2.1
-  Golem: {fileID: 0}
+  Golem: {fileID: 2070024015821397562}
   animSpeedTrans: 4
   canSplit: 1
 --- !u!195 &793365052057138150
