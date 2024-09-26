@@ -10,13 +10,16 @@ public class EnemyType3 : BasicEnemyAI
     [SerializeField] GameObject Golem;
     [SerializeField] int animSpeedTrans;
     [SerializeField] bool canSplit = true;
+    [SerializeField] float miniGolemHealth;
 
+    GameObject miniGolem1;
+    GameObject miniGolem2;
     Animator anim;
     bool isAttacking;
     // Start is called before the first frame update
     void Start()
     {
-        
+        stopDistOrig = agent.stoppingDistance;
         anim = GetComponent<Animator>();
         adjustForDifficulty();
     }
@@ -69,18 +72,23 @@ public class EnemyType3 : BasicEnemyAI
             //Seperates golem
             Vector3 spawnOffset = new Vector3(1f, 0f, 0f);
 
-            GameObject miniGolem1 = Instantiate(Golem, transform.position + spawnOffset, transform.rotation);
-            GameObject miniGolem2 = Instantiate(Golem, transform.position - spawnOffset, transform.rotation);
-
+            miniGolem1 = Instantiate(Golem, transform.position + spawnOffset, transform.rotation);
+            miniGolem2 = Instantiate(Golem, transform.position - spawnOffset, transform.rotation);
+            miniGolem1.GetComponent<EnemyType3>().SetHP(miniGolemHealth);
+            miniGolem2.GetComponent<EnemyType3>().SetHP(miniGolemHealth);
             // Scale down golam size
             miniGolem1.transform.localScale *= 0.5f;
             miniGolem2.transform.localScale *= 0.5f;
-
+            
             miniGolem1.GetComponent<EnemyType3>().canSplit = false;
             miniGolem2.GetComponent<EnemyType3>().canSplit = false;
 
         }
-
+        if (isEngaged)
+        {
+            CombatManager.instance.attackingPlayerCurr--;
+            isEngaged = false;
+        }
         Destroy(gameObject);
         
     }

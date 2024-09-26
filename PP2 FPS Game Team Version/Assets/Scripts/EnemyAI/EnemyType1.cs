@@ -20,6 +20,7 @@ public class EnemyType1 : BasicEnemyAI
     }
     void Start()
     {
+        stopDistOrig=agent.stoppingDistance;
         anim = GetComponent<Animator>();
         adjustForDifficulty();
     }

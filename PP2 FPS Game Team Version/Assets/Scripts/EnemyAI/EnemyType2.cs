@@ -16,6 +16,7 @@ public class EnemyType2 : BasicEnemyAI
     // Start is called before the first frame update
     void Start()
     {
+        stopDistOrig = agent.stoppingDistance;
         adjustForDifficulty();
         anim = GetComponent<Animator>();
     }

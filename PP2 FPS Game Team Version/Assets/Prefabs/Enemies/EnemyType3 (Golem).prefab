@@ -355,11 +355,13 @@ MonoBehaviour:
   healthPotion: {fileID: 0}
   staminaPotion: {fileID: 0}
   HP: 10
+  stopDistOrig: 0
   attackRate: 2.2
   meleeRange: 2.1
   Golem: {fileID: 2070024015821397562}
   animSpeedTrans: 4
   canSplit: 1
+  miniGolemHealth: 4
 --- !u!195 &793365052057138150
 NavMeshAgent:
   m_ObjectHideFlags: 0
