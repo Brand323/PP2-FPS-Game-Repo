@@ -5,10 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyType2 : BasicEnemyAI
 {
-    [SerializeField] GameObject fireBall;
+    [Header("Model")]
     [SerializeField] Transform shootPos;
+    [Header("Stats")]
     [Range(2, 10)] [SerializeField] float shootRate;
-    [SerializeField] int animSpeedTrans;
+    [Header("Prefab")]
+    [SerializeField] GameObject fireBall;
+
+
 
     Animator anim;
     bool isShooting;
@@ -26,7 +30,7 @@ public class EnemyType2 : BasicEnemyAI
         NavMeshAgent agent = GetAgent();
         float agentSpeed = agent.velocity.normalized.magnitude;
         float animSpeed = anim.GetFloat("Speed");
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * GetAnimationSpeed()));
         Movement();
         if (!isShooting && GetPlayerInRange())
         {

@@ -8,7 +8,6 @@ public class EnemyType3 : BasicEnemyAI
     [Range(1.5f, 5)] [SerializeField] float attackRate;
     [SerializeField] float meleeRange;
     [SerializeField] GameObject miniGolem;
-    [SerializeField] int animSpeedTrans;
 
     Animator anim;
     bool isAttacking;
@@ -26,7 +25,7 @@ public class EnemyType3 : BasicEnemyAI
         NavMeshAgent agent = GetAgent();
         float agentSpeed = agent.velocity.normalized.magnitude;
         float animSpeed = anim.GetFloat("Speed");
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * GetAnimationSpeed()));
         Movement();
         //player position needs to be updated to the AI
         if (GetPlayerInRange())

@@ -9,7 +9,6 @@ public class EnemyType1 : BasicEnemyAI
 
     [Range(0.8f, 4)][SerializeField] float attackRate;
     [SerializeField] float meleeRange;
-    [SerializeField] int animSpeedTrans;
     bool isAttacking;
     Animator anim;
 
@@ -30,7 +29,7 @@ public class EnemyType1 : BasicEnemyAI
         NavMeshAgent agent = GetAgent();
         float agentSpeed = agent.velocity.normalized.magnitude;
         float animSpeed = anim.GetFloat("Speed");
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * animSpeedTrans));
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeed, agentSpeed, Time.deltaTime * GetAnimationSpeed()));
         Movement();
 
         // Checks is player is in attack range

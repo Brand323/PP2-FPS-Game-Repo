@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 5a6f2c4f5f2b3fb49ab943f94bf15e59, type: 2}
     - target: {fileID: 4915082991154533488, guid: d9af52bf624fb004abc7f4d28bdf39e2, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5003316936202475578, guid: d9af52bf624fb004abc7f4d28bdf39e2, type: 3}
       propertyPath: m_Layer
@@ -351,12 +351,15 @@ MonoBehaviour:
   agent: {fileID: 793365052057138150}
   headPos: {fileID: 4112174031807389264}
   faceTargetSpeed: 2
-  coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
+  viewAngle: 45
+  roamDist: 12
+  roamTimer: 3
   HP: 10
+  coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
   attackRate: 2.2
   meleeRange: 2.1
-  miniGolem: {fileID: 0}
-  animSpeedTrans: 4
+  miniGolem: {fileID: 8256878375604960509, guid: 983e6c7a15338a6439ae772f247028b9, type: 3}
+  animSpeedTrans: 2
 --- !u!195 &793365052057138150
 NavMeshAgent:
   m_ObjectHideFlags: 0
