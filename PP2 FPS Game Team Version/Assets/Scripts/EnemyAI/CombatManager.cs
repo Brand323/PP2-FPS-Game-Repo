@@ -41,6 +41,7 @@ public class CombatManager : MonoBehaviour
     public void SetDifficulty(int diff)
     {
         difficulty = diff;
+        attackingPlayerMax = difficulty+1;
     }
 
 }
