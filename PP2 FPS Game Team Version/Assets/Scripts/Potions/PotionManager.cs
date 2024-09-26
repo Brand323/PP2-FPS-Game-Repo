@@ -21,13 +21,13 @@ public class PotionManager : MonoBehaviour
     }
     void UsePotion(string type)
     {
-        if (type == "Health" && healthPotionCount > 0)
+        if (type == "Health" && gameManager.instance.playerScript.currentHealth < gameManager.instance.playerScript.MaxHealthPoints && healthPotionCount > 0)
         {
             gameManager.instance.playerScript.AddHealth(25);
             healthPotionCount--;
             UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
         }
-        else if (type == "Stamina" && staminaPotionCount > 0)
+        else if (type == "Stamina" && gameManager.instance.playerScript.currentStamina < gameManager.instance.playerScript.MaxStaminaPoints && staminaPotionCount > 0)
         {
             gameManager.instance.playerScript.AddStamina(25);
             staminaPotionCount--;
