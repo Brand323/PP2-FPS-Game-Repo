@@ -782,6 +782,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &184906987 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4119359202098721957, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
+  m_PrefabInstance: {fileID: 1288592914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &227117528
 Mesh:
   m_ObjectHideFlags: 0
@@ -1175,7 +1180,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 863092888}
     m_Modifications:
     - target: {fileID: 384157586736699961, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
       propertyPath: m_Name
@@ -1183,15 +1188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649376545745500148, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.555935
+      value: -6.979205
       objectReference: {fileID: 0}
     - target: {fileID: 6649376545745500148, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0000002
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6649376545745500148, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.38
+      value: 11.505239
       objectReference: {fileID: 0}
     - target: {fileID: 6649376545745500148, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3536,6 +3541,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &863092888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4181048578061952168, guid: 930a49aec0245ad43911d1f5b752c493, type: 3}
+  m_PrefabInstance: {fileID: 1354873602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &946828764
 Mesh:
   m_ObjectHideFlags: 0
@@ -5306,7 +5316,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 863092888}
     m_Modifications:
     - target: {fileID: 541387560474313632, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
       propertyPath: m_Name
@@ -5314,15 +5324,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119359202098721957, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.18
+      value: -12.603271
       objectReference: {fileID: 0}
     - target: {fileID: 4119359202098721957, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99999976
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4119359202098721957, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.35
+      value: 11.475239
       objectReference: {fileID: 0}
     - target: {fileID: 4119359202098721957, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6786,7 +6796,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4181048578061952168, guid: 930a49aec0245ad43911d1f5b752c493, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 184906987}
+    - targetCorrespondingSourceObject: {fileID: 4181048578061952168, guid: 930a49aec0245ad43911d1f5b752c493, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2139348004}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 930a49aec0245ad43911d1f5b752c493, type: 3}
 --- !u!43 &1429895574
@@ -10516,6 +10532,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &2139348004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6649376545745500148, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
+  m_PrefabInstance: {fileID: 330529669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &124098384808452747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10641,5 +10662,3 @@ SceneRoots:
   - {fileID: 328523485}
   - {fileID: 1182583682}
   - {fileID: 1354873602}
-  - {fileID: 1288592914}
-  - {fileID: 330529669}
