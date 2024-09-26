@@ -153,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5798642395723424353}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.173103, y: 3.9534361, z: -12.036376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -177,12 +177,17 @@ MonoBehaviour:
   backgtoundAudioSource: {fileID: 8419508528489484657}
   jumpSounds:
   - {fileID: 8300000, guid: fc9cfe6adac54194b87d4b13b09b0518, type: 3}
+  - {fileID: 8300000, guid: 893ff469f52c8f240ae4473218bfc1a5, type: 3}
+  - {fileID: 8300000, guid: b51fd5306e8717a4086119fb82a17f79, type: 3}
+  - {fileID: 8300000, guid: f1f85fb188ca05d45b039c43a839f19d, type: 3}
   jumpSoundsVolume: 0.4
   isPlayingStepSound: 0
   footStepSound: {fileID: 8300000, guid: 7c6afcb44b9661144b21cdbd844af977, type: 3}
   footStepVolume: 0.4
   hurtSounds:
   - {fileID: 8300000, guid: c3e9a2b0047f6c44a8c7ebaba8cd2482, type: 3}
+  - {fileID: 8300000, guid: c1ae12945cd9e7f4197ba17d5d27a53e, type: 3}
+  - {fileID: 8300000, guid: c36674e83315db444bd75cb37e7f0ae9, type: 3}
   hurtSoundsVolume: 0.35
   backgroundMusic: {fileID: 8300000, guid: fdb4b47e1f8616c4197e5c084fb0c612, type: 3}
   backgroundMusicVolume: 0.15
