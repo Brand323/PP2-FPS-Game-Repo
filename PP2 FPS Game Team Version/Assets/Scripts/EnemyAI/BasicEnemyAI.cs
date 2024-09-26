@@ -135,33 +135,34 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         //Sets coin spawn amount on enemy death
         int coinCount = Random.Range(1, 4);
         float randomValue = Random.value;
-        for (int i = 0; i < coinCount; i++)
-        {
-            if (randomValue < 0.4f)
-            {
-                //spawns in potion
-                if (randomValue < 0.5f)
-                {
-                    nextPotion = healthPotion;
-                }
-                else
-                {
-                    nextPotion = staminaPotion;
-                }
+        float randomValue2 = Random.value;
 
-                Vector3 potionSpawnPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y + 1f, transform.position.z + Random.Range(-2f, 2f));
-                Instantiate(nextPotion, potionSpawnPosition, Quaternion.identity);
+        if (randomValue < 0.4f)
+        {
+            //spawns in potion
+            if (randomValue2 < 0.5f)
+            {
+                nextPotion = healthPotion;
             }
             else
             {
-                 //spawns in coins
+                nextPotion = staminaPotion;
+            }
+
+            Vector3 potionSpawnPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y, transform.position.z + Random.Range(-2f, 2f));
+            Instantiate(nextPotion, potionSpawnPosition, Quaternion.identity);
+        }
+
+        else
+        {
+            for (int i = 0; i < coinCount; i++)
+            {
+                //spawns in coins
                 Vector3 coinSpawnPosition = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y + 1f, transform.position.z + Random.Range(-2f, 2f));
                 Quaternion coinRotation = Quaternion.Euler(0, 0, 0);
                 Instantiate(coinPrefab, coinSpawnPosition, coinRotation);
-                
             }
         }
-
         gameManager.instance.EnemyDefeated();
         Destroy(gameObject);
     }
