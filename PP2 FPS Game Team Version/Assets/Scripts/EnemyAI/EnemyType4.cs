@@ -16,6 +16,7 @@ public class EnemyType4 : BasicEnemyAI
     // Start is called before the first frame update
     void Start()
     {
+        stopDistOrig = agent.stoppingDistance;
         adjustForDifficulty();
         anim = GetComponent<Animator>();
         Debug.Log(transform.localScale);

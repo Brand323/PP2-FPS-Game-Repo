@@ -23,7 +23,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [Range(0, 12)] float speedOrig;
     float angularSpeedOrig;
 
-    bool isEngaged;
+    public bool isEngaged;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +82,13 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                 }
                 else
                 {
-                    isEngaged = false;
-                    agent.stoppingDistance = 12;
-                    if (this is not EnemyType2)
+                    if (this is EnemyType2)
+                    {
+                        isEngaged = false;
+                        agent.stoppingDistance = 12;
+                    }
+
+                    if (this is EnemyType1)
                     {
                         isEngaged = false;
                         agent.stoppingDistance = 7;
