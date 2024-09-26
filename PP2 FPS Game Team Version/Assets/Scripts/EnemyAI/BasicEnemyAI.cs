@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class BasicEnemyAI : MonoBehaviour, I_Damage
 {
     [SerializeField] Renderer model;
-    [SerializeField] protected UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] int faceTargetSpeed;
     public GameObject coinPrefab;
@@ -19,7 +19,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     bool playerInRange;
     Color colorOrig;
     Vector3 playerDir;
-    [Range(1, 20)] float stopDistOrig;
+    public float stopDistOrig;
     [Range(0, 12)] float speedOrig;
     float angularSpeedOrig;
 
@@ -30,7 +30,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     {
         colorOrig = model.material.color;
         gameManager.instance.UpdateGameGoal(1);
-
     }
     //do speed orig in the enemytype
     // Update is called once per frame
@@ -48,7 +47,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                 FaceTarget();
             }
             //if there is attack slot and they are not attacking, attack
-            stopDistOrig=agent.stoppingDistance;
             if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
             {
                 if (this is not EnemyType2)
@@ -71,34 +69,35 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         {
             playerInRange = true;
             //engage enemy
-            if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
+            if (!isEngaged)
             {
-                if (this is not EnemyType2)
+                if (CombatManager.instance.attackingPlayerCurr < CombatManager.instance.GetAttackingPlayerMax())
                 {
-                    isEngaged = true;
-                    CombatManager.instance.attackingPlayerCurr++;
-                    agent.stoppingDistance=stopDistOrig;
+                    if (this is not EnemyType2)
+                    {
+                        isEngaged = true;
+                        agent.stoppingDistance = stopDistOrig;
+                        CombatManager.instance.attackingPlayerCurr++;
+                    }
                 }
-
-
-            }
-            //disengage enemy
-            else if (CombatManager.instance.attackingPlayerCurr >= CombatManager.instance.GetAttackingPlayerMax()&&!isEngaged)
-            {
-                isEngaged = false;
-                agent.stoppingDistance = 10;
-                if (this is not EnemyType2)
+                else
                 {
                     isEngaged = false;
-                    agent.stoppingDistance = 7;
+                    agent.stoppingDistance = 12;
+                    if (this is not EnemyType2)
+                    {
+                        isEngaged = false;
+                        agent.stoppingDistance = 7;
+                    }
                 }
             }
+            //disengage enemy
         }
     }
     private void OnTriggerExit(Collider other)
     {
         // Collider sphereCollider = other;
-        if (other.CompareTag("Player") && other != null && other.name == "Sphere Collider")
+/*        if (other.CompareTag("Player") && other != null && other.name == "Sphere Collider")
         {
             playerInRange = false;
             if (isEngaged)
@@ -106,7 +105,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                 CombatManager.instance.attackingPlayerCurr--;
                 isEngaged=false;
             }
-        }
+        }*/
     }
     void FaceTarget()
     {
@@ -123,15 +122,15 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
 
             // Destroys the enemy if it reaches 0 HP and updates the winning condition
         }
-        isEngaged = true;
         agent.stoppingDistance = stopDistOrig;
     }
 
     public virtual void Death()
     {
-        if (isEngaged)
+        if (isEngaged && this is not EnemyType2)
         {
             CombatManager.instance.attackingPlayerCurr--;
+            isEngaged = false;
         }
         //Sets coin spawn amount on enemy death
         int coinCount = Random.Range(1, 4);
