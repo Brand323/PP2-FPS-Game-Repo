@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator startGame()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         isPaused = true;
         PauseGame(mainWindow);
     }
