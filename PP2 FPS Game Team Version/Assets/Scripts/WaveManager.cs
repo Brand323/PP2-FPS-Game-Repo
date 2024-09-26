@@ -130,7 +130,7 @@ public class WaveManager : MonoBehaviour
             UIManager.instance.isPaused = !UIManager.instance.isPaused;
             UIManager.instance.PauseGame(UIManager.instance.winWindow);
         }
-        if (UIManager.instance != null)
+        if (UIManager.instance != null && currentWave < totalWaves)
         {
             UIManager.instance.activateWaveEndMenu();
         }
