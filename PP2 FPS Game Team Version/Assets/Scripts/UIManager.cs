@@ -68,6 +68,8 @@ public class UIManager : MonoBehaviour
 
     //HUD variables
     [SerializeField] public TMP_Text moneyText;
+    public TMP_Text healthPotionText;
+    public TMP_Text staminaPotionText;
     [SerializeField] TMP_Text enemyCountText;
     public Image playerHPBar;
     public Image playerStaminaBar;

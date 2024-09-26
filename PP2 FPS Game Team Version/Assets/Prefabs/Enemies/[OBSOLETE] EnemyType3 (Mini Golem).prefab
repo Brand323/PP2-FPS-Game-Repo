@@ -1780,7 +1780,7 @@ GameObject:
   - component: {fileID: 7278928952843378207}
   - component: {fileID: 546375770726904237}
   m_Layer: 3
-  m_Name: EnemyType3 (Mini Golem)
+  m_Name: '[OBSOLETE] EnemyType3 (Mini Golem)'
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
