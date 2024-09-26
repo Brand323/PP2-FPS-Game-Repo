@@ -1445,6 +1445,8 @@ MonoBehaviour:
   headPos: {fileID: 595429375326613046}
   faceTargetSpeed: 5
   coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
+  healthPotion: {fileID: 541387560474313632, guid: 88fbab2f0b8c3784c8d155f6ffb419fa, type: 3}
+  staminaPotion: {fileID: 384157586736699961, guid: d7baadb2a9652744bb1f8c89b4a2c0ce, type: 3}
   HP: 2
   attackRate: 2
   meleeRange: 2
