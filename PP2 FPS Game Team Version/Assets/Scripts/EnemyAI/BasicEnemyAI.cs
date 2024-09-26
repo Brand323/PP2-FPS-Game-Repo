@@ -1,53 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BasicEnemyAI : MonoBehaviour, I_Damage
 {
-
-
     [SerializeField] Renderer model;
     [SerializeField] protected UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] Transform headPos;
-    Color colorOrig;
-
-
     [SerializeField] int faceTargetSpeed;
-    Vector3 playerDir;
-    Vector3 startingPos;
-
-
-    [Range(1, 50)][SerializeField] float HP;
-
-    bool playerInRange;
-    bool isEngaged;
-
-
-    [SerializeField] int viewAngle;
-    [SerializeField] int roamDist;
-    [SerializeField] int roamTimer;
-    float stopDistOrig;
-    float angleToPlayer;
-    bool isRoaming;
-    private Coroutine coroutine;
-
-
-    [SerializeField] int animSpeedTrans;
-
- 
     public GameObject coinPrefab;
 
+    [Range(1, 50)][SerializeField] float HP;
+    bool playerInRange;
+    Color colorOrig;
+    Vector3 playerDir;
+    [Range(1, 20)] float stopDistOrig;
+    [Range(0, 12)] float speedOrig;
+    float angularSpeedOrig;
+
+    bool isEngaged;
 
     // Start is called before the first frame update
     void Start()
     {
         colorOrig = model.material.color;
         gameManager.instance.UpdateGameGoal(1);
-        stopDistOrig = agent.stoppingDistance;
-        startingPos = transform.position;
 
     }
     //do speed orig in the enemytype
@@ -57,7 +36,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     } 
     public void Movement()
     {
-        if (playerInRange && CanSeePlayer())
+        if (playerInRange)
         {
             playerDir = gameManager.instance.player.transform.position - headPos.position;
             agent.SetDestination(gameManager.instance.player.transform.position);
@@ -76,17 +55,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
                     CombatManager.instance.attackingPlayerCurr++;
                 }
             }
-        }
-        // Starts the roaming coroutine
-        else if (playerInRange && !CanSeePlayer())
-        {
-            if (!isRoaming && agent.remainingDistance < 0.05f && coroutine == null)
-                coroutine = StartCoroutine(Roam());
-        }
-        else if (!playerInRange)
-        {
-            if (!isRoaming && agent.remainingDistance < 0.05f && coroutine == null)
-                coroutine = StartCoroutine(Roam());
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -146,52 +114,13 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         HP -= amount;
         playerInRange = true;
         Movement();
+        if (HP <= 0)
+        {
+
+            // Destroys the enemy if it reaches 0 HP and updates the winning condition
+        }
         isEngaged = true;
         agent.stoppingDistance = stopDistOrig;
-    }
-
-    IEnumerator Roam()
-    {
-        isRoaming = true;
-        yield return new WaitForSeconds(roamTimer);
-
-        agent.stoppingDistance = 0;
-        Vector3 randomPos = Random.insideUnitSphere * roamDist;
-        randomPos += startingPos;
-
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
-
-        isRoaming = false;
-        coroutine = null;
-    }
-
-    bool CanSeePlayer()
-    {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        Debug.DrawRay(headPos.position, playerDir);
-
-        RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
-        {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
-            {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FaceTarget();
-                }
-
-                agent.stoppingDistance = stopDistOrig;
-                return true;
-            }
-        }
-        agent.stoppingDistance = 0;
-        return false;
     }
 
     public virtual void Death()
@@ -220,19 +149,18 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
 
     public float GetHP(){ return HP; }
 
-    public int GetAnimationSpeed() { return animSpeedTrans; }
-
     public NavMeshAgent GetAgent(){ return agent; }
 
     public int GetFaceTargetSpeed(){ return faceTargetSpeed; }
 
+    public float GetSpeedOrig() { return speedOrig; }
+
+    public float GetAngularSpeedOrig() { return angularSpeedOrig; }
     // Setters
     public void SetFaceTargetSpeed(int amount){ faceTargetSpeed = amount; }
 
     public void SetPlayerInRange(bool value){ playerInRange = value; }
 
     public void SetHP(float value) { HP = value; }
-
-    public void SetAnimationSpeed(int value) { animSpeedTrans = value; }
 
 }

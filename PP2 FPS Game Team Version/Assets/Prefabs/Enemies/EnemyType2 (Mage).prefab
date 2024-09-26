@@ -368,14 +368,11 @@ MonoBehaviour:
   agent: {fileID: 6571593837655216251}
   headPos: {fileID: 4705643638533594283}
   faceTargetSpeed: 2
-  viewAngle: 45
-  roamDist: 12
-  roamTimer: 3
-  HP: 2
   coinPrefab: {fileID: 2400025108303704973, guid: 122d5de0ac7d50b4f89b548fa0e60e8d, type: 3}
+  HP: 2
   fireBall: {fileID: 6741384887079248795, guid: 0e70b02634ebf0848b88e7f244a48bca, type: 3}
   shootPos: {fileID: 8715279412499508812}
-  shootRate: 10
+  shootRate: 12
   animSpeedTrans: 2
 --- !u!95 &6706122156149068303
 Animator:
