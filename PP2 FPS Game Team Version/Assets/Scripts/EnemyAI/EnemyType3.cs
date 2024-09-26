@@ -7,8 +7,9 @@ public class EnemyType3 : BasicEnemyAI
 {
     [Range(1.5f, 5)] [SerializeField] float attackRate;
     [SerializeField] float meleeRange;
-    [SerializeField] GameObject miniGolem;
+    [SerializeField] GameObject Golem;
     [SerializeField] int animSpeedTrans;
+    [SerializeField] bool canSplit = true;
 
     Animator anim;
     bool isAttacking;
@@ -59,11 +60,29 @@ public class EnemyType3 : BasicEnemyAI
     }
     public void Split()
     {
-        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
-        Instantiate(miniGolem, gameObject.transform.position, gameObject.transform.rotation);
+     
     }
     public override void Death() {
+
+        if(canSplit == true )
+        {
+            //Seperates golem
+            Vector3 spawnOffset = new Vector3(1f, 0f, 0f);
+
+            GameObject miniGolem1 = Instantiate(Golem, transform.position + spawnOffset, transform.rotation);
+            GameObject miniGolem2 = Instantiate(Golem, transform.position - spawnOffset, transform.rotation);
+
+            // Scale down golam size
+            miniGolem1.transform.localScale *= 0.5f;
+            miniGolem2.transform.localScale *= 0.5f;
+
+            miniGolem1.GetComponent<EnemyType3>().canSplit = false;
+            miniGolem2.GetComponent<EnemyType3>().canSplit = false;
+
+        }
+
         Destroy(gameObject);
+        
     }
     public void adjustForDifficulty()
     {
