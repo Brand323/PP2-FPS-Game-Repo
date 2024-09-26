@@ -12,7 +12,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] int faceTargetSpeed;
     public GameObject coinPrefab;
 
-    [Range(1, 50)][SerializeField] float HP;
+    [Range(0, 50)][SerializeField] float HP;
     bool playerInRange;
     Color colorOrig;
     Vector3 playerDir;

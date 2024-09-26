@@ -355,7 +355,7 @@ MonoBehaviour:
   HP: 10
   attackRate: 2.2
   meleeRange: 2.1
-  miniGolem: {fileID: 0}
+  miniGolem: {fileID: 9079759288042691097, guid: 50898927cd891104e871c5082311cf74, type: 3}
   animSpeedTrans: 4
 --- !u!195 &793365052057138150
 NavMeshAgent:
