@@ -2102,6 +2102,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!95 &579715849 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7947701020517602655, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
+  m_PrefabInstance: {fileID: 8334687043733059717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &581559708
 Mesh:
   m_ObjectHideFlags: 0
@@ -9753,6 +9758,14 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 3993
       objectReference: {fileID: 0}
+    - target: {fileID: 5602784181928344924, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
+      propertyPath: bowAnimator
+      value: 
+      objectReference: {fileID: 579715849}
+    - target: {fileID: 5602784181928344924, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
+      propertyPath: isPurchased
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5630033136157913185, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10057,6 +10070,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1663658063}
+    - target: {fileID: 8528489761264985354, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49c61f7d98b36a6438e5deb41f0f7207, type: 2}
     - target: {fileID: 8555748004307003025, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10077,6 +10094,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1704352533}
+    - target: {fileID: 8783421731902559274, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
+      propertyPath: m_TagString
+      value: WeaponContainer
+      objectReference: {fileID: 0}
     - target: {fileID: 8923746500057928526, guid: 59a90d521af58ab47ab03a59c83bc426, type: 3}
       propertyPath: m_Mesh
       value: 
