@@ -187,25 +187,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 662294165198626093, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 0381f3b3b9f97d244a0bc6d8483a4497, type: 3}
     - target: {fileID: 1339171178281554995, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 2577558206257523496, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 370
-      objectReference: {fileID: 0}
-    - target: {fileID: 2577558206257523496, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266783816932762834, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 330
+    - target: {fileID: 4662795433681436911, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6186469655596444453, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: m_Pivot.x
@@ -287,22 +275,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9202761669365293802, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_Color.b
-      value: 0.08235294
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202761669365293802, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_Color.g
-      value: 0.14901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202761669365293802, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_Color.r
-      value: 0.31764707
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202761669365293802, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.578
-      objectReference: {fileID: 0}
+    - target: {fileID: 7223609719327579041, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: b1aa53bf4ecd824409b2be30a9d922af, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
