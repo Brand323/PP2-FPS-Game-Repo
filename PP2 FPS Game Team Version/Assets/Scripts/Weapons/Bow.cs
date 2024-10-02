@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bow : BaseWeapon
+public class Bow : Weapon
 {
     [SerializeField] GameObject arrow;
     [SerializeField] float damageAmount;
@@ -23,9 +23,9 @@ public class Bow : BaseWeapon
 
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         weaponName = "Bow";
         
@@ -38,7 +38,7 @@ public class Bow : BaseWeapon
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
 
@@ -61,20 +61,20 @@ public class Bow : BaseWeapon
             ShootBow();
     }
 
-    protected override void DropWeapon()
-    {
-        if (!isDrawingArrow && !bowIsFullyDrawn)
-        {
-            base.DropWeapon();
-            isEquipped = false;
-            Debug.Log("Bow dropped.");
-        }
-        else
-        {
-            Debug.Log("Cannot drop the bow while drawing!");
-        }
+    //protected override void DropWeapon()
+    //{
+    //    if (!isDrawingArrow && !bowIsFullyDrawn)
+    //    {
+    //        base.DropWeapon();
+    //        isEquipped = false;
+    //        Debug.Log("Bow dropped.");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Cannot drop the bow while drawing!");
+    //    }
 
-    }
+    //}
     public void StartDrawingBow()
     {
         isDrawingArrow = true;
@@ -179,5 +179,17 @@ public class Bow : BaseWeapon
 
         // Apply velocity to the arrow to launch it in the direction it is facing
         arrowRb.velocity = direction * arrowScript.speed;
+    }
+
+    public override void Equip()
+    {
+        isEquipped = true;
+        weaponAnimator.enabled = true;
+    }
+
+    public override void Unequip()
+    {
+        isEquipped = false;
+        weaponAnimator.enabled = false;
     }
 }
