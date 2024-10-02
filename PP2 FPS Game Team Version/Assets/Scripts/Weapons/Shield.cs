@@ -1,44 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Shield : BaseWeapon
+public class Shield : MonoBehaviour
 {
-    
-    protected override void Start()
+    protected Animator shieldAnimator;
+    public bool isEquipped;
+
+    void Awake()
     {
-        base.Start();
-        weaponName = "Shield";
-        weaponAnimator = GetComponent<Animator>();
+        shieldAnimator = GetComponent<Animator>();
+
+        if (shieldAnimator != null)
+            shieldAnimator.enabled = true;
     }
 
-    protected override void Update()
+    public void TriggerBlock(bool isBlocking)
     {
-        base.Update();
-        HandleShieldBlock();
-    }
-    public override void PickupWeapon()
-    {
-        base.PickupWeapon();      
-        transform.SetParent(shieldContainer);
-    }
-    void HandleShieldBlock()
-    {
-        if (weaponAnimator != null)
-        {
-            if (Input.GetMouseButton(1))
-                weaponAnimator.SetBool("IsBlocking", true);
-            else
-                weaponAnimator.SetBool("IsBlocking", false);
-        }
-        else
-        {
-            Debug.Log("Shield Animator is null");
-        }
+        shieldAnimator.SetBool("IsBlocking", isBlocking);
     }
 
-    protected override string GetWeaponName()
+
+    public void Equip()
     {
-        return "Shield";
+        isEquipped = true;
+        gameObject.SetActive(true);
+        shieldAnimator.enabled = true;
+    }
+
+    public void Unequip()
+    {
+        isEquipped = false;
+        gameObject.SetActive(false);
+        shieldAnimator.enabled = false;
     }
 }

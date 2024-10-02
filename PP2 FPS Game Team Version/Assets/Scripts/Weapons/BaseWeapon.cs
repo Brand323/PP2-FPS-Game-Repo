@@ -11,16 +11,16 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
     protected Transform playerPosition, weaponContainer, shieldContainer, mainCam;
 
     // Pickup and Drop Settings
-    public float dropForwardForce = 2f, dropUpwardForce = 1f;
+    //public float dropForwardForce = 2f, dropUpwardForce = 1f;
     public bool isEquipped = false;
 
-    //Purchasing Settings
-    [SerializeField] public bool isPurchased = false;
-    [SerializeField] public int weaponPrice = 1;
-    [SerializeField] protected Material defaultMaterial;
-    [SerializeField] protected Material grayedOutMaterial;
-    protected money playerMoney;
-    protected Renderer weaponRenderer;
+    ////Purchasing Settings
+    //[SerializeField] public bool isPurchased = false;
+    //[SerializeField] public int weaponPrice = 1;
+    //[SerializeField] protected Material defaultMaterial;
+    //[SerializeField] protected Material grayedOutMaterial;
+    //protected money playerMoney;
+    //protected Renderer weaponRenderer;
 
     // UI
     protected gameManager gameManagerInstance;
@@ -42,13 +42,13 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             return;  
         }
 
-        // Get the money component from the player
-        playerMoney = playerPosition.GetComponent<money>();
-        if (playerMoney == null)
-        {
-            Debug.LogError("money component is missing from the player object.");
-            return; 
-        }
+        //// Get the money component from the player
+        //playerMoney = playerPosition.GetComponent<money>();
+        //if (playerMoney == null)
+        //{
+        //    Debug.LogError("money component is missing from the player object.");
+        //    return; 
+        //}
 
         // Initialize the game manager instance
         gameManagerInstance = gameManager.instance;
@@ -58,13 +58,13 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             return; 
         }
 
-        // Get the weapon renderer
-        weaponRenderer = GetComponent<Renderer>();
-        if (weaponRenderer == null)
-        {
-            Debug.LogError("Renderer component is missing from the weapon object.");
-            return; 
-        }
+        //// Get the weapon renderer
+        //weaponRenderer = GetComponent<Renderer>();
+        //if (weaponRenderer == null)
+        //{
+        //    Debug.LogError("Renderer component is missing from the weapon object.");
+        //    return; 
+        //}
         weaponAnimator = GetComponent<Animator>();
         if (weaponAnimator == null)
         {
@@ -95,106 +95,106 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
             Debug.LogError("GameManager is not assigned.");
         }
 
-        ActivateWeapon();
+        //ActivateWeapon();
 
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        HandleDrop();
+        //HandleDrop();
     }
 
-    protected void ActivateWeapon()
-    {
-        if (!isPurchased)
-        {
-            weaponRenderer.material = grayedOutMaterial;
-            weaponRigidBody.isKinematic = false;
-            weaponCollider.isTrigger = false;
-        }
-        else
-        {
-            weaponRenderer.material = defaultMaterial;
-            weaponRigidBody.isKinematic = true;
-            weaponCollider.isTrigger = false;
-        }
-    }
-    public virtual void PickupWeapon()
-    {
-        isEquipped = true;
+    //protected void ActivateWeapon()
+    //{
+    //    if (!isPurchased)
+    //    {
+    //        weaponRenderer.material = grayedOutMaterial;
+    //        weaponRigidBody.isKinematic = false;
+    //        weaponCollider.isTrigger = false;
+    //    }
+    //    else
+    //    {
+    //        weaponRenderer.material = defaultMaterial;
+    //        weaponRigidBody.isKinematic = true;
+    //        weaponCollider.isTrigger = false;
+    //    }
+    //}
+    //public virtual void PickupWeapon()
+    //{
+    //    isEquipped = true;
 
-        //Sets weapon's parent to weapon container
-        transform.SetParent(weaponContainer);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(Vector3.zero);
-        transform.localScale = Vector3.one;
+    //    //Sets weapon's parent to weapon container
+    //    transform.SetParent(weaponContainer);
+    //    transform.localPosition = Vector3.zero;
+    //    transform.localRotation = Quaternion.Euler(Vector3.zero);
+    //    transform.localScale = Vector3.one;
 
-        weaponRigidBody.isKinematic = true;
-        weaponCollider.isTrigger = true;
+    //    weaponRigidBody.isKinematic = true;
+    //    weaponCollider.isTrigger = true;
 
-        //Set current weapon reference
-        gameManager.instance.playerScript.currentWeapon = gameObject;
+    //    //Set current weapon reference
+    //    gameManager.instance.playerScript.currentWeapon = gameObject;
 
 
-        weaponAnimator.enabled = true;
+    //    weaponAnimator.enabled = true;
 
-    }
+    //}
 
-    protected virtual void DropWeapon()
-    {
-        isEquipped = false;
+    //protected virtual void DropWeapon()
+    //{
+    //    isEquipped = false;
 
-        //Detach from player
-        transform.SetParent(null);
+    //    //Detach from player
+    //    transform.SetParent(null);
 
-        weaponRigidBody.isKinematic = false;
-        weaponCollider.isTrigger = false;
+    //    weaponRigidBody.isKinematic = false;
+    //    weaponCollider.isTrigger = false;
 
-        //Clear Weapon Reference
-        gameManager.instance.playerScript.currentWeapon = null;
+    //    //Clear Weapon Reference
+    //    gameManager.instance.playerScript.currentWeapon = null;
 
-        // Apply drop force
-        weaponRigidBody.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
-        weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
-        weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
+    //    // Apply drop force
+    //    weaponRigidBody.velocity = playerPosition.GetComponent<Rigidbody>().velocity;
+    //    weaponRigidBody.AddForce(mainCam.forward * dropForwardForce, ForceMode.Impulse);
+    //    weaponRigidBody.AddForce(mainCam.up * dropUpwardForce, ForceMode.Impulse);
 
-        gameManager.instance.playerScript.currentWeapon = null;
+    //    gameManager.instance.playerScript.currentWeapon = null;
 
-        weaponAnimator.enabled = false;
-    }
+    //    weaponAnimator.enabled = false;
+    //}
 
-    protected void HandleDrop()
-    {
-      GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
+    //protected void HandleDrop()
+    //{
+    //  //GameObject currentWeapon = gameManager.instance.playerScript.currentWeapon;
 
-        // Drop Weapon if Equipped
-        if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
-        {
-            DropWeapon();
-        }
-    }
+    //  //  // Drop Weapon if Equipped
+    //  //  if (isEquipped && Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
+    //  //  {
+    //  //      DropWeapon();
+    //  //  }
+    //}
     
 
-    public void TryPurchaseWeapon()
-    {
-        Debug.Log($"Attempting to purchase: {GetInteractableName()}");
-        Debug.Log($"Player has {playerMoney.GetCoinCount()} coins.");
-        if (playerMoney.GetCoinCount() >= weaponPrice)
-        {
+    //public void TryPurchaseWeapon()
+    //{
+    //    Debug.Log($"Attempting to purchase: {GetInteractableName()}");
+    //    Debug.Log($"Player has {playerMoney.GetCoinCount()} coins.");
+    //    if (playerMoney.GetCoinCount() >= weaponPrice)
+    //    {
 
-            playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
-            isPurchased = true;
+    //        playerMoney.SetCoinCount(playerMoney.GetCoinCount()-weaponPrice);
+    //        isPurchased = true;
         
-                weaponRenderer.material = defaultMaterial;
+    //            weaponRenderer.material = defaultMaterial;
         
-            //gameManager.instance.deactivateItemUI();
-        }
-        else
-        {
-            //gameManager.instance.BlinkRed();
-        }
-    }
+    //        gameManager.instance.deactivateItemUI();
+    //    }
+    //    else
+    //    {
+    //        gameManager.instance.BlinkRed();
+    //    }
+    //}
 
     //GETTERS
 

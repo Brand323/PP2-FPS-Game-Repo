@@ -16,6 +16,8 @@ TagManager:
   - ShieldContainer
   - Bow
   - Arrow
+  - Map
+  - MapCamera
   layers:
   - Default
   - TransparentFX
