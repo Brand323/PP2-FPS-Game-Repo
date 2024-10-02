@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5403418700372246959}
   - component: {fileID: 7575188593620880534}
   - component: {fileID: 58834121972402424}
+  - component: {fileID: 3164674629775335929}
   m_Layer: 0
   m_Name: Enemy Temp
-  m_TagString: Untagged
+  m_TagString: MapEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.99, y: 3.11, z: 1.72}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7575188593620880534
 Rigidbody:
@@ -146,3 +147,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26e6fee459fdd4f9451764fbb8bfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roamRadius: 1
+  roamTime: 1
+  returnSpeed: 1
+  roamSpeed: 20
+--- !u!195 &3164674629775335929
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075500195392148966}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 50
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999994
+  m_BaseOffset: 0.49999997
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

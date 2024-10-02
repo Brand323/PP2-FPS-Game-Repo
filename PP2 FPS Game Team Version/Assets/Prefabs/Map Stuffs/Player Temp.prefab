@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8058429620284119476}
   m_Layer: 0
   m_Name: Player Temp
-  m_TagString: Untagged
+  m_TagString: MapPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.14, y: 3.31, z: 2.34}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &644259446114189479
 Rigidbody:
