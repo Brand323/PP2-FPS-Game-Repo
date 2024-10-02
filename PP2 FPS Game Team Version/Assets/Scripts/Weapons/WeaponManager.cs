@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,58 +9,139 @@ public class WeaponManager : MonoBehaviour
     public Transform shieldContainer;
     public Transform bowContainer;
 
-    public Weapon equippedWeapon;
-    public Weapon equippedShield;
-    public Weapon equippedBow;
+    public Sword equippedSword;
+    public Shield equippedShield;
+    public Bow equippedBow;
 
-    private bool isSwordAndShieldEquipped = false;
-    private bool isBowEquipped = false;
+    public Animator swordAnimator, shieldAnimator, bowAnimator;
+
+
+
+    private bool Melee = false;
+    private bool Range = false;
+
+    private bool isWeaponBusy = false; // Track if a weapon is used
 
     private void Awake()
     {
-        EquipSwordAndShield(); // Start with sword and shield by default
+        equippedSword = weaponContainer.GetComponentInChildren<Sword>();
+        equippedBow = bowContainer.GetComponentInChildren<Bow>();
+        equippedShield = shieldContainer.GetComponentInChildren<Shield>();
+        swordAnimator = weaponContainer.GetComponentInChildren<Animator>();
+        bowAnimator = bowContainer.GetComponentInChildren<Animator>();
+        shieldAnimator = shieldContainer.GetComponentInChildren<Animator>();
+
+        EquipSwordAndShield();
+
+        if (equippedSword == null && equippedShield == null && equippedBow == null)
+            return; // No weapons working
+
     }
+
     private void Update()
     {
+        HandleCombatInput();
         HandleWeaponSwitching();
+        
     }
 
-    public void HandleWeaponSwitching()
+    private void HandleCombatInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !isSwordAndShieldEquipped)
-            EquipSwordAndShield();
-
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isBowEquipped)
-            EquipBow();
-    }
-
-    public void EquipSwordAndShield()
-    {
-        if (isBowEquipped)
+        // Prevent additional input events if weapon is active
+        if (!isWeaponBusy)
         {
-            bowContainer.gameObject.SetActive(false);
-            isBowEquipped = false;
+            if (Melee && swordAnimator.enabled && shieldAnimator.enabled)
+            {
+                if (equippedSword.isEquipped && Input.GetMouseButtonDown(0))
+                {
+
+                    equippedSword.TriggerSwordAttack();
+                    isWeaponBusy = true;
+                }
+
+               if (equippedShield.isEquipped)
+                {
+                    if (Input.GetMouseButton(1))
+                        equippedShield.TriggerBlock(true);
+
+                    if (Input.GetMouseButtonUp(1))
+                    {
+                        equippedShield.TriggerBlock(false);
+                        isWeaponBusy = false;
+                    }
+                }
+
+
+
+            }
+
+            if (Range && bowAnimator.enabled)
+            {
+                if (equippedBow.isEquipped)
+                    equippedBow.HandleBowInput();
+
+            }
+
+
+
+
         }
-
-        weaponContainer.gameObject.SetActive(true); // enable sword
-        shieldContainer.gameObject.SetActive(true); // enable shield
-        isSwordAndShieldEquipped = true;
-
-        Debug.Log("Sword and Shield equipped!");
     }
 
-    public void EquipBow()
+    private void HandleWeaponSwitching()
     {
-        if (isSwordAndShieldEquipped)
+        if (!isWeaponBusy)
         {
-            weaponContainer.gameObject.SetActive(false); // disable sword
-            shieldContainer.gameObject.SetActive(false); //disable shield
-            isSwordAndShieldEquipped = false;
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                bowAnimator.enabled = false;
+                EquipSwordAndShield();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                swordAnimator.enabled = false;
+                shieldAnimator.enabled = false;
+                EquipBow();
+            }
         }
+    }
 
-        bowContainer.gameObject.SetActive(true); // enable bow
-        isBowEquipped = true;
+    private void EquipSwordAndShield()
+    {
+        bowContainer.gameObject.SetActive(false); // Disable the bow container
 
-        Debug.Log("Bow is equipped!");
+        weaponContainer.gameObject.SetActive(true); // Enable the sword container
+        shieldContainer.gameObject.SetActive(true); // Enable the shield container
+        swordAnimator.enabled = true;
+        shieldAnimator.enabled = true;
+
+        equippedSword.Equip();
+        equippedShield.Equip();
+
+        Melee = true;
+        Range = false;
+
+    }
+
+    private void EquipBow()
+    {
+
+        weaponContainer.gameObject.SetActive(false); // Disable the sword container
+        shieldContainer.gameObject.SetActive(false); // Disable the shield container
+
+        bowContainer.gameObject.SetActive(true); // Enable the bow container
+        bowAnimator.enabled = true;
+
+        equippedShield.Unequip();
+        equippedSword.Unequip();
+
+        Range = true;
+        Melee = false;
+
+    }
+
+    public void ResetWeaponState()
+    {
+        isWeaponBusy = false;
     }
 }

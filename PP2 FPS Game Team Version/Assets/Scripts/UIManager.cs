@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
         originalTimeScale = Time.timeScale;
 
         UpdateWaveUI();
-        StartCoroutine(startGame());
+        //StartCoroutine(startGame());
     }
 
     // Update is called once per frame

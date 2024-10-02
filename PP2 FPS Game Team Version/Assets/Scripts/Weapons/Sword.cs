@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : BaseWeapon
+public class Sword : Weapon
 {
     // Sword Paramaters
-    private bool canAttack = true;
-    private bool isAttacking = false;
+    public bool canAttack = true;
+    public bool swordIsAttacking = false;
     public float attackCooldown = 1.0f;
     [SerializeField] private float damageAmount = 1f;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         weaponName = "Sword";
 
         // Check if the sword is equipped at the start
@@ -27,42 +27,18 @@ public class Sword : BaseWeapon
         {
             weaponCollider.enabled = true;
         }
+
+        if (weaponAnimator != null)
+            weaponAnimator.enabled = true;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-
-        if (isEquipped && canAttack && Input.GetMouseButtonDown(0))
-        {
-            TriggerSwordAttack();
-        }
     }
 
-    public override void PickupWeapon()
-    {
-        base.PickupWeapon();
-        isEquipped = true;
-        canAttack = true;
-        weaponCollider.isTrigger = true;
-        Debug.Log("Sword is equipped.");
-    }
 
-    protected override void DropWeapon()
-    {
-        if (!isAttacking)
-        {
-            base.DropWeapon();
-            isEquipped = false;
-            Debug.Log("Sword dropped.");
-        }
-        else
-        {
-            Debug.Log("Cannot drop the sword while attacking!");
-        }
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -84,7 +60,7 @@ public class Sword : BaseWeapon
         {
             // Trigger the sword swing animation
             weaponAnimator.SetTrigger("SwordAttack");
-            isAttacking = true;
+            swordIsAttacking = true;
             StartCoroutine(AttackCooldown());
         }
         else
@@ -104,13 +80,30 @@ public class Sword : BaseWeapon
             yield return null; // wait for swing anim to complete
         }
 
-        isAttacking = false;
+        swordIsAttacking = false;
         canAttack = true;
         Debug.Log("Attack finished.");
+        FindObjectOfType<WeaponManager>().ResetWeaponState();
     }
 
     protected override string GetWeaponName()
     {
         return "Sword";
+    }
+
+    public bool SwordIsAttacking()
+    {
+        return swordIsAttacking;
+    }
+
+    public override void Equip()
+    {
+        isEquipped = true;
+        
+    }
+
+    public override void Unequip()
+    {
+        isEquipped = false;
     }
 }
