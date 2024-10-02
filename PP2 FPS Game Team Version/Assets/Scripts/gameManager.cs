@@ -73,26 +73,4 @@ public class gameManager : MonoBehaviour
     {
         UIManager.instance.LoseUpdate();
     }
-
-
-    public void activateItemUI(string message, GameObject window = null)
-    {
-        UIManager.instance.activateItemUI(message, window);
-    }
-
-    public void deactivateItemUI()
-    {
-        UIManager.instance.deactivateItemUI();
-    }
-
-    //Makes the text blink red
-    public void BlinkRed()
-    {
-        StartCoroutine(UIManager.instance.BlinkRed());
-    }
-
-    public void deactivateWaveEndMenu()
-    {
-        UIManager.instance.deactivateWaveEndMenu();
-    }
 }

@@ -13,8 +13,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
     [SerializeField] GameObject mainEditWindow;
-    [SerializeField] GameObject waveEndWindow;
-    [SerializeField] public GameObject waveWindow;
 
     [SerializeField] public GameObject functionalOptionsWindow;
     [SerializeField] public GameObject movementParametersWindow;
@@ -22,20 +20,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject jumpParametersWindow;
     [SerializeField] public GameObject crouchParametersWindow;
     [SerializeField] public GameObject headBobParametersWindow;
-    [SerializeField] public GameObject enemiesPerWaveWindow;
 
     //Main window variables
     [SerializeField] public GameObject mainWindow;
     [SerializeField] public GameObject difficultyWindow;
 
-    //Item menus
-    [SerializeField] GameObject activeItemWindow;
-    [SerializeField] public GameObject itemPickUpWindow;
-    [SerializeField] public GameObject itemBuyWindow;
-
-    //Input variable enemiesPerWave
-    public TMP_InputField enemiesPerWaveText;
-
+    #region EditVariables
     //Input variables functional options 
     public TMP_Dropdown canSprint;
     public TMP_Dropdown canJump;
@@ -65,27 +55,18 @@ public class UIManager : MonoBehaviour
     //Input variables attribute parameters
     public TMP_InputField maxHealth;
     public TMP_InputField maxStamina;
+    #endregion
 
     //HUD variables
     [SerializeField] public TMP_Text moneyText;
     public TMP_Text healthPotionText;
     public TMP_Text staminaPotionText;
-    [SerializeField] TMP_Text enemyCountText;
     public Image playerHPBar;
     public Image playerStaminaBar;
 
-    //UI Elements for wave System
-    public TMP_Text waveTextHUD;
-    public TMP_Text waveTextNumber;
-
-    //Item UI Variables
-    public TextMeshProUGUI itemUIText;
-
-    int enemyCount;
     float originalTimeScale;
 
     public bool isPaused;
-    public bool itemUIisDisplayed;
 
     // Start is called before the first frame update
     void Awake()
@@ -95,17 +76,12 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
 
-        UpdateWaveUI();
         StartCoroutine(startGame());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(WaveManager.instance != null)
-        {
-            enemyCountText.text = WaveManager.instance.remainingEnemies.ToString("F0");
-        }
         if (Input.GetButtonDown("Cancel"))
         {
             isPaused = !isPaused;
@@ -168,23 +144,10 @@ public class UIManager : MonoBehaviour
         activeWindow = null;
     }
 
-    public void UpdateWaveUI()
-    {
-        if(WaveManager.instance != null)
-        {
-            waveTextHUD.text = WaveManager.instance.currentWave.ToString("F0");
-            waveTextNumber.text = (WaveManager.instance.currentWave + 1).ToString("F0");
-        }
-    }
 
     public void UpdateGameGoal(int enemy)
     {
-        enemyCount += enemy;
-        if (enemyCount <= 0)
-        {
-            isPaused = !isPaused;
-            PauseGame(winWindow);
-        }
+        //Apply new game goal functionality
     }
 
     public void LoseUpdate()
@@ -202,74 +165,4 @@ public class UIManager : MonoBehaviour
         activeWindow.SetActive(isPaused);
     }
 
-    public void activateItemUI(string message, GameObject window = null)
-    {
-
-        if (!itemUIisDisplayed && itemUIText != null)
-        {
-            itemUIText.text = message;
-            if (window != null)
-            {
-                activeItemWindow = window;
-                activeItemWindow.SetActive(true);
-            }
-            itemUIisDisplayed = true;
-        }
-    }
-
-    public void deactivateItemUI()
-    {
-        itemUIText.text = "";
-
-        if (activeItemWindow != null)
-        {
-            activeItemWindow.SetActive(false);
-        }
-
-        if (itemBuyWindow != null)
-        {
-            itemBuyWindow.SetActive(false);
-        }
-        itemUIisDisplayed = false;
-    }
-
-    public IEnumerator BlinkRed()
-    {
-        Color originalColor = itemUIText.color;
-        Color blinkColor = Color.red;
-        float blinkDuration = 0.1f;  // Time in seconds for each blink
-
-        itemUIText.color = blinkColor;
-        yield return new WaitForSeconds(blinkDuration);
-
-        itemUIText.color = originalColor;
-    }
-
-    public void activateStartWaveMenu()
-    {
-        waveWindow.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    public void deactivateStartWaveMenu()
-    {
-        waveWindow.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void activateWaveEndMenu()
-    {
-        waveEndWindow.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    public void deactivateWaveEndMenu()
-    {
-        waveEndWindow.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 }

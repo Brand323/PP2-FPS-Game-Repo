@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(spawnEnemies());
         if(UIManager.instance != null)
         {
-            UIManager.instance.UpdateWaveUI();
+            //UIManager.instance.UpdateWaveUI();
         }
     }
 
@@ -132,7 +132,7 @@ public class WaveManager : MonoBehaviour
         }
         if (UIManager.instance != null && currentWave < totalWaves)
         {
-            UIManager.instance.activateWaveEndMenu();
+            //UIManager.instance.activateWaveEndMenu();
         }
     }
 

@@ -65,6 +65,7 @@ public class Quest : MonoBehaviour
 
     void GiveRewards()
     {
+        //If goal.isReached 
         //Add reward amounts to player inventory
     }
 }

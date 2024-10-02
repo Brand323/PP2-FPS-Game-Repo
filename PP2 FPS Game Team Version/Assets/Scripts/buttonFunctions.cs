@@ -126,12 +126,6 @@ public class buttonFunctions : MonoBehaviour
         save();
     }
 
-    public void saveEPW()
-    {
-        WaveManager.instance.enemiesPerWave = checkInputInt(WaveManager.instance.enemiesPerWave, UIManager.instance.enemiesPerWaveText);
-        save();
-    }
-
     public void functionalOptions()
     {
         editInput(UIManager.instance.functionalOptionsWindow);
@@ -162,19 +156,9 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.headBobParametersWindow);
     }
 
-    public void enemiesPerWaveParameter()
-    {
-        editInput(UIManager.instance.enemiesPerWaveWindow);
-    }
-
     public void activateWave()
     {
         WaveManager.instance.triggerGate.StartWave();
-    }
-
-    public void turnEndWaveMenuOff()
-    {
-        gameManager.instance.deactivateWaveEndMenu();
     }
 
     public void startGame()

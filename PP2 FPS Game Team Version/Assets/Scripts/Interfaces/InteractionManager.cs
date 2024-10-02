@@ -70,12 +70,12 @@ public class InteractionManager : MonoBehaviour
                         Debug.Log($"Interacting with weapon: {weapon.GetInteractableName()}");
                         if (!weapon.isPurchased)
                         {
-                            gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", UIManager.instance.itemBuyWindow);
+                            //gameManagerInstance.activateItemUI($"Buy {weapon.GetInteractableName()}: {weapon.weaponPrice.ToString()} Coins", UIManager.instance.itemBuyWindow);
 
                         }
                         else if(!weapon.isEquipped)
                         {
-                            gameManagerInstance.activateItemUI("Pick UP ", UIManager.instance.itemPickUpWindow);
+                            //gameManagerInstance.activateItemUI("Pick UP ", UIManager.instance.itemPickUpWindow);
 
                         }
                     }
@@ -92,7 +92,7 @@ public class InteractionManager : MonoBehaviour
                         weapon.PickupWeapon();
                     }
 
-                    gameManagerInstance.deactivateItemUI();
+                    //gameManagerInstance.deactivateItemUI();
                 }
                
                 
@@ -104,7 +104,7 @@ public class InteractionManager : MonoBehaviour
             if ((lastInteractedObject != null))
             {
                 lastInteractedObject = null;
-                gameManagerInstance.deactivateItemUI();
+                //gameManagerInstance.deactivateItemUI();
             }
         }
     }

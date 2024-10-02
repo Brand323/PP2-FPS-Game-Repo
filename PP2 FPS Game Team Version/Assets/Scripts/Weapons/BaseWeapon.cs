@@ -188,11 +188,11 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         
                 weaponRenderer.material = defaultMaterial;
         
-            gameManager.instance.deactivateItemUI();
+            //gameManager.instance.deactivateItemUI();
         }
         else
         {
-            gameManager.instance.BlinkRed();
+            //gameManager.instance.BlinkRed();
         }
     }
 
