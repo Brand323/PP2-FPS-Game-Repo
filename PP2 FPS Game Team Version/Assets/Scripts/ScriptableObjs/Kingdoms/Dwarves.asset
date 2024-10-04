@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3414f4992aa9fd4e8db7f60dcd770aa, type: 3}
+  m_Name: Dwarves
+  m_EditorClassIdentifier: 
+  kingdomName: Dwarves
+  settlements:
+  - {fileID: 11400000, guid: 37ec263f5ce344847a544cce30935d17, type: 2}
+  - {fileID: 11400000, guid: 7909c070a151a77419f2d938e4a66418, type: 2}
+  - {fileID: 11400000, guid: 66da8dbc318e0a141a60d7de916f40d0, type: 2}
+  - {fileID: 11400000, guid: 5d1db0c0d1d4c8c4187fe8749bd72221, type: 2}
+  - {fileID: 11400000, guid: 7e78ef928f7442c4f85d38ead288ac9a, type: 2}
+  kingdomWealth: 100
+  tradeBalance: 0

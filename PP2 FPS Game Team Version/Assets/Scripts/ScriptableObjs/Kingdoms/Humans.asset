@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3414f4992aa9fd4e8db7f60dcd770aa, type: 3}
+  m_Name: Humans
+  m_EditorClassIdentifier: 
+  kingdomName: Humans
+  settlements:
+  - {fileID: 11400000, guid: afae1e128a139134da0abe9030f54baa, type: 2}
+  - {fileID: 11400000, guid: c6d0c73d63293fd418b14a056d296d4c, type: 2}
+  - {fileID: 11400000, guid: e1cc2240f37e93f4aa16e3625ecb82cb, type: 2}
+  - {fileID: 11400000, guid: cc270593181a7b843bdecfa79def09ca, type: 2}
+  - {fileID: 11400000, guid: 4022c8d33ad1d9f4c8356ca3f73144e3, type: 2}
+  kingdomWealth: 100
+  tradeBalance: 0
