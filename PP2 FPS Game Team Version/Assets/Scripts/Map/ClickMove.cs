@@ -8,10 +8,17 @@ public class ClickMove : MonoBehaviour
     public Camera MapCamera;
     [SerializeField] float movespeed = 5f;
 
+    //Stores current coroutine so i can interupt
+    private Coroutine moveCourtine;
+
     private void Start()
     {
         GameObject mapCameraObject = GameObject.FindGameObjectWithTag("MapCamera");
-        MapCamera = mapCameraObject.GetComponent<Camera>();
+
+        if (mapCameraObject != null)
+        {
+            MapCamera = mapCameraObject.GetComponent<Camera>();
+        }    
     }
 
     void Update()
@@ -25,7 +32,12 @@ public class ClickMove : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Map"))
                 {
-                    StartCoroutine(MovePlayerOnMap(hit.point));
+                    if(moveCourtine != null)
+                    {
+                        StopCoroutine(moveCourtine);
+                    }
+
+                   moveCourtine = StartCoroutine(MovePlayerOnMap(hit.point));
                 }
             }
         }
@@ -39,6 +51,7 @@ public class ClickMove : MonoBehaviour
             transform.position =  Vector3.MoveTowards(transform.position, movePosition, movespeed*Time.deltaTime);
         yield return null;
         }
-
+        
+        moveCourtine = null;
     }
 }

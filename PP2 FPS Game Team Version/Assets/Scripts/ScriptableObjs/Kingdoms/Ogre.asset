@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3414f4992aa9fd4e8db7f60dcd770aa, type: 3}
+  m_Name: Ogre
+  m_EditorClassIdentifier: 
+  kingdomName: Ogres
+  settlements:
+  - {fileID: 11400000, guid: 1fade1545c719cc42bc717b9f1a66353, type: 2}
+  - {fileID: 11400000, guid: 1334e8243b0226e49ae87a78e05262b0, type: 2}
+  - {fileID: 11400000, guid: 722c8edfba147014b89502f5fa583d09, type: 2}
+  - {fileID: 11400000, guid: fe710fcd1e74ad04e8ce64c9b3748bfb, type: 2}
+  - {fileID: 11400000, guid: f68207c70fe68c049864f3916c2744d2, type: 2}
+  kingdomWealth: 100
+  tradeBalance: 0

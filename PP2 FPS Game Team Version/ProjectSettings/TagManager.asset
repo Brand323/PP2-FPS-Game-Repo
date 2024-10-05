@@ -18,6 +18,8 @@ TagManager:
   - Arrow
   - Map
   - MapCamera
+  - MapPlayer
+  - MapEnemy
   layers:
   - Default
   - TransparentFX
