@@ -7,6 +7,7 @@ public class MapCity : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject cityPrefab;
+    public float spawnOffset = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,9 @@ public class MapCity : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         
         MapEnemyAi enemyScript = enemy.GetComponent<MapEnemyAi>();
         if (enemyScript != null )

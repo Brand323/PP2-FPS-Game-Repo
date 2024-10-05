@@ -147,10 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26e6fee459fdd4f9451764fbb8bfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamRadius: 1
-  roamTime: 1
-  returnSpeed: 1
-  roamSpeed: 20
+  roamRadius: 100
+  roamTime: 4
+  returnSpeed: 10
+  roamSpeed: 10
+  mapMinBounds: {x: 0, y: 0}
+  mapMaxBounds: {x: 100, y: 100}
 --- !u!195 &3164674629775335929
 NavMeshAgent:
   m_ObjectHideFlags: 0
