@@ -9,5 +9,6 @@ public class KingdomData : ScriptableObject
     public List<SettlementData> settlements; // list of cities and villages
 
     public float kingdomWealth; // Overall wealth of kingdom
+    public float kingdomPoints; // Faction points. Added if you help the Kingdom or subtracted if you betray them.
     public float tradeBalance; // Balance of internal trade between settlements
 }
