@@ -20,6 +20,7 @@ TagManager:
   - MapCamera
   - MapPlayer
   - MapEnemy
+  - Companion
   layers:
   - Default
   - TransparentFX

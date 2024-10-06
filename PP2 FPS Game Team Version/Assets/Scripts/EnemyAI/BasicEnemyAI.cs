@@ -27,15 +27,19 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     public GameObject staminaPotion;
     GameObject nextPotion = null;
 
-    bool playerInRange;
+    protected bool targetInRange;
     protected Color colorOrig;
-    protected Vector3 playerDir;
+    protected Vector3 targetDir;
     public float stopDistOrig;
     [Range(0, 12)] public float speedOrig;
     public float angularSpeedOrig;
-
+    public bool isAttacking;
+    public float attackRate;
+   
     public bool isEngaged;
+    protected GameObject target;
 
+    public Collider detectionCol;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,52 +49,67 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     void Update()
     {
     } 
+    //moves to target
     public void Movement()
     {
-        if (playerInRange)
+        if (targetInRange)
         {
-            playerDir = gameManager.instance.player.transform.position - headPos.position;
-            agent.SetDestination(gameManager.instance.player.transform.position);
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                FaceTarget();
+            if (target != null) {
+                targetDir = target.transform.position - headPos.position;
+                agent.SetDestination(target.transform.position);
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+                }
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    //sees what the target is
+    protected void OnTriggerEnter(Collider other)
     {
 
         if (other.isTrigger)
         {
             return;
         }
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Companion"))
         {
-            playerInRange = true;
+            targetInRange = true;
+            target = other.gameObject;
+        }
+        else
+        {
+            Debug.Log("Not a target: " + other.name);
         }
     }
+    //does not work properly for now.
     private void OnTriggerExit(Collider other)
     {
-        // Collider sphereCollider = other;
-        if (other.CompareTag("Player") && other != null && other.name == "Sphere Collider")
+        
+        if (other == detectionCol)
         {
-            playerInRange = false;
-            if (isEngaged)
+            if ((other.CompareTag("Player") || other.CompareTag("Companion")) && other is SphereCollider)
             {
-                CombatManager.instance.attackingPlayerCurr--;
-                isEngaged=false;
+                targetInRange = false;
+                if (isEngaged)
+                {
+                    CombatManager.instance.attackingPlayerCurr--;
+                    isEngaged = false;
+                }
             }
         }
     }
+    //faces target if they are too close to move
     void FaceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
+        Quaternion rot = Quaternion.LookRotation(targetDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
+    //takes damage
     public void TakeDamage(float amount)
     {
         HP -= amount;
-        playerInRange = true;
+        targetInRange = true;
         Movement();
         if (HP <= 0)
         {
@@ -98,18 +117,23 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         }
         agent.stoppingDistance = stopDistOrig;
     }
-
+    //dies
     public virtual void Death()
     {
         CombatManager.instance.enemiesExisting--;
         Destroy(gameObject);
     }
+    //drop loot, coins and potions
     public virtual void DropLoot()
     {
 
     }
+    void WalkBob()
+    {
+
+    }
     // Getters
-    public bool GetPlayerInRange(){ return playerInRange; }
+    public bool GetPlayerInRange(){ return targetInRange; }
 
     public float GetHP(){ return HP; }
 
@@ -123,7 +147,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     // Setters
     public void SetFaceTargetSpeed(int amount){ faceTargetSpeed = amount; }
 
-    public void SetPlayerInRange(bool value){ playerInRange = value; }
+    public void SetPlayerInRange(bool value){ targetInRange = value; }
 
     public void SetHP(float value) { HP = value; }
 

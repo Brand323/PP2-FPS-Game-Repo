@@ -38,10 +38,20 @@ public class Damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")||other.CompareTag("Companion"))
         {
             // Do the damage.
-            other.GetComponent<FirstPersonController>().TakeDamage(damageAmount);
+            I_Damage dmg = other.GetComponent<I_Damage>();
+            if (dmg != null)
+            {
+                dmg.TakeDamage(damageAmount);
+            }
+            //once damage is done, disable collider until next animation.
+            GetComponent<BoxCollider>().enabled = false;
+            
+        }
+        if (type == damageType.Ranged)
+        {
             Destroy(gameObject);
         }
     }
