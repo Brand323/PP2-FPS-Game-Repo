@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b2da2188d45f34d8db3642bb6f21fa, type: 3}
   m_Name: Dwarves
   m_EditorClassIdentifier: 
-  kingdomData: {fileID: 0}
+  kingdomData: {fileID: 11400000, guid: 16ccf42487180ee4e8ced1a4ccc344b6, type: 2}
   kingdomPoints: 0

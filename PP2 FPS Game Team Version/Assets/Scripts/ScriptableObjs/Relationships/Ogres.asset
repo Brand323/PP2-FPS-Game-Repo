@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b2da2188d45f34d8db3642bb6f21fa, type: 3}
   m_Name: Ogres
   m_EditorClassIdentifier: 
-  kingdomData: {fileID: 0}
+  kingdomData: {fileID: 11400000, guid: eb2fc41a9c8d99e4caa341f88ea8dc1e, type: 2}
   kingdomPoints: 0
