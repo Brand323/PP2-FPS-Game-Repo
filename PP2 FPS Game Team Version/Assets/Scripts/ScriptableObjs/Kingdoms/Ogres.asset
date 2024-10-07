@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3414f4992aa9fd4e8db7f60dcd770aa, type: 3}
-  m_Name: Ogre
+  m_Name: Ogres
   m_EditorClassIdentifier: 
   kingdomName: Ogres
   settlements:
