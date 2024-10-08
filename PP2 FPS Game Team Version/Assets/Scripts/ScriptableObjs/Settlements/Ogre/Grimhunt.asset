@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: Village3
+  m_Name: Grimhunt
   m_EditorClassIdentifier: 
-  settlementName: Village3
-  population: 35
-  wealth: 50
-  productionRate: 0.2
-  consumptionRate: 0.08
+  settlementName: Grimhunt
+  population: 55
+  wealth: 60
+  productionRate: 0.6
+  consumptionRate: 0.05
+  prosperity: 12
   settlementType: 1
+  resourcesProduces:
+  - {fileID: 11400000, guid: aef07bfad543b7f48b5a576c237034d9, type: 2}
+  - {fileID: 11400000, guid: 98f29b1c885fad442b355b0585442cef, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: 0, y: 0, z: 0}

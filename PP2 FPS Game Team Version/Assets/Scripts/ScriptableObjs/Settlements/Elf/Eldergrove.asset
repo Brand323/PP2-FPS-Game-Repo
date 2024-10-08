@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: City2
+  m_Name: Eldergrove
   m_EditorClassIdentifier: 
-  settlementName: Canopy Rest
-  population: 850
+  settlementName: Eldergrove
+  population: 50
   wealth: 100
-  productionRate: 1.3
-  consumptionRate: 0.3
-  settlementType: 0
+  productionRate: 0.6
+  consumptionRate: 0.04
+  prosperity: 12
+  settlementType: 1
+  resourcesProduces:
+  - {fileID: 11400000, guid: 870d507197283ff49977e6ddc7077a5a, type: 2}
+  - {fileID: 11400000, guid: 9542b09e7bb4c5342bcd67adbfc03e47, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: 0, y: 0, z: 0}

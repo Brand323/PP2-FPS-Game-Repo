@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: Village3
+  m_Name: Dawnspire
   m_EditorClassIdentifier: 
-  settlementName: Village3
-  population: 35
-  wealth: 50
-  productionRate: 0.2
-  consumptionRate: 0.08
+  settlementName: Dawnspire
+  population: 60
+  wealth: 80
+  productionRate: 0.7
+  consumptionRate: 0.05
+  prosperity: 20
   settlementType: 1
+  resourcesProduces:
+  - {fileID: 11400000, guid: fdf6f749afabd054786654f63e18beb6, type: 2}
+  - {fileID: 11400000, guid: df291b98dcc6da24da0316e15683d458, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: 0, y: 0, z: 0}

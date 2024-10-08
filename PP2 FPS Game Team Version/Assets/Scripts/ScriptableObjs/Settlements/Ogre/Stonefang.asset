@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: City2
+  m_Name: Stonefang
   m_EditorClassIdentifier: 
-  settlementName: Vi'rok
-  population: 270
-  wealth: 850
-  productionRate: 0.9
-  consumptionRate: 0.14
-  prosperity: 65
+  settlementName: Stonefang
+  population: 250
+  wealth: 800
+  productionRate: 0.85
+  consumptionRate: 0.12
+  prosperity: 60
   settlementType: 0
   resourcesProduces: []
   resourcesStocked:
-  - {fileID: 11400000, guid: 0824db7d9b7b84246a5f774d541025fe, type: 2}
+  - {fileID: 11400000, guid: aef07bfad543b7f48b5a576c237034d9, type: 2}
+  - {fileID: 11400000, guid: 98f29b1c885fad442b355b0585442cef, type: 2}
   - {fileID: 11400000, guid: a9e21a8b151825d4a861ef1b61b9438b, type: 2}
-  - {fileID: 11400000, guid: 096a2028711df1545bca827a0b32cf44, type: 2}
   resourcesToCraft:
+  - {fileID: 11400000, guid: 3f8e58e93c2806a49b9cd291ac577fcc, type: 2}
   - {fileID: 11400000, guid: 649ffbbeb7c4c594c854e8ffd4b11244, type: 2}
-  - {fileID: 11400000, guid: 37048c8dbd56174438e3511536f6ded5, type: 2}
   position: {x: 0, y: 0, z: 0}

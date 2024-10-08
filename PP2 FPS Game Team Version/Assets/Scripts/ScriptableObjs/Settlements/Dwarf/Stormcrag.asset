@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
+  m_Name: Stormcrag
+  m_EditorClassIdentifier: 
+  settlementName: Stormcrag
+  population: 300
+  wealth: 1000
+  productionRate: 0.85
+  consumptionRate: 0.18
+  prosperity: 85
+  settlementType: 0
+  resourcesProduces: []
+  resourcesStocked:
+  - {fileID: 11400000, guid: 297a9ee94240be2458b6c7fe0f159390, type: 2}
+  - {fileID: 11400000, guid: b01bbac7863e5ab4ab182bc7c800b6bf, type: 2}
+  - {fileID: 11400000, guid: fdf6f749afabd054786654f63e18beb6, type: 2}
+  resourcesToCraft:
+  - {fileID: 11400000, guid: 675899f9c1083ef469252d1253eee97b, type: 2}
+  - {fileID: 11400000, guid: 246dddcf9a246ef4d87e2347494393a4, type: 2}
+  position: {x: 0, y: 0, z: 0}

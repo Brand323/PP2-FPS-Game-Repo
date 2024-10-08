@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: Village1
+  m_Name: Swampshade
   m_EditorClassIdentifier: 
-  settlementName: Village1
+  settlementName: Swampshade
   population: 45
-  wealth: 50
+  wealth: 70
   productionRate: 0.5
-  consumptionRate: 0.05
+  consumptionRate: 0.04
+  prosperity: 15
   settlementType: 1
+  resourcesProduces:
+  - {fileID: 11400000, guid: a9e21a8b151825d4a861ef1b61b9438b, type: 2}
+  - {fileID: 11400000, guid: 096a2028711df1545bca827a0b32cf44, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: 0, y: 0, z: 0}

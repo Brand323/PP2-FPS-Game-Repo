@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
+  m_Name: Everlight
+  m_EditorClassIdentifier: 
+  settlementName: Everlight
+  population: 300
+  wealth: 700
+  productionRate: 0.9
+  consumptionRate: 0.15
+  prosperity: 75
+  settlementType: 0
+  resourcesProduces: []
+  resourcesStocked:
+  - {fileID: 11400000, guid: 870d507197283ff49977e6ddc7077a5a, type: 2}
+  - {fileID: 11400000, guid: da0709b8c29f0ac45af8327c5ad627b2, type: 2}
+  - {fileID: 11400000, guid: 1ffb311720348df4c942cdda8336536d, type: 2}
+  resourcesToCraft:
+  - {fileID: 11400000, guid: 348bfed5a3fc4784ea6846dcc8849156, type: 2}
+  - {fileID: 11400000, guid: 6677dcc1bacfe494193db33d64634f1a, type: 2}
+  - {fileID: 11400000, guid: da69f9dcabf5d9c4bbc7aa02dc4a9e55, type: 2}
+  position: {x: 0, y: 0, z: 0}

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: City1
+  m_Script: {fileID: 11500000, guid: dc967dbe05249db4bb53697f931f417b, type: 3}
+  m_Name: Tools
   m_EditorClassIdentifier: 
-  settlementName: Wildwood
-  population: 500
-  wealth: 100
-  productionRate: 1.5
-  consumptionRate: 0.2
-  settlementType: 0
+  resourceName: Tools
+  resourceDescription: 
+  resourceType: 1
+  baseValue: 65
+  productionRate: 2

@@ -10,11 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a332eb26c3374954aa126e0e977f43b6, type: 3}
-  m_Name: Village2
+  m_Name: Silverglade
   m_EditorClassIdentifier: 
-  settlementName: Village2
-  population: 80
-  wealth: 50
-  productionRate: 0.8
+  settlementName: Silverglade
+  population: 45
+  wealth: 120
+  productionRate: 0.7
   consumptionRate: 0.05
+  prosperity: 10
   settlementType: 1
+  resourcesProduces:
+  - {fileID: 11400000, guid: da0709b8c29f0ac45af8327c5ad627b2, type: 2}
+  - {fileID: 11400000, guid: 9ea68ed128ff89948a02e256c5f4e1dc, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: 0, y: 0, z: 0}
