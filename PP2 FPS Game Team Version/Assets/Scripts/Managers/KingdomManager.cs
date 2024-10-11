@@ -5,13 +5,23 @@ using UnityEngine;
 
 public class KingdomManager : MonoBehaviour
 {
+    public static KingdomManager Instance;
+    public GameObject caravanPrefab;
     public List<KingdomData> kingdoms;
     private float tradeInterval = 10f; // trade every 10 seconds
-    private float productionInterval = 5f; // produce resources every 5 seconds
+    private float productionInterval = 1f; // produce resources every 5 seconds
     private float nextProductionTime, nextTradeTime;
 
-    private void Start()
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         // Initialize the kingdom's economies
         foreach (var kingdom in kingdoms)
         {
@@ -38,6 +48,28 @@ public class KingdomManager : MonoBehaviour
             UpdateTrade();
             nextTradeTime = Time.time + tradeInterval;
         }
+    }
+
+    public void OnDayPassed()
+    {
+        // Each day all settlements produce resources
+        foreach (var kingdom in kingdoms)
+        {
+            foreach (var settlement in kingdom.settlements)
+            {
+                settlement.ProduceResources();
+            }
+        }
+    }
+
+    private void CreateCaravanForKingdom(KingdomData kingdom)
+    {
+        GameObject caravanGO = Instantiate(caravanPrefab, kingdom.settlements[0].position, Quaternion.identity);
+        Caravan caravan = caravanGO.GetComponent<Caravan>();
+
+        // Assign the caravan to start travelling between two settlements in the kingdom
+        caravan.currentSettlement = kingdom.settlements[0]; // Starting settlement
+        caravan.StartTravel(kingdom.settlements[1]);
     }
 
     private void CalculateKingdomEconomy(KingdomData kingdom)

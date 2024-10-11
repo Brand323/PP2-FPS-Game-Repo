@@ -17,6 +17,9 @@ public class Global_Kingdom_Eco : MonoBehaviour
     public KingdomManager kingdomManager;
     public List<KingdomUI> kingdomUIElements;
 
+    public TextMeshProUGUI dayCounterText;
+    public TextMeshProUGUI timeText;
+
     private float lastUIUpdateTime = 0f;
     private float uiUpdateInterval = 1f;
 
@@ -42,6 +45,16 @@ public class Global_Kingdom_Eco : MonoBehaviour
 
     public void UpdateUI()
     {
+        if (dayCounterText != null)
+            dayCounterText.SetText($"Day: {gameTimeManager.Instance.currentDay}");
+        else
+            Debug.LogError("GameTimeManager is not being detected.");
+
+        if (timeText != null)
+            timeText.SetText($"Time: {gameTimeManager.Instance.GetCurrentTime()}");
+        else
+            Debug.LogError("GameTimeManager is not being detected.");
+
         if (Time.time - lastUIUpdateTime >= uiUpdateInterval)
         {
             for (int i = 0; i < kingdomManager.kingdoms.Count; i++)

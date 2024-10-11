@@ -10,8 +10,9 @@ public class SettlementData : ScriptableObject
     public int population;
     public float wealth;
     public float productionRate;
+    public float baseProductionRate = 1.0f;
     public float consumptionRate;
-    public float prosperity; // influences production rate and wealth
+    [Range(-50f, 100f)] public float prosperity = 1.0f; // influences production rate and wealth
 
     public SettlementType settlementType;
     public enum SettlementType { City, Village }
@@ -30,24 +31,26 @@ public class SettlementData : ScriptableObject
     {
         foreach (var resource in resourcesProduces)
         {
-            int amountProduced = Mathf.RoundToInt(resource.productionRate * Time.deltaTime); // We can replace time.Delta time with a tick based time system (time of day system)
-            // Add this to the towns stock
-            var stockedResource = resourcesStocked.Find(r => r.resourceName == resource.resourceName);
-            if (stockedResource != null)
-            {
-                stockedResource.baseValue += amountProduced;
-            }
-            else
-            {
-                ResourceData newResource = ScriptableObject.CreateInstance<ResourceData>();
-                newResource.resourceName = resource.resourceName;
-                newResource.baseValue = amountProduced;
-                resourcesStocked.Add(newResource);
-
-            }
+            int amountProduced = Mathf.RoundToInt(resource.productionRate * baseProductionRate * prosperity);
+            AddResourceToStock(resource, amountProduced);
         }
 
         FindObjectOfType<Global_Kingdom_Eco>().UpdateUI();
+    }
+
+    public void AddResourceToStock(ResourceData resource, int amountProduced)
+    {
+        var stockedResource = resourcesStocked.Find(r => r.resourceName == resource.resourceName);
+
+        if (stockedResource != null)
+            stockedResource.baseValue += amountProduced;
+        else
+        {
+            ResourceData newResource = ScriptableObject.CreateInstance<ResourceData>();
+            newResource.resourceName = resource.resourceName;
+            newResource.baseValue = amountProduced;
+            resourcesStocked.Add(newResource);
+        }
     }
 
     public void TradeWith(SettlementData otherSettlement)
@@ -69,12 +72,21 @@ public class SettlementData : ScriptableObject
 
     public void AdjustProsperity(float amount)
     {
-        prosperity += amount;
-        productionRate *= (1 + prosperity / 100); // Production rate will increase with prosperity
+        prosperity = Mathf.Clamp(prosperity + amount, 0, 100);
+        baseProductionRate = 1 + (prosperity / 100); // Higher prosperity will increase production
     }
 
     public void OnSuccessfulTrade()
     {
         AdjustProsperity(0.2f);
     }
+
+    public void AdjustResourcePrices()
+    {
+        foreach (var resource in resourcesStocked)
+        {
+            resource.UpdatePriceBasedOnStock();
+        }
+    }
+
 }
