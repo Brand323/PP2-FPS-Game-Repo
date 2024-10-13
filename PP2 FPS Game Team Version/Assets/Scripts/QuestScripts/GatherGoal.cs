@@ -44,6 +44,11 @@ public class GatherGoal : QuestGoal
                 CurrentAmount = gameManager.instance.GetStaminaPotions() - startingStaminaPotions;
             }
         }
-        evaluateGoalState();
+    }
+
+    public override void evaluateGoalState()
+    {
+        gatherItemCheck();
+        base.evaluateGoalState();
     }
 }

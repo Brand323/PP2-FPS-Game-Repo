@@ -19,22 +19,26 @@ public class GatherQuest : Quest
         set { requiredAmount = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public GatherQuest(int _companionReward, string _collectionItemType, int _requiredAmount)
     {
         QuestName = "Collection Quest";
         QuestDescription = "Collect the indicated number of items to get rewards.";
-        GoldReward = 0;
-        CompanionReward = 2;
+        GoldReward = 3;
+        CompanionReward = _companionReward;
         HealthPotionReward = 0;
-        StaminaPotionReward = 0;
+        StaminaPotionReward = 3;
         IsQuestCompleted = false;
-        QuestGoals.Add(new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount));
+        collectionItemType = _collectionItemType;
+        requiredAmount = _requiredAmount;
+        QuestGoal = new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void CheckGoalState()
     {
-        
+        if(QuestGoal != null)
+        {
+            QuestGoal.evaluateGoalState();
+        }
+        base.CheckGoalState();
     }
 }

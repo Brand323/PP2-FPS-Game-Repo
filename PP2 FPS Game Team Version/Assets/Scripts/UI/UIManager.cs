@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     //Main window variables
     [SerializeField] public GameObject mainWindow;
     [SerializeField] public GameObject difficultyWindow;
+    [SerializeField] public GameObject questWindow;
 
     #region EditVariables
     //Input variables functional options 
