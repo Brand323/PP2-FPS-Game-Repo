@@ -21,6 +21,7 @@ TagManager:
   - MapPlayer
   - MapEnemy
   - Companion
+  - QuestGiver
   layers:
   - Default
   - TransparentFX

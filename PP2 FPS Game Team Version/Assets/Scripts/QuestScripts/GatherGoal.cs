@@ -23,27 +23,25 @@ public class GatherGoal : QuestGoal
 
     public void gatherItemCheck()
     {
-        if(itemType == "coins")
-        {
-            if(gameManager.instance.GetPlayerMoney() > startingMoney)
-            {
-                CurrentAmount = gameManager.instance.GetPlayerMoney() - startingMoney;
-            }
-        }
-        else if(itemType == "Health Potions")
+        if(itemType == "Health Potions")
         {
             if(gameManager.instance.GetHealthPotions() > startingHealthPotions)
             {
                 CurrentAmount = gameManager.instance.GetHealthPotions() - startingHealthPotions;
             }
         }
-        else if (itemType == "Health Potions")
+        else if (itemType == "Stamina Potions")
         {
-            if (gameManager.instance.GetStaminaPotions() > startingHealthPotions)
+            if (gameManager.instance.GetStaminaPotions() > startingStaminaPotions)
             {
                 CurrentAmount = gameManager.instance.GetStaminaPotions() - startingStaminaPotions;
             }
         }
-        evaluateGoalState();
+    }
+
+    public override void evaluateGoalState()
+    {
+        gatherItemCheck();
+        base.evaluateGoalState();
     }
 }

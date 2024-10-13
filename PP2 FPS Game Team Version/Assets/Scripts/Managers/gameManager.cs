@@ -19,6 +19,9 @@ public class gameManager : MonoBehaviour
     private money playerMoney;
     private PotionManager playerPotions;
 
+    public Quest currentQuest;
+    public bool isQuestInProgress;
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -38,7 +41,7 @@ public class gameManager : MonoBehaviour
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
-
+        player.AddComponent<money>();
         playerMoney = player.GetComponent<money>();
         playerPotions = player.GetComponent<PotionManager>();
     }
@@ -51,7 +54,10 @@ public class gameManager : MonoBehaviour
 
     public void AddMoneyToPlayer(int amount)
     {
-        playerMoney.SetCoinCount(amount);
+        if (playerMoney != null)
+        {
+            playerMoney.SetCoinCount(amount);
+        }
     }
 
     public void AddHealthPotions(int amount)
@@ -66,7 +72,14 @@ public class gameManager : MonoBehaviour
 
     public int GetPlayerMoney()
     {
-        return playerMoney.GetCoinCount();
+        if (playerMoney != null)
+        {
+            return playerMoney.GetCoinCount();
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public int GetHealthPotions()
@@ -77,6 +90,11 @@ public class gameManager : MonoBehaviour
     public int GetStaminaPotions()
     {
         return playerPotions.StaminaPotions;
+    }
+
+    public void SetCurrentQuest(Quest quest)
+    {
+        currentQuest = quest;
     }
 
     public void PauseGame(GameObject window)

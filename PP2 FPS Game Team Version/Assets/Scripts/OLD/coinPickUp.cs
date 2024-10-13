@@ -16,7 +16,6 @@ public class money : MonoBehaviour
     public void SetCoinCount(int amount)
     {
         CoinCount += amount;
-        UIManager.instance.moneyText.text = CoinCount.ToString();
     }
 
     //PickUp Coin 

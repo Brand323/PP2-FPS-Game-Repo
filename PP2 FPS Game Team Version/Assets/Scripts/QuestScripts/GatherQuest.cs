@@ -19,22 +19,36 @@ public class GatherQuest : Quest
         set { requiredAmount = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public GatherQuest(int _collectionItemType, int _requiredAmount, int _companionReward = 0,
+                      int _goldReward = 0, int _healthReward = 0, int _staminaReward = 0)
     {
         QuestName = "Collection Quest";
-        QuestDescription = "Collect the indicated number of items to get rewards.";
-        GoldReward = 0;
-        CompanionReward = 2;
-        HealthPotionReward = 0;
-        StaminaPotionReward = 0;
+        GoldReward = _goldReward;
+        CompanionReward = _companionReward;
+        HealthPotionReward = _healthReward;
+        StaminaPotionReward = _staminaReward;
         IsQuestCompleted = false;
-        QuestGoals.Add(new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount));
+        if (_collectionItemType <= 5)
+        {
+            collectionItemType = "Health Potions";
+        }
+        else
+        {
+            collectionItemType = "Stamina Potions";
+        }
+        requiredAmount = _requiredAmount;
+        QuestDescription = "Collect " + requiredAmount.ToString() + " " + collectionItemType + '\n'
+                            + "Rewards: " + GoldReward.ToString() + " coins\n" + HealthPotionReward.ToString()
+                            + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions";
+        QuestGoal = new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void CheckGoalState()
     {
-        
+        if(QuestGoal != null)
+        {
+            QuestGoal.evaluateGoalState();
+        }
+        base.CheckGoalState();
     }
 }

@@ -39,7 +39,7 @@ public class QuestGoal
 
     #endregion
 
-    public void evaluateGoalState()
+    public virtual void evaluateGoalState()
     {
         if(currentAmount >= requiredAmount)
         {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Quest : MonoBehaviour
+public class Quest
 {
-    private List<QuestGoal> goals = new List<QuestGoal>();
+    private QuestGoal goal = new QuestGoal();
     private string questName;
     private string questDescription;
     private int goldReward;
@@ -17,10 +17,10 @@ public class Quest : MonoBehaviour
 
 #region Getters and Setters
 
-    public List<QuestGoal> QuestGoals
+    public QuestGoal QuestGoal
     {
-        get { return goals; }
-        set { goals = value; }
+        get { return goal; }
+        set { goal = value; }
     }
 
     public string QuestName
@@ -67,9 +67,9 @@ public class Quest : MonoBehaviour
 
     #endregion
 
-    public void CheckGoalsState()
+    public virtual void CheckGoalState()
     {
-        isCompleted = goals.All(g => g.IsGoalReached);
+        isCompleted = goal.IsGoalReached;
         if(isCompleted)
         {
             GiveRewards();
@@ -81,6 +81,11 @@ public class Quest : MonoBehaviour
         gameManager.instance.AddMoneyToPlayer(goldReward);
         gameManager.instance.AddHealthPotions(healthPotionReward);
         gameManager.instance.AddStaminaPotions(staminaPotionReward);
-        //Add companion rewaards
+        //Add companion rewards
+        UIManager.instance.healthRewardText.text = healthPotionReward.ToString();
+        UIManager.instance.goldRewardText.text = goldReward.ToString();
+        UIManager.instance.staminaRewardText.text = staminaPotionReward.ToString();
+        UIManager.instance.activateRewardUI();
+        gameManager.instance.isQuestInProgress = false;
     }
 }
