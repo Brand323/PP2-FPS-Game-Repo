@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class buttonFunctions : MonoBehaviour
 {
     private string input;
+
+    #region Basic Functions
+
     public void resume()
     {
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
@@ -40,6 +43,10 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
     }
+
+    #endregion
+
+    #region Save Functions
 
     public void saveFO()
     {
@@ -156,16 +163,34 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.headBobParametersWindow);
     }
 
-    public void activateWave()
-    {
-        WaveManager.instance.triggerGate.StartWave();
-    }
+    #endregion
+
+    //public void activateWave()
+    //{
+    //    WaveManager.instance.triggerGate.StartWave();
+    //}
 
     public void startGame()
     {
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
     }
+
+    public void acceptQuest()
+    {
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.UnpauseGame();
+        UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
+    }
+
+    public void rejectQuest()
+    {
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        gameManager.instance.UnpauseGame();
+        gameManager.instance.isQuestInProgress = false;
+    }
+
+    #region Difficulty Functions
 
     public void difficultyMenu()
     {
@@ -191,6 +216,10 @@ public class buttonFunctions : MonoBehaviour
     {
         difficultyInput(4);
     }
+
+    #endregion
+
+    #region Private Functions
 
     void editInput(GameObject window)
     {
@@ -229,4 +258,6 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
     }
+
+    #endregion
 }

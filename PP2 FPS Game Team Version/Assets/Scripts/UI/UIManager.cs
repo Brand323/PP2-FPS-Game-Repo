@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
     //Main window variables
     [SerializeField] public GameObject mainWindow;
     [SerializeField] public GameObject difficultyWindow;
-    [SerializeField] public GameObject questWindow;
 
     #region EditVariables
     //Input variables functional options 
@@ -64,6 +63,19 @@ public class UIManager : MonoBehaviour
     public TMP_Text staminaPotionText;
     public Image playerHPBar;
     public Image playerStaminaBar;
+
+    //Quest variables
+    [SerializeField] public GameObject questWindow;
+    [SerializeField] public GameObject questDescriptionWindow;
+    [SerializeField] public GameObject HealthRewardImage;
+    [SerializeField] public GameObject GoldRewardImage;
+    [SerializeField] public GameObject StaminaRewardImage;
+    [SerializeField] public TMP_Text questCompletionText;
+    public TMP_Text questName;
+    public TMP_Text questDescription;
+    public TMP_Text healthRewardText;
+    public TMP_Text goldRewardText;
+    public TMP_Text staminaRewardText;
 
     float originalTimeScale;
 
@@ -166,4 +178,38 @@ public class UIManager : MonoBehaviour
         activeWindow.SetActive(isPaused);
     }
 
+    public void activateQuestWindow(GameObject window)
+    {
+        isPaused = !isPaused;
+        PauseGame(window);
+    }
+
+    public void activateRewardUI()
+    {
+        if (gameManager.instance.currentQuest != null)
+        {
+            if (gameManager.instance.currentQuest.GoldReward > 0)
+            {
+                StartCoroutine(rewardFeedBack(GoldRewardImage));
+                moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
+            }
+            if (gameManager.instance.currentQuest.HealthPotionReward > 0)
+            {
+                StartCoroutine(rewardFeedBack(HealthRewardImage));
+                healthPotionText.text = gameManager.instance.GetHealthPotions().ToString();
+            }
+            if (gameManager.instance.currentQuest.StaminaPotionReward > 0)
+            {
+                StartCoroutine(rewardFeedBack(StaminaRewardImage));
+                staminaPotionText.text = gameManager.instance.GetStaminaPotions().ToString();
+            }
+        }
+    }
+
+    public IEnumerator rewardFeedBack(GameObject window)
+    {
+        window.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        window.SetActive(false);
+    }
 }

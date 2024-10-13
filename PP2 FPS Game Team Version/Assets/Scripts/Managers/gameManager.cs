@@ -19,6 +19,9 @@ public class gameManager : MonoBehaviour
     private money playerMoney;
     private PotionManager playerPotions;
 
+    public Quest currentQuest;
+    public bool isQuestInProgress;
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -87,6 +90,11 @@ public class gameManager : MonoBehaviour
     public int GetStaminaPotions()
     {
         return playerPotions.StaminaPotions;
+    }
+
+    public void SetCurrentQuest(Quest quest)
+    {
+        currentQuest = quest;
     }
 
     public void PauseGame(GameObject window)

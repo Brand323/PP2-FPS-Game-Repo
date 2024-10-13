@@ -22,11 +22,13 @@ public class GatherQuest : Quest
     public GatherQuest(int _companionReward, string _collectionItemType, int _requiredAmount)
     {
         QuestName = "Collection Quest";
-        QuestDescription = "Collect the indicated number of items to get rewards.";
         GoldReward = 3;
         CompanionReward = _companionReward;
-        HealthPotionReward = 0;
+        HealthPotionReward = 3;
         StaminaPotionReward = 3;
+        QuestDescription = "Collect " + _requiredAmount.ToString() + " " + _collectionItemType + '\n'
+                            + "Rewards: " + GoldReward.ToString() + " coins\n" + HealthPotionReward.ToString()
+                            + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions";
         IsQuestCompleted = false;
         collectionItemType = _collectionItemType;
         requiredAmount = _requiredAmount;

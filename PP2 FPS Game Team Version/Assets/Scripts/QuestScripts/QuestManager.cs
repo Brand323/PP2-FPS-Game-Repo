@@ -82,7 +82,10 @@ public class Quest
         gameManager.instance.AddHealthPotions(healthPotionReward);
         gameManager.instance.AddStaminaPotions(staminaPotionReward);
         //Add companion rewards
-        UIManager.instance.staminaPotionText.text = staminaPotionReward.ToString();
-        UIManager.instance.moneyText.text = goldReward.ToString();
+        UIManager.instance.healthRewardText.text = healthPotionReward.ToString();
+        UIManager.instance.goldRewardText.text = goldReward.ToString();
+        UIManager.instance.staminaRewardText.text = staminaPotionReward.ToString();
+        UIManager.instance.activateRewardUI();
+        gameManager.instance.isQuestInProgress = false;
     }
 }
