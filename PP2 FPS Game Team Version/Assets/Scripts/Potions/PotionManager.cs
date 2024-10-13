@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class PotionManager : MonoBehaviour
 {
-
     private int healthPotionCount = 0;
     private int staminaPotionCount = 0;
+
+    #region Getters and Setters
+
+    public int HealthPotions
+    {
+        get { return healthPotionCount; }
+        set { healthPotionCount = value; }
+    }
+    public int StaminaPotions
+    {
+        get { return staminaPotionCount; }
+        set { staminaPotionCount = value; }
+    }
+
+    #endregion
 
     void Update()
     {
@@ -61,6 +75,16 @@ public class PotionManager : MonoBehaviour
             staminaPotionCount = count;
             UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
         }
+    }
+
+    public void AddHealthPotions(int amount)
+    {
+        healthPotionCount += amount;
+    }
+
+    public void AddStaminaPotions(int amount)
+    {
+        staminaPotionCount += amount;
     }
 
     private void OnTriggerEnter(Collider other)

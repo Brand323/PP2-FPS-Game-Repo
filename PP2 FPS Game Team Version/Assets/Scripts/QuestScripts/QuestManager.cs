@@ -11,7 +11,8 @@ public class Quest : MonoBehaviour
     private string questDescription;
     private int goldReward;
     private int companionReward;
-    //item reward (weapons and potions) needs to be added
+    private int healthPotionReward;
+    private int staminaPotionReward;
     private bool isCompleted;
 
 #region Getters and Setters
@@ -46,6 +47,18 @@ public class Quest : MonoBehaviour
         set { companionReward = value; }
     }
 
+    public int HealthPotionReward
+    {
+        get { return healthPotionReward; }
+        set { healthPotionReward = value; }
+    }
+
+    public int StaminaPotionReward
+    {
+        get { return staminaPotionReward; }
+        set { staminaPotionReward = value; }
+    }
+
     public bool IsQuestCompleted
     {
         get { return isCompleted; }
@@ -65,7 +78,9 @@ public class Quest : MonoBehaviour
 
     void GiveRewards()
     {
-        //If goal.isReached 
-        //Add reward amounts to player inventory
+        gameManager.instance.AddMoneyToPlayer(goldReward);
+        gameManager.instance.AddHealthPotions(healthPotionReward);
+        gameManager.instance.AddStaminaPotions(staminaPotionReward);
+        //Add companion rewaards
     }
 }

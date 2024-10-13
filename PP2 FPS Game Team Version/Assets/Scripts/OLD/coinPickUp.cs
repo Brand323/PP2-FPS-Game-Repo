@@ -15,7 +15,7 @@ public class money : MonoBehaviour
     //Setter
     public void SetCoinCount(int amount)
     {
-        CoinCount = amount;
+        CoinCount += amount;
         UIManager.instance.moneyText.text = CoinCount.ToString();
     }
 

@@ -16,6 +16,9 @@ public class gameManager : MonoBehaviour
 
     public GameObject playerSpawnPosition;
 
+    private money playerMoney;
+    private PotionManager playerPotions;
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -35,6 +38,9 @@ public class gameManager : MonoBehaviour
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
+
+        playerMoney = player.GetComponent<money>();
+        playerPotions = player.GetComponent<PotionManager>();
     }
 
     // Update is called once per frame
@@ -42,6 +48,36 @@ public class gameManager : MonoBehaviour
     //{
 
     //}
+
+    public void AddMoneyToPlayer(int amount)
+    {
+        playerMoney.SetCoinCount(amount);
+    }
+
+    public void AddHealthPotions(int amount)
+    {
+        playerPotions.AddHealthPotions(amount);
+    }
+
+    public void AddStaminaPotions(int amount)
+    {
+        playerPotions.AddStaminaPotions(amount);
+    }
+
+    public int GetPlayerMoney()
+    {
+        return playerMoney.GetCoinCount();
+    }
+
+    public int GetHealthPotions()
+    {
+        return playerPotions.HealthPotions;
+    }
+
+    public int GetStaminaPotions()
+    {
+        return playerPotions.StaminaPotions;
+    }
 
     public void PauseGame(GameObject window)
     {
@@ -53,21 +89,21 @@ public class gameManager : MonoBehaviour
         UIManager.instance.UnpauseGame();
     }
 
-    public void StartNextWave()
-    {
-        WaveManager.instance.StartNextWave();
-    }
+    //public void StartNextWave()
+    //{
+    //    WaveManager.instance.StartNextWave();
+    //}
 
-    public void EnemyDefeated()
-    {
-        WaveManager.instance.EnemyDefeated();
-    }
+    //public void EnemyDefeated()
+    //{
+    //    WaveManager.instance.EnemyDefeated();
+    //}
 
 
-    public void UpdateGameGoal(int enemy)
-    {
-        UIManager.instance.UpdateGameGoal(enemy);
-    }
+    //public void UpdateGameGoal(int enemy)
+    //{
+    //    UIManager.instance.UpdateGameGoal(enemy);
+    //}
 
     public void LoseUpdate()
     {

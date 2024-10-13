@@ -43,7 +43,8 @@ public abstract class BaseWeapon : MonoBehaviour, I_Interactable
         }
 
         //// Get the money component from the player
-        //playerMoney = playerPosition.GetComponent<money>();
+        //playerMoney = playerPosition.GetComponent<mon
+        //ey>();
         //if (playerMoney == null)
         //{
         //    Debug.LogError("money component is missing from the player object.");

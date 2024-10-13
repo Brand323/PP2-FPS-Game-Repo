@@ -367,7 +367,6 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
         // Player death state
         playerIsDead = false;
-
     }
 
     public void spawnPlayer()
