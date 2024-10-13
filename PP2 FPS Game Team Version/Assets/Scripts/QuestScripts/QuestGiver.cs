@@ -21,13 +21,19 @@ public class QuestGiver : MonoBehaviour
             //        quest = new GatherQuest(Random.Range(1, 3), "Health Potions", 3);
             //        break;
             //}
-            UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
-            quest = new GatherQuest(Random.Range(1, 3), "Health Potions", 3);
-            gameManager.instance.SetCurrentQuest(quest);
-            gameManager.instance.isQuestInProgress = true;
-            UIManager.instance.questName.text = quest.QuestName;
-            UIManager.instance.questDescription.text = quest.QuestDescription;
-
+            if (!gameManager.instance.isQuestInProgress)
+            {
+                UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
+                quest = new GatherQuest(Random.Range(1, 10), Random.Range(3, 5), Random.Range(1, 3), Random.Range(3, 5));
+                gameManager.instance.SetCurrentQuest(quest);
+                gameManager.instance.isQuestInProgress = true;
+                UIManager.instance.questName.text = quest.QuestName;
+                UIManager.instance.questDescription.text = quest.QuestDescription;
+            }
+            else
+            {
+                UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
+            }
         }
     }
 

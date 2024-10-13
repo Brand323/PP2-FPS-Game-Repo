@@ -19,19 +19,27 @@ public class GatherQuest : Quest
         set { requiredAmount = value; }
     }
 
-    public GatherQuest(int _companionReward, string _collectionItemType, int _requiredAmount)
+    public GatherQuest(int _collectionItemType, int _requiredAmount, int _companionReward = 0,
+                      int _goldReward = 0, int _healthReward = 0, int _staminaReward = 0)
     {
         QuestName = "Collection Quest";
-        GoldReward = 3;
+        GoldReward = _goldReward;
         CompanionReward = _companionReward;
-        HealthPotionReward = 3;
-        StaminaPotionReward = 3;
-        QuestDescription = "Collect " + _requiredAmount.ToString() + " " + _collectionItemType + '\n'
+        HealthPotionReward = _healthReward;
+        StaminaPotionReward = _staminaReward;
+        IsQuestCompleted = false;
+        if (_collectionItemType <= 5)
+        {
+            collectionItemType = "Health Potions";
+        }
+        else
+        {
+            collectionItemType = "Stamina Potions";
+        }
+        requiredAmount = _requiredAmount;
+        QuestDescription = "Collect " + requiredAmount.ToString() + " " + collectionItemType + '\n'
                             + "Rewards: " + GoldReward.ToString() + " coins\n" + HealthPotionReward.ToString()
                             + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions";
-        IsQuestCompleted = false;
-        collectionItemType = _collectionItemType;
-        requiredAmount = _requiredAmount;
         QuestGoal = new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount);
     }
 
