@@ -38,8 +38,7 @@ public class GatherQuest : Quest
         }
         requiredAmount = _requiredAmount;
         QuestDescription = "Collect " + requiredAmount.ToString() + " " + collectionItemType + '\n'
-                            + "Rewards: " + GoldReward.ToString() + " coins\n" + HealthPotionReward.ToString()
-                            + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions";
+                            + "Rewards: " + GoldReward.ToString() + " coins\n" + CompanionReward.ToString() + " companions";
         QuestGoal = new GatherGoal(collectionItemType, gameManager.instance.GetPlayerMoney(), gameManager.instance.GetHealthPotions(), gameManager.instance.GetStaminaPotions(), "Collect " + requiredAmount.ToString() + collectionItemType, false, 0, requiredAmount);
     }
 

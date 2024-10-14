@@ -13,17 +13,18 @@ public class QuestGiver : MonoBehaviour
     {
         if(other.tag == "QuestGiver")
         {
-            //randomizer = 1;//Random.Range(1, 3);
-            //switch (randomizer)
-            //{
-            //    case 1:
-            //        quest = new GatherQuest(Random.Range(1, 3), "Health Potions", 3);
-            //        break;
-            //}
+            randomizer = Random.Range(11, 20);
             if (!gameManager.instance.isQuestInProgress)
             {
                 UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
-                quest = new GatherQuest(Random.Range(1, 10), Random.Range(3, 5), Random.Range(1, 3), Random.Range(3, 5));
+                if(randomizer < 11)
+                {
+                    quest = new GatherQuest(Random.Range(1, 10), Random.Range(3, 5), Random.Range(1, 3), Random.Range(3, 5));
+                }
+                else if(randomizer > 10 && randomizer < 21)
+                {
+                    quest = new KillQuest(Random.Range(2, 4), Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
+                }
                 gameManager.instance.SetCurrentQuest(quest);
                 gameManager.instance.isQuestInProgress = true;
                 UIManager.instance.questName.text = quest.QuestName;
