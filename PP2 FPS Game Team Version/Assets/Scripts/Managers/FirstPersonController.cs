@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonController : MonoBehaviour, I_Damage
 {
@@ -416,6 +417,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
         if (currentHealth <= 0)
         {
             KillPlayer();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Map Scene");
         }
     }
     #endregion
