@@ -28,7 +28,7 @@ public class PotionManager : MonoBehaviour
         {
             UsePotion("Health");
         }
-        else if (Input.GetKeyDown(KeyCode.M))
+        else if (Input.GetKeyDown(KeyCode.B))
         {
             UsePotion("Stamina");
         }

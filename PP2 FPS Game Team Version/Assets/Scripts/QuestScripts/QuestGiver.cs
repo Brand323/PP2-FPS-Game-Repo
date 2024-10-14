@@ -13,7 +13,6 @@ public class QuestGiver : MonoBehaviour
     {
         if(other.tag == "QuestGiver")
         {
-            //UIManager.instance.questWindow.SetActive(true);
             //randomizer = 1;//Random.Range(1, 3);
             //switch (randomizer)
             //{
