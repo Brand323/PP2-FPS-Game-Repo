@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -81,6 +82,8 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused;
 
+    private string mapSceneName = "Map Scene";
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -88,8 +91,17 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-
-        StartCoroutine(startGame());
+        if (SceneManager.GetActiveScene().name != mapSceneName)
+        {
+            // Shows everytime I swap to first person scene
+            // StartCoroutine(startGame());
+        }
+        else
+        {
+            // Do not lock cursor on map scene
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     // Update is called once per frame
