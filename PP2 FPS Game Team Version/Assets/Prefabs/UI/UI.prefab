@@ -5287,6 +5287,7 @@ RectTransform:
   m_Children:
   - {fileID: 9181663695773829219}
   - {fileID: 2228790766613890893}
+  - {fileID: 5796228496397642737}
   - {fileID: 1985681900940897557}
   - {fileID: 8203544115506992453}
   - {fileID: 1830442979168080924}
@@ -17258,6 +17259,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &5075249438259178397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5796228496397642737}
+  - component: {fileID: 2691802586521870213}
+  m_Layer: 0
+  m_Name: RelationshipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5796228496397642737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075249438259178397}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6186469655596444453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2691802586521870213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075249438259178397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bcaf7f2f194d44db98fd1d90e69875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relationships:
+  - {fileID: 11400000, guid: eac02f9da379d3e4983d3bda976862b2, type: 2}
+  - {fileID: 11400000, guid: 7ab100a1681187a4f966eef3c5f4f3ab, type: 2}
+  - {fileID: 11400000, guid: 4d8f34936f40f3545951d27864f11a1b, type: 2}
+  - {fileID: 11400000, guid: bc8b066d2f722cb41a6dd46b993060db, type: 2}
 --- !u!1 &5135041488895943394
 GameObject:
   m_ObjectHideFlags: 0
