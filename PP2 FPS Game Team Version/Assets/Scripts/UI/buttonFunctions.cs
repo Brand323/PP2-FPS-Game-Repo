@@ -13,12 +13,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void resume()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
     }
 
     public void restart()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
@@ -30,6 +32,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -39,6 +42,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawn()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         gameManager.instance.playerScript.spawnPlayer();
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
@@ -54,12 +58,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void startGame()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
     }
 
     public void acceptQuest()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
@@ -67,6 +73,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void rejectQuest()
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
         gameManager.instance.isQuestInProgress = false;
@@ -120,28 +127,11 @@ public class buttonFunctions : MonoBehaviour
 
     void editInput(GameObject window)
     {
+        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.PauseGame(window);
-    }
-
-    float checkInput(float variable, TMP_InputField input)
-    {
-        if (input.text != "")
-        {
-            variable = float.Parse(input.text);
-        }
-        return variable;
-    }
-
-    int checkInputInt(int variable, TMP_InputField input)
-    {
-        if (input.text != "")
-        {
-            variable = int.Parse(input.text);
-        }
-        return variable;
     }
 
     void difficultyInput(int difficulty)

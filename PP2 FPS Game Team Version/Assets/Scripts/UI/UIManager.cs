@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         if (SceneManager.GetActiveScene().name != mapSceneName)
@@ -105,7 +104,7 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying && WaveManager.instance.currentWave > 0)
+        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying)
         {
             AudioManager.instance.backgroundMusicIsPlaying = true;
             AudioManager.instance.backgtoundAudioSource.UnPause();

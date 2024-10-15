@@ -497,7 +497,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             moveDirection.y = jumpForce;
             if (AudioManager.instance != null)
             {
-                AudioManager.instance.playSound(AudioManager.instance.jumpSounds, AudioManager.instance.jumpSoundsVolume);
+                AudioManager.instance.playSound(AudioManager.instance.jumpSounds, AudioManager.instance.sfxVolume);
             }
         }
     }
@@ -573,7 +573,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     IEnumerator playFootSteps()
     {
         AudioManager.instance.isPlayingStepSound = true;
-        AudioManager.instance.playSound(AudioManager.instance.footStepSound, AudioManager.instance.footStepVolume);
+        AudioManager.instance.playSound(AudioManager.instance.footStepSound, AudioManager.instance.sfxVolume);
         if (!gameManager.instance.playerScript.IsSprinting)
         {
             yield return new WaitForSeconds(0.45f);
@@ -591,7 +591,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     {
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.playSound(AudioManager.instance.hurtSounds, AudioManager.instance.hurtSoundsVolume);
+            AudioManager.instance.playSound(AudioManager.instance.hurtSounds, AudioManager.instance.sfxVolume);
         }
         currentHealth -= damage;
         UpdateUI();

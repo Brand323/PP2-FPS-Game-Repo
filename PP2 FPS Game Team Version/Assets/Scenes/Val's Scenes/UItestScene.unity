@@ -618,12 +618,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3932626269394869272, guid: 28a9da61b58612040b72edfd8e4c4255, type: 3}
+      propertyPath: menuButtonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ad13c664e42262f4ba213f6af469e705, type: 3}
+    - target: {fileID: 3932626269394869272, guid: 28a9da61b58612040b72edfd8e4c4255, type: 3}
       propertyPath: playerAudioSource
       value: 
       objectReference: {fileID: 638634866}
     - target: {fileID: 5798642395723424353, guid: 28a9da61b58612040b72edfd8e4c4255, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419508528489484657, guid: 28a9da61b58612040b72edfd8e4c4255, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
