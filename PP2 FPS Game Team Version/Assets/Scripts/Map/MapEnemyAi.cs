@@ -50,16 +50,16 @@ public class MapEnemyAi : MonoBehaviour
                 if (mapCamera != null)
                 {
                     canvas.worldCamera = mapCamera;
-                    Debug.Log("Assigned Map Camera to the World Space Canvas");
+                //    Debug.Log("Assigned Map Camera to the World Space Canvas");
                 }
                 else
                 {
-                    Debug.LogError("Map Camera component not found on 'Map Camera' GameObject!");
+                  Debug.LogError("Map Camera component not found on 'Map Camera' GameObject!");
                 }
             }
             else
             {
-                Debug.LogError("Map Camera not found in the scene!");
+              Debug.LogError("Map Camera not found in the scene!");
             }
         }
         else
@@ -69,10 +69,10 @@ public class MapEnemyAi : MonoBehaviour
 
         armySizeText = GetComponentInChildren<TextMeshProUGUI>();
 
-        if (armySizeText != null)
-        {
-            Debug.Log("TextMeshPro component found in the prefab!");
-        }
+        //if (armySizeText != null)
+        //{
+        //    Debug.Log("TextMeshPro component found in the prefab!");
+        //}
 
         //Gets Mins and Max Of Map
         Collider mapCollider = GameObject.FindGameObjectWithTag("Map").GetComponent<Collider>();
@@ -178,7 +178,7 @@ public class MapEnemyAi : MonoBehaviour
     public void SetArmySize(int size)
     {
         armySize = size;
-        Debug.Log("Army Size set to: " + armySize);
+       // Debug.Log("Army Size set to: " + armySize);
         UpdateArmySizeUI();
     }
 
@@ -187,11 +187,11 @@ public class MapEnemyAi : MonoBehaviour
         if (armySizeText != null)
         {
             armySizeText.text =  armySize.ToString();
-            Debug.Log("Army Size Text Updated: " + armySizeText.text);
+           // Debug.Log("Army Size Text Updated: " + armySizeText.text);
         }
         else
         {
-            Debug.Log("armySizeText is null");
+           // Debug.Log("armySizeText is null");
         }
     }
 

@@ -74,7 +74,7 @@ public class ClickMove : MonoBehaviour
     public void SetPlayerArmySize(int size)
     {
         playerArmySize = size;
-        Debug.Log("player Army Size set to: " + playerArmySize);
+       // Debug.Log("player Army Size set to: " + playerArmySize);
         UpdatePlayerArmySizeUI();
     }
 
@@ -83,7 +83,7 @@ public class ClickMove : MonoBehaviour
         if (playerArmySizeText != null)
         {
             playerArmySizeText.text = playerArmySize.ToString();
-            Debug.Log("Player Army Size Text Updated: " + playerArmySizeText.text);
+         //   Debug.Log("Player Army Size Text Updated: " + playerArmySizeText.text);
         }
         else
         {

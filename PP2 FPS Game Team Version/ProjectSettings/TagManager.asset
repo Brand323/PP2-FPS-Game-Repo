@@ -25,6 +25,7 @@ TagManager:
   - Health
   - ArmySizeText
   - PlayerArmySizeText
+  - Town
   layers:
   - Default
   - TransparentFX
