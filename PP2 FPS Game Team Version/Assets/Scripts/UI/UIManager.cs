@@ -40,6 +40,9 @@ public class UIManager : MonoBehaviour
     public TMP_Text goldRewardText;
     public TMP_Text staminaRewardText;
 
+    //map variables
+    [SerializeField] public GameObject cityMapWindow;
+
     float originalTimeScale;
 
     public bool isPaused;

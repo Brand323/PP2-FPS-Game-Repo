@@ -91,4 +91,13 @@ public class ClickMove : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "City")
+        {
+            UIManager.instance.isPaused = !UIManager.instance.isPaused;
+            UIManager.instance.PauseGame(UIManager.instance.cityMapWindow);
+        }
+    }
+
 }
