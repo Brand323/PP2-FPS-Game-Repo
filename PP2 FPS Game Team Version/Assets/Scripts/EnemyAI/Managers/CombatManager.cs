@@ -10,6 +10,8 @@ public class CombatManager : MonoBehaviour
     [Range(1, 8)][SerializeField] int attackingPlayerMax;
     public int attackingPlayerCurr;
     public int enemiesExisting;
+    public int enemyArmySize;
+    public int playerArmySize;
 
     // Start is called before the first frame update
     private void Awake()
