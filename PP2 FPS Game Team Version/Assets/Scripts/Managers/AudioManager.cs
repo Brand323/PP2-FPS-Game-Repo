@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public float footStepVolume;
     [SerializeField] public AudioClip[] hurtSounds;
     [SerializeField] public float hurtSoundsVolume;
+    [SerializeField] public AudioClip[] menuButtonSound;
+    [SerializeField] public float menuButtonVolume;
 
     [Header("----- Background -----")]
     [SerializeField] public AudioClip backgroundMusic;
