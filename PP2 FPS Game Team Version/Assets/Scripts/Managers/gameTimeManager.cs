@@ -16,6 +16,11 @@ public class gameTimeManager : MonoBehaviour
 
     private bool isFirstDay = true;
 
+    // Time control vars
+    private float timeScale = 1f; // Normal timescalew
+    private float[] timeScales = {0f, 1f, 2f, 3f}; // Pause, 1x, 2x, 3x speeds
+    private int currentSpeedIndex = 1; // Start at normal timescale
+
     private void Awake()
     {
         if (Instance == null)
@@ -38,8 +43,10 @@ public class gameTimeManager : MonoBehaviour
 
     private void Update()
     {
+        Time.timeScale = timeScale;
+
         // Update the day timer
-        currentDayTimer += Time.deltaTime;
+        currentDayTimer += Time.deltaTime * timeScale;
         // Calculate how much time has passed in the day
         float dayProgress = currentDayTimer / dayLength;
         // Total in game hours that passed since start
@@ -72,5 +79,36 @@ public class gameTimeManager : MonoBehaviour
         // return military format
         return $"{hours.ToString("D2")}:{minutes.ToString("D2")}";
 
+    }
+
+    // Method to switch between different time speeds
+    public void ChangeTimeSpeed(int speedIndex)
+    {
+        if (speedIndex >= 0 && speedIndex < timeScales.Length)
+        {
+            currentSpeedIndex = speedIndex;
+            timeScale = timeScales[speedIndex];
+        }
+    }
+
+    // Method to pause the game
+    public void PauseGame()
+    {
+        ChangeTimeSpeed(0); // 0f for pause
+    }
+
+    public void SetNormalSpeed()
+    {
+        ChangeTimeSpeed(1); // 1f for normal speed
+    }
+
+    public void SetFastForward()
+    {
+        ChangeTimeSpeed(2); // 2f for fast forward
+    }
+
+    public void SetFastForwardMAX()
+    {
+        ChangeTimeSpeed(3); // 3f for very fast
     }
 }

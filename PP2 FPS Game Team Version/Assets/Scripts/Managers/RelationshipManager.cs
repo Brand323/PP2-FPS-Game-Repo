@@ -32,7 +32,7 @@ public class RelationshipManager : MonoBehaviour
 
     private void GetKingdomRelationship(RelationshipData relationship)
     {
-        Debug.Log($"Player has {relationship.kingdomPoints} Kingdom Points towards the {relationship.kingdomData.kingdomName} Kingdom.");
+        //Debug.Log($"Player has {relationship.kingdomPoints} Kingdom Points towards the {relationship.kingdomData.kingdomName} Kingdom.");
     }
 
     private void GetKingdomRelationshipRank(RelationshipData relationship)
@@ -53,7 +53,7 @@ public class RelationshipManager : MonoBehaviour
         else if (relationshipKingdomPoints == 100)
             relationshipRank = "Hero of the Kingdom";
 
-        Debug.Log($"Player is ranked {relationshipRank} to {relationship.kingdomData.kingdomName}.");
+        //Debug.Log($"Player is ranked {relationshipRank} to {relationship.kingdomData.kingdomName}.");
     }
 
     void addKingdomPoints(int pointsToAdd, RelationshipData relationship)

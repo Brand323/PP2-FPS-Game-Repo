@@ -16,16 +16,18 @@ MonoBehaviour:
   population: 300
   wealth: 700
   productionRate: 0.9
+  baseProductionRate: 1
   consumptionRate: 0.15
   prosperity: 75
   settlementType: 0
-  resourcesProduces: []
+  resourcesProduces:
+  - {fileID: 11400000, guid: 7b06e219c8e20394eb86d0c6f266f2ce, type: 2}
+  - {fileID: 11400000, guid: 468f0c86cf3eaa045820bf921b5cbbdb, type: 2}
+  - {fileID: 11400000, guid: e62326962fd011f40ae820b5da9e8c56, type: 2}
+  - {fileID: 11400000, guid: 17aadaef2d95dce49925425afca5dbbb, type: 2}
   resourcesStocked:
-  - {fileID: 11400000, guid: 870d507197283ff49977e6ddc7077a5a, type: 2}
-  - {fileID: 11400000, guid: da0709b8c29f0ac45af8327c5ad627b2, type: 2}
-  - {fileID: 11400000, guid: 1ffb311720348df4c942cdda8336536d, type: 2}
-  resourcesToCraft:
-  - {fileID: 11400000, guid: 348bfed5a3fc4784ea6846dcc8849156, type: 2}
-  - {fileID: 11400000, guid: 6677dcc1bacfe494193db33d64634f1a, type: 2}
-  - {fileID: 11400000, guid: da69f9dcabf5d9c4bbc7aa02dc4a9e55, type: 2}
-  position: {x: 0, y: 0, z: 0}
+  - {fileID: 11400000, guid: ed5c8dc7dfa63824989a7beabda27dd1, type: 2}
+  - {fileID: 11400000, guid: 17aadaef2d95dce49925425afca5dbbb, type: 2}
+  - {fileID: 11400000, guid: 37cd97f8820dc064592f2ecca9da3bb7, type: 2}
+  resourcesToCraft: []
+  position: {x: -18.9, y: 1.025136, z: 7.4400005}

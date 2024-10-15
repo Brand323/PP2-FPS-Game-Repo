@@ -5,14 +5,17 @@ public class ResourceData : ScriptableObject
 {
     public enum ResourceType
     { 
-        Raw,
-        Refined
+        Item,
+        Food,
+        Resources,
+        Luxury
     }
     public string resourceName;
     public string resourceDescription;
     public ResourceType resourceType;
     public int baseValue;   // The amount of resource in stock
     public float productionRate;
+    public float consumptionRate;
     public float basePrice;
     public float priceMultiplier = 1f; // multiplier based on stock lvl
 
@@ -27,5 +30,7 @@ public class ResourceData : ScriptableObject
         // less stock avlble higher the price
         priceMultiplier = 1f / Mathf.Max(1, baseValue);
     }
+
+
 
 }

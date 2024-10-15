@@ -122,4 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7075500195392148966, guid: 64613ab1a170bbd49967557463497a2e, type: 3}
   cityPrefab: {fileID: 4865268203061124323}
+  caravanPrefab: {fileID: 2132784998165409505, guid: 3ad438bf853d3584eb2018cf037270f2, type: 3}
+  town: {fileID: 0}
   spawnOffset: 25

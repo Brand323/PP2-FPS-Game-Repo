@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlementName: Flintforge Quarry
   population: 65
-  wealth: 100
+  wealth: 10
   productionRate: 0.6
+  baseProductionRate: 1.256
   consumptionRate: 0.04
-  prosperity: 25
+  prosperity: 25.600002
   settlementType: 1
   resourcesProduces:
-  - {fileID: 11400000, guid: 297a9ee94240be2458b6c7fe0f159390, type: 2}
-  - {fileID: 11400000, guid: b01bbac7863e5ab4ab182bc7c800b6bf, type: 2}
+  - {fileID: 11400000, guid: 855b3f47f2aaec34384a29d8583b73c1, type: 2}
+  - {fileID: 11400000, guid: bbf57fa785b42ff4ea65959954ffc540, type: 2}
   resourcesStocked: []
   resourcesToCraft: []
-  position: {x: 0, y: 0, z: 0}
+  position: {x: -4.33, y: 0.525136, z: -9.744054}
