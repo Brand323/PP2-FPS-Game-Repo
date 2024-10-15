@@ -16,7 +16,7 @@ public class Damage : MonoBehaviour
     // In case of ranged object
     [SerializeField] float speed;
     [SerializeField] float destroyTime;
-
+    Vector3 targetPos;
     // Getters
     public float DestroySpeed { get { return destroyTime; } }
     public float Speed { get { return speed; } }
@@ -27,7 +27,7 @@ public class Damage : MonoBehaviour
     {
         if (type == damageType.Ranged)
         {
-            rigidBody.velocity = transform.forward * speed;
+            
             Destroy(gameObject, destroyTime);
         }
     }
@@ -47,8 +47,10 @@ public class Damage : MonoBehaviour
                 dmg.TakeDamage(damageAmount);
             }
             //once damage is done, disable collider until next animation.
-            GetComponent<BoxCollider>().enabled = false;
-            
+            if (type == damageType.Melee)
+            {
+                GetComponent<BoxCollider>().enabled = false;
+            }
         }
         if (type == damageType.Ranged)
         {

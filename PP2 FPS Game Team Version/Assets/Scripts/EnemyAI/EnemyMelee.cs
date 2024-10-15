@@ -21,7 +21,6 @@ public class EnemyMelee : BasicEnemyAI
         stopDistOrig = agent.stoppingDistance;
         angularSpeedOrig = agent.angularSpeed;
         speedOrig = agent.speed;
-        // CombatManager.instance.enemiesExisting++;
         weaponAnimator = GetComponentInChildren<Animator>();
         if (meleeCol != null) { 
             meleeCol.enabled = false;

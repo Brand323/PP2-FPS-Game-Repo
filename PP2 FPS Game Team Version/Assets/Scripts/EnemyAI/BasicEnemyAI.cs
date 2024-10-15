@@ -12,7 +12,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] protected int faceTargetSpeed;
     [SerializeField] protected enum Type
     {
-        Normal,
+        Human,
         Dwarf,
         Elf,
         Ogre,
@@ -25,9 +25,8 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [Range(.1f, 10f)] [SerializeField] float detectTime;
     [SerializeField] float maxDetectionRange;
 
-    public GameObject coinPrefab;
-    public GameObject healthPotion;
-    public GameObject staminaPotion;
+    public GameObject lootItem1;
+    public GameObject lootItem2;
     GameObject nextPotion = null;
 
     protected bool targetInRange;
