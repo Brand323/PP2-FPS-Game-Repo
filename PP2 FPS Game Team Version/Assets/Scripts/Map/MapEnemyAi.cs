@@ -37,21 +37,6 @@ public class MapEnemyAi : MonoBehaviour
             agent.speed = roamSpeed;
         }
 
-        GameObject armyTextObject = GameObject.FindWithTag("ArmySizeText");
-
-        if (armyTextObject != null)
-        {
-            armySizeText = armyTextObject.GetComponent<TextMeshProUGUI>();
-
-            if (armySizeText != null)
-            {
-                Debug.Log("TextMeshPro component found!");
-            }
-            else
-            {
-                Debug.LogError("TextMeshPro component not found on tagged GameObject!");
-            }
-        }
 
         Canvas canvas = GetComponentInChildren<Canvas>();
         if (canvas != null)
@@ -82,6 +67,12 @@ public class MapEnemyAi : MonoBehaviour
             Debug.LogError("Canvas not found in the enemy prefab!");
         }
 
+        armySizeText = GetComponentInChildren<TextMeshProUGUI>();
+
+        if (armySizeText != null)
+        {
+            Debug.Log("TextMeshPro component found in the prefab!");
+        }
 
         //Gets Mins and Max Of Map
         Collider mapCollider = GameObject.FindGameObjectWithTag("Map").GetComponent<Collider>();
