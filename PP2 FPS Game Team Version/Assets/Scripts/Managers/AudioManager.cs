@@ -11,13 +11,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioSource backgtoundAudioSource;
 
     [Header("----- Actions -----")]
+    [SerializeField] public float sfxVolume;
     [SerializeField] public AudioClip[] jumpSounds;
-    [SerializeField] public float jumpSoundsVolume;
     public bool isPlayingStepSound;
     [SerializeField] public AudioClip footStepSound;
-    [SerializeField] public float footStepVolume;
     [SerializeField] public AudioClip[] hurtSounds;
-    [SerializeField] public float hurtSoundsVolume;
+    [SerializeField] public AudioClip menuButtonSound;
 
     [Header("----- Background -----")]
     [SerializeField] public AudioClip backgroundMusic;
