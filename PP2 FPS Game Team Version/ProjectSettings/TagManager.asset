@@ -22,6 +22,11 @@ TagManager:
   - MapEnemy
   - Companion
   - QuestGiver
+  - Health
+  - ArmySizeText
+  - PlayerArmySizeText
+  - Town
+  - City
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4590093156416813642}
   m_Layer: 0
   m_Name: City Temp
-  m_TagString: Untagged
+  m_TagString: City
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -100,11 +100,11 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7075500195392148966, guid: 64613ab1a170bbd49967557463497a2e, type: 3}
   cityPrefab: {fileID: 4865268203061124323}
+  caravanPrefab: {fileID: 2132784998165409505, guid: 3ad438bf853d3584eb2018cf037270f2, type: 3}
   spawnOffset: 25

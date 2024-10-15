@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlementName: Dawnspire
   population: 60
-  wealth: 80
+  wealth: 5
   productionRate: 0.7
+  baseProductionRate: 1.2080001
   consumptionRate: 0.05
-  prosperity: 20
+  prosperity: 20.800003
   settlementType: 1
   resourcesProduces:
-  - {fileID: 11400000, guid: fdf6f749afabd054786654f63e18beb6, type: 2}
-  - {fileID: 11400000, guid: df291b98dcc6da24da0316e15683d458, type: 2}
-  resourcesStocked: []
+  - {fileID: 11400000, guid: e62326962fd011f40ae820b5da9e8c56, type: 2}
+  - {fileID: 11400000, guid: ed5c8dc7dfa63824989a7beabda27dd1, type: 2}
+  resourcesStocked:
+  - {fileID: 0}
+  - {fileID: 0}
   resourcesToCraft: []
-  position: {x: 0, y: 0, z: 0}
+  position: {x: -6.08, y: 0.525136, z: -3.7440538}

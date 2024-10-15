@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,10 @@ public class MapEnemyAi : MonoBehaviour
     [SerializeField] Vector2 mapMinBounds;
     [SerializeField] Vector2 mapMaxBounds;
 
+    [Header("Army Settings")]
+    public int armySize;
+    [SerializeField] TextMeshProUGUI armySizeText;
+
     private NavMeshAgent agent;
     private Transform homeBase;
     private float roamTimer;
@@ -32,6 +37,43 @@ public class MapEnemyAi : MonoBehaviour
             agent.speed = roamSpeed;
         }
 
+
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+        {
+            // Find the Map Camera by name or tag
+            GameObject mapCameraObject = GameObject.Find("Map Camera");  // Use the name of your Map Camera
+
+            if (mapCameraObject != null)
+            {
+                Camera mapCamera = mapCameraObject.GetComponent<Camera>();
+                if (mapCamera != null)
+                {
+                    canvas.worldCamera = mapCamera;
+                //    Debug.Log("Assigned Map Camera to the World Space Canvas");
+                }
+                else
+                {
+                  Debug.LogError("Map Camera component not found on 'Map Camera' GameObject!");
+                }
+            }
+            else
+            {
+              Debug.LogError("Map Camera not found in the scene!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Canvas not found in the enemy prefab!");
+        }
+
+        armySizeText = GetComponentInChildren<TextMeshProUGUI>();
+
+        //if (armySizeText != null)
+        //{
+        //    Debug.Log("TextMeshPro component found in the prefab!");
+        //}
+
         //Gets Mins and Max Of Map
         Collider mapCollider = GameObject.FindGameObjectWithTag("Map").GetComponent<Collider>();
 
@@ -42,6 +84,9 @@ public class MapEnemyAi : MonoBehaviour
             mapMinBounds = new Vector2(mapBounds.min.x, mapBounds.min.z);
             mapMaxBounds = new Vector2(mapBounds.max.x, mapBounds.max.z);
         }
+
+        UpdateArmySizeUI();
+
     }
 
     // Update is called once per frame
@@ -89,7 +134,7 @@ public class MapEnemyAi : MonoBehaviour
 
             if (NavMesh.SamplePosition(targetPosition, out hit, roamRadius, NavMesh.AllAreas))
             {
-                Debug.Log("Valid tearget Found" + hit.position);
+              //  Debug.Log("Valid tearget Found" + hit.position);
                 agent.SetDestination(hit.position);
             }
             else
@@ -130,6 +175,25 @@ public class MapEnemyAi : MonoBehaviour
         homeBase = home;
     }
 
+    public void SetArmySize(int size)
+    {
+        armySize = size;
+       // Debug.Log("Army Size set to: " + armySize);
+        UpdateArmySizeUI();
+    }
+
+    void UpdateArmySizeUI()
+    {
+        if (armySizeText != null)
+        {
+            armySizeText.text =  armySize.ToString();
+           // Debug.Log("Army Size Text Updated: " + armySizeText.text);
+        }
+        else
+        {
+           // Debug.Log("armySizeText is null");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

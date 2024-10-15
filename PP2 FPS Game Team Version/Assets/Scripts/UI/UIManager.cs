@@ -13,50 +13,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
-    [SerializeField] GameObject mainEditWindow;
-
-    [SerializeField] public GameObject functionalOptionsWindow;
-    [SerializeField] public GameObject movementParametersWindow;
-    [SerializeField] public GameObject attributeParametersWindow;
-    [SerializeField] public GameObject jumpParametersWindow;
-    [SerializeField] public GameObject crouchParametersWindow;
-    [SerializeField] public GameObject headBobParametersWindow;
 
     //Main window variables
     [SerializeField] public GameObject mainWindow;
     [SerializeField] public GameObject difficultyWindow;
-
-    #region EditVariables
-    //Input variables functional options 
-    public TMP_Dropdown canSprint;
-    public TMP_Dropdown canJump;
-    public TMP_Dropdown canCrouch;
-    public TMP_Dropdown useHeadbob;
-    public TMP_Dropdown canSlide;
-
-    //Input variables movement parameters
-    public TMP_InputField walkSpeed;
-    public TMP_InputField sprintSpeed;
-    public TMP_InputField crouchSpeed;
-    public TMP_InputField slideSpeed;
-
-    //Input variables jump parameters
-    public TMP_InputField gravity;
-    public TMP_InputField jumpForce;
-
-    //Input variables crouch parameters
-    public TMP_InputField crouchHeight;
-    public TMP_InputField standingHeight;
-
-    //Input variables headBob parameters
-    public TMP_InputField walkBobSpeed;
-    public TMP_InputField sprintBobSpeed;
-    public TMP_InputField crouchBobSpeed;
-
-    //Input variables attribute parameters
-    public TMP_InputField maxHealth;
-    public TMP_InputField maxStamina;
-    #endregion
+    [SerializeField] public GameObject optionsWindow;
+    [SerializeField] public GameObject creditsWindow;
 
     //HUD variables
     [SerializeField] public TMP_Text moneyText;
@@ -78,6 +40,9 @@ public class UIManager : MonoBehaviour
     public TMP_Text goldRewardText;
     public TMP_Text staminaRewardText;
 
+    //map variables
+    [SerializeField] public GameObject cityMapWindow;
+
     float originalTimeScale;
 
     public bool isPaused;
@@ -87,8 +52,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this; 
-
+        instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
         if (SceneManager.GetActiveScene().name != mapSceneName)
@@ -119,20 +83,6 @@ public class UIManager : MonoBehaviour
                 UnpauseGame();
             }
         }
-
-        //Edit game Window
-        if (Input.GetButtonDown("Edit"))
-        {
-            isPaused = !isPaused;
-            if (isPaused)
-            {
-                PauseGame(mainEditWindow);
-            }
-            else
-            {
-                UnpauseGame();
-            }
-        }
     }
 
     IEnumerator startGame()
@@ -157,7 +107,7 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying && WaveManager.instance.currentWave > 0)
+        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying)
         {
             AudioManager.instance.backgroundMusicIsPlaying = true;
             AudioManager.instance.backgtoundAudioSource.UnPause();

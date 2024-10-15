@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlementName: Stormcrag
   population: 300
-  wealth: 1000
+  wealth: 3
   productionRate: 0.85
+  baseProductionRate: 2
   consumptionRate: 0.18
-  prosperity: 85
+  prosperity: 100
   settlementType: 0
-  resourcesProduces: []
-  resourcesStocked:
-  - {fileID: 11400000, guid: 297a9ee94240be2458b6c7fe0f159390, type: 2}
-  - {fileID: 11400000, guid: b01bbac7863e5ab4ab182bc7c800b6bf, type: 2}
-  - {fileID: 11400000, guid: fdf6f749afabd054786654f63e18beb6, type: 2}
-  resourcesToCraft:
-  - {fileID: 11400000, guid: 675899f9c1083ef469252d1253eee97b, type: 2}
-  - {fileID: 11400000, guid: 246dddcf9a246ef4d87e2347494393a4, type: 2}
-  position: {x: 0, y: 0, z: 0}
+  resourcesProduces:
+  - {fileID: 11400000, guid: e942d11b3c9b6e041acb74cd00aa6492, type: 2}
+  - {fileID: 11400000, guid: ed5c8dc7dfa63824989a7beabda27dd1, type: 2}
+  - {fileID: 11400000, guid: 7b06e219c8e20394eb86d0c6f266f2ce, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: -18.25, y: 0.775136, z: -6.2640543}

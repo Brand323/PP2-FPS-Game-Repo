@@ -38,12 +38,12 @@ public class gameManager : MonoBehaviour
         if (player != null)
         {
             playerScript = player.GetComponent<FirstPersonController>();
+            player.AddComponent<money>();
+            playerMoney = player.GetComponent<money>();
+            playerPotions = player.GetComponent<PotionManager>();
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
-        player.AddComponent<money>();
-        playerMoney = player.GetComponent<money>();
-        playerPotions = player.GetComponent<PotionManager>();
     }
 
     // Update is called once per frame
