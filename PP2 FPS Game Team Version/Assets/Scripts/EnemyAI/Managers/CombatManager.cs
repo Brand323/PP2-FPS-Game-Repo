@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -45,5 +46,8 @@ public class CombatManager : MonoBehaviour
         difficulty = diff;
         attackingPlayerMax = difficulty + 1;
     }
+    public void SetCombatLogic(int enemyCount, int companionCount)
+    {
 
+    }
 }
