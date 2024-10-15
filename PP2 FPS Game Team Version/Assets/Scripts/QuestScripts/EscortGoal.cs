@@ -19,7 +19,12 @@ public class EscortGoal : QuestGoal
 
     public void EscortDoneCheck()
     {
-        //Check if the object escorted is in finalPosition
-        evaluateGoalState();
+        //Check if the object escorted is in finalPosition and not dead
+    }
+
+    public override void evaluateGoalState()
+    {
+        EscortDoneCheck();
+        base.evaluateGoalState();
     }
 }
