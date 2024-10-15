@@ -22,9 +22,13 @@ public class MapCity : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         
         MapEnemyAi enemyScript = enemy.GetComponent<MapEnemyAi>();
+        
         if (enemyScript != null )
         {
             enemyScript.SetHomeBase(transform);
+
+            int randomArmySize = Random.Range(1, 21);
+            enemyScript.SetArmySize(randomArmySize);
         }
     }
 }

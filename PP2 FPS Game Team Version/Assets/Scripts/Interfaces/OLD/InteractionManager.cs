@@ -7,9 +7,9 @@ public class InteractionManager : MonoBehaviour
 {
     public Transform PlayerTransform;
 
-    private I_Interactable lastInteractedObject = null;
+   // private I_Interactable lastInteractedObject = null;
 
-    [SerializeField] float interactDistance = 3f;
+   // [SerializeField] float interactDistance = 3f;
 
     protected gameManager gameManagerInstance;
 
