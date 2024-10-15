@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class ClickMove : MonoBehaviour
 {
     public Camera MapCamera;
+
+    [Header("Movement Settings")]
     [SerializeField] float movespeed = 5f;
+
+    [Header("Army Settings")]
+    public int playerArmySize;
+    [SerializeField] TextMeshProUGUI playerArmySizeText;
+
 
     //Stores current coroutine so i can interupt
     private Coroutine moveCourtine;
@@ -18,7 +26,14 @@ public class ClickMove : MonoBehaviour
         if (mapCameraObject != null)
         {
             MapCamera = mapCameraObject.GetComponent<Camera>();
-        }    
+        }
+
+        SetPlayerArmySize(1);
+
+        Canvas canvas = GetComponentInChildren<Canvas>();
+
+        canvas.worldCamera = MapCamera;
+
     }
 
     void Update()
@@ -54,4 +69,26 @@ public class ClickMove : MonoBehaviour
         
         moveCourtine = null;
     }
+
+
+    public void SetPlayerArmySize(int size)
+    {
+        playerArmySize = size;
+        Debug.Log("player Army Size set to: " + playerArmySize);
+        UpdatePlayerArmySizeUI();
+    }
+
+    void UpdatePlayerArmySizeUI()
+    {
+        if (playerArmySizeText != null)
+        {
+            playerArmySizeText.text = playerArmySize.ToString();
+            Debug.Log("Player Army Size Text Updated: " + playerArmySizeText.text);
+        }
+        else
+        {
+            Debug.Log("armySizeText is null");
+        }
+    }
+
 }
