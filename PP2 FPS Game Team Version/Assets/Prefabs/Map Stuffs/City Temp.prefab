@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4590093156416813642}
   m_Layer: 0
   m_Name: City Temp
-  m_TagString: Untagged
+  m_TagString: City
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -123,5 +123,4 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7075500195392148966, guid: 64613ab1a170bbd49967557463497a2e, type: 3}
   cityPrefab: {fileID: 4865268203061124323}
   caravanPrefab: {fileID: 2132784998165409505, guid: 3ad438bf853d3584eb2018cf037270f2, type: 3}
-  town: {fileID: 0}
   spawnOffset: 25

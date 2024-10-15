@@ -8,13 +8,18 @@ public class MapCity : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject cityPrefab;
     public GameObject caravanPrefab;
-    public Transform town;
     public float spawnOffset = 20f;
+    private MapKingdomManager kingdomManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy();
+        kingdomManager = FindObjectOfType<MapKingdomManager>();
+
+        if (!kingdomManager.IsCityInHumanKingdom(transform))
+        {
+            SpawnEnemy();
+        }
 
         SpawnCaravan();
     }
@@ -45,30 +50,34 @@ public class MapCity : MonoBehaviour
 
         if (caravanScript != null)
         {
-            caravanScript.Initialize(transform, town);
+            string cityKingdom = GetCityKingdom(transform);
+
+            Transform randomTown = kingdomManager.GetRandomTownFromKingdom(cityKingdom);
+
+            caravanScript.Initialize(transform, randomTown);
         }
     }
 
-    //Transform FindNearestTown()
-    //{
-    //    GameObject[] towns = GameObject.FindGameObjectsWithTag("Town");
-    //    Transform nearest = null;
-    //    float closestDistanceSqr = Mathf.Infinity;
-    //    Vector3 currentPosition = transform.position;
+    string GetCityKingdom(Transform city)
+    {
+        if (kingdomManager.IsCityInHumanKingdom(city))
+        {
+            return "Humans";
+        }
+        else if (kingdomManager.citiesInDwarfKingdom.Contains(city))
+        {
+            return "Dwarves";
+        }
+        else if (kingdomManager.citiesInOgreKingdom.Contains(city))
+        {
+            return "Ogres";
+        }
+        else if (kingdomManager.citiesInElfKingdom.Contains(city))
+        {
+            return "Elves";
+        }
 
-    //    foreach (GameObject town in towns)
-    //    {
-    //        Vector3 directionToTown = town.transform.position - currentPosition;
-    //        float distanceSqr = directionToTown.sqrMagnitude;
-    //        if (distanceSqr < closestDistanceSqr)
-    //        {
-    //            closestDistanceSqr = distanceSqr;
-    //            nearest = town.transform;
-    //        }
-    //    }
-
-    //    return nearest;
-    //}
-
+        return null;
+    }
 
 }

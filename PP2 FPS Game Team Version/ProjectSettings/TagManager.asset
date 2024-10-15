@@ -26,6 +26,7 @@ TagManager:
   - ArmySizeText
   - PlayerArmySizeText
   - Town
+  - City
   layers:
   - Default
   - TransparentFX
