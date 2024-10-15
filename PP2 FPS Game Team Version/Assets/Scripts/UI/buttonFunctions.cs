@@ -13,14 +13,20 @@ public class buttonFunctions : MonoBehaviour
 
     public void resume()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
     }
 
     public void restart()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
@@ -32,7 +38,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -42,7 +51,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawn()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         gameManager.instance.playerScript.spawnPlayer();
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
@@ -50,22 +62,22 @@ public class buttonFunctions : MonoBehaviour
 
     #endregion
 
-
-    //public void activateWave()
-    //{
-    //    WaveManager.instance.triggerGate.StartWave();
-    //}
-
     public void startGame()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
     }
 
     public void acceptQuest()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
@@ -73,7 +85,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void rejectQuest()
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
         gameManager.instance.isQuestInProgress = false;
@@ -127,7 +142,10 @@ public class buttonFunctions : MonoBehaviour
 
     void editInput(GameObject window)
     {
-        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.UnpauseGame();
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
