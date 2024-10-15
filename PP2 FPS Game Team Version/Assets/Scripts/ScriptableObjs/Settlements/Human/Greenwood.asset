@@ -16,12 +16,15 @@ MonoBehaviour:
   population: 45
   wealth: 50
   productionRate: 0.5
+  baseProductionRate: 1
   consumptionRate: 0.05
   prosperity: 10
   settlementType: 1
   resourcesProduces:
-  - {fileID: 11400000, guid: ee009c2d7afd44640b9197ebbb857618, type: 2}
-  - {fileID: 11400000, guid: d05275ce7d205bc4ebe226cf5e6f3382, type: 2}
-  resourcesStocked: []
-  resourcesToCraft: []
-  position: {x: 0, y: 0, z: 0}
+  - {fileID: 11400000, guid: 68da1399bdb0b234a94123d5c04b3cde, type: 2}
+  - {fileID: 11400000, guid: 37cd97f8820dc064592f2ecca9da3bb7, type: 2}
+  resourcesStocked:
+  - {fileID: 11400000, guid: 17aadaef2d95dce49925425afca5dbbb, type: 2}
+  resourcesToCraft:
+  - {fileID: 11400000, guid: 37cd97f8820dc064592f2ecca9da3bb7, type: 2}
+  position: {x: 13.489999, y: 0.525136, z: -6.044054}

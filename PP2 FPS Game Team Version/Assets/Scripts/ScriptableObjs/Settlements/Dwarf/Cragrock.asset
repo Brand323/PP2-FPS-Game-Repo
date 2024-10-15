@@ -14,18 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlementName: Cragrock
   population: 350
-  wealth: 900
+  wealth: 7
   productionRate: 1
+  baseProductionRate: 2
   consumptionRate: 0.2
-  prosperity: 90
+  prosperity: 100
   settlementType: 0
-  resourcesProduces: []
-  resourcesStocked:
-  - {fileID: 11400000, guid: fdf6f749afabd054786654f63e18beb6, type: 2}
-  - {fileID: 11400000, guid: 33f28def523dde647a8b32562d19c691, type: 2}
-  - {fileID: 11400000, guid: df291b98dcc6da24da0316e15683d458, type: 2}
-  resourcesToCraft:
-  - {fileID: 11400000, guid: 675899f9c1083ef469252d1253eee97b, type: 2}
-  - {fileID: 11400000, guid: b52b1cb5c42ddc44bacf719688598d2b, type: 2}
-  - {fileID: 11400000, guid: 246dddcf9a246ef4d87e2347494393a4, type: 2}
-  position: {x: 0, y: 0, z: 0}
+  resourcesProduces:
+  - {fileID: 11400000, guid: ed5c8dc7dfa63824989a7beabda27dd1, type: 2}
+  - {fileID: 11400000, guid: e942d11b3c9b6e041acb74cd00aa6492, type: 2}
+  resourcesStocked: []
+  resourcesToCraft: []
+  position: {x: -10.44, y: 1.025136, z: -11.744054}

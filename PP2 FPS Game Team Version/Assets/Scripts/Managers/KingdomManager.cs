@@ -6,7 +6,6 @@ using UnityEngine;
 public class KingdomManager : MonoBehaviour
 {
     public static KingdomManager Instance;
-    public GameObject caravanPrefab;
     public List<KingdomData> kingdoms;
     private float tradeInterval = 10f; // trade every 10 seconds
     private float productionInterval = 1f; // produce resources every 5 seconds
@@ -45,7 +44,8 @@ public class KingdomManager : MonoBehaviour
         // Periodic trade between kingdoms
         if (Time.time >= nextTradeTime)
         {
-            UpdateTrade();
+            SimulateInternalTrade();
+            SimulateExternalTrade();
             nextTradeTime = Time.time + tradeInterval;
         }
     }
@@ -62,15 +62,6 @@ public class KingdomManager : MonoBehaviour
         }
     }
 
-    private void CreateCaravanForKingdom(KingdomData kingdom)
-    {
-        GameObject caravanGO = Instantiate(caravanPrefab, kingdom.settlements[0].position, Quaternion.identity);
-        Caravan caravan = caravanGO.GetComponent<Caravan>();
-
-        // Assign the caravan to start travelling between two settlements in the kingdom
-        caravan.currentSettlement = kingdom.settlements[0]; // Starting settlement
-        caravan.StartTravel(kingdom.settlements[1]);
-    }
 
     private void CalculateKingdomEconomy(KingdomData kingdom)
     {
@@ -83,6 +74,7 @@ public class KingdomManager : MonoBehaviour
             totalWealth += settlement.wealth;
             totalProduction += settlement.productionRate;
             totalConsumption += settlement.consumptionRate;
+            settlement.RemoveEmptyResources();
         }
 
         kingdom.kingdomWealth = totalWealth;
@@ -104,29 +96,48 @@ public class KingdomManager : MonoBehaviour
         FindObjectOfType<Global_Kingdom_Eco>().UpdateUI();
     }
 
-    private void UpdateTrade()
+    // Find settlements in other kingdoms for trading purposes
+    private List<KingdomData> FindOtherKingdoms(KingdomData currentKingodm)
+    {
+        return kingdoms.Where(K => K != currentKingodm).ToList();
+    }
+
+    // Simulates trade within a kingdom between its settlements
+    private void SimulateInternalTrade()
     {
         foreach (var kingdom in kingdoms)
         {
             foreach (var settlement in kingdom.settlements)
             {
-                var tradeTargets = FindOtherKingdoms(kingdom);
+                // Trade with other settlements within the same kingdom
+                var tradeTargets = kingdom.settlements.Where(s => s != settlement).ToList();
+                foreach (var targetSettlement in tradeTargets)
+                {
+                    settlement.TradeWith(targetSettlement);
+                }
+            }
+        }
+        FindObjectOfType<Global_Kingdom_Eco>().UpdateUI();
+    }
+
+    // Simulates trade between kingdoms
+    private void SimulateExternalTrade()
+    {
+        foreach (var kingdom in kingdoms)
+        {
+            foreach (var settlement in kingdom.settlements)
+            {
+                var tradeTargets = FindOtherKingdoms(kingdom); // Find other kingdoms to trade with
                 foreach (var targetKingdom in tradeTargets)
                 {
                     foreach (var targetSettlement in targetKingdom.settlements)
                     {
-                        settlement.TradeWith(targetSettlement);
+                        settlement.TradeWith(targetSettlement); // Trade with other kingdom's settlements
                     }
                 }
             }
         }
 
-        FindObjectOfType<Global_Kingdom_Eco>().UpdateUI();
-    }
-
-    // Find settlements in other kingdoms for trading purposes
-    private List<KingdomData> FindOtherKingdoms(KingdomData currentKingodm)
-    {
-        return kingdoms.Where(K => K != currentKingodm).ToList();
+        FindObjectOfType<Global_Kingdom_Eco>().UpdateUI(); // Update UI after external trade
     }
 }

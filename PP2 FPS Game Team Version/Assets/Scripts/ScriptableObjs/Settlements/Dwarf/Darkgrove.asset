@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlementName: Darkgrove
   population: 50
-  wealth: 85
+  wealth: 10
   productionRate: 0.5
+  baseProductionRate: 1.1880001
   consumptionRate: 0.04
-  prosperity: 18
+  prosperity: 18.800003
   settlementType: 1
   resourcesProduces:
-  - {fileID: 11400000, guid: 33f28def523dde647a8b32562d19c691, type: 2}
-  - {fileID: 11400000, guid: 14aea7fcebcda1a4eae95e2ce4f2df05, type: 2}
+  - {fileID: 11400000, guid: 68da1399bdb0b234a94123d5c04b3cde, type: 2}
+  - {fileID: 11400000, guid: 7b06e219c8e20394eb86d0c6f266f2ce, type: 2}
   resourcesStocked: []
   resourcesToCraft: []
-  position: {x: 0, y: 0, z: 0}
+  position: {x: -13.58, y: 0.525136, z: -3.7440538}
