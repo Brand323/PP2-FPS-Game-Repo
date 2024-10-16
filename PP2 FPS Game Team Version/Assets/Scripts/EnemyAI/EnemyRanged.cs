@@ -19,6 +19,7 @@ public class EnemyRanged : BasicEnemyAI
         stopDistOrig = agent.stoppingDistance;
         angularSpeedOrig = agent.angularSpeed;
         speedOrig = agent.speed;
+        AllyCombatManager.instance.enemyList.Add(gameObject);
     }
 
     // Update is called once per frame
