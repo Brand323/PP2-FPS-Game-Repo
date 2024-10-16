@@ -42,7 +42,7 @@ public class CombatManager : MonoBehaviour
             StartCoroutine(DelayedSpawn());
         }
     }
-    void CheckToSpawn()
+    public void CheckToSpawn()
     {
         if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
         {
