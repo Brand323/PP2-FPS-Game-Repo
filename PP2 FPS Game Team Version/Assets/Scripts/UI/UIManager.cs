@@ -42,6 +42,13 @@ public class UIManager : MonoBehaviour
 
     //map variables
     [SerializeField] public GameObject cityMapWindow;
+    [SerializeField] public GameObject foodStoreWindow;
+    [SerializeField] public GameObject luxuryStoreWindow;
+    [SerializeField] public GameObject resourceStoreWindow;
+
+    //Options menu variables
+    [SerializeField] public Slider sfxVolume;
+    [SerializeField] public Slider musicVolume;
 
     float originalTimeScale;
 
@@ -55,6 +62,7 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
+        StartCoroutine(startGame());
         if (SceneManager.GetActiveScene().name != mapSceneName)
         {
             // Shows everytime I swap to first person scene
@@ -66,6 +74,10 @@ public class UIManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        sfxVolume.value = 0.4f;
+        sfxVolume.maxValue = 1;
+        musicVolume.value = 0.35f;
+        musicVolume.maxValue = 1;
     }
 
     // Update is called once per frame

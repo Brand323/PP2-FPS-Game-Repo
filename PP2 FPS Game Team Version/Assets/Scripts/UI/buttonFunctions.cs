@@ -32,6 +32,7 @@ public class buttonFunctions : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
     public void restart()
     {
         if (AudioManager.instance != null)
@@ -81,6 +82,8 @@ public class buttonFunctions : MonoBehaviour
         }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void acceptQuest()
@@ -134,9 +137,28 @@ public class buttonFunctions : MonoBehaviour
 
     #endregion
 
+    GameObject previousWindow;
+
     public void optionsMenu()
     {
-        editInput(UIManager.instance.optionsWindow);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        previousWindow = UIManager.instance.activeWindow;
+        gameManager.instance.PauseGame(UIManager.instance.optionsWindow);
+    }
+
+    public void exitOptions()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.UnpauseGame();
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.PauseGame(previousWindow);
     }
 
     public void creditsMenu()
@@ -147,6 +169,26 @@ public class buttonFunctions : MonoBehaviour
     public void exitToMain()
     {
         editInput(UIManager.instance.mainWindow);
+    }
+
+    public void buyFood()
+    {
+        editInput(UIManager.instance.foodStoreWindow);
+    }
+
+    public void buyLuxury()
+    {
+        editInput(UIManager.instance.luxuryStoreWindow);
+    }
+
+    public void buyResource()
+    {
+        editInput(UIManager.instance.resourceStoreWindow);
+    }
+
+    public void exitToCity()
+    {
+        editInput(UIManager.instance.cityMapWindow);
     }
 
     #region Private Functions
