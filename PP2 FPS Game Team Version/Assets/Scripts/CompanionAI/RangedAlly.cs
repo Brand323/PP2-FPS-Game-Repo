@@ -15,8 +15,8 @@ public class RangedAlly : AllyBase
     void Start()
     {
         // Adds companion to the Combat Manager's list
-        AllyCombatManager.instance.companionList.Add(gameObject);
-        AllyCombatManager.instance.allyArmySize += 1;
+        AllyCombatManager.instance.CompanionList.Add(gameObject);
+        AllyCombatManager.instance.AllyArmySize += 1;
 
         currentTarget = AllyCombatManager.instance.TargetEnemy();
     }
