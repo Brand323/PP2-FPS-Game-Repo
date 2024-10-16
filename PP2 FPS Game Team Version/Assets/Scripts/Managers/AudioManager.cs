@@ -35,7 +35,8 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        sfxVolume = UIManager.instance.sfxVolume.value;
+        backgroundMusicVolume = UIManager.instance.musicVolume.value;
     }
 
     public void playSound(AudioClip[] clips, float volume)

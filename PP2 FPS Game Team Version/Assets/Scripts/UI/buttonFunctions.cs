@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -135,9 +136,28 @@ public class buttonFunctions : MonoBehaviour
 
     #endregion
 
+    GameObject previousWindow;
+
     public void optionsMenu()
     {
-        editInput(UIManager.instance.optionsWindow);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        previousWindow = UIManager.instance.activeWindow;
+        gameManager.instance.PauseGame(UIManager.instance.optionsWindow);
+    }
+
+    public void exitOptions()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.UnpauseGame();
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.PauseGame(previousWindow);
     }
 
     public void creditsMenu()
