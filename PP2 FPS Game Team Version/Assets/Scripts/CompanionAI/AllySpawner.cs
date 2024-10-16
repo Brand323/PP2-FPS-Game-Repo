@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class AllySpawner : MonoBehaviour
 {
-    List<GameObject> toSpawn;
+    GameObject toSpawn;
+    GameObject spawner;
 
+    bool hasSpawned;
     // Start is called before the first frame update
     void Start()
     {
-        toSpawn = AllyCombatManager.instance.CompanionList;
+        spawner = gameObject;
+        AllyCombatManager.instance.SpawnerList.Add(this);
     }
 
     // Update is called once per frame
@@ -17,4 +20,17 @@ public class AllySpawner : MonoBehaviour
     {
         
     }
+
+    public void SpawnAlly()
+    {
+        if (!hasSpawned)
+        {
+            Instantiate(toSpawn, transform.position, transform.rotation);
+        }
+    }
+
+    // Etters
+
+    public GameObject ToSpawn { get { return toSpawn; } set { toSpawn = value; } }
+    public GameObject Spawner { get { return spawner; } set { spawner = value; } }
 }

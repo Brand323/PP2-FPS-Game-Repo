@@ -25,9 +25,10 @@ public class RangedAlly : AllyBase
     void Update()
     {
         if (currentTarget == null)
-        {
             currentTarget = AllyCombatManager.instance.TargetEnemy();
-        }
+
+        if (currentTarget == null)
+            this.enabled = false;
 
         CombatMovement();
 
