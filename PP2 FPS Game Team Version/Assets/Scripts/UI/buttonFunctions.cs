@@ -179,27 +179,6 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.mainWindow);
     }
 
-    public void buyFood()
-    {
-        editInput(UIManager.instance.foodStoreWindow);
-    }
-
-
-    public void buyItem()
-    {
-        gameManager.instance.buyItem = true;
-    }
-
-    public void buyLuxury()
-    {
-        editInput(UIManager.instance.luxuryStoreWindow);
-    }
-
-    public void buyResource()
-    {
-        editInput(UIManager.instance.resourceStoreWindow);
-    }
-
     public void exitToCity()
     {
         editInput(UIManager.instance.cityMapWindow);

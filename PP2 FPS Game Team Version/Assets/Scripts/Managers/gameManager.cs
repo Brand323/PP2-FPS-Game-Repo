@@ -25,12 +25,6 @@ public class gameManager : MonoBehaviour
 
     public MapKingdomManager kingdomManager;
 
-    #region Inventory Fields
-
-    public bool buyItem;
-
-    #endregion
-
     void Awake()
     {
         //Code for Ensuring Singleton Setup

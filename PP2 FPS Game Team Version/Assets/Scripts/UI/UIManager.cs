@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     //Serialize fields
     [SerializeField] public GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
-    [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
 
@@ -44,10 +43,7 @@ public class UIManager : MonoBehaviour
     //map variables
     [SerializeField] public GameObject cityMapWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
-    [SerializeField] public GameObject activeStoreWindow;
-    [SerializeField] public GameObject foodStoreWindow;
-    [SerializeField] public GameObject luxuryStoreWindow;
-    [SerializeField] public GameObject resourceStoreWindow;
+    public bool inCombat;
 
     //Options menu variables
     [SerializeField] public Slider sfxVolume;
@@ -128,8 +124,13 @@ public class UIManager : MonoBehaviour
             AudioManager.instance.backgtoundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if(inCombat)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         activateWindow(activeWindow);
         activeWindow = null;
     }
