@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowProjectile : MonoBehaviour
+public class FollowProjectileAlly : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float rotSpeed;
     [SerializeField] float speed;
-    private Rigidbody rb;
+    [SerializeField] Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = gameManager.instance.player.transform;
         rb = GetComponent<Rigidbody>();
-        adjustForDifficulty();
     }
     // Update is called once per frame
     void Update()
@@ -24,12 +22,22 @@ public class FollowProjectile : MonoBehaviour
         rb.angularVelocity = rot * rotSpeed;
         rb.velocity = transform.forward * speed;
     }
-    public void adjustForDifficulty()
+    void OnTriggerEnter(Collider other)
     {
-        speed += CombatManager.instance.GetDifficulty() / 2;
+        if (other.CompareTag("Enemy"))
+        {
+            // Destroy the fireball on contact with the enemy
+            Destroy(gameObject);
+
+            I_Damage damageable = other.GetComponent<I_Damage>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(3);
+            }
+        }
     }
-    public void SetTarget(Transform targetNew)
-    {
-        target = targetNew;
-    }
+
+    // Setter
+
+    public void SetTarget(Transform newTarget) { target = newTarget; }
 }

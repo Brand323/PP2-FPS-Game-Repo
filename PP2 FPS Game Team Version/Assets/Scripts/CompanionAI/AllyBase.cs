@@ -20,7 +20,7 @@ public class AllyBase : MonoBehaviour, I_Damage
     [Header("Movement")]
     [SerializeField] int faceTargetSpeed;
 
-    Vector3 rotDir;
+    protected Vector3 rotDir;
 
     protected GameObject currentTarget;
     protected Animator weaponAnimator;
@@ -97,4 +97,5 @@ public class AllyBase : MonoBehaviour, I_Damage
     // Getters
 
     public float Damage { get { return Dmg; } }
+    public GameObject Target { get { return currentTarget; } }
 }
