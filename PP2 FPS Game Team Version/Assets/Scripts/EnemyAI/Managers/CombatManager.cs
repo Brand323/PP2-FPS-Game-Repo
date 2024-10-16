@@ -23,6 +23,11 @@ public class CombatManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this);
+/*            if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+            {
+                StartCoroutine(DelayedSpawn());
+            }*/
         }
         else
         {
@@ -32,7 +37,18 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         hasSpawned = false;
-        StartCoroutine(DelayedSpawn());
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+        {
+            StartCoroutine(DelayedSpawn());
+        }
+    }
+    void CheckToSpawn()
+    {
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+        {
+            hasSpawned = false;
+            StartCoroutine(DelayedSpawn());
+        }
     }
 
     // Update is called once per frame
