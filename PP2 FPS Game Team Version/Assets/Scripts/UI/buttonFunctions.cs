@@ -83,6 +83,8 @@ public class buttonFunctions : MonoBehaviour
         }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void acceptQuest()
