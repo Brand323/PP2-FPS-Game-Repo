@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 525674048603772673, guid: 3bfa1e7003656984db86b135015dd841, type: 3}
       propertyPath: speed
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 525674048603772673, guid: 3bfa1e7003656984db86b135015dd841, type: 3}
       propertyPath: destroyTime

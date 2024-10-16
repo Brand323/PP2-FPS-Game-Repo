@@ -64,24 +64,23 @@ MonoBehaviour:
   model: {fileID: 5646916626780516228}
   agent: {fileID: 439908521596633187}
   headPos: {fileID: 5499720699405801417}
-  faceTargetSpeed: 1
+  faceTargetSpeed: 3
   type: 0
-  HP: 7
+  HP: 4
   detectionCol: {fileID: 8003323368720975258}
-  detectTime: 0.3
-  maxDetectionRange: 8
-  coinPrefab: {fileID: 0}
-  healthPotion: {fileID: 0}
-  staminaPotion: {fileID: 0}
+  detectTime: 0.8
+  maxDetectionRange: 30
+  lootItem1: {fileID: 0}
+  lootItem2: {fileID: 0}
   stopDistOrig: 0
   speedOrig: 0
   angularSpeedOrig: 0
   isAttacking: 0
   attackRate: 1
   isEngaged: 0
-  dmgAmount: 1
+  dmgAmount: 0.5
   meleeCol: {fileID: 865862469124971331}
-  meleeRange: 2.2
+  meleeRange: 2.35
 --- !u!195 &439908521596633187
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -92,11 +91,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 2.15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
