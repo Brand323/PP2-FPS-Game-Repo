@@ -32,6 +32,7 @@ public class buttonFunctions : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
     public void restart()
     {
         if (AudioManager.instance != null)
@@ -147,6 +148,26 @@ public class buttonFunctions : MonoBehaviour
     public void exitToMain()
     {
         editInput(UIManager.instance.mainWindow);
+    }
+
+    public void buyFood()
+    {
+        editInput(UIManager.instance.foodStoreWindow);
+    }
+
+    public void buyLuxury()
+    {
+        editInput(UIManager.instance.luxuryStoreWindow);
+    }
+
+    public void buyResource()
+    {
+        editInput(UIManager.instance.resourceStoreWindow);
+    }
+
+    public void exitToCity()
+    {
+        editInput(UIManager.instance.cityMapWindow);
     }
 
     #region Private Functions
