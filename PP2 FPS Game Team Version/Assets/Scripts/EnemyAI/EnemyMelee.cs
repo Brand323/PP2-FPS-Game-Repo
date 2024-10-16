@@ -12,7 +12,7 @@ public class EnemyMelee : BasicEnemyAI
     [SerializeField] private float dmgAmount;
     [SerializeField] Collider meleeCol;
     [SerializeField] float meleeRange;
-    bool hasDamaged=false;
+    //bool hasDamaged=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,15 +89,15 @@ public class EnemyMelee : BasicEnemyAI
     }
     IEnumerator attack()
     {
-        hasDamaged = false;
+        //hasDamaged = false;
         meleeColOn();
         isAttacking = true;
         //weaponAnimator.SetTrigger("TestSwordAnim");
         TriggerSwordAttack();
         yield return new WaitForSeconds(attackRate);
-        hasDamaged = false;
+        //hasDamaged = false;
         meleeColOn();
-        hasDamaged = false;
+        //hasDamaged = false;
        // yield return new WaitForSeconds(attackRate);
         isAttacking = false;
         weaponAnimator.Play("TestSwordIdle");
