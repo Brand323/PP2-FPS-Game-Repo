@@ -137,6 +137,11 @@ public class buttonFunctions : MonoBehaviour
 
     #endregion
 
+    #region Options Functions
+
+
+
+    #endregion
     GameObject previousWindow;
 
     public void optionsMenu()
@@ -174,6 +179,15 @@ public class buttonFunctions : MonoBehaviour
     public void buyFood()
     {
         editInput(UIManager.instance.foodStoreWindow);
+    }
+
+    public void buyBarley()
+    {
+        ResourceData newResource = ScriptableObject.CreateInstance<ResourceData>();
+        newResource.resourceName = "Barley";
+        newResource.resourceType = ResourceData.ResourceType.Food;
+        newResource.baseValue = 1;
+        //targetSettlement.resourcesStocked.Add(newResource);
     }
 
     public void buyLuxury()

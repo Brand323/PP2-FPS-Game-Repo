@@ -16,7 +16,6 @@ public class EnemyMelee : BasicEnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        AllyCombatManager.instance.enemyList.Add(gameObject);
         CombatManager.instance.enemiesExisting++;
         colorOrig = model.material.color;
         stopDistOrig = agent.stoppingDistance;
@@ -27,6 +26,7 @@ public class EnemyMelee : BasicEnemyAI
             meleeCol.enabled = false;
         }
         weaponAnimator.Play("TestSwordIdle");
+        AllyCombatManager.instance.enemyList.Add(gameObject);
     }
     //do speed orig in the enemytype
     // Update is called once per frame
@@ -125,6 +125,8 @@ public class EnemyMelee : BasicEnemyAI
     }
     public override void Death()
     {
+        gameManager.instance.AddMoneyToPlayer(1);
+        UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
         base.Death();
         Destroy(gameObject);
     }

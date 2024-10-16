@@ -97,7 +97,14 @@ public class ClickMove : MonoBehaviour
         if(other.tag == "City")
         {
             UIManager.instance.isPaused = !UIManager.instance.isPaused;
-            UIManager.instance.PauseGame(UIManager.instance.cityMapWindow);
+            if (gameManager.instance.kingdomManager.IsCityInHumanKingdom(other.transform) == true)
+            {
+                UIManager.instance.PauseGame(UIManager.instance.cityMapWindow);
+            }
+            else
+            {
+                UIManager.instance.PauseGame(UIManager.instance.enemyCityMapWindow);
+            }
         }
     }
 

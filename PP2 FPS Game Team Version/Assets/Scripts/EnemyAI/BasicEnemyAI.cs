@@ -134,6 +134,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     public virtual void Death()
     {
         CombatManager.instance.enemiesExisting--;
+        CombatManager.instance.CheckForVictory();
         Destroy(gameObject);
     }
     //drop loot, coins and potions

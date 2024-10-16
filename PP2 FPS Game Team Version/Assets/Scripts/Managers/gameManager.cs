@@ -18,9 +18,12 @@ public class gameManager : MonoBehaviour
 
     private money playerMoney;
     private PotionManager playerPotions;
+    public List<ResourceData> playerInventory;
 
     public Quest currentQuest;
     public bool isQuestInProgress;
+
+    public MapKingdomManager kingdomManager;
 
     void Awake()
     {
@@ -41,9 +44,11 @@ public class gameManager : MonoBehaviour
             player.AddComponent<money>();
             playerMoney = player.GetComponent<money>();
             playerPotions = player.GetComponent<PotionManager>();
+            playerInventory = new List<ResourceData>();
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
+        kingdomManager = FindObjectOfType<MapKingdomManager>();
     }
 
     // Update is called once per frame
@@ -107,21 +112,10 @@ public class gameManager : MonoBehaviour
         UIManager.instance.UnpauseGame();
     }
 
-    //public void StartNextWave()
-    //{
-    //    WaveManager.instance.StartNextWave();
-    //}
-
-    //public void EnemyDefeated()
-    //{
-    //    WaveManager.instance.EnemyDefeated();
-    //}
-
-
-    //public void UpdateGameGoal(int enemy)
-    //{
-    //    UIManager.instance.UpdateGameGoal(enemy);
-    //}
+    public void AddItemToInventory(ResourceData item)
+    {
+        playerInventory.Add(item);
+    }
 
     public void LoseUpdate()
     {

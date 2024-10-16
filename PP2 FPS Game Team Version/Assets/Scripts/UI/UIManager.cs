@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
 
     //map variables
     [SerializeField] public GameObject cityMapWindow;
+    [SerializeField] public GameObject enemyCityMapWindow;
     [SerializeField] public GameObject foodStoreWindow;
     [SerializeField] public GameObject luxuryStoreWindow;
     [SerializeField] public GameObject resourceStoreWindow;

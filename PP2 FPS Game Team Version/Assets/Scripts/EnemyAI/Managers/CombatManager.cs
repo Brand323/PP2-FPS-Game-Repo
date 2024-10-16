@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
@@ -64,7 +66,22 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             SpawnEnemies();
         }
-
+    }
+    public void CheckForVictory()
+    {
+        StartCoroutine(DelayedVictory());
+    }
+    public IEnumerator DelayedVictory()
+    {
+        yield return new  WaitForSeconds(0.1f);
+        if (enemiesExisting > 0) { yield break; }
+        for (int i = 0; i < 50; i++) { 
+            gameManager.instance.AddMoneyToPlayer(1);
+            UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
+            yield return new WaitForSeconds(0.03f);
+        }
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Map Scene");
     }
     public void SpawnEnemies()
     {
@@ -77,4 +94,5 @@ public class CombatManager : MonoBehaviour
             enemySpawnsList[i].AttemptSpawn();
         }
     }
+
 }
