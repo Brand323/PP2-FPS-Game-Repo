@@ -26,6 +26,7 @@ public class AllySpawner : MonoBehaviour
         if (!hasSpawned)
         {
             Instantiate(toSpawn, transform.position, transform.rotation);
+            hasSpawned = true;
         }
     }
 

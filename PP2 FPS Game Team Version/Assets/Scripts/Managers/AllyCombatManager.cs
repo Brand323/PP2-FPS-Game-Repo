@@ -26,6 +26,11 @@ public class AllyCombatManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
         spawnerList = new List<AllySpawner>();
@@ -43,11 +48,10 @@ public class AllyCombatManager : MonoBehaviour
     {
         if (onBattleGround)
         {
-            for (int i = 0; i < spawnerList.Count; i++)
+            for (int i = 0; i < companionList.Count; i++)
             {
                 spawnerList[i].ToSpawn = companionList[i];
                 spawnerList[i].SpawnAlly();
-                spawnerList.RemoveAt(i);
             }
             currEnemyCount = CombatManager.instance.enemiesExisting;
         }
