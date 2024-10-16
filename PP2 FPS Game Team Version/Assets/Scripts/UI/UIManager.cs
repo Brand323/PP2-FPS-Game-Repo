@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public Slider musicVolume;
 
     //Win condition
-    public TMP_Text victoryPopUp;
+    [SerializeField] public GameObject victoryPopUp;
 
     float originalTimeScale;
 
