@@ -20,6 +20,7 @@ public class gameManager : MonoBehaviour
     private PotionManager playerPotions;
     public List<ResourceData> playerInventory;
 
+    public QuestGiver questGiver;
     public Quest currentQuest;
     public bool isQuestInProgress;
 
@@ -49,6 +50,7 @@ public class gameManager : MonoBehaviour
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         kingdomManager = FindObjectOfType<MapKingdomManager>();
+        questGiver = FindObjectOfType<QuestGiver>();
             
     }
 
