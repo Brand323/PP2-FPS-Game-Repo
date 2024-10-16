@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     //Serialize fields
     [SerializeField] public GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
-    [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
 
@@ -44,10 +43,6 @@ public class UIManager : MonoBehaviour
     //map variables
     [SerializeField] public GameObject cityMapWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
-    [SerializeField] public GameObject activeStoreWindow;
-    [SerializeField] public GameObject foodStoreWindow;
-    [SerializeField] public GameObject luxuryStoreWindow;
-    [SerializeField] public GameObject resourceStoreWindow;
 
     //Options menu variables
     [SerializeField] public Slider sfxVolume;
@@ -128,8 +123,16 @@ public class UIManager : MonoBehaviour
             AudioManager.instance.backgtoundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         activateWindow(activeWindow);
         activeWindow = null;
     }

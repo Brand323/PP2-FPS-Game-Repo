@@ -24,17 +24,17 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseGame();
     }
 
-    public void resumeMap()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        UIManager.instance.isPaused = !UIManager.instance.isPaused;
-        gameManager.instance.UnpauseGame();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
+    //public void resumeMap()
+    //{
+    //    if (AudioManager.instance != null)
+    //    {
+    //        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+    //    }
+    //    UIManager.instance.isPaused = !UIManager.instance.isPaused;
+    //    gameManager.instance.UnpauseGame();
+    //    Cursor.visible = true;
+    //    Cursor.lockState = CursorLockMode.None;
+    //}
 
     public void restart()
     {
@@ -177,27 +177,6 @@ public class buttonFunctions : MonoBehaviour
     public void exitToMain()
     {
         editInput(UIManager.instance.mainWindow);
-    }
-
-    public void buyFood()
-    {
-        editInput(UIManager.instance.foodStoreWindow);
-    }
-
-
-    public void buyItem()
-    {
-        gameManager.instance.buyItem = true;
-    }
-
-    public void buyLuxury()
-    {
-        editInput(UIManager.instance.luxuryStoreWindow);
-    }
-
-    public void buyResource()
-    {
-        editInput(UIManager.instance.resourceStoreWindow);
     }
 
     public void exitToCity()
