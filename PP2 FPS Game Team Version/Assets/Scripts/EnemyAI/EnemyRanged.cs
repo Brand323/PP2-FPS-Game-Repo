@@ -19,6 +19,7 @@ public class EnemyRanged : BasicEnemyAI
         stopDistOrig = agent.stoppingDistance;
         angularSpeedOrig = agent.angularSpeed;
         speedOrig = agent.speed;
+        AllyCombatManager.instance.enemyList.Add(gameObject);
     }
 
     // Update is called once per frame
@@ -71,14 +72,12 @@ public class EnemyRanged : BasicEnemyAI
             rb.velocity = targetDir*fireBallInstance.GetComponent<Damage>().Speed;
         }
 
-
-        //fireBall.GetComponent<Rigidbody>().velocity = (target.transform.position - transform.position).normalized * fireBall.GetComponent<Damage>().Speed;
-        //RaycastHit hit;
-/*        if (Physics.Raycast(shootPos.position, targetDir, out hit,500))
-        {
-
-        }*/
-
-
+    }
+    public override void Death()
+    {
+        gameManager.instance.AddMoneyToPlayer(2);
+        UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
+        base.Death();
+        Destroy(gameObject);
     }
 }
