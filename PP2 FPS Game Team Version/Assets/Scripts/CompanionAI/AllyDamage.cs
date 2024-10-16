@@ -8,8 +8,9 @@ public class AllyDamage : MonoBehaviour
     [SerializeField] enum damageType { Magic, Melee }
     [SerializeField] damageType type;
 
-    // Parent script to access all the stats
-    MeleeAlly script;
+    // Parent scripts to access all the stats
+    MeleeAlly meleeScript;
+    RangedAlly rangedScript;
 
     // Amount of damage to apply to the enemy.
     float damageAmount;
@@ -18,8 +19,19 @@ public class AllyDamage : MonoBehaviour
     void Start()
     {
         // Sets the damage to the parent damage stat
-        script = GetComponentInParent<MeleeAlly>();
-        damageAmount = script.Damage;
+
+        if (type == damageType.Melee)
+        {
+            meleeScript = GetComponentInParent<MeleeAlly>();
+            damageAmount = meleeScript.Damage;
+        }
+        else if (type == damageType.Magic)
+        {
+            //rangedScript = GetComponentInParent<RangedAlly>();
+            //damageAmount = rangedScript.Damage;
+
+            damageAmount = 3;
+        }
     }
 
     // Detect enemy collision.
