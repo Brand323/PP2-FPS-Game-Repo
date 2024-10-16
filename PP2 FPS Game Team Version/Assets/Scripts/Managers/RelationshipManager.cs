@@ -39,19 +39,19 @@ public class RelationshipManager : MonoBehaviour
     {
         int relationshipKingdomPoints = relationship.kingdomPoints;
 
-        string relationshipRank = "";
+        //string relationshipRank = "";
 
-        // TODO: Make this more flexible.
-        if(relationshipKingdomPoints == -100)
-            relationshipRank = "Betrayer of the Kingdom";
-        if (relationshipKingdomPoints > -99 && relationshipKingdomPoints < -50)
-            relationshipRank = "Enemy";
-        else if (relationshipKingdomPoints > -49 && relationshipKingdomPoints < 49)
-            relationshipRank = "Neutral";
-        else if (relationshipKingdomPoints > 50 && relationshipKingdomPoints < 99)
-            relationshipRank = "Ally";
-        else if (relationshipKingdomPoints == 100)
-            relationshipRank = "Hero of the Kingdom";
+        //// TODO: Make this more flexible.
+        //if (relationshipKingdomPoints == -100)
+        //    relationshipRank = "Betrayer of the Kingdom";
+        //if (relationshipKingdomPoints > -99 && relationshipKingdomPoints < -50)
+        //    relationshipRank = "Enemy";
+        //else if (relationshipKingdomPoints > -49 && relationshipKingdomPoints < 49)
+        //    relationshipRank = "Neutral";
+        //else if (relationshipKingdomPoints > 50 && relationshipKingdomPoints < 99)
+        //    relationshipRank = "Ally";
+        //else if (relationshipKingdomPoints == 100)
+        //    relationshipRank = "Hero of the Kingdom";
 
         //Debug.Log($"Player is ranked {relationshipRank} to {relationship.kingdomData.kingdomName}.");
     }
