@@ -14,7 +14,6 @@ public class Bow : Weapon
     private bool canAttack = true;
     private bool isDrawingArrow = false;
     private bool bowIsFullyDrawn = false;
-    private bool bowShot = false;
     private float drawTime = 1.0f;
     public float attackCooldown = 4.0f;
 
@@ -112,7 +111,7 @@ public class Bow : Weapon
         bowAnimator.SetBool("IsDrawing", false);
         bowAnimator.SetTrigger("Shoot");
 
-        bowShot = true;
+
         canAttack = false;
         isDrawingArrow = false;
         bowIsFullyDrawn = false;

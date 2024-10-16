@@ -14,10 +14,6 @@ public class MeleeAlly : AllyBase
     // Start is called before the first frame update
     void Start()
     {
-        // Adds companion to the Combat Manager's list
-        AllyCombatManager.instance.CompanionList.Add(gameObject);
-        AllyCombatManager.instance.AllyArmySize += 1;
-
         currentTarget = AllyCombatManager.instance.TargetEnemy();
         weaponAnimator = GetComponentInChildren<Animator>();
     }
