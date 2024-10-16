@@ -15,7 +15,11 @@ public class AllyCombatManager : MonoBehaviour
     Vector3 allyArmyPos;
 
     List<GameObject> enemyList;
-    List<GameObject> companionList;
+    public List<GameObject> companionList;
+
+    List<AllySpawner> spawnerList;
+
+    public bool onBattleGround;
 
     void Awake()
     {
@@ -23,6 +27,9 @@ public class AllyCombatManager : MonoBehaviour
         {
             instance = this;
         }
+
+        spawnerList = new List<AllySpawner>();
+        enemyList = new List<GameObject>();
     }
 
     // Start is called before the first frame update
@@ -34,7 +41,16 @@ public class AllyCombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currEnemyCount = CombatManager.instance.enemiesExisting;
+        if (onBattleGround)
+        {
+            for (int i = 0; i < spawnerList.Count; i++)
+            {
+                spawnerList[i].ToSpawn = companionList[i];
+                spawnerList[i].SpawnAlly();
+                spawnerList.RemoveAt(i);
+            }
+            currEnemyCount = CombatManager.instance.enemiesExisting;
+        }
     }
 
     public void GroupEnemy()
@@ -69,6 +85,7 @@ public class AllyCombatManager : MonoBehaviour
 
     public List<GameObject> CompanionList { get { return companionList; } set { companionList = value; } }
     public List<GameObject> EnemyList { get { return enemyList; } set { enemyList = value; } }
+    public List<AllySpawner> SpawnerList { get { return spawnerList; } set { spawnerList = value; } }
     public int EnemyArmySize { get { return enemyArmySize; } set { enemyArmySize = value; } }
     public int AllyArmySize { get { return allyArmySize; } set { allyArmySize = value; } }
     public Vector3 AllyArmyPosition { get { return allyArmyPos; } set { allyArmyPos = value; } }

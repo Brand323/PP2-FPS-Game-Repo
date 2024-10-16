@@ -27,6 +27,9 @@ public class MeleeAlly : AllyBase
     {
         if (currentTarget == null)
         {
+            if (AllyCombatManager.instance.TargetEnemy() == null)
+                this.enabled = false;
+
             currentTarget = AllyCombatManager.instance.TargetEnemy();
         }
 

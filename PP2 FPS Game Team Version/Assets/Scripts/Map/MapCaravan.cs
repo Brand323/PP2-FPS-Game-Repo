@@ -25,11 +25,12 @@ public class MapCaravan : MonoBehaviour
     {
         if (town == null)
         {
-         //   Debug.LogError("Town reference is missing! Make sure the town is assigned properly.");
+            Debug.LogError("Town reference is missing! Make sure the town is assigned properly.");
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, town.position, speed * Time.deltaTime);
+        Debug.Log($"Caravan moving towards {town.position} from {transform.position}");
+        transform.position = Vector3.MoveTowards(transform.position, town.position, (speed * Time.deltaTime));
 
         if (Vector3.Distance(transform.position, town.position) < 0.1f)
         {

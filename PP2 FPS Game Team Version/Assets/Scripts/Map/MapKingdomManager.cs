@@ -22,7 +22,7 @@ public class MapKingdomManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Collider mapCollider = GameObject.FindGameObjectWithTag("Map").GetComponent<Collider>();
 
@@ -54,6 +54,11 @@ public class MapKingdomManager : MonoBehaviour
             Vector3 position = city.transform.position;
             AssignToKingdom(position, city.transform, isCity: true);
         }
+
+        Debug.Log($"Dwarves Kingdom has {townsInDwarfKingdom.Count} towns.");
+        Debug.Log($"Ogres Kingdom has {townsInOgreKingdom.Count} towns.");
+        Debug.Log($"Elves Kingdom has {townsInElfKingdom.Count} towns.");
+        Debug.Log($"Humans Kingdom has {townsInHumanKingdom.Count} towns.");
     }
 
     void AssignToKingdom(Vector3 position, Transform objectTransform, bool isCity)
@@ -86,27 +91,35 @@ public class MapKingdomManager : MonoBehaviour
 
     public Transform GetRandomTownFromKingdom(string kingdom)
     {
+        List<Transform> townList = null;
+
         switch (kingdom)
         {
             case "Dwarves":
-                if (townsInDwarfKingdom.Count > 0)
-                    return townsInDwarfKingdom[Random.Range(0, townsInDwarfKingdom.Count)];
+                townList = townsInDwarfKingdom;
                 break;
             case "Ogres":
-                if (townsInOgreKingdom.Count > 0)
-                    return townsInOgreKingdom[Random.Range(0, townsInOgreKingdom.Count)];
+                townList = townsInOgreKingdom;
                 break;
             case "Elves":
-                if (townsInElfKingdom.Count > 0)
-                    return townsInElfKingdom[Random.Range(0, townsInElfKingdom.Count)];
+                townList = townsInElfKingdom;
                 break;
             case "Humans":
-                if (townsInHumanKingdom.Count > 0)
-                    return townsInHumanKingdom[Random.Range(0, townsInHumanKingdom.Count)];
+                townList = townsInHumanKingdom;
                 break;
         }
 
-        return null;
+        if (townList == null || townList.Count == 0)
+        {
+            Debug.LogWarning($"No towns found for kingdom: {kingdom}");
+            return null;
+        }
+
+        // Debug number of available towns for this kingdom
+        Debug.Log($"Number of towns in {kingdom}: {townList.Count}");
+
+        // Return a random town
+        return townList[Random.Range(0, townList.Count)];
     }
 
     public bool IsCityInHumanKingdom(Transform city)
