@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Reflection.Emit;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
@@ -181,13 +184,10 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.foodStoreWindow);
     }
 
-    public void buyBarley()
+
+    public void buyItem()
     {
-        ResourceData newResource = ScriptableObject.CreateInstance<ResourceData>();
-        newResource.resourceName = "Barley";
-        newResource.resourceType = ResourceData.ResourceType.Food;
-        newResource.baseValue = 1;
-        //targetSettlement.resourcesStocked.Add(newResource);
+        gameManager.instance.buyItem = true;
     }
 
     public void buyLuxury()
@@ -203,6 +203,12 @@ public class buttonFunctions : MonoBehaviour
     public void exitToCity()
     {
         editInput(UIManager.instance.cityMapWindow);
+    }
+
+    public void fight()
+    {
+        CombatManager.instance.enemyArmySize = 5;
+        SceneManager.LoadScene("Combat Test Scene");
     }
 
     #region Private Functions

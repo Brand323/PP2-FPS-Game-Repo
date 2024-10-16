@@ -199,8 +199,13 @@ public class MapEnemyAi : MonoBehaviour
     {
         if (other.CompareTag("MapPlayer"))
         {
-            CombatManager.instance.enemyArmySize = armySize;
-            SceneManager.LoadScene("Combat Test Scene");
+            createCombat();
         }
+    }
+
+    public void createCombat()
+    {
+        CombatManager.instance.enemyArmySize = armySize;
+        SceneManager.LoadScene("Combat Test Scene");
     }
 }

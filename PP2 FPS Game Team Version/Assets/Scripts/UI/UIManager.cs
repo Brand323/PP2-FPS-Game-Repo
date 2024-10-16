@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     //Serialize fields
     [SerializeField] public GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
+    [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
 
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
     //map variables
     [SerializeField] public GameObject cityMapWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
+    [SerializeField] public GameObject activeStoreWindow;
     [SerializeField] public GameObject foodStoreWindow;
     [SerializeField] public GameObject luxuryStoreWindow;
     [SerializeField] public GameObject resourceStoreWindow;
