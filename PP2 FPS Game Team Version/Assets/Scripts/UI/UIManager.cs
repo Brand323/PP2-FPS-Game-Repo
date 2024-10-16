@@ -48,6 +48,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] public Slider sfxVolume;
     [SerializeField] public Slider musicVolume;
 
+    //Win condition
+    [SerializeField] public GameObject victoryPopUp;
+
     float originalTimeScale;
 
     public bool isPaused;
@@ -60,18 +63,21 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        StartCoroutine(startGame());
-        if (SceneManager.GetActiveScene().name != mapSceneName)
+        if (SceneManager.GetActiveScene().name != "CombatSceneArctic")
         {
-            // Shows everytime I swap to first person scene
-            // StartCoroutine(startGame());
+            StartCoroutine(startGame());
         }
-        else
-        {
-            // Do not lock cursor on map scene
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        //if (SceneManager.GetActiveScene().name != mapSceneName)
+        //{
+        //    // Shows everytime I swap to first person scene
+        //    // StartCoroutine(startGame());
+        //}
+        //else
+        //{
+        //    // Do not lock cursor on map scene
+        //    Cursor.visible = true;
+        //    Cursor.lockState = CursorLockMode.None;
+        //}
         sfxVolume.value = 0.4f;
         sfxVolume.maxValue = 1;
         musicVolume.value = 0.35f;
