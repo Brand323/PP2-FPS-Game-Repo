@@ -16,6 +16,7 @@ public class EnemyMelee : BasicEnemyAI
     // Start is called before the first frame update
     void Start()
     {
+        AllyCombatManager.instance.enemyList.Add(gameObject);
         CombatManager.instance.enemiesExisting++;
         colorOrig = model.material.color;
         stopDistOrig = agent.stoppingDistance;

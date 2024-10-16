@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [SerializeField] protected int faceTargetSpeed;
     [SerializeField] protected enum Type
     {
-        Human,
+        Normal,
         Dwarf,
         Elf,
         Ogre,
@@ -25,8 +26,9 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [Range(.1f, 10f)] [SerializeField] float detectTime;
     [SerializeField] float maxDetectionRange;
 
-    public GameObject lootItem1;
-    public GameObject lootItem2;
+    public GameObject coinPrefab;
+    public GameObject healthPotion;
+    public GameObject staminaPotion;
     GameObject nextPotion = null;
 
     protected bool targetInRange;
@@ -44,6 +46,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
 
 
     protected Coroutine detectionCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
