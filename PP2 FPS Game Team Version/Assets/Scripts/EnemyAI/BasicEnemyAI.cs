@@ -26,11 +26,6 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     [Range(.1f, 10f)] [SerializeField] float detectTime;
     [SerializeField] float maxDetectionRange;
 
-    public GameObject coinPrefab;
-    public GameObject healthPotion;
-    public GameObject staminaPotion;
-    GameObject nextPotion = null;
-
     protected bool targetInRange;
     protected Color colorOrig;
     protected Vector3 targetDir;
