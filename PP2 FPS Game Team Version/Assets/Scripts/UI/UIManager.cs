@@ -43,7 +43,6 @@ public class UIManager : MonoBehaviour
     //map variables
     [SerializeField] public GameObject cityMapWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
-    public bool inCombat;
 
     //Options menu variables
     [SerializeField] public Slider sfxVolume;
@@ -124,13 +123,16 @@ public class UIManager : MonoBehaviour
             AudioManager.instance.backgtoundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
-        if(inCombat)
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         activateWindow(activeWindow);
         activeWindow = null;
     }

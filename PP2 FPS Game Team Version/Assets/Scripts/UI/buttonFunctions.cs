@@ -24,17 +24,17 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseGame();
     }
 
-    public void resumeMap()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        UIManager.instance.isPaused = !UIManager.instance.isPaused;
-        gameManager.instance.UnpauseGame();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
+    //public void resumeMap()
+    //{
+    //    if (AudioManager.instance != null)
+    //    {
+    //        AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+    //    }
+    //    UIManager.instance.isPaused = !UIManager.instance.isPaused;
+    //    gameManager.instance.UnpauseGame();
+    //    Cursor.visible = true;
+    //    Cursor.lockState = CursorLockMode.None;
+    //}
 
     public void restart()
     {
