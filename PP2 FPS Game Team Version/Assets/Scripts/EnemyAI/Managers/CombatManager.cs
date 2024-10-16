@@ -44,11 +44,8 @@ public class CombatManager : MonoBehaviour
     }
     public void CheckToSpawn()
     {
-        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
-        {
             hasSpawned = false;
             StartCoroutine(DelayedSpawn());
-        }
     }
 
     // Update is called once per frame
@@ -79,7 +76,7 @@ public class CombatManager : MonoBehaviour
         if (hasSpawned) { yield return null; } else
         {
             hasSpawned = true;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             SpawnEnemies();
         }
     }
