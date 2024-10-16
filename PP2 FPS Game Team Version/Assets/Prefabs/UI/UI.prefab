@@ -11941,9 +11941,6 @@ GameObject:
   - component: {fileID: 9181663695773829219}
   - component: {fileID: 7570582702750911853}
   - component: {fileID: 2699511768627508091}
-  - component: {fileID: 7034533725063828047}
-  - component: {fileID: 4061187637283556128}
-  - component: {fileID: 3528069871281583751}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -12027,54 +12024,6 @@ MonoBehaviour:
   musicVolume: {fileID: 3542821069198943530}
   victoryPopUp: {fileID: 7873766349017787481}
   isPaused: 0
---- !u!114 &7034533725063828047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6410052504044064394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf0e40656ce10d438d31c0707e9b7c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companionList: []
-  onBattleGround: 0
---- !u!114 &4061187637283556128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6410052504044064394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f7785aa589540418661570b412f816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 1
-  attackingPlayerMax: 1
-  attackingPlayerCurr: 0
-  enemiesExisting: 0
-  enemyArmySize: 2
-  playerArmySize: 2
-  enemySpawnsList: []
-  hasSpawned: 0
---- !u!114 &3528069871281583751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6410052504044064394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf0e40656ce10d438d31c0707e9b7c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companionList: []
-  onBattleGround: 0
 --- !u!1 &6484246093952311705
 GameObject:
   m_ObjectHideFlags: 0
