@@ -208,7 +208,7 @@ public class buttonFunctions : MonoBehaviour
     public void fight()
     {
         CombatManager.instance.enemyArmySize = 5;
-        SceneManager.LoadScene("Combat Test Scene");
+        SceneManager.LoadScene("CombatSceneArctic");
     }
 
     #region Private Functions
