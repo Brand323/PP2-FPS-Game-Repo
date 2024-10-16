@@ -6,16 +6,20 @@ using UnityEngine;
 public class AllyCombatManager : MonoBehaviour
 {
     public static AllyCombatManager instance;
-    public int enemyArmySize;
-    public int allyArmySize;
-    public int currEnemyCount;
-    public int currAllyCount;
+    int enemyArmySize;
+    int allyArmySize;
+    int currEnemyCount;
+    int currAllyCount;
 
     Vector3 enemyArmyPos;
     Vector3 allyArmyPos;
 
-    public List<GameObject> enemyList;
+    List<GameObject> enemyList;
     public List<GameObject> companionList;
+
+    List<AllySpawner> spawnerList;
+
+    public bool onBattleGround;
 
     void Awake()
     {
@@ -23,19 +27,30 @@ public class AllyCombatManager : MonoBehaviour
         {
             instance = this;
         }
+
+        spawnerList = new List<AllySpawner>();
+        enemyList = new List<GameObject>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        AllyCombatManager.instance.enemyArmySize = CombatManager.instance.enemiesExisting;
-        currEnemyCount = companionList.Count;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        AllyCombatManager.instance.currEnemyCount = CombatManager.instance.enemiesExisting;
+        if (onBattleGround)
+        {
+            for (int i = 0; i < spawnerList.Count; i++)
+            {
+                spawnerList[i].ToSpawn = companionList[i];
+                spawnerList[i].SpawnAlly();
+                spawnerList.RemoveAt(i);
+            }
+            currEnemyCount = CombatManager.instance.enemiesExisting;
+        }
     }
 
     public void GroupEnemy()
@@ -60,13 +75,19 @@ public class AllyCombatManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, enemyList.Count);
             GameObject targetEnemy = enemyList[randomIndex];
 
-            Debug.Log("Targeting enemy");
             return targetEnemy;
         }
         else
-        {
-            Debug.Log("No enemies to target");
             return null;
-        }
     }
+
+    // Etters
+
+    public List<GameObject> CompanionList { get { return companionList; } set { companionList = value; } }
+    public List<GameObject> EnemyList { get { return enemyList; } set { enemyList = value; } }
+    public List<AllySpawner> SpawnerList { get { return spawnerList; } set { spawnerList = value; } }
+    public int EnemyArmySize { get { return enemyArmySize; } set { enemyArmySize = value; } }
+    public int AllyArmySize { get { return allyArmySize; } set { allyArmySize = value; } }
+    public Vector3 AllyArmyPosition { get { return allyArmyPos; } set { allyArmyPos = value; } }
+    public Vector3 EnemyArmyPosition { get { return enemyArmyPos; } set { enemyArmyPos = value; } }
 }

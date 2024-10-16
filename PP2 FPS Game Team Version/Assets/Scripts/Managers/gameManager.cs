@@ -25,6 +25,12 @@ public class gameManager : MonoBehaviour
 
     public MapKingdomManager kingdomManager;
 
+    #region Inventory Fields
+
+    public bool buyItem;
+
+    #endregion
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -49,12 +55,12 @@ public class gameManager : MonoBehaviour
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         kingdomManager = FindObjectOfType<MapKingdomManager>();
+            
     }
 
     // Update is called once per frame
     //void Update()
     //{
-
     //}
 
     public void AddMoneyToPlayer(int amount)

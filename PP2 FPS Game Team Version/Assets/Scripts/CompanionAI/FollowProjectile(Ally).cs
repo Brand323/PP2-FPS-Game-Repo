@@ -9,10 +9,12 @@ public class FollowProjectileAlly : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Rigidbody rb;
 
+    float dmg;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
     }
     // Update is called once per frame
     void Update()
@@ -32,12 +34,13 @@ public class FollowProjectileAlly : MonoBehaviour
             I_Damage damageable = other.GetComponent<I_Damage>();
             if (damageable != null)
             {
-                damageable.TakeDamage(3);
+                damageable.TakeDamage(dmg);
             }
         }
     }
 
     // Setter
 
-    public void SetTarget(Transform newTarget) { target = newTarget; }
+    public Transform Target { get { return target; }  set { target = value; } }
+    public float Damage { get { return dmg; } set { dmg = value; } }
 }

@@ -26,7 +26,7 @@ public class EnemyMelee : BasicEnemyAI
             meleeCol.enabled = false;
         }
         weaponAnimator.Play("TestSwordIdle");
-        AllyCombatManager.instance.enemyList.Add(gameObject);
+        AllyCombatManager.instance.EnemyList.Add(gameObject);
     }
     //do speed orig in the enemytype
     // Update is called once per frame

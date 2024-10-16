@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuyItem : MonoBehaviour
 {
-    [SerializeField] ResourceData item;
+    [SerializeField] public ResourceData item;
 
     // Update is called once per frame
     public void addItemToInventory()
@@ -12,6 +12,15 @@ public class BuyItem : MonoBehaviour
         if (item != null)
         {
             gameManager.instance.AddItemToInventory(item);
+        }
+    }
+
+    private void Update()
+    {
+        if(gameManager.instance.buyItem)
+        {
+            addItemToInventory();
+            gameManager.instance.buyItem = false;
         }
     }
 }
