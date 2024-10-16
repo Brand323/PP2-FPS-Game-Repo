@@ -76,6 +76,7 @@ public class ClickMove : MonoBehaviour
         playerArmySize = size;
        // Debug.Log("player Army Size set to: " + playerArmySize);
         UpdatePlayerArmySizeUI();
+        CombatManager.instance.playerArmySize = size;
     }
 
     void UpdatePlayerArmySizeUI()

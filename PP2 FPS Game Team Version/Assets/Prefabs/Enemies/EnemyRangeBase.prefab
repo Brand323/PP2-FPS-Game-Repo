@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 439908521596633187, guid: f56531df3b8d20842a5b5544fb819aba, type: 3}
       propertyPath: m_StoppingDistance
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 689620502037910158, guid: f56531df3b8d20842a5b5544fb819aba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3944635647003539200, guid: f56531df3b8d20842a5b5544fb819aba, type: 3}
       propertyPath: m_Name
-      value: EnemyRangeBase Variant
+      value: EnemyRangeBase
       objectReference: {fileID: 0}
     - target: {fileID: 4739634186214335802, guid: f56531df3b8d20842a5b5544fb819aba, type: 3}
       propertyPath: HP
@@ -158,7 +158,7 @@ MonoBehaviour:
   HP: 4
   detectionCol: {fileID: 4763948250347001889}
   detectTime: 4
-  maxDetectionRange: 20
+  maxDetectionRange: 40
   lootItem1: {fileID: 0}
   lootItem2: {fileID: 0}
   stopDistOrig: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   isEngaged: 0
   fireBall: {fileID: 7402348936258524225, guid: cba3a9c96c4555b45a4f1739c45670f0, type: 3}
   shootPos: {fileID: 4277807812365765911}
-  shootRate: 3
+  shootRate: 3.5
   animSpeedTrans: 0
   ignoreMask:
     serializedVersion: 2
