@@ -63,7 +63,8 @@ public class RangedAlly : AllyBase
         if (fireballScript != null)
         {
             // Pass the current target's transform to the fireball
-            fireballScript.SetTarget(currentTarget.transform);
+            fireballScript.Target = currentTarget.transform;
+            fireballScript.Damage = Dmg;
         }
     }
 }
