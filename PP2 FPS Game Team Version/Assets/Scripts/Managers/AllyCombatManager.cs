@@ -19,6 +19,9 @@ public class AllyCombatManager : MonoBehaviour
 
     List<AllySpawner> spawnerList;
 
+    [SerializeField] GameObject MeleeTemplate;
+    [SerializeField] GameObject RangedTemplate;
+
     public bool onBattleGround;
 
     void Awake()
@@ -83,6 +86,18 @@ public class AllyCombatManager : MonoBehaviour
         }
         else
             return null;
+    }
+
+    public void RecruitMeleeCompanion()
+    {
+        CompanionList.Add(MeleeTemplate);
+        allyArmySize += 1;
+    }
+
+    public void RecruitRangedCompanion()
+    {
+        CompanionList.Add(RangedTemplate);
+        allyArmySize += 1;
     }
 
     // Etters
