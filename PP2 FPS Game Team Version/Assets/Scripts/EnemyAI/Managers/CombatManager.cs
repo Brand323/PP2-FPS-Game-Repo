@@ -12,6 +12,8 @@ public class CombatManager : MonoBehaviour
     public int enemiesExisting;
     public int enemyArmySize;
     public int playerArmySize;
+    public List<EnemySpawn> enemySpawnsList;
+    public bool hasSpawned = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -27,6 +29,8 @@ public class CombatManager : MonoBehaviour
     }
     void Start()
     {
+        hasSpawned = false;
+        StartCoroutine(DelayedSpawn());
     }
 
     // Update is called once per frame
@@ -51,5 +55,26 @@ public class CombatManager : MonoBehaviour
     public void SetCombatLogic(int enemyCount, int companionCount)
     {
 
+    }
+    public IEnumerator DelayedSpawn()
+    {
+        if (hasSpawned) { yield return null; } else
+        {
+            hasSpawned = true;
+            yield return new WaitForSeconds(2);
+            SpawnEnemies();
+        }
+
+    }
+    public void SpawnEnemies()
+    {
+        for (int i = 0; i < enemyArmySize; i++)
+        {
+            if (enemySpawnsList.Count == i)
+            {
+                break;
+            }
+            enemySpawnsList[i].AttemptSpawn();
+        }
     }
 }
