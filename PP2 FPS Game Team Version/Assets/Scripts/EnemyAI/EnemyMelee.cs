@@ -124,6 +124,8 @@ public class EnemyMelee : BasicEnemyAI
     }
     public override void Death()
     {
+        gameManager.instance.AddMoneyToPlayer(1);
+        UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
         base.Death();
         Destroy(gameObject);
     }
