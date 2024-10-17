@@ -88,7 +88,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         }
         else
         {
-            Debug.Log("Not a target: " + other.name);
+        //    Debug.Log("Not a target: " + other.name);
         }
     }
 /*    private void OnTriggerExit(Collider other)
@@ -148,7 +148,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     }
     protected IEnumerator detectTargetCoroutine()
     {
-        Debug.Log("coroutine start***");
+      //  Debug.Log("coroutine start***");
         if (isExpanding) {
             yield break;
         }
@@ -163,7 +163,7 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         yield return new WaitForSeconds(.1f);
         isExpanding=false;
         detectionCoroutine = null;
-        Debug.Log("coroutine end********");
+        //Debug.Log("coroutine end********");
     }
     protected void detectTarget()
     {

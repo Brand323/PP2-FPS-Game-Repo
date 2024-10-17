@@ -12,27 +12,21 @@ public class MapCity : MonoBehaviour
     public float spawnOffset = 20f;
     private MapKingdomManager kingdomManager;
 
-    //Hashset to track the cities that have already spawned Caravans
-    private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();
-
     public bool caravanSpawned = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        kingdomManager = FindObjectOfType<MapKingdomManager>();
+        kingdomManager = MapKingdomManager.Instance;
 
         if (!kingdomManager.IsCityInHumanKingdom(transform))
         {
             SpawnEnemy();
         }
-
-        //Spawns one caravan at everycity
-
-        //if (!caravanSpawned)
-        //{
-        //    SpawnCaravansForThisCity();
-        //}
+        else
+        {
+            UpdateCityAppearance();
+        }
     }
 
     void SpawnEnemy()
@@ -166,7 +160,25 @@ public class MapCity : MonoBehaviour
         return null;
     }
 
-     //Test for Caravan Spawn val will trigger method with quest menu in the future
+    public void CaptureCityByPlayer()
+    {
+        MapKingdomManager.Instance.CaptureCityForHumanKingdom(transform);
+    }
+
+    void UpdateCityAppearance()
+    {
+        Renderer cityRenderer = GetComponent<Renderer>();
+
+        if (cityRenderer != null)
+        {
+            if (kingdomManager.IsCityInHumanKingdom(transform))
+            {
+                cityRenderer.material = kingdomManager.humanMaterial;
+            }
+        }
+    }
+
+    //Test for Caravan Spawn val will trigger method with quest menu in the future
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.CompareTag("MapPlayer"))

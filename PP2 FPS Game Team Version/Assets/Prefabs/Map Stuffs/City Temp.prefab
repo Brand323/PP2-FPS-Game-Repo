@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9e4c3344a6c6d0b4d90e87772b51e56b, type: 2}
+  - {fileID: 2100000, guid: 436440448be99b445bd4273dcf132d06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,3 +124,4 @@ MonoBehaviour:
   cityPrefab: {fileID: 4865268203061124323}
   caravanPrefab: {fileID: 2132784998165409505, guid: 3ad438bf853d3584eb2018cf037270f2, type: 3}
   spawnOffset: 25
+  caravanSpawned: 0

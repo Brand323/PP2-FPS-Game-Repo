@@ -49,7 +49,7 @@ public class Sword : Weapon
                 if (enemyDamage != null && weaponCollider.enabled)
                 {
                     enemyDamage.TakeDamage(damageAmount);
-                    Debug.Log($"{GetWeaponName()} did {damageAmount} damage to {other.name}");
+                  //  Debug.Log($"{GetWeaponName()} did {damageAmount} damage to {other.name}");
                 }
             }
         }
@@ -82,7 +82,7 @@ public class Sword : Weapon
 
         swordIsAttacking = false;
         canAttack = true;
-        Debug.Log("Attack finished.");
+       // Debug.Log("Attack finished.");
         FindObjectOfType<WeaponManager>().ResetWeaponState();
     }
 

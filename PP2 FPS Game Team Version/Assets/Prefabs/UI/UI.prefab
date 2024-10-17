@@ -269,6 +269,10 @@ MonoBehaviour:
   citiesInOgreKingdom: []
   citiesInElfKingdom: []
   citiesInHumanKingdom: []
+  dwarfMaterial: {fileID: 2100000, guid: 436440448be99b445bd4273dcf132d06, type: 2}
+  ogreMaterial: {fileID: 2100000, guid: 566af57a8e3f1d54a9b9f804d15d8f74, type: 2}
+  elfMaterial: {fileID: 2100000, guid: 02a64024ea26b3642ba32f604730195f, type: 2}
+  humanMaterial: {fileID: 2100000, guid: 9e4c3344a6c6d0b4d90e87772b51e56b, type: 2}
   mapMinX: -100
   mapMaxX: 100
   mapMinZ: -100

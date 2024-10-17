@@ -18,6 +18,12 @@ public class CombatManager : MonoBehaviour
     public List<EnemySpawn> enemySpawnsList;
     public bool hasSpawned = false;
 
+    //Checks if fighting for city or not
+    public bool isCityCombat = false;
+    private Transform cityInCombat;
+    public static Transform cityInCombatStatic;
+    private string cityNameInCombat;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,7 +40,82 @@ public class CombatManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "CombatSceneArctic")
+        {
+            Debug.Log("City in combat (static): " + (cityInCombatStatic != null ? cityInCombatStatic.name : "null"));
+
+            if (!string.IsNullOrEmpty(cityNameInCombat))
+            {
+                GameObject cityInScene = GameObject.Find(cityNameInCombat);
+                if (cityInScene != null)
+                {
+                    cityInCombatStatic = cityInScene.transform;
+                    Debug.Log("Reassigned cityInCombatStatic to: " + cityInScene.name);
+                }
+                else
+                {
+                    Debug.LogError("Could not find city by name: " + cityNameInCombat);
+                }
+            }
+
+            Debug.Log("City in combat (static): " + (cityInCombatStatic != null ? cityInCombatStatic.name : "null"));
+
+            ReassignPlayerForCombatScene();
+
+            if (isCityCombat && cityInCombatStatic != null)
+            {
+                Debug.Log("Continuing city combat for city: " + cityInCombatStatic.name);
+            }
+            else
+            {
+                Debug.LogError("No city set for city combat.");
+            }
+
+            StartCoroutine(DelayedSpawn());
+        }
+    }
+    private void ReassignPlayerForCombatScene()
+    {
+        //Debug.Log("Reassigning player for combat scene. City combat? " + isCityCombat);
+
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            FirstPersonController controller = player.GetComponent<FirstPersonController>();
+            if (controller == null)
+            {
+             
+                GameObject combatPlayerPrefab = Resources.Load<GameObject>("CombatPlayer");
+                if (combatPlayerPrefab != null)
+                {
+                    Destroy(player);
+                    GameObject newCombatPlayer = Instantiate(combatPlayerPrefab, Vector3.zero, Quaternion.identity);
+                    gameManager.instance.playerScript = newCombatPlayer.GetComponent<FirstPersonController>();
+                }
+            }
+            else
+            {
+                gameManager.instance.playerScript = controller;
+            }
+        }
+        else
+        {
+            GameObject combatPlayerPrefab = Resources.Load<GameObject>("CombatPlayer");
+            if (combatPlayerPrefab != null)
+            {
+                GameObject newCombatPlayer = Instantiate(combatPlayerPrefab, Vector3.zero, Quaternion.identity);
+                gameManager.instance.playerScript = newCombatPlayer.GetComponent<FirstPersonController>();
+            }
+        }
+    }
+
+
     void Start()
     {
         hasSpawned = false;
@@ -99,6 +180,16 @@ public class CombatManager : MonoBehaviour
             gameManager.instance.caravanArrived = true;
             gameManager.instance.isDefendingCaravan = false;
         }
+        if (isCityCombat && cityInCombatStatic != null)
+        {
+            Debug.Log("City in combat: " + cityInCombatStatic.name);
+            // Capture the city
+            MapKingdomManager.Instance.CaptureCityForHumanKingdom(cityInCombatStatic);
+        }
+        else
+        {
+            Debug.LogError("No city set for city combat victory. CityInCombat is null.");
+        }
         yield return new WaitForSeconds(3);
         UIManager.instance.victoryPopUp.SetActive(false);
         ClearSpawnerList();
@@ -123,5 +214,31 @@ public class CombatManager : MonoBehaviour
         {
             enemySpawnsList.Clear();
         }
+    }
+
+    public void InitiateCityCombat(Transform city)
+    {
+        if (city == null)
+        {
+            Debug.LogError("InitiateCityCombat: City is null.");
+            return;
+        }
+
+        isCityCombat = true;
+        cityInCombat = city;
+        cityInCombatStatic = city;
+        cityNameInCombat = city.name;
+        Debug.Log("Initiating combat for city: " + city.name);
+    }
+
+    public void InitiateArmyCombat()
+    {
+        isCityCombat = false;
+        cityInCombat = null;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class buttonFunctions : MonoBehaviour
 {
     private string input;
+    public Transform cityTransform;
 
     #region Basic Functions
 
@@ -206,13 +207,42 @@ public class buttonFunctions : MonoBehaviour
 
     public void fight()
     {
-        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
-        SceneManager.LoadScene("CombatSceneArctic");
+        if (gameManager.instance == null)
+        {
+            Debug.LogError("gameManager.instance is null in buttonFunctions.");
+            return;
+        }
+
+
+        Vector3 playerPosition = gameManager.instance.mapPlayer.transform.position;
+        Debug.Log("Player position: " + playerPosition);
+
+        Transform nearestCity = MapKingdomManager.Instance.GetNearestCity(playerPosition);
+
+        if (nearestCity != null)
+        {
+            Debug.Log("Nearest city found: " + nearestCity.name);
+
+            CombatManager.instance.InitiateCityCombat(nearestCity);
+            CombatManager.instance.enemyArmySize = Random.Range(3, 5);
+            SceneManager.LoadScene("CombatSceneArctic");
+            StartCoroutine(DelayedCheckToSpawn());
+        }
+        else
+        {
+            Debug.LogError("No nearby city found for combat.");
+        }
+    
+    }
+    private IEnumerator DelayedCheckToSpawn()
+    {
+        yield return new WaitForSeconds(3);
         CombatManager.instance.CheckToSpawn();
     }
 
     public void defend()
     {
+        CombatManager.instance.InitiateArmyCombat();
         CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
