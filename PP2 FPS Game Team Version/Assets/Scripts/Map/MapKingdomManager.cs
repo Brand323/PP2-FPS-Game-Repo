@@ -55,10 +55,10 @@ public class MapKingdomManager : MonoBehaviour
             AssignToKingdom(position, city.transform, isCity: true);
         }
 
-        Debug.Log($"Dwarves Kingdom has {townsInDwarfKingdom.Count} towns.");
-        Debug.Log($"Ogres Kingdom has {townsInOgreKingdom.Count} towns.");
-        Debug.Log($"Elves Kingdom has {townsInElfKingdom.Count} towns.");
-        Debug.Log($"Humans Kingdom has {townsInHumanKingdom.Count} towns.");
+        //Debug.Log($"Dwarves Kingdom has {townsInDwarfKingdom.Count} towns.");
+        //Debug.Log($"Ogres Kingdom has {townsInOgreKingdom.Count} towns.");
+        //Debug.Log($"Elves Kingdom has {townsInElfKingdom.Count} towns.");
+        //Debug.Log($"Humans Kingdom has {townsInHumanKingdom.Count} towns.");
     }
 
     void AssignToKingdom(Vector3 position, Transform objectTransform, bool isCity)
@@ -111,12 +111,12 @@ public class MapKingdomManager : MonoBehaviour
 
         if (townList == null || townList.Count == 0)
         {
-            Debug.LogWarning($"No towns found for kingdom: {kingdom}");
+       //     Debug.LogWarning($"No towns found for kingdom: {kingdom}");
             return null;
         }
 
         // Debug number of available towns for this kingdom
-        Debug.Log($"Number of towns in {kingdom}: {townList.Count}");
+     //   Debug.Log($"Number of towns in {kingdom}: {townList.Count}");
 
         // Return a random town
         return townList[Random.Range(0, townList.Count)];

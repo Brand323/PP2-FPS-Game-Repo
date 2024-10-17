@@ -140,12 +140,12 @@ public class MapCity : MonoBehaviour
 
             if (randomTown != null)
             {
-                Debug.Log($"Spawning caravan from {city.position} in {kingdom} to {randomTown.position}");
+             //   Debug.Log($"Spawning caravan from {city.position} in {kingdom} to {randomTown.position}");
                 caravanScript.Initialize(city, randomTown);
             }
             else
             {
-                Debug.LogWarning($"No towns found in {kingdom} for caravan to travel to.");
+            //    Debug.LogWarning($"No towns found in {kingdom} for caravan to travel to.");
                 Destroy(caravan); // Optionally destroy the caravan if no valid town is found
             }
         }
