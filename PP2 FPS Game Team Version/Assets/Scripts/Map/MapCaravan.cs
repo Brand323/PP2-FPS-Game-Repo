@@ -29,7 +29,7 @@ public class MapCaravan : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Caravan moving towards {town.position} from {transform.position}");
+        //Debug.Log($"Caravan moving towards {town.position} from {transform.position}");
         transform.position = Vector3.MoveTowards(transform.position, town.position, (speed * Time.deltaTime));
 
         if (Vector3.Distance(transform.position, town.position) < 0.1f)
