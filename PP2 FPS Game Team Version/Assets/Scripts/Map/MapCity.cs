@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapCity : MonoBehaviour
 {
@@ -25,10 +26,13 @@ public class MapCity : MonoBehaviour
         {
             SpawnEnemy();
         }
-        if (!caravanSpawned)
-        {
-            SpawnCaravansForThisCity();
-        }
+
+        //Spawns one caravan at everycity
+
+        //if (!caravanSpawned)
+        //{
+        //    SpawnCaravansForThisCity();
+        //}
     }
 
     void SpawnEnemy()
@@ -99,6 +103,45 @@ public class MapCity : MonoBehaviour
             }
         }
     }
+    void SpawnCaravanFromNearestCity(Transform playerTransform)
+    {
+        List<Transform> allCities = new List<Transform>();
+        allCities.AddRange(kingdomManager.citiesInDwarfKingdom);
+        allCities.AddRange(kingdomManager.citiesInOgreKingdom);
+        allCities.AddRange(kingdomManager.citiesInElfKingdom);
+        allCities.AddRange(kingdomManager.citiesInHumanKingdom);
+
+        Transform nearestCity = null;
+        float nearestDistance = Mathf.Infinity;
+
+        // Finds the nearest city to the player
+        foreach (Transform city in allCities)
+        {
+            float distanceToPlayer = Vector3.Distance(city.position, playerTransform.position);
+
+            if (distanceToPlayer < nearestDistance)
+            {
+                nearestDistance = distanceToPlayer;
+                nearestCity = city;
+            }
+        }
+
+        if (nearestCity != null && !caravanSpawned)
+        {
+            //Checks kingdom
+            string kingdom = GetCityKingdom(nearestCity);
+
+            if (kingdom != null)
+            {
+                SpawnCaravan(nearestCity, kingdom);
+                caravanSpawned = true;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No valid nearest city found or caravan already spawned.");
+        }
+    }
 
     string GetCityKingdom(Transform city)
     {
@@ -123,4 +166,12 @@ public class MapCity : MonoBehaviour
         return null;
     }
 
+     //Test for Caravan Spawn val will trigger method with quest menu in the future
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MapPlayer"))
+        {
+            SpawnCaravanFromNearestCity(other.transform);
+        }
+    }
 }
