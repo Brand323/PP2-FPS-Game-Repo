@@ -245,6 +245,19 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    public void buyCompanion()
+    {
+        if (gameManager.instance.PlayerMoneyValue >= 5)
+        {
+            gameManager.instance.AddCompanion();
+            gameManager.instance.PlayerMoneyValue -= 5;
+        }
+        else
+        {
+            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+        }
+    }
+
     public void exitNEM()
     {
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
