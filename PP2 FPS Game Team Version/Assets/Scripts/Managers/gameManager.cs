@@ -20,6 +20,12 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPosition;
 
     private money playerMoney;
+    private int playerMoneyValue;
+    public int PlayerMoneyValue
+    {
+        get { return playerMoneyValue; }
+        set { playerMoneyValue = value; }
+    }
     private PotionManager playerPotions;
 
     public QuestGiver questGiver;
@@ -89,6 +95,7 @@ public class gameManager : MonoBehaviour
         if (playerMoney != null)
         {
             playerMoney.SetCoinCount(amount);
+            playerMoneyValue += amount;
         }
     }
 

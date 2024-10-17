@@ -91,7 +91,6 @@ public class CombatManager : MonoBehaviour
         UIManager.instance.victoryPopUp.SetActive(true);
         for (int i = 0; i < 20; i++) { 
             gameManager.instance.AddMoneyToPlayer(1);
-            UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
             yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(3);

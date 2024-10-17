@@ -76,7 +76,6 @@ public class EnemyRanged : BasicEnemyAI
     public override void Death()
     {
         gameManager.instance.AddMoneyToPlayer(2);
-        UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
         base.Death();
         Destroy(gameObject);
     }

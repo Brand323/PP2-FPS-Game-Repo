@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
                 UnpauseGame();
             }
         }
+        moneyText.text = gameManager.instance.PlayerMoneyValue.ToString();
     }
 
     public IEnumerator startGame()
