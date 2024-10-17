@@ -206,14 +206,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void fight()
     {
-        CombatManager.instance.enemyArmySize = 5;
+        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
     }
 
     public void defend()
     {
-        CombatManager.instance.enemyArmySize = 3;
+        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
         gameManager.instance.isDefendingCaravan = true;

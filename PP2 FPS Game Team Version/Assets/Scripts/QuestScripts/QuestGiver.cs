@@ -17,7 +17,7 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveQuest()
     {
-        randomizer = Random.Range(1, 11);
+        randomizer = Random.Range(1, 20);
         if (!gameManager.instance.isQuestInProgress)
         {
             UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
@@ -26,7 +26,10 @@ public class QuestGiver : MonoBehaviour
                 if (gameManager.instance.currentCity != null && gameManager.instance.mapPlayer != null)
                 {
                     MapCity currCity = gameManager.instance.currentCity.GetComponent<MapCity>();
-                    currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                    if (!currCity.caravanSpawned)
+                    {
+                        currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                    }
                 }
                 quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
                 StartCoroutine(UIManager.instance.caravanAttackFeedBack());

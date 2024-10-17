@@ -15,7 +15,7 @@ public class MapCity : MonoBehaviour
     //Hashset to track the cities that have already spawned Caravans
     private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();
 
-    private bool caravanSpawned = false;
+    public bool caravanSpawned = false;
 
     // Start is called before the first frame update
     void Start()
