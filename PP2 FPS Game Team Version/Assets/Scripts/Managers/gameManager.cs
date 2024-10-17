@@ -18,7 +18,6 @@ public class gameManager : MonoBehaviour
 
     private money playerMoney;
     private PotionManager playerPotions;
-    public List<ResourceData> playerInventory;
 
     public QuestGiver questGiver;
     public Quest currentQuest;
@@ -45,7 +44,6 @@ public class gameManager : MonoBehaviour
             player.AddComponent<money>();
             playerMoney = player.GetComponent<money>();
             playerPotions = player.GetComponent<PotionManager>();
-            playerInventory = new List<ResourceData>();
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
@@ -112,11 +110,6 @@ public class gameManager : MonoBehaviour
     public void UnpauseGame()
     {
         UIManager.instance.UnpauseGame();
-    }
-
-    public void AddItemToInventory(ResourceData item)
-    {
-        playerInventory.Add(item);
     }
 
     public void LoseUpdate()

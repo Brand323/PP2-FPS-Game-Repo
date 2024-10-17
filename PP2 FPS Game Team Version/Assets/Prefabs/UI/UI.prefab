@@ -11978,7 +11978,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerSpawnPosition: {fileID: 0}
-  playerInventory: []
   questGiver: {fileID: 0}
   isQuestInProgress: 0
   kingdomManager: {fileID: 0}
@@ -12024,6 +12023,7 @@ MonoBehaviour:
   musicVolume: {fileID: 3542821069198943530}
   victoryPopUp: {fileID: 7873766349017787481}
   isPaused: 0
+  gameStarted: 0
 --- !u!1 &6484246093952311705
 GameObject:
   m_ObjectHideFlags: 0

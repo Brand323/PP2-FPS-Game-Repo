@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     float originalTimeScale;
 
     public bool isPaused;
+    public bool gameStarted;
 
     private string mapSceneName = "Map Scene";
 
@@ -63,9 +64,10 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        if (SceneManager.GetActiveScene().name != "CombatSceneArctic")
+        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
         {
             StartCoroutine(startGame());
+            gameStarted = true;
         }
         //if (SceneManager.GetActiveScene().name != mapSceneName)
         //{

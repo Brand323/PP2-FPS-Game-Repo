@@ -77,6 +77,8 @@ public class buttonFunctions : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    #region Quest Functions
+
     public void giveQuest()
     {
         if (AudioManager.instance != null)
@@ -113,6 +115,8 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isQuestInProgress = false;
     }
 
+    #endregion
+
     #region Difficulty Functions
 
     public void difficultyMenu()
@@ -144,9 +148,6 @@ public class buttonFunctions : MonoBehaviour
 
     #region Options Functions
 
-
-
-    #endregion
     GameObject previousWindow;
 
     public void optionsMenu()
@@ -175,6 +176,9 @@ public class buttonFunctions : MonoBehaviour
     {
         editInput(UIManager.instance.creditsWindow);
     }
+
+    #endregion
+
 
     public void exitToMain()
     {
