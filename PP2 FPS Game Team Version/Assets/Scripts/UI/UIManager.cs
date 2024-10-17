@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
 
     //map variables
     [SerializeField] public GameObject cityMapWindow;
+    [SerializeField] public GameObject notEnoughMoneyWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
     [SerializeField] public GameObject caravanAttackWindow;
     [SerializeField] public GameObject escortFailWindow;
@@ -98,6 +99,8 @@ public class UIManager : MonoBehaviour
             }
         }
         moneyText.text = gameManager.instance.PlayerMoneyValue.ToString();
+        healthPotionText.text = gameManager.instance.PlayerHealthPotions.ToString();
+        staminaPotionText.text = gameManager.instance.PlayerStaminaPotions.ToString();
     }
 
     public IEnumerator startGame()

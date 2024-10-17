@@ -219,6 +219,37 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isDefendingCaravan = true;
     }
 
+    public void buyHealthPotion()
+    {
+        if(gameManager.instance.PlayerMoneyValue >= 3)
+        {
+            gameManager.instance.AddHealthPotions(1);
+            gameManager.instance.PlayerMoneyValue -= 3;
+        }
+        else
+        {
+            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+        }
+    }
+
+    public void buyStaminaPotion()
+    {
+        if (gameManager.instance.PlayerMoneyValue >= 2)
+        {
+            gameManager.instance.AddStaminaPotions(1);
+            gameManager.instance.PlayerMoneyValue -= 2;
+        }
+        else
+        {
+            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+        }
+    }
+
+    public void exitNEM()
+    {
+        UIManager.instance.notEnoughMoneyWindow.SetActive(false);
+    }
+
     #region Private Functions
 
     void editInput(GameObject window)

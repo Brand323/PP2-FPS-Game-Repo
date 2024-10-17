@@ -27,6 +27,18 @@ public class gameManager : MonoBehaviour
         set { playerMoneyValue = value; }
     }
     private PotionManager playerPotions;
+    private int playerHealthPotions;
+    public int PlayerHealthPotions
+    {
+        get { return playerHealthPotions; }
+        set { playerHealthPotions = value; }
+    }
+    private int playerStaminaPotions;
+    public int PlayerStaminaPotions
+    {
+        get { return playerStaminaPotions; }
+        set { playerStaminaPotions = value; }
+    }
 
     public QuestGiver questGiver;
     public Quest currentQuest;
@@ -107,11 +119,13 @@ public class gameManager : MonoBehaviour
     public void AddHealthPotions(int amount)
     {
         playerPotions.AddHealthPotions(amount);
+        playerHealthPotions += amount;
     }
 
     public void AddStaminaPotions(int amount)
     {
         playerPotions.AddStaminaPotions(amount);
+        playerStaminaPotions += amount;
     }
 
     public int GetPlayerMoney()
