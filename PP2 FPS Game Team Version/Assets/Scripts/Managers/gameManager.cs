@@ -4,12 +4,15 @@ using UnityEngine;
 using TMPro;
 using System.Numerics;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
     public static gameManager instance;
+
+    public bool gameStarted;
 
     public GameObject player;
     public FirstPersonController playerScript;
@@ -31,10 +34,17 @@ public class gameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+        }
+
+        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
+        {
+            StartCoroutine(UIManager.instance.startGame());
+            gameStarted = true;
         }
 
         player = GameObject.FindWithTag("Player");
@@ -53,9 +63,24 @@ public class gameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-    //}
+    void Update()
+    {
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerScript = player.GetComponent<FirstPersonController>();
+                player.AddComponent<money>();
+                playerMoney = player.GetComponent<money>();
+                playerPotions = player.GetComponent<PotionManager>();
+            }
+            playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
+            kingdomManager = FindObjectOfType<MapKingdomManager>();
+            questGiver = FindObjectOfType<QuestGiver>();
+            questGiver.SetQuest = currentQuest;
+        }
+    }
 
     public void AddMoneyToPlayer(int amount)
     {

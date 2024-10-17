@@ -54,7 +54,6 @@ public class UIManager : MonoBehaviour
     float originalTimeScale;
 
     public bool isPaused;
-    public bool gameStarted;
 
     private string mapSceneName = "Map Scene";
 
@@ -64,11 +63,6 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
-        {
-            StartCoroutine(startGame());
-            gameStarted = true;
-        }
         //if (SceneManager.GetActiveScene().name != mapSceneName)
         //{
         //    // Shows everytime I swap to first person scene
@@ -103,7 +97,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    IEnumerator startGame()
+    public IEnumerator startGame()
     {
         yield return new WaitForSeconds(0f);
         isPaused = true;

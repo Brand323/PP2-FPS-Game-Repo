@@ -17,10 +17,16 @@ public class KillGoal : QuestGoal
 
     public void EnemyDiedCheck()
     {
-        //if bandit amount has decreased
-        //CurrentAmount = startingBanditCount - currentBanditCount;
         
-        if(CombatManager.instance.enemiesExisting < startingBanditCount)
+        //if(CombatManager.instance.enemiesExisting < startingBanditCount)
+        //{
+        //    CurrentAmount = startingBanditCount - CombatManager.instance.enemiesExisting;
+        //}
+        if(CombatManager.instance.enemiesExisting > 0 && startingBanditCount == 0)
+        {
+            startingBanditCount = CombatManager.instance.enemiesExisting;
+        }
+        if (CombatManager.instance.enemiesExisting < startingBanditCount)
         {
             CurrentAmount = startingBanditCount - CombatManager.instance.enemiesExisting;
         }

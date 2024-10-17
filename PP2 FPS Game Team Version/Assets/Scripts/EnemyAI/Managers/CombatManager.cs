@@ -95,6 +95,8 @@ public class CombatManager : MonoBehaviour
         }
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Map Scene");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void SpawnEnemies()
     {

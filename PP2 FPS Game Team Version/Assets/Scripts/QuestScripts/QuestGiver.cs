@@ -9,6 +9,12 @@ public class QuestGiver : MonoBehaviour
     private int randomizer;
     private int requiredAmount;
 
+    public Quest SetQuest
+    {
+        get { return quest; }
+        set { quest = value; }
+    }
+
     public void GiveQuest()
     {
         randomizer = Random.Range(11, 20);

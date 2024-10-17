@@ -195,14 +195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 4061187637283556128, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: enemyArmySize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061187637283556128, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: playerArmySize
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6186469655596444453, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -283,12 +275,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7034533725063828047, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4061187637283556128, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3645,6 +3632,56 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2055404755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055404757}
+  - component: {fileID: 2055404756}
+  m_Layer: 0
+  m_Name: gameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2055404756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055404755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944f17a5a98359f48ab067ff359723ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  playerSpawnPosition: {fileID: 0}
+  questGiver: {fileID: 0}
+  isQuestInProgress: 0
+  kingdomManager: {fileID: 0}
+--- !u!4 &2055404757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055404755}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.42097, y: 62.370514, z: 37.293507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2111187910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3798,3 +3835,4 @@ SceneRoots:
   - {fileID: 532773783}
   - {fileID: 792548906}
   - {fileID: 1402106755}
+  - {fileID: 2055404757}
