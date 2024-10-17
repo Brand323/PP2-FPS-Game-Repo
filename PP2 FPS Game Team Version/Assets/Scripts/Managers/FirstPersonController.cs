@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -632,10 +634,57 @@ public class FirstPersonController : MonoBehaviour, I_Damage
     // Sets the player's health to 0 and brings up the loss menu.
     private void KillPlayer()
     {
-        currentHealth = 0;
-        playerIsDead = true;
+        if (CombatManager.instance.GetDifficulty() == 1)
+        {
+            //send to nearest city
 
-        gameManager.instance.LoseUpdate();
+            gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
+            gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
+        }
+        else if (CombatManager.instance.GetDifficulty() == 2) 
+        {
+            if (gameManager.instance.GetPlayerMoney() >= 10)
+            {
+                gameManager.instance.AddMoneyToPlayer((int)Mathf.Ceil(gameManager.instance.GetPlayerMoney() * .1f) * -1);
+            }
+            if (gameManager.instance.GetHealthPotions() > 1)
+            {
+                gameManager.instance.AddHealthPotions(-1);
+            }
+            if (gameManager.instance.GetStaminaPotions() > 1)
+            {
+                gameManager.instance.AddStaminaPotions(-1);
+            }
+            gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
+            gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
+            //send to nearest city
+
+        } else if (CombatManager.instance.GetDifficulty() == 3)
+        {
+            if (gameManager.instance.GetPlayerMoney() >= 10)
+            {
+                gameManager.instance.AddMoneyToPlayer((int)Mathf.Ceil(gameManager.instance.GetPlayerMoney() * .33f)*-1);
+
+            }
+            if (gameManager.instance.GetHealthPotions() > 2)
+            {
+                gameManager.instance.AddHealthPotions(-2);
+            }
+            if (gameManager.instance.GetStaminaPotions() > 2)
+            {
+                gameManager.instance.AddStaminaPotions(-2);
+            }
+            gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
+            gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
+            //send to nearest city
+
+        } else if (CombatManager.instance.GetDifficulty() == 4)
+        {
+            //game ends, shows loss screen. this code is unchanged.
+            currentHealth = 0;
+            playerIsDead = true;
+            gameManager.instance.LoseUpdate();
+        }
     }
 
 
