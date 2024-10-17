@@ -41,12 +41,6 @@ public class gameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
-        {
-            StartCoroutine(UIManager.instance.startGame());
-            gameStarted = true;
-        }
-
         player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -79,6 +73,14 @@ public class gameManager : MonoBehaviour
             kingdomManager = FindObjectOfType<MapKingdomManager>();
             questGiver = FindObjectOfType<QuestGiver>();
             questGiver.SetQuest = currentQuest;
+        }
+        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
+        {
+            if (UIManager.instance != null)
+            {
+                StartCoroutine(UIManager.instance.startGame());
+            }
+            gameStarted = true;
         }
     }
 
