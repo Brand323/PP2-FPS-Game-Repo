@@ -24,7 +24,7 @@ public class money : MonoBehaviour
         if(other.transform.tag == "Coin")
         {
             CoinCount++;
-            UIManager.instance.moneyText.text = CoinCount.ToString();
+            //UIManager.instance.moneyText.text = CoinCount.ToString();
             Destroy(other.gameObject);
         }
     }

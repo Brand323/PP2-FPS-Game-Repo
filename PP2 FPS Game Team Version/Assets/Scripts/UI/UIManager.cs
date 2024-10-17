@@ -190,17 +190,14 @@ public class UIManager : MonoBehaviour
             if (gameManager.instance.currentQuest.GoldReward > 0)
             {
                 StartCoroutine(rewardFeedBack(GoldRewardImage));
-                moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
             }
             if (gameManager.instance.currentQuest.HealthPotionReward > 0)
             {
                 StartCoroutine(rewardFeedBack(HealthRewardImage));
-                healthPotionText.text = gameManager.instance.GetHealthPotions().ToString();
             }
             if (gameManager.instance.currentQuest.StaminaPotionReward > 0)
             {
                 StartCoroutine(rewardFeedBack(StaminaRewardImage));
-                staminaPotionText.text = gameManager.instance.GetStaminaPotions().ToString();
             }
         }
     }

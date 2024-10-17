@@ -24,6 +24,8 @@ public class PotionManager : MonoBehaviour
 
     void Update()
     {
+        healthPotionCount = gameManager.instance.PlayerHealthPotions;
+        staminaPotionCount = gameManager.instance.PlayerStaminaPotions;
         if (Input.GetKeyDown(KeyCode.N))
         {
             UsePotion("Health");
@@ -39,13 +41,15 @@ public class PotionManager : MonoBehaviour
         {
             gameManager.instance.playerScript.AddHealth(25);
             healthPotionCount--;
-            UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
+            gameManager.instance.PlayerHealthPotions--;
+            //UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
         }
         else if (type == "Stamina" && gameManager.instance.playerScript.currentStamina < gameManager.instance.playerScript.MaxStaminaPoints && staminaPotionCount > 0)
         {
             gameManager.instance.playerScript.AddStamina(25);
             staminaPotionCount--;
-            UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
+            gameManager.instance.PlayerStaminaPotions--;
+            //UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
         }
     }
 
@@ -68,12 +72,12 @@ public class PotionManager : MonoBehaviour
         if (type == "Health")
         {
             healthPotionCount = count;
-            UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
+            //UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
         }
         else if (type == "Stamina")
         {
             staminaPotionCount = count;
-            UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
+            //UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
         }
     }
 
@@ -96,12 +100,12 @@ public class PotionManager : MonoBehaviour
             if (potion.type == Potion.potionType.health)
             {
                 healthPotionCount++;
-                UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
+                //UIManager.instance.healthPotionText.text = healthPotionCount.ToString();
             }
             else if (potion.type == Potion.potionType.stamina)
             {
                 staminaPotionCount++;
-                UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
+                //UIManager.instance.staminaPotionText.text = staminaPotionCount.ToString();
             }
 
             Destroy(other.gameObject);
