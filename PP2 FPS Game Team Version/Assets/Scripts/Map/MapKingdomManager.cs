@@ -121,6 +121,51 @@ public class MapKingdomManager : MonoBehaviour
         // Return a random town
         return townList[Random.Range(0, townList.Count)];
     }
+    public Transform GetRandomCityFromKingdom(string kingdom)
+    {
+        List<Transform> cityList = null;
+
+        switch (kingdom)
+        {
+            case "Dwarves":
+                cityList = citiesInDwarfKingdom;
+                break;
+            case "Ogres":
+                cityList = citiesInOgreKingdom;
+                break;
+            case "Elves":
+                cityList = citiesInElfKingdom;
+                break;
+            case "Humans":
+                cityList = citiesInHumanKingdom;
+                break;
+        }
+
+        if (cityList == null || cityList.Count == 0)
+        {
+            return null;
+        }
+
+        return cityList[Random.Range(0, cityList.Count)];
+    }
+
+    public List<Transform> GetCityListForKingdom(string kingdom)
+    {
+        switch (kingdom)
+        {
+            case "Dwarves":
+                return citiesInDwarfKingdom;
+            case "Ogres":
+                return citiesInOgreKingdom;
+            case "Elves":
+                return citiesInElfKingdom;
+            case "Humans":
+                return citiesInHumanKingdom;
+            default:
+                Debug.LogError($"Kingdom '{kingdom}' not recognized.");
+                return null;
+        }
+    }
 
     public bool IsCityInHumanKingdom(Transform city)
     {

@@ -11,6 +11,11 @@ public class MapCity : MonoBehaviour
     public float spawnOffset = 20f;
     private MapKingdomManager kingdomManager;
 
+    //Hashset to track the cities that have already spawned Caravans
+    private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();
+
+    private bool caravanSpawned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +25,10 @@ public class MapCity : MonoBehaviour
         {
             SpawnEnemy();
         }
-
-        SpawnCaravansAtRandomCitiesOnce();
+        if (!caravanSpawned)
+        {
+            SpawnCaravansForThisCity();
+        }
     }
 
     void SpawnEnemy()
@@ -41,87 +48,29 @@ public class MapCity : MonoBehaviour
         }
     }
 
-    //void SpawnCaravan()
-    //{
-    //    //Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
-    //    //GameObject caravan = Instantiate(caravanPrefab, spawnPosition, Quaternion.identity);
-
-    //    //MapCaravan caravanScript = caravan.GetComponent<MapCaravan>();
-
-    //    //if (caravanScript != null)
-    //    //{
-    //    //    string cityKingdom = GetCityKingdom(transform);
-    //    //    Debug.Log($"City at {transform.position} belongs to kingdom: {cityKingdom}");
-
-    //    //    Transform randomTown = kingdomManager.GetRandomTownFromKingdom(cityKingdom);
-
-    //    //    // check if a valid town was found
-    //    //    if (randomTown != null)
-    //    //    {
-    //    //        Debug.Log($"Initializing caravan at {transform.position} to travel to {randomTown.position} in kingdom {cityKingdom}");
-    //    //        caravanScript.Initialize(transform, randomTown);
-    //    //    }
-    //    //    else
-    //    //    {
-    //    //        // Handle the case when there is no town found
-    //    //        Debug.LogError($"No valid towns found in the {cityKingdom} kingdom for caravan to initialize.");
-    //    //        Destroy(caravan);
-    //    //    }
-
-    //    //}
-    //    // NEW BELOW
-
-    //    // Create a list of all kingdom names
-    //    string[] kingdoms = { "Dwarves", "Ogres", "Elves", "Humans" };
-
-    //    foreach (string kingdom in kingdoms)
-    //    {
-    //        // Get all towns for current kingdom
-    //        Transform randomTown = kingdomManager.GetRandomTownFromKingdom(kingdom);
-
-    //        if (randomTown != null)
-    //        {
-    //            // Randomize the spawn pos for the caravan
-    //            Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
-    //            GameObject caravan = Instantiate(caravanPrefab, spawnPosition, Quaternion.identity);
-
-    //            // Get caravan script and intialize
-    //            MapCaravan caravanScript = caravan.GetComponent<MapCaravan>();
-    //            if (caravanScript != null)
-    //            {
-    //                Debug.Log($"Spawning caravan in {kingdom} kingdom, travelling to {randomTown.position}");
-    //                caravanScript.Initialize(transform, randomTown);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError($"No towns found for {kingdom} kingdom. Caravan not spawned.");
-    //        }
-    //    }
-    //}
-
-    void SpawnCaravansAtRandomCitiesOnce()
+    void SpawnCaravansForThisCity()
     {
-        // List of all kingdom names
-        string[] kingdoms = { "Dwarves", "Ogres", "Elves", "Humans" };
-
-        foreach (string kingdom in kingdoms)
+        // Make sure the caravan spawns only once for this city
+        if (!caravanSpawned)
         {
-            // Get a random city in the kingdom
-            Transform randomCity = kingdomManager.GetRandomTownFromKingdom(kingdom);
+            // Get the kingdom of the current city
+            string kingdom = GetCityKingdom(transform);
 
-            if (randomCity != null)
+            // If the kingdom is valid, spawn a caravan
+            if (kingdom != null)
             {
-                // Spawn a caravan at the random city
-                SpawnCaravan(randomCity, kingdom);
+                SpawnCaravan(transform, kingdom);
+
+                // Mark the caravan as spawned for this city
+                caravanSpawned = true;
             }
             else
             {
-                Debug.LogWarning($"No cities found for {kingdom} kingdom. Cannot spawn caravan.");
+                Debug.LogWarning($"Kingdom for city at {transform.position} could not be determined.");
             }
         }
     }
-
+   
     void SpawnCaravan(Transform city, string kingdom)
     {
         // Randomize spawn position around the city
@@ -148,20 +97,6 @@ public class MapCity : MonoBehaviour
             //    Debug.LogWarning($"No towns found in {kingdom} for caravan to travel to.");
                 Destroy(caravan); // Optionally destroy the caravan if no valid town is found
             }
-        }
-    }
-
-public void ManuallySpawnCaravan(string kingdom)
-    {
-        Transform randomCity = kingdomManager.GetRandomTownFromKingdom(kingdom);
-
-        if (randomCity != null)
-        {
-            SpawnCaravan(randomCity, kingdom);
-        }
-        else
-        {
-            Debug.LogWarning($"No cities found for {kingdom}. Cannot spawn caravan manually.");
         }
     }
 
