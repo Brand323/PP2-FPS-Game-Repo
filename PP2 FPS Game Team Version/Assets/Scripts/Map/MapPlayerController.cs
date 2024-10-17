@@ -96,6 +96,7 @@ public class ClickMove : MonoBehaviour
     {
         if(other.tag == "City")
         {
+            gameManager.instance.currentCity = other.gameObject;
             UIManager.instance.isPaused = !UIManager.instance.isPaused;
             if (gameManager.instance.kingdomManager.IsCityInHumanKingdom(other.transform) == true)
             {

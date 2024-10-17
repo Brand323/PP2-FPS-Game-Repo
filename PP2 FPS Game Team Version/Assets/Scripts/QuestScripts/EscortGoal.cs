@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EscortGoal : QuestGoal
 {
-    Vector3 initialPosition;
-    Vector3 finalPosition;
-
-    public EscortGoal(Vector3 _initialPosition, Vector3 _finalPosition, string _description, bool _isReached, int _currentAmount, int _requiredAmount)
+    private bool caravanArrived;
+    public bool CaravanArrived
     {
-        initialPosition = _initialPosition;
-        finalPosition = _finalPosition;
+        get { return caravanArrived; }
+        set { caravanArrived = value; }
+    }
+
+    public EscortGoal(bool _caravanArrived, string _description, bool _isReached, int _currentAmount, int _requiredAmount)
+    {
+        caravanArrived = _caravanArrived;
         GoalDescription = _description;
         IsGoalReached = _isReached;
         CurrentAmount = _currentAmount;
@@ -19,7 +22,10 @@ public class EscortGoal : QuestGoal
 
     public void EscortDoneCheck()
     {
-        //Check if the object escorted is in finalPosition and not dead
+        if(gameManager.instance.caravanArrived)
+        {
+            CurrentAmount = 1;
+        }
     }
 
     public override void evaluateGoalState()

@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     //map variables
     [SerializeField] public GameObject cityMapWindow;
     [SerializeField] public GameObject enemyCityMapWindow;
+    [SerializeField] public GameObject caravanAttackWindow;
+    [SerializeField] public GameObject escortFailWindow;
 
     //Options menu variables
     [SerializeField] public Slider sfxVolume;
@@ -148,7 +150,18 @@ public class UIManager : MonoBehaviour
 
     public void LoseUpdate()
     {
-        if (!isPaused)
+        if(gameManager.instance.isDefendingCaravan)
+        {
+            gameManager.instance.isDefendingCaravan = false;
+            gameManager.instance.caravanArrived = false;
+            gameManager.instance.isQuestInProgress = false;
+            if (!isPaused)
+            {
+                isPaused = true;
+                PauseGame(escortFailWindow);
+            }
+        }
+        else if (!isPaused)
         {
             isPaused = true;
             PauseGame(loseWindow);
@@ -194,5 +207,12 @@ public class UIManager : MonoBehaviour
         window.SetActive(true);
         yield return new WaitForSeconds(0.8f);
         window.SetActive(false);
+    }
+
+    public IEnumerator caravanAttackFeedBack()
+    {
+        yield return new WaitForSeconds(Random.Range(0.5f, 3f));
+        isPaused = !isPaused;
+        PauseGame(caravanAttackWindow);
     }
 }

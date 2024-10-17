@@ -115,6 +115,20 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isQuestInProgress = false;
     }
 
+    public void loseEscortQuest()
+    {
+        gameManager.instance.caravanArrived = false;
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        gameManager.instance.UnpauseGame();
+        gameManager.instance.isQuestInProgress = false;
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.PauseGame(UIManager.instance.escortFailWindow);
+    }
+
     #endregion
 
     #region Difficulty Functions
@@ -194,6 +208,15 @@ public class buttonFunctions : MonoBehaviour
     {
         CombatManager.instance.enemyArmySize = 5;
         SceneManager.LoadScene("CombatSceneArctic");
+        CombatManager.instance.CheckToSpawn();
+    }
+
+    public void defend()
+    {
+        CombatManager.instance.enemyArmySize = 3;
+        SceneManager.LoadScene("CombatSceneArctic");
+        CombatManager.instance.CheckToSpawn();
+        gameManager.instance.isDefendingCaravan = true;
     }
 
     #region Private Functions

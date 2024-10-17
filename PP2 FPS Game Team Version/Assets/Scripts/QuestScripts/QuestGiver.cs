@@ -17,13 +17,19 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveQuest()
     {
-        randomizer = Random.Range(11, 20);
+        randomizer = Random.Range(1, 11);
         if (!gameManager.instance.isQuestInProgress)
         {
             UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
             if(randomizer < 11)
             {
-                quest = new GatherQuest(Random.Range(1, 10), Random.Range(3, 5), Random.Range(1, 3), Random.Range(3, 5));
+                if (gameManager.instance.currentCity != null && gameManager.instance.mapPlayer != null)
+                {
+                    MapCity currCity = gameManager.instance.currentCity.GetComponent<MapCity>();
+                    currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                }
+                quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
+                StartCoroutine(UIManager.instance.caravanAttackFeedBack());
             }
             else if(randomizer > 10 && randomizer < 21)
             {

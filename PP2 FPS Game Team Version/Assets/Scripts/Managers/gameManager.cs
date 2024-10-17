@@ -31,8 +31,12 @@ public class gameManager : MonoBehaviour
     public QuestGiver questGiver;
     public Quest currentQuest;
     public bool isQuestInProgress;
+    public bool caravanArrived;
+    public bool isDefendingCaravan;
 
     public MapKingdomManager kingdomManager;
+    public GameObject currentCity;
+    public ClickMove mapPlayer; 
 
     void Awake()
     {
@@ -59,7 +63,7 @@ public class gameManager : MonoBehaviour
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
         kingdomManager = FindObjectOfType<MapKingdomManager>();
         questGiver = FindObjectOfType<QuestGiver>();
-            
+        mapPlayer = FindObjectOfType<ClickMove>();
     }
 
     // Update is called once per frame
@@ -78,6 +82,7 @@ public class gameManager : MonoBehaviour
             playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
             kingdomManager = FindObjectOfType<MapKingdomManager>();
             questGiver = FindObjectOfType<QuestGiver>();
+            mapPlayer = FindObjectOfType<ClickMove>();
             questGiver.SetQuest = currentQuest;
         }
         if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)

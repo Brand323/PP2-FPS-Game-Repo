@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -92,6 +93,11 @@ public class CombatManager : MonoBehaviour
         for (int i = 0; i < 20; i++) { 
             gameManager.instance.AddMoneyToPlayer(1);
             yield return new WaitForSeconds(0.03f);
+        }
+        if (gameManager.instance.isDefendingCaravan)
+        {
+            gameManager.instance.caravanArrived = true;
+            gameManager.instance.isDefendingCaravan = false;
         }
         yield return new WaitForSeconds(3);
         UIManager.instance.victoryPopUp.SetActive(false);
