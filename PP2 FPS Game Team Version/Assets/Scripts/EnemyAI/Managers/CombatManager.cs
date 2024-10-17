@@ -88,12 +88,15 @@ public class CombatManager : MonoBehaviour
     {
         yield return new  WaitForSeconds(0.1f);
         if (enemiesExisting > 0) { yield break; }
-        for (int i = 0; i < 50; i++) { 
+        UIManager.instance.victoryPopUp.SetActive(true);
+        for (int i = 0; i < 20; i++) { 
             gameManager.instance.AddMoneyToPlayer(1);
             UIManager.instance.moneyText.text = gameManager.instance.GetPlayerMoney().ToString();
             yield return new WaitForSeconds(0.03f);
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
+        UIManager.instance.victoryPopUp.SetActive(false);
+        ClearSpawnerList();
         SceneManager.LoadScene("Map Scene");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -109,5 +112,11 @@ public class CombatManager : MonoBehaviour
             enemySpawnsList[i].AttemptSpawn();
         }
     }
-
+    public void ClearSpawnerList()
+    {
+        if (enemySpawnsList.Count > 0)
+        {
+            enemySpawnsList.Clear();
+        }
+    }
 }
