@@ -31,9 +31,8 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        UIManager.instance.isPaused = !UIManager.instance.isPaused;
-        gameManager.instance.UnpauseGame();
+        CombatManager.instance.exitToMap();
+
         //if(gameManager.instance.playerScript.playerIsDead)
         //{
         //    gameManager.instance.playerScript.currentHealth = gameManager.instance.playerScript.MaxHealthPoints;

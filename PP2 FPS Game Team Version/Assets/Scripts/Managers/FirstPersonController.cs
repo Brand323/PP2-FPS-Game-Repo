@@ -684,6 +684,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             currentHealth = 0;
             playerIsDead = true;
             gameManager.instance.LoseUpdate();
+            gameManager.instance.isQuestInProgress = false;
         }
     }
 
