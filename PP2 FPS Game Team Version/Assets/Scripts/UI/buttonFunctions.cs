@@ -171,6 +171,9 @@ public class buttonFunctions : MonoBehaviour
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
         previousWindow = UIManager.instance.activeWindow;
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
+        UIManager.instance.UnpauseGame();
+        UIManager.instance.isPaused = !UIManager.instance.isPaused;
         gameManager.instance.PauseGame(UIManager.instance.optionsWindow);
     }
 
@@ -296,6 +299,7 @@ public class buttonFunctions : MonoBehaviour
     public void goBackToMap()
     {
         CombatManager.instance.exitToMap();
+        gameManager.instance.isQuestInProgress = false;
     }
 
     #region Private Functions

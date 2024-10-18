@@ -97,12 +97,12 @@ public class WeaponManager : MonoBehaviour
                 bowAnimator.enabled = false;
                 EquipSwordAndShield();
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                swordAnimator.enabled = false;
-                shieldAnimator.enabled = false;
-                EquipBow();
-            }
+            //else if (Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    //swordAnimator.enabled = false;
+            //    //shieldAnimator.enabled = false;
+            //    //EquipBow();
+            //}
         }
     }
 

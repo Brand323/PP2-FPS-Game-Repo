@@ -291,7 +291,7 @@ public class MapKingdomManager : MonoBehaviour
     public void checkVictory()
     {
         //Cities to turn to win
-        if(citiesInHumanKingdom.Count == 1)
+        if(citiesInHumanKingdom.Count == 2)
         {
             playerWon = true;
         }
