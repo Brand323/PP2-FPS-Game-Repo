@@ -135,4 +135,13 @@ public class CombatManager : MonoBehaviour
             enemySpawnsList.Clear();
         }
     }
+
+    public void exitToMap()
+    {
+        enemiesExisting = 0;
+        ClearSpawnerList();
+        SceneManager.LoadScene("Map Scene");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 }

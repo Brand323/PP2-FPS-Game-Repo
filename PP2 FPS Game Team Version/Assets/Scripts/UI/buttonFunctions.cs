@@ -232,7 +232,7 @@ public class buttonFunctions : MonoBehaviour
         //{
         //    Debug.LogError("No nearby city found for combat.");
         //}
-        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
+        CombatManager.instance.enemyArmySize = 1;//Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
     }
@@ -292,6 +292,11 @@ public class buttonFunctions : MonoBehaviour
     public void exitNEM()
     {
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
+    }
+
+    public void goBackToMap()
+    {
+        CombatManager.instance.exitToMap();
     }
 
     #region Private Functions

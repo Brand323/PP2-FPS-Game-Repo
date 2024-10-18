@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     //Serialize fields
     [SerializeField] public GameObject activeWindow;
     [SerializeField] GameObject pauseWindow;
+    [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
 
@@ -91,7 +92,14 @@ public class UIManager : MonoBehaviour
             isPaused = !isPaused;
             if (isPaused)
             {
-                PauseGame(pauseWindow);
+                if(SceneManager.GetActiveScene().name == "Map Scene")
+                {
+                    PauseGame(pauseMapWindow);
+                }
+                else
+                {
+                    PauseGame(pauseWindow);
+                }
             }
             else
             {

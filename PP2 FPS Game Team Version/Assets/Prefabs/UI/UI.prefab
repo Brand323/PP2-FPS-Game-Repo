@@ -1568,7 +1568,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: optionsMenu
+        m_MethodName: goBackToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15465,7 +15465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeWindow: {fileID: 0}
-  pauseWindow: {fileID: 2528826940924289795}
+  pauseWindow: {fileID: 8649665246686835256}
+  pauseMapWindow: {fileID: 2528826940924289795}
   winWindow: {fileID: 8672119606175838724}
   loseWindow: {fileID: 14178836021986816}
   mainWindow: {fileID: 377245018439979634}
