@@ -194,6 +194,11 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.creditsWindow);
     }
 
+    public void tutorialMenu()
+    {
+        editInput(UIManager.instance.tutorialWindow);
+    }
+
     #endregion
 
 

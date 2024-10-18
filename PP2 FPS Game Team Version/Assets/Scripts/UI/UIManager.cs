@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject difficultyWindow;
     [SerializeField] public GameObject optionsWindow;
     [SerializeField] public GameObject creditsWindow;
+    [SerializeField] public GameObject tutorialWindow;
 
     //HUD variables
     [SerializeField] public TMP_Text moneyText;
