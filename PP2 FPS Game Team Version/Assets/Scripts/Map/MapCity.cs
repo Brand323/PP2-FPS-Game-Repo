@@ -11,7 +11,6 @@ public class MapCity : MonoBehaviour
     public GameObject caravanPrefab;
     public float spawnOffset = 20f;
     private MapKingdomManager kingdomManager;
-    public int cityNumber;
 
     //Hashset to track the cities that have already spawned Caravans
     private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();

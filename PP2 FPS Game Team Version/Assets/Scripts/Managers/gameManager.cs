@@ -51,6 +51,7 @@ public class gameManager : MonoBehaviour
     public ClickMove mapPlayer;
     public int currentCityNumber;
     public string currentCityKingdom;
+    public bool citiesAssigned;
     public bool inBattleForCity;
 
     void Awake()
@@ -108,13 +109,19 @@ public class gameManager : MonoBehaviour
             }
             gameStarted = true;
         }
-        if (CombatManager.instance != null)
+        //if (CombatManager.instance != null)
+        //{
+        //    if (CombatManager.instance.wonBattle && SceneManager.GetActiveScene().name == "Map Scene")
+        //    {
+        //        MapKingdomManager.instance.captureCity(currentCityNumber, currentCityKingdom);
+        //        CombatManager.instance.wonBattle = false;
+        //    }
+        //}
+        if(MapKingdomManager.instance.playerWon)
         {
-            if (CombatManager.instance.wonBattle && SceneManager.GetActiveScene().name == "Map Scene")
-            {
-                MapKingdomManager.instance.captureCity(currentCityNumber, currentCityKingdom);
-                CombatManager.instance.wonBattle = false;
-            }
+            UIManager.instance.isPaused = !UIManager.instance.isPaused;
+            UIManager.instance.PauseGame(UIManager.instance.winWindow);
+            MapKingdomManager.instance.playerWon = false;
         }
     }
 

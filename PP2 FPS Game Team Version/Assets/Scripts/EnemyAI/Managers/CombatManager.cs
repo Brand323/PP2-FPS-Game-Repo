@@ -99,9 +99,10 @@ public class CombatManager : MonoBehaviour
         }
         if(gameManager.instance.inBattleForCity)
         {
-            //MapKingdomManager.instance.captureCity(gameManager.instance.currentCity.transform);
+            MapKingdomManager.instance.captureCity(MapKingdomManager.instance.currentCity);
+            MapKingdomManager.instance.checkVictory();
             //Destroy(MapKingdomManager.instance.CurrentCity.gameObject);
-            wonBattle = true;
+            //wonBattle = true;
             gameManager.instance.inBattleForCity = false;
         }    
         if (gameManager.instance.isDefendingCaravan)

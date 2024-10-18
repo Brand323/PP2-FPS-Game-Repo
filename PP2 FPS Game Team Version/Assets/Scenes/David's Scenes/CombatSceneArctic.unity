@@ -390,7 +390,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5338493108467150023, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f41beeb7ff43f964f908f5650928a382, type: 3}
@@ -2071,8 +2072,7 @@ MonoBehaviour:
   playerArmySize: 0
   enemySpawnsList: []
   hasSpawned: 0
-  isCityCombat: 0
-  capture: 0
+  wonBattle: 0
 --- !u!4 &1402106755
 Transform:
   m_ObjectHideFlags: 0
