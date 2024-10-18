@@ -92,6 +92,8 @@ public class MapKingdomManager : MonoBehaviour
         foreach (GameObject town in towns)
         {
             Vector3 position = town.transform.position;
+            townsInHumanKingdom.Add(town.transform);
+            town.GetComponent<Renderer>().material.color = Color.blue;
             AssignToKingdom(position, town.transform, isCity: false);
         }
 

@@ -25,11 +25,26 @@ public class QuestGiver : MonoBehaviour
             {
                 if (gameManager.instance.currentCity != null && gameManager.instance.mapPlayer != null)
                 {
-                    MapCity currCity = gameManager.instance.currentCity.GetComponent<MapCity>();
-                    if (!currCity.caravanSpawned)
+                    if (gameManager.instance.currentCity == null)
                     {
-                        currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                        MapKingdomManager.instance.findNearestCity();
                     }
+
+                    if (gameManager.instance.currentCity != null && gameManager.instance.mapPlayer != null)
+                    {
+                        MapCity currCity = gameManager.instance.currentCity.GetComponent<MapCity>();
+
+                        // Check if a caravan has already been spawned
+                        if (!currCity.caravanSpawned)
+                        {
+                            // Spawn a caravan from the nearest city
+                            currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                        }
+                    }
+
+                    // Create a new Escort Quest
+                    quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
+                    StartCoroutine(UIManager.instance.caravanAttackFeedBack());
                 }
                 quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
                 StartCoroutine(UIManager.instance.caravanAttackFeedBack());
