@@ -87,5 +87,9 @@ public class Quest
         UIManager.instance.staminaRewardText.text = staminaPotionReward.ToString();
         UIManager.instance.activateRewardUI();
         gameManager.instance.isQuestInProgress = false;
+        if(gameManager.instance.caravanArrived)
+        {
+            gameManager.instance.caravanArrived = false;
+        }    
     }
 }
