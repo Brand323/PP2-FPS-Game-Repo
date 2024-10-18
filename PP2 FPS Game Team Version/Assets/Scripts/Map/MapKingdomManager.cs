@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MapKingdomManager : MonoBehaviour
 {
-    public static MapKingdomManager Instance { get; private set; }
-
+    public static MapKingdomManager instance;
     public List<Transform> townsInDwarfKingdom = new List<Transform>();
     public List<Transform> townsInOgreKingdom = new List<Transform>();
     public List<Transform> townsInElfKingdom = new List<Transform>();
@@ -16,41 +15,30 @@ public class MapKingdomManager : MonoBehaviour
     public List<Transform> citiesInElfKingdom = new List<Transform>();
     public List<Transform> citiesInHumanKingdom = new List<Transform>();
 
-    public Material dwarfMaterial;
-    public Material ogreMaterial;
-    public Material elfMaterial;
-    public Material humanMaterial;
-
     public float mapMinX = -100f;
     public float mapMaxX = 100f;
     public float mapMinZ = -100f;
     public float mapMaxZ = 100f;
 
-    private bool kingdomsAssigned = false;
-
-
-    public enum Kingdom
+    public static Transform currentCity;
+    public Transform CurrentCity
     {
-        Dwarves,
-        Ogres,
-        Elves,
-        // Player kingdom
-        Humans
+        get { return currentCity; }
+        set { currentCity = value; }
     }
 
     // Start is called before the first frame update
     void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(this);
+            instance = this;
+            //DontDestroyOnLoad(this);
         }
         else
         {
             Destroy(gameObject);
         }
-
         Collider mapCollider = GameObject.FindGameObjectWithTag("Map").GetComponent<Collider>();
 
         if (mapCollider != null)
@@ -63,11 +51,9 @@ public class MapKingdomManager : MonoBehaviour
             mapMaxZ = mapBounds.max.z;
         }
 
-        if (!kingdomsAssigned)
-        {
-            AssignTownsAndCitiesToKingdoms();
-            kingdomsAssigned = true;
-        }
+        AssignTownsAndCitiesToKingdoms();
+        AssignColors();
+        giveNumberToCities();
     }
     void AssignTownsAndCitiesToKingdoms()
     {
@@ -97,166 +83,28 @@ public class MapKingdomManager : MonoBehaviour
         if (position.x < 0 && position.z > 0)
         {
             // Dwarves Kingdom (Top left)
-            if (isCity)
-            {
-                citiesInDwarfKingdom.Add(objectTransform);
-                UpdateCityAppearance(objectTransform, Kingdom.Dwarves);
-            }
+            if (isCity) citiesInDwarfKingdom.Add(objectTransform);
             else townsInDwarfKingdom.Add(objectTransform);
         }
         else if (position.x >= 0 && position.z > 0)
         {
             // Ogres Kingdom (Top right)
-            if (isCity)
-            {
-                citiesInOgreKingdom.Add(objectTransform);
-                UpdateCityAppearance(objectTransform, Kingdom.Ogres);
-            }
-        else townsInOgreKingdom.Add(objectTransform);
+            if (isCity) citiesInOgreKingdom.Add(objectTransform);
+            else townsInOgreKingdom.Add(objectTransform);
         }
         else if (position.x < 0 && position.z <= 0)
         {
             // Elves Kingdom (Bottom left)
-            if (isCity)
-            {
-                citiesInElfKingdom.Add(objectTransform);
-                UpdateCityAppearance(objectTransform, Kingdom.Elves);
-            }
+            if (isCity) citiesInElfKingdom.Add(objectTransform);
             else townsInElfKingdom.Add(objectTransform);
         }
         else if (position.x >= 0 && position.z <= 0)
         {
             // Humans Kingdom (Bottom right)
-            if (isCity)
-            {
-                citiesInHumanKingdom.Add(objectTransform);
-                UpdateCityAppearance(objectTransform, Kingdom.Humans);
-            }
+            if (isCity) citiesInHumanKingdom.Add(objectTransform);
             else townsInHumanKingdom.Add(objectTransform);
         }
     }
-
-    public void CaptureCity(Transform city, Kingdom newKingdom)
-    {
-        // Remove the city from current kingdom
-        RemoveCityFromKingdom(city);
-
-        // Add the city to player kingdom(human)
-        AddCityToKingdom(city, newKingdom);
-
-        // Update city mat
-        UpdateCityAppearance(city, newKingdom);
-    }
-    public void CaptureCityForHumanKingdom(Transform city)
-    {
-        if (city == null)
-        {
-            Debug.LogError("CaptureCityForHumanKingdom: City is null!");
-            return;
-        }
-        Debug.Log("Capturing city for human kingdom: " + city.name);
-        CaptureCity(city, Kingdom.Humans);
-    }
-    void RemoveCityFromKingdom(Transform city)
-    {
-        if (citiesInDwarfKingdom.Contains(city))
-        {
-            citiesInDwarfKingdom.Remove(city);
-        }
-        else if (citiesInOgreKingdom.Contains(city))
-        {
-            citiesInOgreKingdom.Remove(city);
-        }
-        else if (citiesInElfKingdom.Contains(city))
-        {
-            citiesInElfKingdom.Remove(city);
-        }
-        else if (citiesInHumanKingdom.Contains(city))
-        {
-            citiesInHumanKingdom.Remove(city);
-        }
-    }
-
-    void AddCityToKingdom(Transform city, Kingdom newKingdom)
-    {
-        switch (newKingdom)
-        {
-            case Kingdom.Dwarves:
-                citiesInDwarfKingdom.Add(city);
-                break;
-            case Kingdom.Ogres:
-                citiesInOgreKingdom.Add(city);
-                break;
-            case Kingdom.Elves:
-                citiesInElfKingdom.Add(city);
-                break;
-            case Kingdom.Humans:
-                citiesInHumanKingdom.Add(city);
-                break;
-        }
-    }
-
-    public void UpdateCityAppearance(Transform city, Kingdom kingdom)
-    {
-        Renderer[] renderers = city.GetComponentsInChildren<Renderer>();
-        Debug.Log($"Updating material for city: {city.name} to {kingdom}");
-
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.material = new Material(GetMaterialForKingdom(kingdom));
-            Debug.Log($"Assigned new material to renderer in city {city.name}");
-        }
-    }
-
-    public Material GetMaterialForKingdom(Kingdom kingdom)
-    {
-        switch (kingdom)
-        {
-            case Kingdom.Dwarves:
-                return dwarfMaterial;
-            case Kingdom.Ogres:
-                return ogreMaterial;
-            case Kingdom.Elves:
-                return elfMaterial;
-            case Kingdom.Humans:
-                return humanMaterial;
-            default:
-                Debug.LogError($"Unknown kingdom: {kingdom}. Returning default material.");
-                return humanMaterial;
-        }
-    }
-
-    public Transform GetNearestCity(Vector3 playerPosition)
-    {
-        List<Transform> allCities = new List<Transform>();
-        allCities.AddRange(citiesInDwarfKingdom);
-        allCities.AddRange(citiesInOgreKingdom);
-        allCities.AddRange(citiesInElfKingdom);
-        allCities.AddRange(citiesInHumanKingdom);
-
-        Transform nearestCity = null;
-        float nearestDistance = Mathf.Infinity;
-
-        foreach (Transform city in allCities)
-        {
-            float distanceToCity = Vector3.Distance(playerPosition, city.position);
-            if (distanceToCity < nearestDistance)
-            {
-                nearestDistance = distanceToCity;
-                nearestCity = city;
-            }
-        }
-        if (nearestCity != null)
-        {
-            Debug.Log("Nearest city to player is: " + nearestCity.name);
-        }
-        else
-        {
-            Debug.LogError("No city found near player.");
-        }
-        return nearestCity;
-    }
-
 
     public Transform GetRandomTownFromKingdom(string kingdom)
     {
@@ -280,17 +128,16 @@ public class MapKingdomManager : MonoBehaviour
 
         if (townList == null || townList.Count == 0)
         {
-       //   Debug.LogWarning($"No towns found for kingdom: {kingdom}");
+            //     Debug.LogWarning($"No towns found for kingdom: {kingdom}");
             return null;
         }
 
         // Debug number of available towns for this kingdom
-        // Debug.Log($"Number of towns in {kingdom}: {townList.Count}");
+        //   Debug.Log($"Number of towns in {kingdom}: {townList.Count}");
 
         // Return a random town
         return townList[Random.Range(0, townList.Count)];
     }
-
     public Transform GetRandomCityFromKingdom(string kingdom)
     {
         List<Transform> cityList = null;
@@ -337,15 +184,115 @@ public class MapKingdomManager : MonoBehaviour
         }
     }
 
+    public void AssignColors()
+    {
+        foreach(Transform city in citiesInDwarfKingdom)
+        {
+            city.GetComponent<Renderer>().material.color = Color.gray;
+        }
+        foreach (Transform city in citiesInOgreKingdom)
+        {
+            city.GetComponent<Renderer>().material.color = Color.red;
+        }
+        foreach (Transform city in citiesInElfKingdom)
+        {
+            city.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+        foreach (Transform city in citiesInHumanKingdom)
+        {
+            city.GetComponent<Renderer>().material.color = Color.blue;
+        }
+    }
+
+    private void giveNumberToCities()
+    {
+        int cityNumber = 1;
+        foreach (Transform city in citiesInDwarfKingdom)
+        {
+            city.GetComponent<MapCity>().cityNumber = cityNumber;
+            cityNumber++;
+        }
+        cityNumber = 1;
+        foreach (Transform city in citiesInOgreKingdom)
+        {
+            city.GetComponent<MapCity>().cityNumber = cityNumber;
+            cityNumber++;
+        }
+        cityNumber = 1;
+        foreach (Transform city in citiesInElfKingdom)
+        {
+            city.GetComponent<MapCity>().cityNumber = cityNumber;
+            cityNumber++;
+        }
+        cityNumber = 1;
+        foreach (Transform city in citiesInHumanKingdom)
+        {
+            city.GetComponent<MapCity>().cityNumber = cityNumber;
+            cityNumber++;
+        }
+    }
+
+    public void captureCity(int cityNumber, string cityKingdom)
+    {
+        if(cityNumber == 1)
+        {
+            cityNumber = 2;
+        }
+        else
+        {
+            cityNumber = 1;
+        }
+        Transform city = null;
+        if(cityKingdom == "Dwarves")
+        {
+            foreach(Transform _city in citiesInDwarfKingdom)
+            {
+                if(_city.gameObject.GetComponent<MapCity>().cityNumber == cityNumber)
+                {
+                    city = _city;
+                }
+            }
+        }
+        else if (cityKingdom == "Ogres")
+        {
+            foreach (Transform _city in citiesInOgreKingdom)
+            {
+                if (_city.gameObject.GetComponent<MapCity>().cityNumber == cityNumber)
+                {
+                    city = _city;
+                }
+            }
+        }
+        else if (cityKingdom == "Elves")
+        {
+            foreach (Transform _city in citiesInElfKingdom)
+            {
+                if (_city.gameObject.GetComponent<MapCity>().cityNumber == cityNumber)
+                {
+                    city = _city;
+                }
+            }
+        }
+        //MapCity cityToCapture = city.GetComponent<MapCity>();
+        string kingdom = cityKingdom;
+        if(kingdom == "Dwarves")
+        {
+            citiesInDwarfKingdom.Remove(city.transform);
+        }
+        else if (kingdom == "Ogres")
+        {
+            citiesInOgreKingdom.Remove(city.transform);
+        }
+        else if (kingdom == "Elves")
+        {
+            citiesInElfKingdom.Remove(city.transform);
+        }
+        citiesInHumanKingdom.Add(city.transform);
+        city.GetComponent<Renderer>().material.color = Color.blue;
+    }
+
     public bool IsCityInHumanKingdom(Transform city)
     {
         return citiesInHumanKingdom.Contains(city);
     }
-    public class CityInfo
-    {
-        public Transform cityTransform;
-        public GameObject combatScenePrefab;
-    }
-
-
 }

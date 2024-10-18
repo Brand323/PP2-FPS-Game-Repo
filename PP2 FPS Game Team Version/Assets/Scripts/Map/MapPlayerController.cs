@@ -97,14 +97,18 @@ public class ClickMove : MonoBehaviour
         if(other.tag == "City")
         {
             gameManager.instance.currentCity = other.gameObject;
+            MapKingdomManager.instance.CurrentCity = other.transform;
             UIManager.instance.isPaused = !UIManager.instance.isPaused;
-            if (gameManager.instance.kingdomManager.IsCityInHumanKingdom(other.transform) == true)
+            if (MapKingdomManager.instance.IsCityInHumanKingdom(other.transform) == true)
             {
                 UIManager.instance.PauseGame(UIManager.instance.cityMapWindow);
             }
             else
             {
                 UIManager.instance.PauseGame(UIManager.instance.enemyCityMapWindow);
+                gameManager.instance.inBattleForCity = true;
+                gameManager.instance.currentCityNumber = other.GetComponent<MapCity>().cityNumber;
+                gameManager.instance.currentCityKingdom = other.GetComponent<MapCity>().GetCityKingdom(other.transform);
             }
         }
     }

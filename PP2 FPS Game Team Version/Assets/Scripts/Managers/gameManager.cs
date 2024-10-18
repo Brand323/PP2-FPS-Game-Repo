@@ -16,7 +16,6 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public FirstPersonController playerScript;
-    public ClickMove mapPlayer;
 
     public GameObject playerSpawnPosition;
 
@@ -49,6 +48,10 @@ public class gameManager : MonoBehaviour
 
     public MapKingdomManager kingdomManager;
     public GameObject currentCity;
+    public ClickMove mapPlayer;
+    public int currentCityNumber;
+    public string currentCityKingdom;
+    public bool inBattleForCity;
 
     void Awake()
     {
@@ -62,96 +65,7 @@ public class gameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        AssignPlayerBasedOnScene();
 
-        playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
-        kingdomManager = FindObjectOfType<MapKingdomManager>();
-        questGiver = FindObjectOfType<QuestGiver>();
-        mapPlayer = FindObjectOfType<ClickMove>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if(player == null)
-        //{
-        //    player = GameObject.FindWithTag("Player");
-        //    if (player != null)
-        //    {
-        //        playerScript = player.GetComponent<FirstPersonController>();
-        //        player.AddComponent<money>();
-        //        playerMoney = player.GetComponent<money>();
-        //        playerPotions = player.GetComponent<PotionManager>();
-        //    }
-        //    playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
-        //    kingdomManager = FindObjectOfType<MapKingdomManager>();
-        //    questGiver = FindObjectOfType<QuestGiver>();
-        //    mapPlayer = FindObjectOfType<ClickMove>();
-        //    questGiver.SetQuest = currentQuest;
-        //}
-        //if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
-        //{
-        //    if (UIManager.instance != null)
-        //    {
-        //        StartCoroutine(UIManager.instance.startGame());
-        //    }
-        //    gameStarted = true;
-        //}
-
-        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
-        {
-            if (UIManager.instance != null)
-            {
-                StartCoroutine(UIManager.instance.startGame());
-            }
-            gameStarted = true;
-        }
-
-        // Reassign player and components if missing
-        if (player == null)
-        {
-            ReassignPlayer();
-        }
-    }
-
-    public void AssignPlayerBasedOnScene()
-    {
-        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
-        {
-            player = GameObject.FindWithTag("Player");
-            if (player != null)
-            {
-                playerScript = player.GetComponent<FirstPersonController>();
-                if (playerScript == null)
-                {
-                    Debug.LogError("FirstPersonController not found on Player in combat scene.");
-                }
-                else
-                {
-                    Debug.Log("FirstPersonController assigned.");
-                }
-            }
-            else
-            {
-                Debug.LogError("Player not found in combat scene.");
-            }
-        }
-        else
-        {
-            mapPlayer = FindObjectOfType<ClickMove>();
-            if (mapPlayer == null)
-            {
-                Debug.LogError("ClickMove not found in map scene.");
-            }
-            else
-            {
-                Debug.Log("ClickMove assigned.");
-            }
-        }
-    }
-
-    private void ReassignPlayer()
-    {
         player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -162,14 +76,48 @@ public class gameManager : MonoBehaviour
         }
 
         playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
-        kingdomManager = FindObjectOfType<MapKingdomManager>();
+        //kingdomManager = FindObjectOfType<MapKingdomManager>();
         questGiver = FindObjectOfType<QuestGiver>();
+        mapPlayer = FindObjectOfType<ClickMove>();
+    }
 
-        if (questGiver != null && currentQuest != null)
+    // Update is called once per frame
+    void Update()
+    {
+        if (player == null)
         {
+            player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerScript = player.GetComponent<FirstPersonController>();
+                player.AddComponent<money>();
+                playerMoney = player.GetComponent<money>();
+                playerPotions = player.GetComponent<PotionManager>();
+            }
+            playerSpawnPosition = GameObject.FindWithTag("Player Spawn Position");
+            //kingdomManager = FindObjectOfType<MapKingdomManager>();
+            questGiver = FindObjectOfType<QuestGiver>();
+            mapPlayer = FindObjectOfType<ClickMove>();
             questGiver.SetQuest = currentQuest;
         }
+        if (SceneManager.GetActiveScene().name != "CombatSceneArctic" && !gameStarted)
+        {
+            if (UIManager.instance != null)
+            {
+                StartCoroutine(UIManager.instance.startGame());
+            }
+            gameStarted = true;
+        }
+        if (CombatManager.instance != null)
+        {
+            if (CombatManager.instance.wonBattle && SceneManager.GetActiveScene().name == "Map Scene")
+            {
+                MapKingdomManager.instance.captureCity(currentCityNumber, currentCityKingdom);
+                CombatManager.instance.wonBattle = false;
+            }
+        }
     }
+
     public void AddMoneyToPlayer(int amount)
     {
         if (playerMoney != null)
@@ -194,14 +142,14 @@ public class gameManager : MonoBehaviour
     public void AddCompanion()
     {
         int Randomizer = Random.Range(1, 20);
-        if(Randomizer > 0 && Randomizer < 14)
+        if (Randomizer > 0 && Randomizer < 14)
         {
             AllyCombatManager.instance.RecruitMeleeCompanion();
         }
         else
         {
             AllyCombatManager.instance.RecruitRangedCompanion();
-        }    
+        }
     }
 
     public int GetPlayerMoney()

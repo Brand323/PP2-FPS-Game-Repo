@@ -11,23 +11,29 @@ public class MapCity : MonoBehaviour
     public GameObject caravanPrefab;
     public float spawnOffset = 20f;
     private MapKingdomManager kingdomManager;
+    public int cityNumber;
+
+    //Hashset to track the cities that have already spawned Caravans
+    private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();
 
     public bool caravanSpawned = false;
-    private bool isCaptured = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        kingdomManager = MapKingdomManager.Instance;
+        kingdomManager = FindObjectOfType<MapKingdomManager>();
 
         if (!kingdomManager.IsCityInHumanKingdom(transform))
         {
             SpawnEnemy();
         }
-        else
-        {
-            UpdateCityAppearance();
-        }
+
+        //Spawns one caravan at everycity
+
+        //if (!caravanSpawned)
+        //{
+        //    SpawnCaravansForThisCity();
+        //}
     }
 
     void SpawnEnemy()
@@ -35,10 +41,10 @@ public class MapCity : MonoBehaviour
         Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        
+
         MapEnemyAi enemyScript = enemy.GetComponent<MapEnemyAi>();
-        
-        if (enemyScript != null )
+
+        if (enemyScript != null)
         {
             enemyScript.SetHomeBase(transform);
 
@@ -53,7 +59,7 @@ public class MapCity : MonoBehaviour
         if (!caravanSpawned)
         {
             // Get the kingdom of the current city
-            MapKingdomManager.Kingdom kingdom = GetCityKingdom(transform);
+            string kingdom = GetCityKingdom(transform);
 
             // If the kingdom is valid, spawn a caravan
             if (kingdom != null)
@@ -69,8 +75,8 @@ public class MapCity : MonoBehaviour
             }
         }
     }
-   
-    void SpawnCaravan(Transform city, MapKingdomManager.Kingdom kingdom)
+
+    void SpawnCaravan(Transform city, string kingdom)
     {
         // Randomize spawn position around the city
         Vector3 spawnPosition = city.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
@@ -84,16 +90,16 @@ public class MapCity : MonoBehaviour
         if (caravanScript != null)
         {
             // Get a random town for the caravan to travel to
-            Transform randomTown = kingdomManager.GetRandomTownFromKingdom(kingdom.ToString());
+            Transform randomTown = kingdomManager.GetRandomTownFromKingdom(kingdom);
 
             if (randomTown != null)
             {
-             //   Debug.Log($"Spawning caravan from {city.position} in {kingdom} to {randomTown.position}");
+                //   Debug.Log($"Spawning caravan from {city.position} in {kingdom} to {randomTown.position}");
                 caravanScript.Initialize(city, randomTown);
             }
             else
             {
-            //    Debug.LogWarning($"No towns found in {kingdom} for caravan to travel to.");
+                //    Debug.LogWarning($"No towns found in {kingdom} for caravan to travel to.");
                 Destroy(caravan); // Optionally destroy the caravan if no valid town is found
             }
         }
@@ -124,7 +130,7 @@ public class MapCity : MonoBehaviour
         if (nearestCity != null && !caravanSpawned)
         {
             //Checks kingdom
-            MapKingdomManager.Kingdom kingdom = GetCityKingdom(nearestCity);
+            string kingdom = GetCityKingdom(nearestCity);
 
             if (kingdom != null)
             {
@@ -138,57 +144,35 @@ public class MapCity : MonoBehaviour
         }
     }
 
-    public MapKingdomManager.Kingdom GetCityKingdom(Transform city)
+    public string GetCityKingdom(Transform city)
     {
 
         if (kingdomManager.IsCityInHumanKingdom(city))
         {
-            return MapKingdomManager.Kingdom.Humans;
+            return "Humans";
         }
         else if (kingdomManager.citiesInDwarfKingdom.Contains(city))
         {
-            return MapKingdomManager.Kingdom.Dwarves;
+            return "Dwarves";
         }
         else if (kingdomManager.citiesInOgreKingdom.Contains(city))
         {
-            return MapKingdomManager.Kingdom.Ogres;
+            return "Ogres";
         }
         else if (kingdomManager.citiesInElfKingdom.Contains(city))
         {
-            return MapKingdomManager.Kingdom.Elves;
+            return "Elves";
         }
 
-        return MapKingdomManager.Kingdom.Humans;
-    }
-
-    public void CaptureCityByPlayer()
-    {
-        MapKingdomManager.Instance.CaptureCityForHumanKingdom(transform);
-        isCaptured = true;
-    }
-
-    void UpdateCityAppearance()
-    {
-        if (isCaptured || kingdomManager.IsCityInHumanKingdom(transform))
-        {
-            Renderer[] renderers = GetComponentsInChildren<Renderer>();
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.material = new Material(kingdomManager.humanMaterial);
-            }
-        }
-        else
-        {
-            kingdomManager.UpdateCityAppearance(transform, GetCityKingdom(transform));
-        }
+        return null;
     }
 
     //Test for Caravan Spawn val will trigger method with quest menu in the future
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("MapPlayer"))
-    //    {
-    //        SpawnCaravanFromNearestCity(other.transform);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MapPlayer"))
+        {
+            SpawnCaravanFromNearestCity(other.transform);
+        }
+    }
 }

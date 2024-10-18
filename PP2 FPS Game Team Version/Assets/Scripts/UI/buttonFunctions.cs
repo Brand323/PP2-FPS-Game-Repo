@@ -207,32 +207,34 @@ public class buttonFunctions : MonoBehaviour
 
     public void fight()
     {
-        if (gameManager.instance == null)
-        {
-            Debug.LogError("gameManager.instance is null in buttonFunctions.");
-            return;
-        }
+        //if (gameManager.instance == null)
+        //{
+        //    Debug.LogError("gameManager.instance is null in buttonFunctions.");
+        //    return;
+        //}
 
 
-        Vector3 playerPosition = gameManager.instance.mapPlayer.transform.position;
-        Debug.Log("Player position: " + playerPosition);
+        //Vector3 playerPosition = gameManager.instance.mapPlayer.transform.position;
+        //Debug.Log("Player position: " + playerPosition);
 
-        Transform nearestCity = MapKingdomManager.Instance.GetNearestCity(playerPosition);
+        //Transform nearestCity = MapKingdomManager.Instance.GetNearestCity(playerPosition);
 
-        if (nearestCity != null)
-        {
-            Debug.Log("Nearest city found: " + nearestCity.name);
+        //if (nearestCity != null)
+        //{
+        //    Debug.Log("Nearest city found: " + nearestCity.name);
 
-            CombatManager.instance.InitiateCityCombat(nearestCity);
-            CombatManager.instance.enemyArmySize = Random.Range(3, 5);
-            SceneManager.LoadScene("CombatSceneArctic");
-            StartCoroutine(DelayedCheckToSpawn());
-        }
-        else
-        {
-            Debug.LogError("No nearby city found for combat.");
-        }
-    
+        //    CombatManager.instance.InitiateCityCombat(nearestCity);
+        //    CombatManager.instance.enemyArmySize = Random.Range(3, 5);
+        //    SceneManager.LoadScene("CombatSceneArctic");
+        //    StartCoroutine(DelayedCheckToSpawn());
+        //}
+        //else
+        //{
+        //    Debug.LogError("No nearby city found for combat.");
+        //}
+        CombatManager.instance.enemyArmySize = 1;//Random.Range(3, 5);
+        SceneManager.LoadScene("CombatSceneArctic");
+        CombatManager.instance.CheckToSpawn();
     }
     private IEnumerator DelayedCheckToSpawn()
     {
@@ -242,7 +244,6 @@ public class buttonFunctions : MonoBehaviour
 
     public void defend()
     {
-        CombatManager.instance.InitiateArmyCombat();
         CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
