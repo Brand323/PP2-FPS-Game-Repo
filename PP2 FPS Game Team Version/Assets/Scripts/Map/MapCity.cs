@@ -167,11 +167,11 @@ public class MapCity : MonoBehaviour
     }
 
     //Test for Caravan Spawn val will trigger method with quest menu in the future
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("MapPlayer"))
-        {
-            SpawnCaravanFromNearestCity(other.transform);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("MapPlayer"))
+    //    {
+    //        SpawnCaravanFromNearestCity(other.transform);
+    //    }
+    //}
 }

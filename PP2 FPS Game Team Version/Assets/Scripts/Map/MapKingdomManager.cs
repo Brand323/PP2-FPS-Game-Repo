@@ -101,10 +101,10 @@ public class MapKingdomManager : MonoBehaviour
         //    Vector3 position = city.transform.position;
         //    AssignToKingdom(position, city.transform, isCity: true);
         //}
-        //foreach(Transform city in allCities)
-        //{
-        //    AssignToKingdom(city.position, city, true);
-        //}
+        foreach (Transform city in allCities)
+        {
+            AssignToKingdom(city.position, city, true);
+        }
         //Debug.Log($"Dwarves Kingdom has {townsInDwarfKingdom.Count} towns.");
         //Debug.Log($"Ogres Kingdom has {townsInOgreKingdom.Count} towns.");
         //Debug.Log($"Elves Kingdom has {townsInElfKingdom.Count} towns.");
@@ -113,29 +113,37 @@ public class MapKingdomManager : MonoBehaviour
 
     void AssignToKingdom(Vector3 position, Transform objectTransform, bool isCity)
     {
-        if (position.x < 0 && position.z > 0)
+        //if (position.x < 0 && position.z > 0)
+        //{
+        //    // Dwarves Kingdom (Top left)
+        //    if (isCity) citiesInDwarfKingdom.Add(objectTransform);
+        //    else townsInDwarfKingdom.Add(objectTransform);
+        //}
+        //else if (position.x >= 0 && position.z > 0)
+        //{
+        //    // Ogres Kingdom (Top right)
+        //    if (isCity) citiesInOgreKingdom.Add(objectTransform);
+        //    else townsInOgreKingdom.Add(objectTransform);
+        //}
+        //else if (position.x < 0 && position.z <= 0)
+        //{
+        //    // Elves Kingdom (Bottom left)
+        //    if (isCity) citiesInElfKingdom.Add(objectTransform);
+        //    else townsInElfKingdom.Add(objectTransform);
+        //}
+        //else if (position.x >= 0 && position.z <= 0)
+        //{
+        //    // Humans Kingdom (Bottom right)
+        //    if (isCity) citiesInHumanKingdom.Add(objectTransform);
+        //    else townsInHumanKingdom.Add(objectTransform);
+        //}
+        if (isCity)
         {
-            // Dwarves Kingdom (Top left)
-            if (isCity) citiesInDwarfKingdom.Add(objectTransform);
-            else townsInDwarfKingdom.Add(objectTransform);
+            citiesInDwarfKingdom.Add(objectTransform);
         }
-        else if (position.x >= 0 && position.z > 0)
+        else
         {
-            // Ogres Kingdom (Top right)
-            if (isCity) citiesInOgreKingdom.Add(objectTransform);
-            else townsInOgreKingdom.Add(objectTransform);
-        }
-        else if (position.x < 0 && position.z <= 0)
-        {
-            // Elves Kingdom (Bottom left)
-            if (isCity) citiesInElfKingdom.Add(objectTransform);
-            else townsInElfKingdom.Add(objectTransform);
-        }
-        else if (position.x >= 0 && position.z <= 0)
-        {
-            // Humans Kingdom (Bottom right)
-            if (isCity) citiesInHumanKingdom.Add(objectTransform);
-            else townsInHumanKingdom.Add(objectTransform);
+            townsInDwarfKingdom.Add(objectTransform);
         }
     }
 
@@ -263,7 +271,7 @@ public class MapKingdomManager : MonoBehaviour
     }
 
     public void findNearestCity()
-    {
+    { 
         float minDistance = float.MaxValue;
         GameObject[] cities = GameObject.FindGameObjectsWithTag("City");
         foreach (GameObject city in cities)
@@ -274,11 +282,13 @@ public class MapKingdomManager : MonoBehaviour
                 currentCity = city.transform;
             }
         }
+        currentCity.GetComponent<MapCity>().SpawnCaravanFromNearestCity(currentCity);
         DontDestroyOnLoad(currentCity);
     }
 
     public void checkVictory()
     {
+        //Cities to turn to win
         if(citiesInHumanKingdom.Count == 6)
         {
             playerWon = true;

@@ -17,7 +17,7 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveQuest()
     {
-        randomizer = Random.Range(1, 10);
+        randomizer = Random.Range(1, 20);
         if (!gameManager.instance.isQuestInProgress)
         {
             UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
