@@ -263,6 +263,7 @@ public class buttonFunctions : MonoBehaviour
         {
             UIManager.instance.notEnoughMoneyWindow.SetActive(true);
         }
+        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
     public void buyStaminaPotion()
@@ -276,6 +277,7 @@ public class buttonFunctions : MonoBehaviour
         {
             UIManager.instance.notEnoughMoneyWindow.SetActive(true);
         }
+        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
     public void buyCompanion()

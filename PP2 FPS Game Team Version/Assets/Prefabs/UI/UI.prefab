@@ -15230,6 +15230,7 @@ MonoBehaviour:
   sfxVolume: {fileID: 4884724400465995773}
   musicVolume: {fileID: 3542821069198943530}
   victoryPopUp: {fileID: 7873766349017787481}
+  potionInstructions: {fileID: 4617737251866437889}
   isPaused: 0
 --- !u!1 &6460762964793075310
 GameObject:

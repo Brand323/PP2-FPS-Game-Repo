@@ -55,6 +55,9 @@ public class UIManager : MonoBehaviour
     //Win condition
     [SerializeField] public GameObject victoryPopUp;
 
+    //Instructions
+    [SerializeField] public GameObject potionInstructions;
+
     float originalTimeScale;
 
     public bool isPaused;
@@ -222,5 +225,12 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(0.5f, 3f));
         isPaused = !isPaused;
         PauseGame(caravanAttackWindow);
+    }
+
+    public IEnumerator activatePotionsInstructions()
+    {
+        potionInstructions.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        potionInstructions.SetActive(false);
     }
 }
