@@ -2071,6 +2071,8 @@ MonoBehaviour:
   playerArmySize: 0
   enemySpawnsList: []
   hasSpawned: 0
+  isCityCombat: 0
+  capture: 0
 --- !u!4 &1402106755
 Transform:
   m_ObjectHideFlags: 0

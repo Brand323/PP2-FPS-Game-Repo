@@ -44,6 +44,7 @@ public class MapKingdomManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
         else
         {
@@ -153,7 +154,6 @@ public class MapKingdomManager : MonoBehaviour
             Debug.LogError("CaptureCityForHumanKingdom: City is null!");
             return;
         }
-
         Debug.Log("Capturing city for human kingdom: " + city.name);
         CaptureCity(city, Kingdom.Humans);
     }

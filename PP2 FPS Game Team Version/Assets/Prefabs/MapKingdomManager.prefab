@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5212403705242675887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8281912304400303434}
+  - component: {fileID: 9076136520858818839}
+  m_Layer: 5
+  m_Name: MapKingdomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8281912304400303434
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212403705242675887}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9076136520858818839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212403705242675887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d5e35c69d6cf944a01c5b54ba65444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  townsInDwarfKingdom: []
+  townsInOgreKingdom: []
+  townsInElfKingdom: []
+  townsInHumanKingdom: []
+  citiesInDwarfKingdom: []
+  citiesInOgreKingdom: []
+  citiesInElfKingdom: []
+  citiesInHumanKingdom: []
+  dwarfMaterial: {fileID: 2100000, guid: 436440448be99b445bd4273dcf132d06, type: 2}
+  ogreMaterial: {fileID: 2100000, guid: 566af57a8e3f1d54a9b9f804d15d8f74, type: 2}
+  elfMaterial: {fileID: 2100000, guid: 02a64024ea26b3642ba32f604730195f, type: 2}
+  humanMaterial: {fileID: 2100000, guid: 9e4c3344a6c6d0b4d90e87772b51e56b, type: 2}
+  mapMinX: -100
+  mapMaxX: 100
+  mapMinZ: -100
+  mapMaxZ: 100
