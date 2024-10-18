@@ -13,6 +13,7 @@ public class MapCity : MonoBehaviour
     private MapKingdomManager kingdomManager;
 
     public bool caravanSpawned = false;
+    private bool isCaptured = false;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +53,7 @@ public class MapCity : MonoBehaviour
         if (!caravanSpawned)
         {
             // Get the kingdom of the current city
-            string kingdom = GetCityKingdom(transform);
+            MapKingdomManager.Kingdom kingdom = GetCityKingdom(transform);
 
             // If the kingdom is valid, spawn a caravan
             if (kingdom != null)
@@ -69,7 +70,7 @@ public class MapCity : MonoBehaviour
         }
     }
    
-    void SpawnCaravan(Transform city, string kingdom)
+    void SpawnCaravan(Transform city, MapKingdomManager.Kingdom kingdom)
     {
         // Randomize spawn position around the city
         Vector3 spawnPosition = city.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), 0, Random.Range(-spawnOffset, spawnOffset));
@@ -83,7 +84,7 @@ public class MapCity : MonoBehaviour
         if (caravanScript != null)
         {
             // Get a random town for the caravan to travel to
-            Transform randomTown = kingdomManager.GetRandomTownFromKingdom(kingdom);
+            Transform randomTown = kingdomManager.GetRandomTownFromKingdom(kingdom.ToString());
 
             if (randomTown != null)
             {
@@ -123,7 +124,7 @@ public class MapCity : MonoBehaviour
         if (nearestCity != null && !caravanSpawned)
         {
             //Checks kingdom
-            string kingdom = GetCityKingdom(nearestCity);
+            MapKingdomManager.Kingdom kingdom = GetCityKingdom(nearestCity);
 
             if (kingdom != null)
             {
@@ -137,44 +138,48 @@ public class MapCity : MonoBehaviour
         }
     }
 
-    string GetCityKingdom(Transform city)
+    public MapKingdomManager.Kingdom GetCityKingdom(Transform city)
     {
 
         if (kingdomManager.IsCityInHumanKingdom(city))
         {
-            return "Humans";
+            return MapKingdomManager.Kingdom.Humans;
         }
         else if (kingdomManager.citiesInDwarfKingdom.Contains(city))
         {
-            return "Dwarves";
+            return MapKingdomManager.Kingdom.Dwarves;
         }
         else if (kingdomManager.citiesInOgreKingdom.Contains(city))
         {
-            return "Ogres";
+            return MapKingdomManager.Kingdom.Ogres;
         }
         else if (kingdomManager.citiesInElfKingdom.Contains(city))
         {
-            return "Elves";
+            return MapKingdomManager.Kingdom.Elves;
         }
 
-        return null;
+        return MapKingdomManager.Kingdom.Humans;
     }
 
     public void CaptureCityByPlayer()
     {
         MapKingdomManager.Instance.CaptureCityForHumanKingdom(transform);
+        isCaptured = true;
     }
 
     void UpdateCityAppearance()
     {
-        Renderer cityRenderer = GetComponent<Renderer>();
-
-        if (cityRenderer != null)
+        if (isCaptured || kingdomManager.IsCityInHumanKingdom(transform))
         {
-            if (kingdomManager.IsCityInHumanKingdom(transform))
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
             {
-                cityRenderer.material = kingdomManager.humanMaterial;
+                renderer.material = new Material(kingdomManager.humanMaterial);
             }
+        }
+        else
+        {
+            kingdomManager.UpdateCityAppearance(transform, GetCityKingdom(transform));
         }
     }
 

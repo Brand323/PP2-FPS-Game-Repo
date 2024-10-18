@@ -26,6 +26,9 @@ public class MapKingdomManager : MonoBehaviour
     public float mapMinZ = -100f;
     public float mapMaxZ = 100f;
 
+    private bool kingdomsAssigned = false;
+
+
     public enum Kingdom
     {
         Dwarves,
@@ -59,7 +62,11 @@ public class MapKingdomManager : MonoBehaviour
             mapMaxZ = mapBounds.max.z;
         }
 
-        AssignTownsAndCitiesToKingdoms();
+        if (!kingdomsAssigned)
+        {
+            AssignTownsAndCitiesToKingdoms();
+            kingdomsAssigned = true;
+        }
     }
     void AssignTownsAndCitiesToKingdoms()
     {
@@ -189,29 +196,36 @@ public class MapKingdomManager : MonoBehaviour
         }
     }
 
-    void UpdateCityAppearance(Transform city, Kingdom kingdom)
+    public void UpdateCityAppearance(Transform city, Kingdom kingdom)
     {
-        Renderer cityRenderer = city.GetComponent<Renderer>();
+        Renderer[] renderers = city.GetComponentsInChildren<Renderer>();
+        Debug.Log($"Updating material for city: {city.name} to {kingdom}");
 
-        if (cityRenderer != null)
+        foreach (Renderer renderer in renderers)
         {
-            switch (kingdom)
-            {
-                case Kingdom.Dwarves:
-                    cityRenderer.material = dwarfMaterial;
-                    break;
-                case Kingdom.Ogres:
-                    cityRenderer.material = ogreMaterial;
-                    break;
-                case Kingdom.Elves:
-                    cityRenderer.material = elfMaterial;
-                    break;
-                case Kingdom.Humans:
-                    cityRenderer.material = humanMaterial;
-                    break;
-            }
+            renderer.material = new Material(GetMaterialForKingdom(kingdom));
+            Debug.Log($"Assigned new material to renderer in city {city.name}");
         }
     }
+
+    public Material GetMaterialForKingdom(Kingdom kingdom)
+    {
+        switch (kingdom)
+        {
+            case Kingdom.Dwarves:
+                return dwarfMaterial;
+            case Kingdom.Ogres:
+                return ogreMaterial;
+            case Kingdom.Elves:
+                return elfMaterial;
+            case Kingdom.Humans:
+                return humanMaterial;
+            default:
+                Debug.LogError($"Unknown kingdom: {kingdom}. Returning default material.");
+                return humanMaterial;
+        }
+    }
+
     public Transform GetNearestCity(Vector3 playerPosition)
     {
         List<Transform> allCities = new List<Transform>();
@@ -244,7 +258,7 @@ public class MapKingdomManager : MonoBehaviour
     }
 
 
-public Transform GetRandomTownFromKingdom(string kingdom)
+    public Transform GetRandomTownFromKingdom(string kingdom)
     {
         List<Transform> townList = null;
 
@@ -332,4 +346,6 @@ public Transform GetRandomTownFromKingdom(string kingdom)
         public Transform cityTransform;
         public GameObject combatScenePrefab;
     }
+
+
 }

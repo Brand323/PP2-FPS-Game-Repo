@@ -185,6 +185,8 @@ public class CombatManager : MonoBehaviour
             Debug.Log("City in combat: " + cityInCombatStatic.name);
             // Capture the city
             MapKingdomManager.Instance.CaptureCityForHumanKingdom(cityInCombatStatic);
+
+            DontDestroyOnLoad(cityInCombatStatic.gameObject);
         }
         else
         {
@@ -229,6 +231,7 @@ public class CombatManager : MonoBehaviour
         cityInCombatStatic = city;
         cityNameInCombat = city.name;
         Debug.Log("Initiating combat for city: " + city.name);
+        DontDestroyOnLoad(city.gameObject);
     }
 
     public void InitiateArmyCombat()
