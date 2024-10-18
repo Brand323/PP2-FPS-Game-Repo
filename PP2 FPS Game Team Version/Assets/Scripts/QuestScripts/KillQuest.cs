@@ -21,10 +21,9 @@ public class KillQuest : Quest
         StaminaPotionReward = _staminaReward;
         IsQuestCompleted = false;
         requiredAmount = _requiredAmount;
-        QuestDescription = "Kill " + requiredAmount.ToString() + " bandits" + '\n'
+        QuestDescription = "Kill " + requiredAmount.ToString() + " bandits in a single battle" + '\n'
                             + "Rewards: " + GoldReward.ToString() + " coins\n" + HealthPotionReward.ToString()
-                            + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions\n"
-                            + CompanionReward.ToString() + " companions";
+                            + " health potions\n" + StaminaPotionReward.ToString() + " stamina potions\n";
         QuestGoal = new KillGoal(CombatManager.instance.enemiesExisting, "Kill " + requiredAmount.ToString() + " bandits.", false, 0, requiredAmount);
     }
 

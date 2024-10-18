@@ -51,7 +51,7 @@ public class QuestGiver : MonoBehaviour
             }
             else if(randomizer > 10 && randomizer < 21)
             {
-                quest = new KillQuest(Random.Range(2, 4), Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
+                quest = new KillQuest(Random.Range(3, 5), Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
             }
             gameManager.instance.SetCurrentQuest(quest);
             gameManager.instance.isQuestInProgress = true;
@@ -60,6 +60,8 @@ public class QuestGiver : MonoBehaviour
         }
         else
         {
+            UIManager.instance.questName.text = quest.QuestName;
+            UIManager.instance.questDescription.text = quest.QuestDescription;
             UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
         }
     }

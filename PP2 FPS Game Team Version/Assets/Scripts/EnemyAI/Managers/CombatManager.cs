@@ -104,7 +104,11 @@ public class CombatManager : MonoBehaviour
             //Destroy(MapKingdomManager.instance.CurrentCity.gameObject);
             //wonBattle = true;
             gameManager.instance.inBattleForCity = false;
-        }    
+        }
+        if (!gameManager.instance.isDefendingCaravan && gameManager.instance.isQuestInProgress)
+        {
+            gameManager.instance.isQuestInProgress = false;
+        }
         if (gameManager.instance.isDefendingCaravan)
         {
             gameManager.instance.caravanArrived = true;
