@@ -21,11 +21,8 @@ public class MeleeAlly : AllyBase
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null)
+        if (currentTarget == null || !currentTarget.activeInHierarchy)
         {
-            if (AllyCombatManager.instance.TargetEnemy() == null)
-                this.enabled = false;
-
             currentTarget = AllyCombatManager.instance.TargetEnemy();
         }
 
@@ -33,16 +30,17 @@ public class MeleeAlly : AllyBase
 
         if (enemyInRange)
         {
-            if (currentTarget != null)
+            if (currentTarget != null && currentTarget.activeInHierarchy)
             {
                 float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-                if (distance <= AttackRange)
+                if (distance <= AttackRange && !isAttacking)
                 {
-                    if (!isAttacking)
-                    {
-                        StartCoroutine(Attack());
-                    }
+                    StartCoroutine(Attack());
                 }
+            }
+            else
+            {
+                currentTarget = AllyCombatManager.instance.TargetEnemy();
             }
         }
     }

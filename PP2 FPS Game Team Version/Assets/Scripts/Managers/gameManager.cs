@@ -117,11 +117,14 @@ public class gameManager : MonoBehaviour
         //        CombatManager.instance.wonBattle = false;
         //    }
         //}
-        if(MapKingdomManager.instance.playerWon)
+        if (MapKingdomManager.instance != null)
         {
-            UIManager.instance.isPaused = !UIManager.instance.isPaused;
-            UIManager.instance.PauseGame(UIManager.instance.winWindow);
-            MapKingdomManager.instance.playerWon = false;
+            if (MapKingdomManager.instance.playerWon)
+            {
+                UIManager.instance.isPaused = !UIManager.instance.isPaused;
+                UIManager.instance.PauseGame(UIManager.instance.winWindow);
+                MapKingdomManager.instance.playerWon = false;
+            }
         }
     }
 

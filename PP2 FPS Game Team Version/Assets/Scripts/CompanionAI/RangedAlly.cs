@@ -20,26 +20,26 @@ public class RangedAlly : AllyBase
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null)
+        if (currentTarget == null || !currentTarget.activeInHierarchy)
+        {
             currentTarget = AllyCombatManager.instance.TargetEnemy();
-
-        if (currentTarget == null)
-            this.enabled = false;
+        }
 
         CombatMovement();
 
         if (enemyInRange)
         {
-            if (currentTarget != null)
+            if (currentTarget != null && currentTarget.activeInHierarchy)
             {
                 float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-                if (distance <= AttackRange)
+                if (distance <= AttackRange && !isAttacking)
                 {
-                    if (!isAttacking)
-                    {
-                        StartCoroutine(Shoot());
-                    }
+                    StartCoroutine(Shoot());
                 }
+            }
+            else
+            {
+                currentTarget = AllyCombatManager.instance.TargetEnemy();
             }
         }
     }

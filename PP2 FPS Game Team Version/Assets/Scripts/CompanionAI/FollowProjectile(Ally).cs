@@ -19,6 +19,12 @@ public class FollowProjectileAlly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null || !target.gameObject.activeInHierarchy)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector3 dir = target.position - rb.position;
         Vector3 rot = Vector3.Cross(transform.forward, dir);
         rb.angularVelocity = rot * rotSpeed;

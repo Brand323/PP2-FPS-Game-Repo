@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AllyCombatManager : MonoBehaviour
 {
@@ -49,14 +50,21 @@ public class AllyCombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIfSpawnable();
+
         if (onBattleGround)
         {
+            Debug.Log("Spawner List size: " + spawnerList.Count + " Companion List size: " + companionList.Count);
             for (int i = 0; i < companionList.Count; i++)
             {
+                Debug.Log("i = " + i);
                 spawnerList[i].ToSpawn = companionList[i];
                 spawnerList[i].SpawnAlly();
             }
-            currEnemyCount = CombatManager.instance.enemiesExisting;
+            if (enemyList.Count > 0)
+            {
+                currEnemyCount = CombatManager.instance.enemiesExisting;
+            }
         }
     }
 
@@ -88,6 +96,14 @@ public class AllyCombatManager : MonoBehaviour
             return null;
     }
 
+    public void CheckIfSpawnable()
+    {
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+            onBattleGround = true;
+        else 
+            onBattleGround = false;
+    }
+
     public void RecruitMeleeCompanion()
     {
         CompanionList.Add(MeleeTemplate);
@@ -98,6 +114,26 @@ public class AllyCombatManager : MonoBehaviour
     {
         CompanionList.Add(RangedTemplate);
         allyArmySize += 1;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "CombatSceneArctic")
+        {
+            // Clear the old spawners when the combat scene is loaded
+            spawnerList.Clear();
+            Debug.Log("Spawner List Cleared upon scene load");
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Etters
