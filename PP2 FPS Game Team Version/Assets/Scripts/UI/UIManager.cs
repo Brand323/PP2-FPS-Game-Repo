@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused;
 
-    private string mapSceneName = "Map Scene";
+    //private string mapSceneName = "Map Scene";
 
     // Start is called before the first frame update
     void Awake()
