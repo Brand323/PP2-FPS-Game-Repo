@@ -58,8 +58,9 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
         if (targetInRange)
         {
             if (target != null) {
-                targetDir = target.transform.position - headPos.position;
-                agent.SetDestination(target.transform.position);
+                Vector3 targetPos = target.transform.position;
+                targetDir = targetPos - headPos.position;
+                agent.SetDestination(targetPos);
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FaceTarget();
