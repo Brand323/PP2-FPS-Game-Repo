@@ -34,12 +34,12 @@ public class QuestGiver : MonoBehaviour
                     {
                         MapCity currCity = gameManager.instance.currentCity.GetComponent<MapCity>();
 
-                        // Check if a caravan has already been spawned
-                        if (!currCity.caravanSpawned)
-                        {
-                            // Spawn a caravan from the nearest city
-                            currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
-                        }
+                        //// Check if a caravan has already been spawned
+                        //if (!currCity.caravanSpawned)
+                        //{
+                        //    // Spawn a caravan from the nearest city
+                        //    //currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
+                        //}
                     }
 
                     // Create a new Escort Quest
