@@ -224,8 +224,11 @@ public class UIManager : MonoBehaviour
     public IEnumerator caravanAttackFeedBack()
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 3f));
-        isPaused = !isPaused;
-        PauseGame(caravanAttackWindow);
+        if (gameManager.instance.isQuestInProgress)
+        {
+            isPaused = !isPaused;
+            PauseGame(caravanAttackWindow);
+        }
     }
 
     public IEnumerator activatePotionsInstructions()

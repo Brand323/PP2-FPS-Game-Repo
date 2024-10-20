@@ -17,7 +17,7 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveQuest()
     {
-        randomizer = Random.Range(1, 20);
+        randomizer = Random.Range(1, 10);
         if (!gameManager.instance.isQuestInProgress)
         {
             UIManager.instance.activateQuestWindow(UIManager.instance.questWindow);
@@ -41,10 +41,6 @@ public class QuestGiver : MonoBehaviour
                         //    //currCity.SpawnCaravanFromNearestCity(gameManager.instance.mapPlayer.transform);
                         //}
                     }
-
-                    // Create a new Escort Quest
-                    quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
-                    StartCoroutine(UIManager.instance.caravanAttackFeedBack());
                 }
                 quest = new EscortQuest(1, Random.Range(1, 2), Random.Range(5, 15), Random.Range(2, 4), Random.Range(2, 4));
                 StartCoroutine(UIManager.instance.caravanAttackFeedBack());
