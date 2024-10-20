@@ -24,19 +24,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip backgroundMusic;
     [SerializeField] public float backgroundMusicVolume;
     public bool backgroundMusicIsPlaying;
+    [SerializeField] public AudioClip mapBackgroundMusic;
+    public bool mapBackgroundMusicIsPlaying;
 
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
-        backgroundAudioSource.clip = backgroundMusic;
         backgroundAudioSource.volume = backgroundMusicVolume;
         backgroundAudioSource.loop = true;
         if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
         {
+            backgroundAudioSource.clip = backgroundMusic;
             backgroundAudioSource.Play();
             backgroundMusicIsPlaying = true;
+        }
+        if (SceneManager.GetActiveScene().name == "Map Scene")
+        {
+            backgroundAudioSource.clip = mapBackgroundMusic;
+            backgroundAudioSource.Play();
+            mapBackgroundMusicIsPlaying = true;
         }
     }
 

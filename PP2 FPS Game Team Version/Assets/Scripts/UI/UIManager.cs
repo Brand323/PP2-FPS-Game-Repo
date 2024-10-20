@@ -71,17 +71,8 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        //if (SceneManager.GetActiveScene().name != mapSceneName)
-        //{
-        //    // Shows everytime I swap to first person scene
-        //    // StartCoroutine(startGame());
-        //}
-        //else
-        //{
-        //    // Do not lock cursor on map scene
-        //    Cursor.visible = true;
-        //    Cursor.lockState = CursorLockMode.None;
-        //}
+
+        //Default volumes
         sfxVolume.value = 0.4f;
         sfxVolume.maxValue = 1;
         musicVolume.value = 0.35f;
@@ -127,7 +118,7 @@ public class UIManager : MonoBehaviour
         if(AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.menuPopSound, AudioManager.instance.sfxVolume);
-            if(AudioManager.instance.backgroundMusicIsPlaying)
+            if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
             {
                 AudioManager.instance.backgroundAudioSource.Pause();
             }
@@ -140,7 +131,7 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if(AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
         {
             AudioManager.instance.backgroundAudioSource.UnPause();
         }

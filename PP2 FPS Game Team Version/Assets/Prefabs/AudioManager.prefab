@@ -192,3 +192,5 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: fdb4b47e1f8616c4197e5c084fb0c612, type: 3}
   backgroundMusicVolume: 0.15
   backgroundMusicIsPlaying: 0
+  mapBackgroundMusic: {fileID: 8300000, guid: bbb265bc9fa134247a20e9ea7fd11de3, type: 3}
+  mapBackgroundMusicIsPlaying: 0
