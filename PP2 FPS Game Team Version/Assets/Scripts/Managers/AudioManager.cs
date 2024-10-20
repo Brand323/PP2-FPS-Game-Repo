@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip menuButtonSound;
     [SerializeField] public AudioClip menuPopSound;
     [SerializeField] public AudioClip buySound;
+    [SerializeField] public AudioClip mapTriggerSound;
 
     [Header("----- Background -----")]
     [SerializeField] public AudioClip backgroundMusic;

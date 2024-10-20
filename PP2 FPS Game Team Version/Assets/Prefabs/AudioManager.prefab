@@ -190,6 +190,7 @@ MonoBehaviour:
   menuButtonSound: {fileID: 8300000, guid: ad13c664e42262f4ba213f6af469e705, type: 3}
   menuPopSound: {fileID: 8300000, guid: a4b9aaa301d15ac489b34b566ed1c226, type: 3}
   buySound: {fileID: 8300000, guid: 3858d98c3170f784ea3b0e38fdfbf374, type: 3}
+  mapTriggerSound: {fileID: 8300000, guid: 4534e597fb1ef594e9818b80cc0ffca1, type: 3}
   backgroundMusic: {fileID: 8300000, guid: fdb4b47e1f8616c4197e5c084fb0c612, type: 3}
   backgroundMusicVolume: 0.15
   backgroundMusicIsPlaying: 0
