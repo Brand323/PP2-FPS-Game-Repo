@@ -188,6 +188,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1ae12945cd9e7f4197ba17d5d27a53e, type: 3}
   - {fileID: 8300000, guid: c36674e83315db444bd75cb37e7f0ae9, type: 3}
   menuButtonSound: {fileID: 8300000, guid: ad13c664e42262f4ba213f6af469e705, type: 3}
+  menuPopSound: {fileID: 8300000, guid: a4b9aaa301d15ac489b34b566ed1c226, type: 3}
   backgroundMusic: {fileID: 8300000, guid: fdb4b47e1f8616c4197e5c084fb0c612, type: 3}
   backgroundMusicVolume: 0.15
   backgroundMusicIsPlaying: 0

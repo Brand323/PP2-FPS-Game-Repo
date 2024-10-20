@@ -128,6 +128,7 @@ public class UIManager : MonoBehaviour
         {
             AudioManager.instance.backgroundMusicIsPlaying = false;
             AudioManager.instance.backgtoundAudioSource.Pause();
+            AudioManager.instance.playSound(AudioManager.instance.menuPopSound, AudioManager.instance.sfxVolume);
         }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;

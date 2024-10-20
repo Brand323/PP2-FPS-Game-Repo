@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip footStepSound;
     [SerializeField] public AudioClip[] hurtSounds;
     [SerializeField] public AudioClip menuButtonSound;
+    [SerializeField] public AudioClip menuPopSound;
 
     [Header("----- Background -----")]
     [SerializeField] public AudioClip backgroundMusic;
