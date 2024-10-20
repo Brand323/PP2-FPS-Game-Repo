@@ -239,7 +239,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
         if (gameManager.instance.PlayerMoneyValue >= 3)
         {
@@ -257,7 +257,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
         if (gameManager.instance.PlayerMoneyValue >= 2)
         {
@@ -275,7 +275,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
         if (gameManager.instance.PlayerMoneyValue >= 5)
         {
