@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5212403705242675887}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -52,15 +52,16 @@ MonoBehaviour:
   townsInOgreKingdom: []
   townsInElfKingdom: []
   townsInHumanKingdom: []
+  allCities: []
   citiesInDwarfKingdom: []
   citiesInOgreKingdom: []
   citiesInElfKingdom: []
   citiesInHumanKingdom: []
-  dwarfMaterial: {fileID: 2100000, guid: 436440448be99b445bd4273dcf132d06, type: 2}
-  ogreMaterial: {fileID: 2100000, guid: 566af57a8e3f1d54a9b9f804d15d8f74, type: 2}
-  elfMaterial: {fileID: 2100000, guid: 02a64024ea26b3642ba32f604730195f, type: 2}
-  humanMaterial: {fileID: 2100000, guid: 9e4c3344a6c6d0b4d90e87772b51e56b, type: 2}
   mapMinX: -100
   mapMaxX: 100
   mapMinZ: -100
   mapMaxZ: 100
+  mapPlayer: {fileID: 0}
+  currentCity: {fileID: 0}
+  cityPrefab: {fileID: 4865268203061124323, guid: 3233482581436894e85a6bb0bd85a021, type: 3}
+  playerWon: 0
