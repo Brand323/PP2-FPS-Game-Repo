@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource playerAudioSource;
-    [SerializeField] public AudioSource backgtoundAudioSource;
+    [SerializeField] public AudioSource backgroundAudioSource;
 
     [Header("----- Actions -----")]
     [SerializeField] public float sfxVolume;
@@ -29,8 +30,14 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        backgtoundAudioSource.clip = backgroundMusic;
-        backgtoundAudioSource.volume = backgroundMusicVolume;
+        backgroundAudioSource.clip = backgroundMusic;
+        backgroundAudioSource.volume = backgroundMusicVolume;
+        backgroundAudioSource.loop = true;
+        if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
+        {
+            backgroundAudioSource.Play();
+            backgroundMusicIsPlaying = true;
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +45,7 @@ public class AudioManager : MonoBehaviour
     {
         sfxVolume = UIManager.instance.sfxVolume.value;
         backgroundMusicVolume = UIManager.instance.musicVolume.value;
+        backgroundAudioSource.volume = backgroundMusicVolume;
     }
 
     public void playSound(AudioClip[] clips, float volume)

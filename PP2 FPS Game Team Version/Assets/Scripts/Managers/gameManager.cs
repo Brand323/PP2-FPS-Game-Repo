@@ -109,14 +109,6 @@ public class gameManager : MonoBehaviour
             }
             gameStarted = true;
         }
-        //if (CombatManager.instance != null)
-        //{
-        //    if (CombatManager.instance.wonBattle && SceneManager.GetActiveScene().name == "Map Scene")
-        //    {
-        //        MapKingdomManager.instance.captureCity(currentCityNumber, currentCityKingdom);
-        //        CombatManager.instance.wonBattle = false;
-        //    }
-        //}
         if (MapKingdomManager.instance != null)
         {
             if (MapKingdomManager.instance.playerWon)

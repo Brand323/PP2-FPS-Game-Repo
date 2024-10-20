@@ -124,11 +124,13 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame(GameObject window)
     {
-        if(AudioManager.instance != null && AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance != null)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = false;
-            AudioManager.instance.backgtoundAudioSource.Pause();
             AudioManager.instance.playSound(AudioManager.instance.menuPopSound, AudioManager.instance.sfxVolume);
+            if(AudioManager.instance.backgroundMusicIsPlaying)
+            {
+                AudioManager.instance.backgroundAudioSource.Pause();
+            }
         }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
@@ -138,10 +140,9 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance.backgroundMusicIsPlaying)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = true;
-            AudioManager.instance.backgtoundAudioSource.UnPause();
+            AudioManager.instance.backgroundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
         if (SceneManager.GetActiveScene().name == "CombatSceneArctic")

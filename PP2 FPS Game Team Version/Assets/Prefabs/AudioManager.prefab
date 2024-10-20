@@ -43,7 +43,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAudioSource: {fileID: 0}
-  backgtoundAudioSource: {fileID: 8419508528489484657}
+  backgroundAudioSource: {fileID: 8419508528489484657}
   sfxVolume: 0.2
   jumpSounds:
   - {fileID: 8300000, guid: fc9cfe6adac54194b87d4b13b09b0518, type: 3}
