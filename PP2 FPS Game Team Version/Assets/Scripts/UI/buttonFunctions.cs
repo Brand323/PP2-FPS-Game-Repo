@@ -102,6 +102,8 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
+        UIManager.instance.notificationText.text = "Current Quest: " + gameManager.instance.currentQuest.QuestGoal.GoalDescription;
+        UIManager.instance.notificationWindow.SetActive(true);
     }
 
     public void rejectQuest()

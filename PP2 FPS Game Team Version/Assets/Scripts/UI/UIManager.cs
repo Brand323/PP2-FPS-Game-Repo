@@ -59,6 +59,10 @@ public class UIManager : MonoBehaviour
     //Instructions
     [SerializeField] public GameObject potionInstructions;
 
+    //Notification 
+    [SerializeField] public GameObject notificationWindow;
+    public TMP_Text notificationText;
+
     float originalTimeScale;
 
     public bool isPaused;

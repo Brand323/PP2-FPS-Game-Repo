@@ -67,6 +67,8 @@ public class QuestGiver : MonoBehaviour
         if(!gameManager.instance.isQuestInProgress)
         {
             quest = null;
+            UIManager.instance.notificationWindow.SetActive(false);
+            UIManager.instance.notificationText.text = "";
         }
         if(quest != null)
         {
