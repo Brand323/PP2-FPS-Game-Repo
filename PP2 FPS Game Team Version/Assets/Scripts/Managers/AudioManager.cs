@@ -77,12 +77,12 @@ public class AudioManager : MonoBehaviour
     public void fadeIn()
     {
         backgroundMusicVolume = 0f;
-        StartCoroutine(musicFadeIn(0.35f));//objective is max volume
+        StartCoroutine(musicFadeIn(0.3f));//objective is max volume
     }
 
     public void fadeOut()
     {
-        backgroundMusicVolume = 0.35f;
+        backgroundMusicVolume = 0.3f;
         StartCoroutine(musicFadeOut(0f));//objective is no volume
     }
 
