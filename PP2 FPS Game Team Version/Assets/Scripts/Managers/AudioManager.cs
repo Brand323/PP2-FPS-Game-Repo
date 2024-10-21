@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    private float fadeSpeed = 3f;
+    public bool fadeEnded = false;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource playerAudioSource;
@@ -41,12 +43,14 @@ public class AudioManager : MonoBehaviour
             backgroundAudioSource.clip = backgroundMusic;
             backgroundAudioSource.Play();
             backgroundMusicIsPlaying = true;
+            fadeIn();
         }
         if (SceneManager.GetActiveScene().name == "Map Scene")
         {
             backgroundAudioSource.clip = mapBackgroundMusic;
             backgroundAudioSource.Play();
             mapBackgroundMusicIsPlaying = true;
+            fadeIn();
         }
     }
 
@@ -54,7 +58,10 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         sfxVolume = UIManager.instance.sfxVolume.value;
-        backgroundMusicVolume = UIManager.instance.musicVolume.value;
+        if (fadeEnded)
+        {
+            backgroundMusicVolume = UIManager.instance.musicVolume.value;
+        }
         backgroundAudioSource.volume = backgroundMusicVolume;
     }
 
@@ -67,5 +74,37 @@ public class AudioManager : MonoBehaviour
     {
         playerAudioSource.PlayOneShot(clip, volume);
     }
+    public void fadeIn()
+    {
+        backgroundMusicVolume = 0f;
+        StartCoroutine(musicFadeIn(0.3f));//objective is max volume
+    }
 
+    public void fadeOut()
+    {
+        backgroundMusicVolume = 0.3f;
+        StartCoroutine(musicFadeOut(0f));//objective is no volume
+    }
+
+    IEnumerator musicFadeIn(float target)
+    {
+        while (backgroundMusicVolume < target - 0.0001)
+        {
+            backgroundMusicVolume = Mathf.Lerp(backgroundMusicVolume, target, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+        fadeEnded = true;
+        yield break;
+    }
+
+    IEnumerator musicFadeOut(float target)
+    {
+        while (backgroundMusicVolume > target + 0.0001)
+        {
+            backgroundMusicVolume = Mathf.Lerp(backgroundMusicVolume, target, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+        fadeEnded = true;
+        yield break;
+    }
 }

@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cba9c602b50184e8cad159828159e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeEnded: 0
   playerAudioSource: {fileID: 0}
   backgroundAudioSource: {fileID: 8419508528489484657}
   sfxVolume: 0.2
@@ -192,7 +193,7 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 3858d98c3170f784ea3b0e38fdfbf374, type: 3}
   mapTriggerSound: {fileID: 8300000, guid: 4534e597fb1ef594e9818b80cc0ffca1, type: 3}
   backgroundMusic: {fileID: 8300000, guid: fdb4b47e1f8616c4197e5c084fb0c612, type: 3}
-  backgroundMusicVolume: 0.15
+  backgroundMusicVolume: 0
   backgroundMusicIsPlaying: 0
   mapBackgroundMusic: {fileID: 8300000, guid: bbb265bc9fa134247a20e9ea7fd11de3, type: 3}
   mapBackgroundMusicIsPlaying: 0

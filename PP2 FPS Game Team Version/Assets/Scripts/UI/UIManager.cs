@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
         //Default volumes
         sfxVolume.value = 0.4f;
         sfxVolume.maxValue = 1;
-        musicVolume.value = 0.35f;
+        musicVolume.value = 0.3f;
         musicVolume.maxValue = 1;
     }
 

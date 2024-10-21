@@ -202,6 +202,8 @@ public class MapEnemyAi : MonoBehaviour
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.playSound(AudioManager.instance.mapTriggerSound, AudioManager.instance.sfxVolume);
+                AudioManager.instance.fadeEnded = false;
+                AudioManager.instance.fadeOut();
             }
             CombatManager.instance.enemyArmySize = armySize;
             SceneManager.LoadScene("CombatSceneArctic");
