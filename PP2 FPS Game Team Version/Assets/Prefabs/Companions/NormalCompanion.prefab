@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6324418705413726621}
   - component: {fileID: 8849789097088259729}
   - component: {fileID: 6696215820833666886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,8 +122,8 @@ GameObject:
   - component: {fileID: 532837906466655752}
   - component: {fileID: 7535963899106041578}
   - component: {fileID: 1465273685312640627}
-  m_Layer: 0
-  m_Name: MeleeCompanion
+  m_Layer: 10
+  m_Name: NormalCompanion
   m_TagString: Companion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  Speed: 4
   Dmg: 1
   AttackRate: 1
   AttackRange: 2
@@ -346,7 +347,7 @@ GameObject:
   - component: {fileID: 2441397731942031556}
   - component: {fileID: 7258705807964430497}
   - component: {fileID: 8157785339679065897}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7821550386323926642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PrimarySlot
   m_TagString: Player Spawn Position
   m_Icon: {fileID: 0}
@@ -462,7 +463,7 @@ GameObject:
   - component: {fileID: 6792106293701923150}
   - component: {fileID: 4360735710233830186}
   - component: {fileID: 5171473160648451225}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Great_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
