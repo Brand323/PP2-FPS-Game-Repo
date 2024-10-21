@@ -114,6 +114,8 @@ public class CombatManager : MonoBehaviour
             gameManager.instance.caravanArrived = true;
             gameManager.instance.isDefendingCaravan = false;
         }
+        AudioManager.instance.fadeEnded = false;
+        AudioManager.instance.fadeOut();
         yield return new WaitForSeconds(3);
         UIManager.instance.victoryPopUp.SetActive(false);
         ClearSpawnerList();

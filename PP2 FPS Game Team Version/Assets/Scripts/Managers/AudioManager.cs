@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
             backgroundAudioSource.clip = mapBackgroundMusic;
             backgroundAudioSource.Play();
             mapBackgroundMusicIsPlaying = true;
+            fadeIn();
         }
     }
 
@@ -76,18 +77,29 @@ public class AudioManager : MonoBehaviour
     public void fadeIn()
     {
         backgroundMusicVolume = 0f;
-        StartCoroutine(musicFade(0.35f));//objective is max volume
+        StartCoroutine(musicFadeIn(0.35f));//objective is max volume
     }
 
     public void fadeOut()
     {
-        backgroundMusicVolume = 1f;
-        StartCoroutine(musicFade(0f));//objective is no volume
+        backgroundMusicVolume = 0.35f;
+        StartCoroutine(musicFadeOut(0f));//objective is no volume
     }
 
-    IEnumerator musicFade(float target)
+    IEnumerator musicFadeIn(float target)
     {
         while (backgroundMusicVolume < target - 0.0001)
+        {
+            backgroundMusicVolume = Mathf.Lerp(backgroundMusicVolume, target, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+        fadeEnded = true;
+        yield break;
+    }
+
+    IEnumerator musicFadeOut(float target)
+    {
+        while (backgroundMusicVolume > target + 0.0001)
         {
             backgroundMusicVolume = Mathf.Lerp(backgroundMusicVolume, target, fadeSpeed * Time.deltaTime);
             yield return null;
