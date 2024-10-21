@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Brandon's Scene/Combat Test Scene.unity
-    guid: 6223f768174ab77469d4ca592529e4c2
-  - enabled: 1
     path: Assets/Scenes/Brandon's Scene/Map Scene.unity
     guid: c855bf9860ab0c74e94d17cebbd397d7
   - enabled: 1

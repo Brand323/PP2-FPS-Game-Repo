@@ -284,7 +284,7 @@ public class MapKingdomManager : MonoBehaviour
                 currentCity = city.transform;
             }
         }
-        currentCity.GetComponent<MapCity>().SpawnCaravanFromNearestCity(currentCity);
+        //currentCity.GetComponent<MapCity>().SpawnCaravanFromNearestCity(currentCity);
         DontDestroyOnLoad(currentCity);
     }
 

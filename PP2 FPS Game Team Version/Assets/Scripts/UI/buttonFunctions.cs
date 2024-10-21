@@ -102,6 +102,8 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         UIManager.instance.activateQuestWindow(UIManager.instance.questDescriptionWindow);
+        UIManager.instance.notificationText.text = "Current Quest: " + gameManager.instance.currentQuest.QuestGoal.GoalDescription;
+        UIManager.instance.notificationWindow.SetActive(true);
     }
 
     public void rejectQuest()
@@ -214,43 +216,21 @@ public class buttonFunctions : MonoBehaviour
 
     public void fight()
     {
-        //if (gameManager.instance == null)
-        //{
-        //    Debug.LogError("gameManager.instance is null in buttonFunctions.");
-        //    return;
-        //}
-
-
-        //Vector3 playerPosition = gameManager.instance.mapPlayer.transform.position;
-        //Debug.Log("Player position: " + playerPosition);
-
-        //Transform nearestCity = MapKingdomManager.Instance.GetNearestCity(playerPosition);
-
-        //if (nearestCity != null)
-        //{
-        //    Debug.Log("Nearest city found: " + nearestCity.name);
-
-        //    CombatManager.instance.InitiateCityCombat(nearestCity);
-        //    CombatManager.instance.enemyArmySize = Random.Range(3, 5);
-        //    SceneManager.LoadScene("CombatSceneArctic");
-        //    StartCoroutine(DelayedCheckToSpawn());
-        //}
-        //else
-        //{
-        //    Debug.LogError("No nearby city found for combat.");
-        //}
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
-        CombatManager.instance.CheckToSpawn();
-    }
-    private IEnumerator DelayedCheckToSpawn()
-    {
-        yield return new WaitForSeconds(3);
         CombatManager.instance.CheckToSpawn();
     }
 
     public void defend()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         CombatManager.instance.enemyArmySize = Random.Range(3, 5);
         SceneManager.LoadScene("CombatSceneArctic");
         CombatManager.instance.CheckToSpawn();
@@ -259,7 +239,11 @@ public class buttonFunctions : MonoBehaviour
 
     public void buyHealthPotion()
     {
-        if(gameManager.instance.PlayerMoneyValue >= 3)
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
+        }
+        if (gameManager.instance.PlayerMoneyValue >= 3)
         {
             gameManager.instance.AddHealthPotions(1);
             gameManager.instance.PlayerMoneyValue -= 3;
@@ -273,6 +257,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void buyStaminaPotion()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
+        }
         if (gameManager.instance.PlayerMoneyValue >= 2)
         {
             gameManager.instance.AddStaminaPotions(1);
@@ -287,6 +275,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void buyCompanion()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
+        }
         if (gameManager.instance.PlayerMoneyValue >= 5)
         {
             gameManager.instance.AddCompanion();
@@ -300,11 +292,19 @@ public class buttonFunctions : MonoBehaviour
 
     public void exitNEM()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
     }
 
     public void goBackToMap()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
         CombatManager.instance.exitToMap();
         gameManager.instance.isQuestInProgress = false;
     }

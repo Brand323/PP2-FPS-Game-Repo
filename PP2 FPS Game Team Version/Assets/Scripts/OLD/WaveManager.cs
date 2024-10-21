@@ -45,11 +45,6 @@ public class WaveManager : MonoBehaviour
 
     public void StartNextWave()
     {
-        if(AudioManager.instance != null)
-        {
-            AudioManager.instance.backgtoundAudioSource.Play();
-            AudioManager.instance.backgroundMusicIsPlaying = false;
-        }
         currentWave++;
         enemiesPerWave = enemiesPerWave * currentWave;
         if (currentWave == totalWaves)
@@ -115,11 +110,6 @@ public class WaveManager : MonoBehaviour
 
     void EndWave()
     {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.backgtoundAudioSource.Stop();
-            AudioManager.instance.backgroundMusicIsPlaying = false;
-        }
         waveInProgress = false;
 
         triggerGate.EndWave();

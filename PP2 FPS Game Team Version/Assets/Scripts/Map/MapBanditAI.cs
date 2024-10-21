@@ -90,6 +90,12 @@ public class MapBanditAI : MonoBehaviour
     {
         if (other.CompareTag("MapPlayer"))
         {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.playSound(AudioManager.instance.mapTriggerSound, AudioManager.instance.sfxVolume);
+                AudioManager.instance.fadeEnded = false;
+                AudioManager.instance.fadeOut();
+            }
             CombatManager.instance.enemyArmySize = banditArmySize;
             SceneManager.LoadScene("CombatSceneArctic");
             CombatManager.instance.CheckToSpawn();

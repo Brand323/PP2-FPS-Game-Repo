@@ -69,10 +69,10 @@ public class EnemyMelee : BasicEnemyAI
             }
         }
     }
-   private void OnTriggerEnter(Collider other)
+/*   private void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-/*        if (meleeCol.enabled && !hasDamaged)
+*//*        if (meleeCol.enabled && !hasDamaged)
         {
 
             if (other.CompareTag("Player") || other.CompareTag("Companion"))
@@ -85,8 +85,8 @@ public class EnemyMelee : BasicEnemyAI
                     meleeColOff();
                 }
             }
-        }*/
-    }
+        }*//*
+    }*/
     IEnumerator attack()
     {
         //hasDamaged = false;

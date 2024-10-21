@@ -59,11 +59,15 @@ public class UIManager : MonoBehaviour
     //Instructions
     [SerializeField] public GameObject potionInstructions;
 
+    //Notification 
+    [SerializeField] public GameObject notificationWindow;
+    public TMP_Text notificationText;
+
     float originalTimeScale;
 
     public bool isPaused;
 
-    private string mapSceneName = "Map Scene";
+    //private string mapSceneName = "Map Scene";
 
     // Start is called before the first frame update
     void Awake()
@@ -71,20 +75,11 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        //if (SceneManager.GetActiveScene().name != mapSceneName)
-        //{
-        //    // Shows everytime I swap to first person scene
-        //    // StartCoroutine(startGame());
-        //}
-        //else
-        //{
-        //    // Do not lock cursor on map scene
-        //    Cursor.visible = true;
-        //    Cursor.lockState = CursorLockMode.None;
-        //}
+
+        //Default volumes
         sfxVolume.value = 0.4f;
         sfxVolume.maxValue = 1;
-        musicVolume.value = 0.35f;
+        musicVolume.value = 0.3f;
         musicVolume.maxValue = 1;
     }
 
@@ -124,10 +119,13 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame(GameObject window)
     {
-        if(AudioManager.instance != null && AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance != null)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = false;
-            AudioManager.instance.backgtoundAudioSource.Pause();
+            AudioManager.instance.playSound(AudioManager.instance.menuPopSound, AudioManager.instance.sfxVolume);
+            if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
+            {
+                AudioManager.instance.backgroundAudioSource.Pause();
+            }
         }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
@@ -137,10 +135,9 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = true;
-            AudioManager.instance.backgtoundAudioSource.UnPause();
+            AudioManager.instance.backgroundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
         if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
@@ -224,8 +221,11 @@ public class UIManager : MonoBehaviour
     public IEnumerator caravanAttackFeedBack()
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 3f));
-        isPaused = !isPaused;
-        PauseGame(caravanAttackWindow);
+        if (gameManager.instance.isQuestInProgress)
+        {
+            isPaused = !isPaused;
+            PauseGame(caravanAttackWindow);
+        }
     }
 
     public IEnumerator activatePotionsInstructions()
