@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/David's Scenes/CombatSceneArctic.unity
     guid: 7b355fc4f6c1cf441aabf74a37616632
+  - enabled: 1
+    path: Assets/Scenes/Will's Scenes/CharCreation_Test.unity
+    guid: ba649ecf90d3dda4793306454022ba62
   m_configObjects: {}
