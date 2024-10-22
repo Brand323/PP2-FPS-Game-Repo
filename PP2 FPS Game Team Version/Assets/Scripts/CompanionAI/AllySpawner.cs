@@ -13,7 +13,7 @@ public class AllySpawner : MonoBehaviour
     {
         spawner = gameObject;
         AllyCombatManager.instance.SpawnerList.Add(this);
-        Debug.Log("Added new Spawner to list");
+    //    Debug.Log("Added new Spawner to list");
     }
 
     // Update is called once per frame
