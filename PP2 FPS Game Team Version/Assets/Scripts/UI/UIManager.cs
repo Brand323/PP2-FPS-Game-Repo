@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour
     //Notification 
     [SerializeField] public GameObject notificationWindow;
     public TMP_Text notificationText;
+    [SerializeField] public GameObject battleNotificationWindow;
+    public TMP_Text battleNotificationText;
 
     float originalTimeScale;
 

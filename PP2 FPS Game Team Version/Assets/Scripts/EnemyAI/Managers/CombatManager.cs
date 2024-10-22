@@ -53,7 +53,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UIManager.instance.battleNotificationText.text = "Enemies left: " + enemiesExisting.ToString();
     }
     public int GetDifficulty()
     {
@@ -120,6 +120,7 @@ public class CombatManager : MonoBehaviour
             AudioManager.instance.fadeOut();
         }
         yield return new WaitForSeconds(3);
+        UIManager.instance.battleNotificationWindow.SetActive(false);
         UIManager.instance.victoryPopUp.SetActive(false);
         ClearSpawnerList();
         SceneManager.LoadScene("Map Scene");
@@ -128,6 +129,7 @@ public class CombatManager : MonoBehaviour
     }
     public void SpawnEnemies()
     {
+        UIManager.instance.battleNotificationWindow.SetActive(true);
         for (int i = 0; i < enemyArmySize; i++)
         {
             if (enemySpawnsList.Count == i)
