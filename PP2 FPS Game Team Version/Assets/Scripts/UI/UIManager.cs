@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
+    [SerializeField] GameObject loseBattleWindow;
 
     //Main window variables
     [SerializeField] public GameObject mainWindow;
@@ -179,6 +180,26 @@ public class UIManager : MonoBehaviour
         {
             isPaused = true;
             PauseGame(loseWindow);
+        }
+    }
+
+    public void LoseBattleUpdate()
+    {
+        if (gameManager.instance.isDefendingCaravan)
+        {
+            gameManager.instance.isDefendingCaravan = false;
+            gameManager.instance.caravanArrived = false;
+            gameManager.instance.isQuestInProgress = false;
+            if (!isPaused)
+            {
+                isPaused = true;
+                PauseGame(escortFailWindow);
+            }
+        }
+        else if (!isPaused)
+        {
+            isPaused = true;
+            PauseGame(loseBattleWindow);
         }
     }
 
