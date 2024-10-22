@@ -66,7 +66,7 @@ MonoBehaviour:
   headPos: {fileID: 5279706097223132762}
   faceTargetSpeed: 3
   type: 0
-  HP: 5
+  HP: 6
   detectionCol: {fileID: 5031313187994802065}
   detectTime: 0.8
   maxDetectionRange: 30
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   rigidBody: {fileID: 0}
-  damageAmount: 1
+  damageAmount: 1.5
   speed: 0
   destroyTime: 0
 --- !u!33 &1911148489284016352

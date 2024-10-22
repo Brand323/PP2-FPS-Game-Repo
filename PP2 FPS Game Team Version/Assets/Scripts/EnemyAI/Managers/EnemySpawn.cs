@@ -5,7 +5,8 @@ using UnityEngine.ProBuilder.MeshOperations;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] GameObject meleeEnemy;
+    [SerializeField] List<GameObject> meleeEnemies;
+    GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
     [Range(0f,1f)] [SerializeField] float spawnMeleePercentage;
     bool hasSpawned = false;
@@ -36,6 +37,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 spawnCount++;
                 float rand = Random.Range(0f,1f);
+                SelectMeleeEnemy();
                 if (rand < spawnMeleePercentage)
                 {
                     Instantiate(meleeEnemy, transform.position, transform.rotation);
@@ -48,4 +50,10 @@ public class EnemySpawn : MonoBehaviour
             } 
         }
     }
+    public void SelectMeleeEnemy()
+    {
+        int randMelee= Random.Range(0,meleeEnemies.Count);
+        meleeEnemy = meleeEnemies[randMelee];
+    }
+
 }
