@@ -7,6 +7,7 @@ public class AllyBase : MonoBehaviour, I_Damage
 {
     [Header("Stats")]
     [Range(0,20)][SerializeField] protected float HP = 10;
+    [Range(0, 20)][SerializeField] protected float Speed = 4;
     [Range(0,5)][SerializeField] protected float Dmg = 1;
     [SerializeField] protected float AttackRate = 1;
     [SerializeField] protected float AttackRange = 2;
