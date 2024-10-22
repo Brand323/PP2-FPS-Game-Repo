@@ -14,6 +14,13 @@ public class MeleeAlly : AllyBase
     // Start is called before the first frame update
     void Start()
     {
+        if (race == Race.Normal)
+        { HP *= 1; Speed *= 1; Dmg *= 1; AttackRate *= 1; }
+        if (race == Race.Ogre)
+        { HP *= 1.5f; Speed *= 1; Dmg *= 1.5f; AttackRate *= 0.7f; gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 1.3f, gameObject.transform.localScale.y * 1.3f, gameObject.transform.localScale.z * 1.3f); }
+        if (race == Race.Dwarf)
+        { HP *= 0.7f; Speed *= 1; Dmg *= 1.5f; AttackRate *= 0.7f; gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 0.5f, gameObject.transform.localScale.y * 0.5f, gameObject.transform.localScale.z * 0.5f); }
+
         currentTarget = AllyCombatManager.instance.TargetEnemy();
         weaponAnimator = GetComponentInChildren<Animator>();
     }

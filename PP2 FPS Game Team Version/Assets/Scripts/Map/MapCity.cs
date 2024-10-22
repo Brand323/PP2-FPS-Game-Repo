@@ -11,6 +11,8 @@ public class MapCity : MonoBehaviour
     public GameObject caravanPrefab;
     public float spawnOffset = 20f;
     private MapKingdomManager kingdomManager;
+    public GameObject humanCityUI;
+    public GameObject enemyCityUI;
 
     //Hashset to track the cities that have already spawned Caravans
     private HashSet<Transform> citiesThatSpawnedCaravan = new HashSet<Transform>();
@@ -32,7 +34,17 @@ public class MapCity : MonoBehaviour
         //if (!caravanSpawned)
         //{
         //    SpawnCaravansForThisCity();
-        //}
+
+        if (humanCityUI != null)
+        {
+            humanCityUI.SetActive(false);
+        }
+
+        if (enemyCityUI != null)
+        {
+            enemyCityUI.SetActive(true);
+        }
+
     }
 
     void SpawnEnemy()
@@ -175,6 +187,25 @@ public class MapCity : MonoBehaviour
     //}
 
 
-
+    public void ToggleCanvases()
+    {
+        if (enemyCityUI != null && humanCityUI != null)
+        {
+            if (enemyCityUI.activeSelf)
+            {
+                enemyCityUI.SetActive(false);
+                humanCityUI.SetActive(true);
+            }
+            else
+            {
+                enemyCityUI.SetActive(true);
+                humanCityUI.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogError("Canvas references are not assigned in the Inspector!");
+        }
+    }
 
 }

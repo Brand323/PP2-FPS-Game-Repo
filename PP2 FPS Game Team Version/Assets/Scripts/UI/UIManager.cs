@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseMapWindow;
     [SerializeField] public GameObject winWindow;
     [SerializeField] GameObject loseWindow;
+    [SerializeField] GameObject loseBattleWindow;
 
     //Main window variables
     [SerializeField] public GameObject mainWindow;
@@ -59,6 +60,12 @@ public class UIManager : MonoBehaviour
     //Instructions
     [SerializeField] public GameObject potionInstructions;
 
+    //Notification 
+    [SerializeField] public GameObject notificationWindow;
+    public TMP_Text notificationText;
+    [SerializeField] public GameObject battleNotificationWindow;
+    public TMP_Text battleNotificationText;
+
     float originalTimeScale;
 
     public bool isPaused;
@@ -71,20 +78,11 @@ public class UIManager : MonoBehaviour
         instance = this;
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
-        //if (SceneManager.GetActiveScene().name != mapSceneName)
-        //{
-        //    // Shows everytime I swap to first person scene
-        //    // StartCoroutine(startGame());
-        //}
-        //else
-        //{
-        //    // Do not lock cursor on map scene
-        //    Cursor.visible = true;
-        //    Cursor.lockState = CursorLockMode.None;
-        //}
+
+        //Default volumes
         sfxVolume.value = 0.4f;
         sfxVolume.maxValue = 1;
-        musicVolume.value = 0.35f;
+        musicVolume.value = 0.3f;
         musicVolume.maxValue = 1;
     }
 
@@ -124,10 +122,13 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame(GameObject window)
     {
-        if(AudioManager.instance != null && AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance != null)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = false;
-            AudioManager.instance.backgtoundAudioSource.Pause();
+            AudioManager.instance.playSound(AudioManager.instance.menuPopSound, AudioManager.instance.sfxVolume);
+            if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
+            {
+                AudioManager.instance.backgroundAudioSource.Pause();
+            }
         }
         Time.timeScale = 0; //pause game
         Cursor.visible = true;
@@ -137,10 +138,9 @@ public class UIManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        if (AudioManager.instance != null && !AudioManager.instance.backgroundMusicIsPlaying)
+        if(AudioManager.instance.backgroundMusicIsPlaying || AudioManager.instance.mapBackgroundMusicIsPlaying)
         {
-            AudioManager.instance.backgroundMusicIsPlaying = true;
-            AudioManager.instance.backgtoundAudioSource.UnPause();
+            AudioManager.instance.backgroundAudioSource.UnPause();
         }
         Time.timeScale = originalTimeScale;
         if (SceneManager.GetActiveScene().name == "CombatSceneArctic")
@@ -180,6 +180,26 @@ public class UIManager : MonoBehaviour
         {
             isPaused = true;
             PauseGame(loseWindow);
+        }
+    }
+
+    public void LoseBattleUpdate()
+    {
+        if (gameManager.instance.isDefendingCaravan)
+        {
+            gameManager.instance.isDefendingCaravan = false;
+            gameManager.instance.caravanArrived = false;
+            gameManager.instance.isQuestInProgress = false;
+            if (!isPaused)
+            {
+                isPaused = true;
+                PauseGame(escortFailWindow);
+            }
+        }
+        else if (!isPaused)
+        {
+            isPaused = true;
+            PauseGame(loseBattleWindow);
         }
     }
 
@@ -224,8 +244,11 @@ public class UIManager : MonoBehaviour
     public IEnumerator caravanAttackFeedBack()
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 3f));
-        isPaused = !isPaused;
-        PauseGame(caravanAttackWindow);
+        if (gameManager.instance.isQuestInProgress)
+        {
+            isPaused = !isPaused;
+            PauseGame(caravanAttackWindow);
+        }
     }
 
     public IEnumerator activatePotionsInstructions()

@@ -14,6 +14,9 @@ public class RangedAlly : AllyBase
     // Start is called before the first frame update
     void Start()
     {
+        if (race == Race.Elf)
+        { HP *= 1; Speed *= 1.5f; Dmg *= 1; AttackRate *= 1.2f; }
+
         currentTarget = AllyCombatManager.instance.TargetEnemy();
     }
 

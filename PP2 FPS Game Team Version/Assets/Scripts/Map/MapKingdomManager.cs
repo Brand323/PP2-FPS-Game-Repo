@@ -113,6 +113,29 @@ public class MapKingdomManager : MonoBehaviour
         //Debug.Log($"Humans Kingdom has {townsInHumanKingdom.Count} towns.");
     }
 
+
+    public void captureCity(Transform city)
+    {
+        MapCity cityToCapture = city.GetComponent<MapCity>();
+        string kingdom = cityToCapture.GetCityKingdom(city);
+        if(kingdom == "Dwarves")
+        {
+            citiesInDwarfKingdom.Remove(city.transform);
+        }
+        else if (kingdom == "Ogres")
+        {
+            citiesInOgreKingdom.Remove(city.transform);
+        }
+        else if (kingdom == "Elves")
+        {
+            citiesInElfKingdom.Remove(city.transform);
+        }
+        citiesInHumanKingdom.Add(city.transform);
+        city.GetComponent<Renderer>().material.color = Color.blue;
+        cityToCapture.ToggleCanvases();
+
+    }
+
     void AssignToKingdom(Vector3 position, Transform objectTransform, bool isCity)
     {
         //if (position.x < 0 && position.z > 0)
@@ -246,27 +269,6 @@ public class MapKingdomManager : MonoBehaviour
             city.GetComponent<Renderer>().material.color = Color.blue;
         }
     }
-
-    public void captureCity(Transform city)
-    {
-        MapCity cityToCapture = city.GetComponent<MapCity>();
-        string kingdom = cityToCapture.GetCityKingdom(city);
-        if(kingdom == "Dwarves")
-        {
-            citiesInDwarfKingdom.Remove(city.transform);
-        }
-        else if (kingdom == "Ogres")
-        {
-            citiesInOgreKingdom.Remove(city.transform);
-        }
-        else if (kingdom == "Elves")
-        {
-            citiesInElfKingdom.Remove(city.transform);
-        }
-        citiesInHumanKingdom.Add(city.transform);
-        city.GetComponent<Renderer>().material.color = Color.blue;
-    }
-
     public bool IsCityInHumanKingdom(Transform city)
     {
         return citiesInHumanKingdom.Contains(city);

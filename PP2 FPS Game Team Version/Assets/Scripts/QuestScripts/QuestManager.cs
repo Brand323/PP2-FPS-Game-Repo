@@ -81,7 +81,6 @@ public class Quest
         gameManager.instance.AddMoneyToPlayer(goldReward);
         gameManager.instance.AddHealthPotions(healthPotionReward);
         gameManager.instance.AddStaminaPotions(staminaPotionReward);
-        //Add companion rewards
         UIManager.instance.healthRewardText.text = healthPotionReward.ToString();
         UIManager.instance.goldRewardText.text = goldReward.ToString();
         UIManager.instance.staminaRewardText.text = staminaPotionReward.ToString();
