@@ -108,8 +108,6 @@ public class ClickMove : MonoBehaviour
                 UIManager.instance.PauseGame(UIManager.instance.enemyCityMapWindow);
                 MapKingdomManager.instance.findNearestCity();
                 gameManager.instance.inBattleForCity = true;
-                //gameManager.instance.currentCityNumber = other.GetComponent<MapCity>().cityNumber;
-                //gameManager.instance.currentCityKingdom = other.GetComponent<MapCity>().GetCityKingdom(other.transform);
             }
         }
     }

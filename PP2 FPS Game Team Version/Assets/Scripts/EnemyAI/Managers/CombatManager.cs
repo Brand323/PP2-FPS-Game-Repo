@@ -53,7 +53,6 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         UIManager.instance.battleNotificationText.text = "Enemies left: " + enemiesExisting.ToString();
     }
     public int GetDifficulty()
