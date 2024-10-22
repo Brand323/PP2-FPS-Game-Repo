@@ -640,6 +640,8 @@ public class FirstPersonController : MonoBehaviour, I_Damage
 
             gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
             gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
+
+            UIManager.instance.LoseBattleUpdate();
         }
         else if (CombatManager.instance.GetDifficulty() == 2) 
         {
@@ -658,6 +660,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
             gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
             //send to nearest city
+            UIManager.instance.LoseBattleUpdate();
 
         } else if (CombatManager.instance.GetDifficulty() == 3)
         {
@@ -677,6 +680,7 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             gameManager.instance.playerScript.currentHealth = MaxHealthPoints;
             gameManager.instance.playerScript.currentStamina = MaxStaminaPoints;
             //send to nearest city
+            UIManager.instance.LoseBattleUpdate();
 
         } else if (CombatManager.instance.GetDifficulty() == 4)
         {
@@ -684,8 +688,8 @@ public class FirstPersonController : MonoBehaviour, I_Damage
             currentHealth = 0;
             playerIsDead = true;
             gameManager.instance.LoseUpdate();
-            gameManager.instance.isQuestInProgress = false;
         }
+        gameManager.instance.isQuestInProgress = false;
     }
 
 
