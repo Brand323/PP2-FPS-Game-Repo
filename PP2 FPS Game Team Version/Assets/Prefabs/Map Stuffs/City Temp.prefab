@@ -97,12 +97,12 @@ GameObject:
   - component: {fileID: 5295773658272886691}
   - component: {fileID: 4946135180669752743}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyCityUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2103433998280646207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4865268203061124323}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -396,6 +396,8 @@ MonoBehaviour:
   cityPrefab: {fileID: 4865268203061124323}
   caravanPrefab: {fileID: 2132784998165409505, guid: 3ad438bf853d3584eb2018cf037270f2, type: 3}
   spawnOffset: 25
+  humanCityUI: {fileID: 7928051385622244390}
+  enemyCityUI: {fileID: 2553391056581395213}
   caravanSpawned: 0
 --- !u!1 &7928051385622244390
 GameObject:
@@ -410,7 +412,7 @@ GameObject:
   - component: {fileID: 4257156135789054652}
   - component: {fileID: 1001111499703827698}
   m_Layer: 0
-  m_Name: Human
+  m_Name: HumanCityUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

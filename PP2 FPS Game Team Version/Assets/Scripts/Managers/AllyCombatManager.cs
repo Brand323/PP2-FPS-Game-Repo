@@ -54,7 +54,7 @@ public class AllyCombatManager : MonoBehaviour
 
         if (onBattleGround)
         {
-            Debug.Log("Spawner List size: " + spawnerList.Count + " Companion List size: " + companionList.Count);
+         //   Debug.Log("Spawner List size: " + spawnerList.Count + " Companion List size: " + companionList.Count);
             for (int i = 0; i < companionList.Count; i++)
             {
                 Debug.Log("i = " + i);
