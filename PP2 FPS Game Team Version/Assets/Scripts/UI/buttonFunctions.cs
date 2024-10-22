@@ -32,6 +32,11 @@ public class buttonFunctions : MonoBehaviour
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
         CombatManager.instance.exitToMap();
+        foreach(Transform city in MapKingdomManager.instance.citiesInHumanKingdom)
+        {
+            GameObject.Destroy(city.gameObject);
+        }
+        MapKingdomManager.instance.citiesInHumanKingdom.Clear();
 
         //if(gameManager.instance.playerScript.playerIsDead)
         //{
