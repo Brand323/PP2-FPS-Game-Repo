@@ -52,7 +52,7 @@ public class EnemySpawn : MonoBehaviour
     }
     public void SelectMeleeEnemy()
     {
-        int randMelee= Random.Range(0,meleeEnemies.Count);
+        int randMelee= Random.Range(0,meleeEnemies.Count-1);
         meleeEnemy = meleeEnemies[randMelee];
     }
 
