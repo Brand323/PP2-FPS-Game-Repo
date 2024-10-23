@@ -118,6 +118,22 @@ public class BasicEnemyAI : MonoBehaviour, I_Damage
     public void TakeDamage(float amount)
     {
         HP -= amount;
+
+        int randomOption = Random.Range(1, 4);
+
+        switch (randomOption)
+        {
+            case 1:
+                AudioManager.instance.playSound(AudioManager.instance.EnemyHit1, AudioManager.instance.sfxVolume);
+                break;
+            case 2:
+                AudioManager.instance.playSound(AudioManager.instance.EnemyHit2, AudioManager.instance.sfxVolume);
+                break;
+            case 3:
+                AudioManager.instance.playSound(AudioManager.instance.EnemyHit3, AudioManager.instance.sfxVolume);
+                break;
+        }
+
         targetInRange = true;
         Movement();
         if (HP <= 0)

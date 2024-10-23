@@ -20,8 +20,10 @@ public class AllyCombatManager : MonoBehaviour
 
     List<AllySpawner> spawnerList;
 
-    [SerializeField] GameObject MeleeTemplate;
-    [SerializeField] GameObject RangedTemplate;
+    [SerializeField] GameObject HumanTemplate;
+    [SerializeField] GameObject OgreTemplate;
+    [SerializeField] GameObject DwarfTemplate;
+    [SerializeField] GameObject ElfTemplate;
 
     public bool onBattleGround;
 
@@ -106,13 +108,27 @@ public class AllyCombatManager : MonoBehaviour
 
     public void RecruitMeleeCompanion()
     {
-        CompanionList.Add(MeleeTemplate);
+        int randomOption = UnityEngine.Random.Range(1, 4);
+
+        switch (randomOption)
+        {
+            case 1:
+                CompanionList.Add(HumanTemplate);
+                break;
+            case 2:
+                CompanionList.Add(OgreTemplate);
+                break;
+            case 3:
+                CompanionList.Add(DwarfTemplate);
+                break;
+        }
+
         allyArmySize += 1;
     }
 
     public void RecruitRangedCompanion()
     {
-        CompanionList.Add(RangedTemplate);
+        CompanionList.Add(ElfTemplate);
         allyArmySize += 1;
     }
 

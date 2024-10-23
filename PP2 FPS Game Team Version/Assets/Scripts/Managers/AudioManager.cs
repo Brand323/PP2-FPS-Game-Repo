@@ -12,17 +12,23 @@ public class AudioManager : MonoBehaviour
     [Header("----- Audio -----")]
     [SerializeField] AudioSource playerAudioSource;
     [SerializeField] public AudioSource backgroundAudioSource;
+    [SerializeField] public AudioClip CompanionHit1;
+    [SerializeField] public AudioClip CompanionHit2;
+    [SerializeField] public AudioClip CompanionHit3;
+    [SerializeField] public AudioClip EnemyHit1;
+    [SerializeField] public AudioClip EnemyHit2;
+    [SerializeField] public AudioClip EnemyHit3;
 
     [Header("----- Actions -----")]
     [SerializeField] public float sfxVolume;
     [SerializeField] public AudioClip[] jumpSounds;
-    public bool isPlayingStepSound;
     [SerializeField] public AudioClip footStepSound;
     [SerializeField] public AudioClip[] hurtSounds;
     [SerializeField] public AudioClip menuButtonSound;
     [SerializeField] public AudioClip menuPopSound;
     [SerializeField] public AudioClip buySound;
     [SerializeField] public AudioClip mapTriggerSound;
+    public bool isPlayingStepSound;
 
     [Header("----- Background -----")]
     [SerializeField] public AudioClip backgroundMusic;

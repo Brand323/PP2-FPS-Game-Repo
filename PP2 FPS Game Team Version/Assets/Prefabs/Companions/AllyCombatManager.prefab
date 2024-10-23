@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   companionList: []
-  MeleeTemplate: {fileID: 814975815051784916, guid: 443a65c3b8641804983791d141b25ee3, type: 3}
-  RangedTemplate: {fileID: 1553760491909581558, guid: d0dc06dbe1af68e47a0c6966d2e7436b, type: 3}
+  HumanTemplate: {fileID: 814975815051784916, guid: 443a65c3b8641804983791d141b25ee3, type: 3}
+  OgreTemplate: {fileID: 1245033812043526631, guid: 9edf6572ed538b64c96361a30bf3090f, type: 3}
+  DwarfTemplate: {fileID: 3393216893481895690, guid: 818774358f5c4ca438ad767f3ee5e82b, type: 3}
+  ElfTemplate: {fileID: 1553760491909581558, guid: d0dc06dbe1af68e47a0c6966d2e7436b, type: 3}
   onBattleGround: 0

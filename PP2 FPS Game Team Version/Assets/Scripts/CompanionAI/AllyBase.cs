@@ -84,6 +84,21 @@ public class AllyBase : MonoBehaviour, I_Damage
     {
         HP -= amount;
 
+        int randomOption = Random.Range(1, 4);
+
+        switch (randomOption)
+        {
+            case 1:
+                AudioManager.instance.playSound(AudioManager.instance.CompanionHit1, AudioManager.instance.sfxVolume);
+                break;
+            case 2:
+                AudioManager.instance.playSound(AudioManager.instance.CompanionHit2, AudioManager.instance.sfxVolume);
+                break;
+            case 3:
+                AudioManager.instance.playSound(AudioManager.instance.CompanionHit3, AudioManager.instance.sfxVolume);
+                break;
+        }
+
         if (HP <= 0)
         {
             Death();
