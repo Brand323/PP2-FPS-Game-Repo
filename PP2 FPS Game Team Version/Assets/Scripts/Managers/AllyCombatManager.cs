@@ -138,7 +138,7 @@ public class AllyCombatManager : MonoBehaviour
         {
             // Clear the old spawners when the combat scene is loaded
             spawnerList.Clear();
-            Debug.Log("Spawner List Cleared upon scene load");
+           // Debug.Log("Spawner List Cleared upon scene load");
         }
     }
 
