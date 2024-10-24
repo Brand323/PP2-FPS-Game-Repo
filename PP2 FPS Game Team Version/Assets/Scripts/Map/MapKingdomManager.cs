@@ -23,6 +23,7 @@ public class MapKingdomManager : MonoBehaviour
     public float mapMaxX = 100f;
     public float mapMinZ = -100f;
     public float mapMaxZ = 100f;
+    [SerializeField] float citySpawnOffset = 25f;
 
     public ClickMove mapPlayer;
 
@@ -67,6 +68,11 @@ public class MapKingdomManager : MonoBehaviour
             mapMaxX = mapBounds.max.x;
             mapMinZ = mapBounds.min.z;
             mapMaxZ = mapBounds.max.z;
+
+            mapMinX += citySpawnOffset;
+            mapMaxX -= citySpawnOffset;
+            mapMinZ += (citySpawnOffset*2);
+            mapMaxZ -= (citySpawnOffset*2);
         }
         AssignTownsAndCitiesToKingdoms();
     }

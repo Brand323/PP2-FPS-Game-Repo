@@ -17,6 +17,7 @@ public class MapEnemyAi : MonoBehaviour
     [Header("Map Boundaries")]
     [SerializeField] Vector2 mapMinBounds;
     [SerializeField] Vector2 mapMaxBounds;
+    [SerializeField] float boundaryOffset = 25f;
 
     [Header("Army Settings")]
     public int armySize;
@@ -83,6 +84,11 @@ public class MapEnemyAi : MonoBehaviour
 
             mapMinBounds = new Vector2(mapBounds.min.x, mapBounds.min.z);
             mapMaxBounds = new Vector2(mapBounds.max.x, mapBounds.max.z);
+
+            mapMinBounds.x += (boundaryOffset*2);
+            mapMinBounds.y += boundaryOffset;
+            mapMaxBounds.x -= (boundaryOffset*2);
+            mapMaxBounds.y -= boundaryOffset;
         }
 
         UpdateArmySizeUI();
