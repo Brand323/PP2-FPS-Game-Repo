@@ -282,14 +282,21 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if (gameManager.instance.PlayerMoneyValue >= 5)
+        if(AllyCombatManager.instance.AllyArmySize >= 10)
         {
-            gameManager.instance.AddCompanion();
-            gameManager.instance.PlayerMoneyValue -= 5;
+            UIManager.instance.companionLimitWindow.SetActive(true);
         }
         else
         {
-            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            if (gameManager.instance.PlayerMoneyValue >= 5)
+            {
+                gameManager.instance.AddCompanion();
+                gameManager.instance.PlayerMoneyValue -= 5;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
         }
     }
 
@@ -300,6 +307,15 @@ public class buttonFunctions : MonoBehaviour
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
+    }
+
+    public void exitCL()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.companionLimitWindow.SetActive(false);
     }
 
     public void goBackToMap()
