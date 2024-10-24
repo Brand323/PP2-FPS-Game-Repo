@@ -37,11 +37,9 @@ public class buttonFunctions : MonoBehaviour
             GameObject.Destroy(city.gameObject);
         }
         MapKingdomManager.instance.citiesInHumanKingdom.Clear();
-
-        //if(gameManager.instance.playerScript.playerIsDead)
-        //{
-        //    gameManager.instance.playerScript.currentHealth = gameManager.instance.playerScript.MaxHealthPoints;
-        //}
+        gameManager.instance.PlayerMoneyValue = 0;
+        gameManager.instance.PlayerHealthPotions = 0;
+        gameManager.instance.PlayerStaminaPotions = 0;
     }
 
     public void quit()
