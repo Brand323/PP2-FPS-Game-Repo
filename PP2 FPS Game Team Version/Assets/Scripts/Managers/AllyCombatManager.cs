@@ -124,12 +124,25 @@ public class AllyCombatManager : MonoBehaviour
         }
 
         allyArmySize += 1;
+
+        ClickMove player = FindObjectOfType<ClickMove>();
+        if (player != null)
+        {
+            player.SetPlayerArmySize(allyArmySize+1);
+        }
+
     }
 
     public void RecruitRangedCompanion()
     {
         CompanionList.Add(ElfTemplate);
         allyArmySize += 1;
+
+        ClickMove player = FindObjectOfType<ClickMove>();
+        if (player != null)
+        {
+            player.SetPlayerArmySize(allyArmySize+1);
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

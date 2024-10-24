@@ -329,7 +329,7 @@ MonoBehaviour:
   MapCamera: {fileID: 0}
   movespeed: 20
   playerArmySize: 0
-  playerArmySizeText: {fileID: 0}
+  playerArmySizeText: {fileID: 1014790795884532151}
 --- !u!82 &3249066415136207162
 AudioSource:
   m_ObjectHideFlags: 0
