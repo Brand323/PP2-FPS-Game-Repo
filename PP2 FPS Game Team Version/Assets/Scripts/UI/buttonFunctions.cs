@@ -31,7 +31,6 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
-        CombatManager.instance.exitToMap();
         foreach(Transform city in MapKingdomManager.instance.citiesInHumanKingdom)
         {
             GameObject.Destroy(city.gameObject);
@@ -40,6 +39,9 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.PlayerMoneyValue = 0;
         gameManager.instance.PlayerHealthPotions = 0;
         gameManager.instance.PlayerStaminaPotions = 0;
+        AllyCombatManager.instance.AllyArmySize = 0;
+        CombatManager.instance.exitToMap();
+        gameManager.instance.gameStarted = false;
     }
 
     public void quit()
