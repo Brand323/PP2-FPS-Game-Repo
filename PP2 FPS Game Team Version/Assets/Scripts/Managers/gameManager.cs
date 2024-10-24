@@ -54,6 +54,10 @@ public class gameManager : MonoBehaviour
     public bool citiesAssigned;
     public bool inBattleForCity;
 
+    //Volume
+    public float soundEffectVolume;
+    public float backgroundVolume;
+
     void Awake()
     {
         //Code for Ensuring Singleton Setup
@@ -118,6 +122,9 @@ public class gameManager : MonoBehaviour
                 MapKingdomManager.instance.playerWon = false;
             }
         }
+
+        soundEffectVolume = UIManager.instance.sfxVolume.value;
+        backgroundVolume = UIManager.instance.musicVolume.value;
     }
 
     public void AddMoneyToPlayer(int amount)

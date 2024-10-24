@@ -80,11 +80,19 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         originalTimeScale = Time.timeScale;
 
-        //Default volumes
-        sfxVolume.value = 0.4f;
-        sfxVolume.maxValue = 1;
-        musicVolume.value = 0.3f;
-        musicVolume.maxValue = 1;
+        if (gameManager.instance != null)
+        {
+            if (gameManager.instance.soundEffectVolume != 0)
+            {
+                sfxVolume.value = gameManager.instance.soundEffectVolume;
+                musicVolume.value = gameManager.instance.backgroundVolume;
+            }
+            else
+            {
+                sfxVolume.value = 0.3f;
+                musicVolume.value = 0.4f;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -119,6 +127,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
         isPaused = true;
         PauseGame(mainWindow);
+        sfxVolume.value = 0.3f;
+        musicVolume.value = 0.4f;
     }
 
     public void PauseGame(GameObject window)
@@ -156,12 +166,6 @@ public class UIManager : MonoBehaviour
         }
         activateWindow(activeWindow);
         activeWindow = null;
-    }
-
-
-    public void UpdateGameGoal(int enemy)
-    {
-        //Apply new game goal functionality
     }
 
     public void LoseUpdate()
