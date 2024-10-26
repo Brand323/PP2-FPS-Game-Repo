@@ -76,6 +76,18 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
+        if (MapKingdomManager.instance.citiesInHumanKingdom.Count > 0)
+        {
+            foreach (Transform city in MapKingdomManager.instance.citiesInHumanKingdom)
+            {
+                GameObject.Destroy(city.gameObject);
+            }
+            MapKingdomManager.instance.citiesInHumanKingdom.Clear();
+            gameManager.instance.PlayerMoneyValue = 0;
+            gameManager.instance.PlayerHealthPotions = 0;
+            gameManager.instance.PlayerStaminaPotions = 0;
+            AllyCombatManager.instance.AllyArmySize = 0;
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         Cursor.visible = true;
