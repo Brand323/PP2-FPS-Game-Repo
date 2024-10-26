@@ -25704,8 +25704,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.85051525, y: -4358}
-  m_SizeDelta: {x: 950, y: 6100}
+  m_AnchoredPosition: {x: -0.85051525, y: -2511}
+  m_SizeDelta: {x: 950, y: 4000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6444225201046820384
 CanvasRenderer:
@@ -25752,85 +25752,70 @@ MonoBehaviour:
 
     ASSETS
 
-    Computer mouse click by Florian Reichelt from:
-    https://freesound.org/people/florianreichelt/sounds/683099/
+
+    Computer mouse click by Florian Reichelt
+    from Freesound
 
 
 
-    Mouse cursor
-    icon by An Le from: https://www.canva.com/photos/MAEyKHrx2IE/
+    Mouse cursor icon by An Le from Canva
 
 
 
-    Hurt3 by
-    Anton Porsche from: https://freesound.org/people/dersuperanton/sounds/434462/
+    Hurt3 by Anton
+    Porsche from Freesound
 
 
 
-    Mouth
-    Eeeh (Getting hit) 01 by Flying Deer from: https://freesound.org/people/Flying_Deer_Fx/sounds/369003/
+    Mouth Eeeh (Getting hit) 01 by Flying Deer from
+    Freesound
 
 
 
-    Npcplayer-effort-grunts-male
-    by VoiceBosch from: https://freesound.org/people/SoundBiterSFX/sounds/731509/
+    Npcplayer-effort-grunts-male by VoiceBosch from Freesound
 
 
 
     Man
-    getting hit by Under7dude from: https://freesound.org/people/Under7dude/sounds/163441/
+    getting hit by Under7dude from  Freesound
 
 
 
-    Combat
-    Background Music by Kebah Simon (not published)
+    Ui sound 2 by nezuai from  Freesound
 
 
 
-    Ui sound 2 by nezuai from:
-    https://freesound.org/people/nezuai/sounds/577025/
+    Peaceful
+    Fantasy Music by TheoJT from  Freesound
 
 
 
-    Peaceful Fantasy Music
-    by TheoJT from: https://freesound.org/people/TheoJT/sounds/698282/
+    Coin Purchase 4 by Andy Rhode
+    from  Freesound
 
 
 
-    Coin
-    Purchase 4 by Andy Rhode from: https://freesound.org/people/rhodesmas/sounds/342750/
+    Dart Thud 2 by CosmicEmbers from Freesound
 
-
-
-    Dart
-    Thud 2 by CosmicEmbers from: https://freesound.org/people/CosmicEmbers/sounds/387480/
 
 
     GRUNT
-    1 by Pixabay from: https://pixabay.com/sound-effects/grunt-1-85280/
+    1 by Pixabay from Pixabay
 
-    Grunt
-    by Pixabay from: https://pixabay.com/sound-effects/grunt-85990/
+
+
+    Grunt by Pixabay from Pixabay
 
 
 
     Mask Grunt
-    Sound by Pixabay from: https://pixabay.com/sound-effects/mask-grunt-sound-38713/
+    Sound by Pixabay from Pixabay
 
 
 
-    Male
-    Attack Grunt by Pixabay from: https://pixabay.com/sound-effects/male-attack-grunt-45747/
+    Male Attack Grunt by Pixabay from Pixabay
 
-
-
-    Spade
-    hacking sound, with gore effects by Pixabay from: https://pixabay.com/sound-effects/spade-hacking-sound-with-gore-effects-96909/
-
-
-
-    Ough!
-    by Pixabay from: https://pixabay.com/sound-effects/ough-47202/'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
