@@ -294,16 +294,24 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if (gameManager.instance.PlayerMoneyValue >= 2)
+        if (gameManager.instance.PlayerStaminaPotions >= 10)
         {
-            gameManager.instance.AddStaminaPotions(1);
-            gameManager.instance.PlayerMoneyValue -= 2;
+            UIManager.instance.limitText.text = "You have reached the limit of stamina potions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
-            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            StartCoroutine(UIManager.instance.activatePotionsInstructions());
+            if (gameManager.instance.PlayerMoneyValue >= 2)
+            {
+                gameManager.instance.AddStaminaPotions(1);
+                gameManager.instance.PlayerMoneyValue -= 2;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
         }
-        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
     public void buyCompanion()
@@ -314,7 +322,8 @@ public class buttonFunctions : MonoBehaviour
         }
         if (AllyCombatManager.instance.AllyArmySize >= 10)
         {
-            UIManager.instance.companionLimitWindow.SetActive(true);
+            UIManager.instance.limitText.text = "You have reached the limit of companions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
@@ -339,13 +348,13 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
     }
 
-    public void exitCL()
+    public void exitLimit()
     {
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
-        UIManager.instance.companionLimitWindow.SetActive(false);
+        UIManager.instance.limitWindow.SetActive(false);
     }
 
     #endregion

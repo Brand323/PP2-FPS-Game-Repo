@@ -11793,7 +11793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: exitCL
+        m_MethodName: exitLimit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12286,7 +12286,7 @@ GameObject:
   - component: {fileID: 328579162934472221}
   - component: {fileID: 448668328314930086}
   m_Layer: 5
-  m_Name: CompanionLimitReached
+  m_Name: LimitReachedWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17310,7 +17310,7 @@ GameObject:
   - component: {fileID: 4230901279671515969}
   - component: {fileID: 3406389254713742051}
   m_Layer: 5
-  m_Name: StoreText
+  m_Name: LimitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18772,7 +18772,8 @@ MonoBehaviour:
   staminaRewardText: {fileID: 881398620537596767}
   cityMapWindow: {fileID: 1435785125906189119}
   notEnoughMoneyWindow: {fileID: 5111063736721468995}
-  companionLimitWindow: {fileID: 4007949100137420291}
+  limitWindow: {fileID: 4007949100137420291}
+  limitText: {fileID: 3406389254713742051}
   enemyCityMapWindow: {fileID: 1782906084150817211}
   caravanAttackWindow: {fileID: 2111078982975749299}
   escortFailWindow: {fileID: 5839120596104145136}
