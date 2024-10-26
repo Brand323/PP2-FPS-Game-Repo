@@ -6933,7 +6933,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: quit
+        m_MethodName: resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9448,7 +9448,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: exitToMain
+        m_MethodName: progressLoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16886,7 +16886,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: quit
+        m_MethodName: exitToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18516,6 +18516,7 @@ MonoBehaviour:
   notificationText: {fileID: 727464169528984908}
   battleNotificationWindow: {fileID: 6330472180168226511}
   battleNotificationText: {fileID: 5797734883546336114}
+  loseProgressWindow: {fileID: 2711113964195498783}
   isPaused: 0
 --- !u!1 &6460762964793075310
 GameObject:

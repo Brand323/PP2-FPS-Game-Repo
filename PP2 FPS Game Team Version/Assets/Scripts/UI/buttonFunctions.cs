@@ -68,14 +68,15 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseGame();
     }
 
-    #endregion
-
     public void startGame()
     {
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
+        gameManager.instance.PlayerMoneyValue = 0;
+        gameManager.instance.PlayerHealthPotions = 0;
+        gameManager.instance.PlayerStaminaPotions = 0;
         if (MapKingdomManager.instance.citiesInHumanKingdom.Count > 0)
         {
             foreach (Transform city in MapKingdomManager.instance.citiesInHumanKingdom)
@@ -83,9 +84,6 @@ public class buttonFunctions : MonoBehaviour
                 GameObject.Destroy(city.gameObject);
             }
             MapKingdomManager.instance.citiesInHumanKingdom.Clear();
-            gameManager.instance.PlayerMoneyValue = 0;
-            gameManager.instance.PlayerHealthPotions = 0;
-            gameManager.instance.PlayerStaminaPotions = 0;
             AllyCombatManager.instance.AllyArmySize = 0;
         }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
@@ -93,6 +91,8 @@ public class buttonFunctions : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
+    #endregion
 
     #region Quest Functions
 
@@ -146,6 +146,18 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isQuestInProgress = false;
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.PauseGame(UIManager.instance.escortFailWindow);
+    }
+
+    public void defend()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
+        SceneManager.LoadScene("CombatSceneArctic");
+        CombatManager.instance.CheckToSpawn();
+        gameManager.instance.isDefendingCaravan = true;
     }
 
     #endregion
@@ -218,9 +230,6 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.tutorialWindow);
     }
 
-    #endregion
-
-
     public void exitToMain()
     {
         editInput(UIManager.instance.mainWindow);
@@ -230,6 +239,23 @@ public class buttonFunctions : MonoBehaviour
     {
         editInput(UIManager.instance.cityMapWindow);
     }
+
+    public void goBackToMap()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        CombatManager.instance.exitToMap();
+        gameManager.instance.isQuestInProgress = false;
+    }
+
+    public void progressLoss()
+    {
+        editInput(UIManager.instance.loseProgressWindow);
+    }
+
+    #endregion
 
     public void fight()
     {
@@ -242,17 +268,7 @@ public class buttonFunctions : MonoBehaviour
         CombatManager.instance.CheckToSpawn();
     }
 
-    public void defend()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
-        SceneManager.LoadScene("CombatSceneArctic");
-        CombatManager.instance.CheckToSpawn();
-        gameManager.instance.isDefendingCaravan = true;
-    }
+    #region StoreFunctions
 
     public void buyHealthPotion()
     {
@@ -296,7 +312,7 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if(AllyCombatManager.instance.AllyArmySize >= 10)
+        if (AllyCombatManager.instance.AllyArmySize >= 10)
         {
             UIManager.instance.companionLimitWindow.SetActive(true);
         }
@@ -332,15 +348,7 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.companionLimitWindow.SetActive(false);
     }
 
-    public void goBackToMap()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        CombatManager.instance.exitToMap();
-        gameManager.instance.isQuestInProgress = false;
-    }
+    #endregion
 
     #region Private Functions
 

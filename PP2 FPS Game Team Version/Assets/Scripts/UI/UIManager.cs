@@ -66,12 +66,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text notificationText;
     [SerializeField] public GameObject battleNotificationWindow;
     public TMP_Text battleNotificationText;
+    [SerializeField] public GameObject loseProgressWindow;
 
     float originalTimeScale;
 
     public bool isPaused;
 
-    //private string mapSceneName = "Map Scene";
 
     // Start is called before the first frame update
     void Awake()
