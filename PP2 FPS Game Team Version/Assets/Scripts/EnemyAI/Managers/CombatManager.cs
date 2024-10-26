@@ -75,6 +75,7 @@ public class CombatManager : MonoBehaviour
     }
     public IEnumerator DelayedSpawn()
     {
+        enemiesExisting = 0;
         if (hasSpawned) { yield return null; }
         else
         {

@@ -244,8 +244,8 @@ MonoBehaviour:
   model: {fileID: 2005606489506032131}
   agent: {fileID: 4156688625067561477}
   headPos: {fileID: 2756892291128338191}
-  faceTargetSpeed: 4
-  type: 0
+  faceTargetSpeed: 5
+  type: 2
   HP: 4
   detectionCol: {fileID: 6806935543312082204}
   detectTime: 1
@@ -269,7 +269,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4.5
+  m_Speed: 4.7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

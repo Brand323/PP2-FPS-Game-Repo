@@ -590,7 +590,7 @@ MonoBehaviour:
   model: {fileID: 5142011527419668902}
   agent: {fileID: 399497671745951160}
   headPos: {fileID: 6791332937518912283}
-  faceTargetSpeed: 35
+  faceTargetSpeed: 5
   type: 0
   HP: 3
   detectionCol: {fileID: 5656859524667205822}

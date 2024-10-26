@@ -65,7 +65,7 @@ MonoBehaviour:
   agent: {fileID: 3486341628411564124}
   headPos: {fileID: 5279706097223132762}
   faceTargetSpeed: 3
-  type: 0
+  type: 3
   HP: 6
   detectionCol: {fileID: 5031313187994802065}
   detectTime: 0.8
