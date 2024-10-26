@@ -276,16 +276,24 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if (gameManager.instance.PlayerMoneyValue >= 3)
+        if(gameManager.instance.PlayerHealthPotions >= 10)
         {
-            gameManager.instance.AddHealthPotions(1);
-            gameManager.instance.PlayerMoneyValue -= 3;
+            UIManager.instance.limitText.text = "You reached the limit of health potions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
-            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            StartCoroutine(UIManager.instance.activatePotionsInstructions());
+            if (gameManager.instance.PlayerMoneyValue >= 3)
+            {
+                gameManager.instance.AddHealthPotions(1);
+                gameManager.instance.PlayerMoneyValue -= 3;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
         }
-        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
     public void buyStaminaPotion()
