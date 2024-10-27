@@ -1505,6 +1505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4289416440466773326, guid: 1b069de4037e5f341bc43a7f45a8ae6f, type: 3}
+      propertyPath: panLimit.y
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 8799522786537585163, guid: 1b069de4037e5f341bc43a7f45a8ae6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1563,6 +1567,10 @@ PrefabInstance:
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 6673545802170779202, guid: 0fc2c5dab42065144af33c62fb1bc4f5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 64.09209
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673545802170779202, guid: 0fc2c5dab42065144af33c62fb1bc4f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1602,6 +1610,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7817392654696459432, guid: 0fc2c5dab42065144af33c62fb1bc4f5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 384f28c82f4149744bfa0d7cf346e763, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

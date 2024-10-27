@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920025702419233490}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -1.242158}
+  m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 0.12804097, y: 0.1231527, z: 0.12547052}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -268,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 7075500195392148966}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.2, y: -253, z: 9.9}
+  m_LocalPosition: {x: -33.2, y: -253, z: 14.9}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -344,7 +344,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1.5}
+  m_Size: {x: 1.5, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7575188593620880534
 Rigidbody:
@@ -391,6 +391,7 @@ MonoBehaviour:
   roamSpeed: 10
   mapMinBounds: {x: 0, y: 0}
   mapMaxBounds: {x: 100, y: 100}
+  boundaryOffset: 25
   armySize: 0
   armySizeText: {fileID: 0}
 --- !u!195 &3164674629775335929
