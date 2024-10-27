@@ -45,8 +45,10 @@ public class UIManager : MonoBehaviour
 
     //map variables
     [SerializeField] public GameObject cityMapWindow;
+    [SerializeField] public GameObject companionStoreWindow;
     [SerializeField] public GameObject notEnoughMoneyWindow;
-    [SerializeField] public GameObject companionLimitWindow;
+    [SerializeField] public GameObject limitWindow;
+    public TMP_Text limitText;
     [SerializeField] public GameObject enemyCityMapWindow;
     [SerializeField] public GameObject caravanAttackWindow;
     [SerializeField] public GameObject escortFailWindow;
@@ -66,12 +68,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text notificationText;
     [SerializeField] public GameObject battleNotificationWindow;
     public TMP_Text battleNotificationText;
+    [SerializeField] public GameObject loseProgressWindow;
 
     float originalTimeScale;
 
     public bool isPaused;
 
-    //private string mapSceneName = "Map Scene";
 
     // Start is called before the first frame update
     void Awake()

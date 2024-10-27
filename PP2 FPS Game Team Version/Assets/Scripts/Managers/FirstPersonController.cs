@@ -554,8 +554,10 @@ public class FirstPersonController : MonoBehaviour, I_Damage
                 regeneratingStamina = null;
             }
 
-
-            currentStamina -= staminaUseMultiplier * Time.deltaTime;
+            if (!isCrouching)
+            {
+                currentStamina -= staminaUseMultiplier * Time.deltaTime;
+            }
 
             if (currentStamina < 0)
                 currentStamina = 0;

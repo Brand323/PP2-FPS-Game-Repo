@@ -68,19 +68,31 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseGame();
     }
 
-    #endregion
-
     public void startGame()
     {
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
+        gameManager.instance.PlayerMoneyValue = 0;
+        gameManager.instance.PlayerHealthPotions = 0;
+        gameManager.instance.PlayerStaminaPotions = 0;
+        if (MapKingdomManager.instance.citiesInHumanKingdom.Count > 0)
+        {
+            foreach (Transform city in MapKingdomManager.instance.citiesInHumanKingdom)
+            {
+                GameObject.Destroy(city.gameObject);
+            }
+            MapKingdomManager.instance.citiesInHumanKingdom.Clear();
+            AllyCombatManager.instance.AllyArmySize = 0;
+        }
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.UnpauseGame();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
+    #endregion
 
     #region Quest Functions
 
@@ -134,6 +146,18 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isQuestInProgress = false;
         UIManager.instance.isPaused = !UIManager.instance.isPaused;
         UIManager.instance.PauseGame(UIManager.instance.escortFailWindow);
+    }
+
+    public void defend()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
+        SceneManager.LoadScene("CombatSceneArctic");
+        CombatManager.instance.CheckToSpawn();
+        gameManager.instance.isDefendingCaravan = true;
     }
 
     #endregion
@@ -206,9 +230,6 @@ public class buttonFunctions : MonoBehaviour
         editInput(UIManager.instance.tutorialWindow);
     }
 
-    #endregion
-
-
     public void exitToMain()
     {
         editInput(UIManager.instance.mainWindow);
@@ -218,6 +239,23 @@ public class buttonFunctions : MonoBehaviour
     {
         editInput(UIManager.instance.cityMapWindow);
     }
+
+    public void goBackToMap()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        CombatManager.instance.exitToMap();
+        gameManager.instance.isQuestInProgress = false;
+    }
+
+    public void progressLoss()
+    {
+        editInput(UIManager.instance.loseProgressWindow);
+    }
+
+    #endregion
 
     public void fight()
     {
@@ -230,17 +268,7 @@ public class buttonFunctions : MonoBehaviour
         CombatManager.instance.CheckToSpawn();
     }
 
-    public void defend()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        CombatManager.instance.enemyArmySize = Random.Range(3, 5);
-        SceneManager.LoadScene("CombatSceneArctic");
-        CombatManager.instance.CheckToSpawn();
-        gameManager.instance.isDefendingCaravan = true;
-    }
+    #region StoreFunctions
 
     public void buyHealthPotion()
     {
@@ -248,16 +276,24 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if (gameManager.instance.PlayerMoneyValue >= 3)
+        if(gameManager.instance.PlayerHealthPotions >= 10)
         {
-            gameManager.instance.AddHealthPotions(1);
-            gameManager.instance.PlayerMoneyValue -= 3;
+            UIManager.instance.limitText.text = "You reached the limit of health potions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
-            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            StartCoroutine(UIManager.instance.activatePotionsInstructions());
+            if (gameManager.instance.PlayerMoneyValue >= 3)
+            {
+                gameManager.instance.AddHealthPotions(1);
+                gameManager.instance.PlayerMoneyValue -= 3;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
         }
-        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
     public void buyStaminaPotion()
@@ -266,34 +302,79 @@ public class buttonFunctions : MonoBehaviour
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if (gameManager.instance.PlayerMoneyValue >= 2)
+        if (gameManager.instance.PlayerStaminaPotions >= 10)
         {
-            gameManager.instance.AddStaminaPotions(1);
-            gameManager.instance.PlayerMoneyValue -= 2;
+            UIManager.instance.limitText.text = "You have reached the limit of stamina potions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
-            UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            StartCoroutine(UIManager.instance.activatePotionsInstructions());
+            if (gameManager.instance.PlayerMoneyValue >= 2)
+            {
+                gameManager.instance.AddStaminaPotions(1);
+                gameManager.instance.PlayerMoneyValue -= 2;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
         }
-        StartCoroutine(UIManager.instance.activatePotionsInstructions());
     }
 
-    public void buyCompanion()
+    public void companionStore()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.companionStoreWindow.SetActive(true);
+    }
+
+    public void buyMeleeCompanion()
     {
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
         }
-        if(AllyCombatManager.instance.AllyArmySize >= 10)
+        if (AllyCombatManager.instance.AllyArmySize >= 10)
         {
-            UIManager.instance.companionLimitWindow.SetActive(true);
+            UIManager.instance.limitText.text = "You have reached the limit of companions.";
+            UIManager.instance.limitWindow.SetActive(true);
         }
         else
         {
-            if (gameManager.instance.PlayerMoneyValue >= 5)
+            UIManager.instance.companionStoreWindow.SetActive(false);
+            if (gameManager.instance.PlayerMoneyValue >= 7)
             {
-                gameManager.instance.AddCompanion();
-                gameManager.instance.PlayerMoneyValue -= 5;
+                AllyCombatManager.instance.RecruitMeleeCompanion();
+                gameManager.instance.PlayerMoneyValue -= 7;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
+        }
+    }
+
+    public void buyRangedCompanion()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
+        }
+        if (AllyCombatManager.instance.AllyArmySize >= 10)
+        {
+            UIManager.instance.limitText.text = "You have reached the limit of companions.";
+            UIManager.instance.limitWindow.SetActive(true);
+        }
+        else
+        {
+            UIManager.instance.companionStoreWindow.SetActive(false);
+            if (gameManager.instance.PlayerMoneyValue >= 10)
+            {
+                AllyCombatManager.instance.RecruitRangedCompanion();
+                gameManager.instance.PlayerMoneyValue -= 10;
             }
             else
             {
@@ -311,24 +392,16 @@ public class buttonFunctions : MonoBehaviour
         UIManager.instance.notEnoughMoneyWindow.SetActive(false);
     }
 
-    public void exitCL()
+    public void exitLimit()
     {
         if (AudioManager.instance != null)
         {
             AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
         }
-        UIManager.instance.companionLimitWindow.SetActive(false);
+        UIManager.instance.limitWindow.SetActive(false);
     }
 
-    public void goBackToMap()
-    {
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
-        }
-        CombatManager.instance.exitToMap();
-        gameManager.instance.isQuestInProgress = false;
-    }
+    #endregion
 
     #region Private Functions
 

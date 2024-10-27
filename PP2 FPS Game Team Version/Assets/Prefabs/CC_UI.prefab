@@ -180,6 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417830889980599182}
   - component: {fileID: 3395798103162674464}
+  - component: {fileID: 2790340467051268528}
   m_Layer: 0
   m_Name: CreationManager
   m_TagString: Untagged
@@ -227,6 +228,18 @@ MonoBehaviour:
   blueBeanButton: {fileID: 5233837091601476820}
   greenBeanButton: {fileID: 7747474990138126594}
   yellowBeanButton: {fileID: 4605790728007427128}
+--- !u!114 &2790340467051268528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181055288194804954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092b8273f977790438787d6abb185717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &244008332738587036
 GameObject:
   m_ObjectHideFlags: 0
@@ -3626,7 +3639,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7117468726059386939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2790340467051268528}
+        m_TargetAssemblyTypeName: sceneLoader, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 99a0fd794c17f354a819fd14bad8fc82, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8301094908595314331
 Animator:
   serializedVersion: 5
@@ -6846,7 +6883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 995, y: 0}
+  m_AnchoredPosition: {x: 678, y: 0}
   m_SizeDelta: {x: 575, y: 154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2620772193517396920
