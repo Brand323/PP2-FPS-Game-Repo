@@ -75,7 +75,6 @@ public class MapKingdomManager : MonoBehaviour
             mapMinZ += (citySpawnOffset*2);
             mapMaxZ -= (citySpawnOffset*2);
         }
-        AssignTownsAndCitiesToKingdoms();
     }
 
     private void Update()
@@ -90,6 +89,10 @@ public class MapKingdomManager : MonoBehaviour
             {
                 city.gameObject.SetActive(true);
             }
+            foreach (Transform city in allCities)
+            {
+                city.gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -97,41 +100,29 @@ public class MapKingdomManager : MonoBehaviour
             {
                 city.gameObject.SetActive(false);
             }
+            foreach (Transform city in allCities)
+            {
+                city.gameObject.SetActive(false);
+            }
+        }
+
+        if(gameManager.instance.citiesAssigned == false)
+        {
+            AssignTownsAndCitiesToKingdoms();
+            gameManager.instance.citiesAssigned = true; 
         }
     }
     void AssignTownsAndCitiesToKingdoms()
     {
-        GameObject[] towns = GameObject.FindGameObjectsWithTag("Town");
-        for(int i = 1; i <= 6 - citiesInHumanKingdom.Count; i++)
+        for(int i = 1; i <= 6; i++)
         {
             Vector3 coordinates = new Vector3(Random.Range(mapMinX, mapMaxX), 12, Random.Range(mapMinZ, mapMaxZ));
             cityPrefab.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", Color.red);
-            Instantiate(cityPrefab, coordinates, Quaternion.identity);
-            allCities.Add(cityPrefab.transform);
-            AssignToKingdom(cityPrefab.transform.position, cityPrefab.transform, isCity: true);
+            GameObject city = Instantiate(cityPrefab, coordinates, Quaternion.identity);
+            DontDestroyOnLoad(city);
+            allCities.Add(city.transform);
+            //AssignToKingdom(cityPrefab.transform.position, cityPrefab.transform, isCity: true);
         }
-        foreach (GameObject town in towns)
-        {
-            Vector3 position = town.transform.position;
-            townsInHumanKingdom.Add(town.transform);
-            town.GetComponent<Renderer>().material.color = Color.blue;
-            AssignToKingdom(position, town.transform, isCity: false);
-        }
-
-        //GameObject[] cities = GameObject.FindGameObjectsWithTag("City");
-        //foreach (GameObject city in cities)
-        //{
-        //    Vector3 position = city.transform.position;
-        //    AssignToKingdom(position, city.transform, isCity: true);
-        //}
-        foreach (Transform city in allCities)
-        {
-            AssignToKingdom(city.position, city, true);
-        }
-        //Debug.Log($"Dwarves Kingdom has {townsInDwarfKingdom.Count} towns.");
-        //Debug.Log($"Ogres Kingdom has {townsInOgreKingdom.Count} towns.");
-        //Debug.Log($"Elves Kingdom has {townsInElfKingdom.Count} towns.");
-        //Debug.Log($"Humans Kingdom has {townsInHumanKingdom.Count} towns.");
     }
 
 
