@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7817615452133408921}
   - component: {fileID: 4813720554908620620}
   m_Layer: 5
-  m_Name: Mage
+  m_Name: Ranged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23422,7 +23422,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 716693950282714593}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: buyHealthPotion
+        m_MethodName: buyRangedCompanion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

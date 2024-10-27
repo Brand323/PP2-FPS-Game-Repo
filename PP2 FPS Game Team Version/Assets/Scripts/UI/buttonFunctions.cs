@@ -357,6 +357,32 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    public void buyRangedCompanion()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.buySound, AudioManager.instance.sfxVolume);
+        }
+        if (AllyCombatManager.instance.AllyArmySize >= 10)
+        {
+            UIManager.instance.limitText.text = "You have reached the limit of companions.";
+            UIManager.instance.limitWindow.SetActive(true);
+        }
+        else
+        {
+            UIManager.instance.companionStoreWindow.SetActive(false);
+            if (gameManager.instance.PlayerMoneyValue >= 10)
+            {
+                AllyCombatManager.instance.RecruitRangedCompanion();
+                gameManager.instance.PlayerMoneyValue -= 10;
+            }
+            else
+            {
+                UIManager.instance.notEnoughMoneyWindow.SetActive(true);
+            }
+        }
+    }
+
     public void exitNEM()
     {
         if (AudioManager.instance != null)
