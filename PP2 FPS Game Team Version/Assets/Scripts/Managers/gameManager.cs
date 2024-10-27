@@ -148,19 +148,6 @@ public class gameManager : MonoBehaviour
         playerStaminaPotions += amount;
     }
 
-    public void AddCompanion()
-    {
-        int Randomizer = Random.Range(1, 20);
-        if (Randomizer > 0 && Randomizer < 14)
-        {
-            AllyCombatManager.instance.RecruitMeleeCompanion();
-        }
-        else
-        {
-            AllyCombatManager.instance.RecruitRangedCompanion();
-        }
-    }
-
     public int GetPlayerMoney()
     {
         if (playerMoney != null)

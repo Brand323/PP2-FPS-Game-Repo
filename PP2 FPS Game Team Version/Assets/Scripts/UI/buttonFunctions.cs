@@ -322,7 +322,16 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
-    public void buyCompanion()
+    public void companionStore()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.playSound(AudioManager.instance.menuButtonSound, AudioManager.instance.sfxVolume);
+        }
+        UIManager.instance.companionStoreWindow.SetActive(true);
+    }
+
+    public void buyMeleeCompanion()
     {
         if (AudioManager.instance != null)
         {
@@ -335,10 +344,11 @@ public class buttonFunctions : MonoBehaviour
         }
         else
         {
-            if (gameManager.instance.PlayerMoneyValue >= 5)
+            UIManager.instance.companionStoreWindow.SetActive(false);
+            if (gameManager.instance.PlayerMoneyValue >= 7)
             {
-                gameManager.instance.AddCompanion();
-                gameManager.instance.PlayerMoneyValue -= 5;
+                AllyCombatManager.instance.RecruitMeleeCompanion();
+                gameManager.instance.PlayerMoneyValue -= 7;
             }
             else
             {

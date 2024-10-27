@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
 
     //map variables
     [SerializeField] public GameObject cityMapWindow;
+    [SerializeField] public GameObject companionStoreWindow;
     [SerializeField] public GameObject notEnoughMoneyWindow;
     [SerializeField] public GameObject limitWindow;
     public TMP_Text limitText;
