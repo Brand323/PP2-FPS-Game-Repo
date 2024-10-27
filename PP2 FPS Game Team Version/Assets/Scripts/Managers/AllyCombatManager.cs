@@ -108,40 +108,46 @@ public class AllyCombatManager : MonoBehaviour
 
     public void RecruitMeleeCompanion()
     {
-        int randomOption = UnityEngine.Random.Range(1, 4);
-
-        switch (randomOption)
+        if (allyArmySize <= 20)
         {
-            case 1:
-                CompanionList.Add(HumanTemplate);
-                break;
-            case 2:
-                CompanionList.Add(OgreTemplate);
-                break;
-            case 3:
-                CompanionList.Add(DwarfTemplate);
-                break;
-        }
+            int randomOption = UnityEngine.Random.Range(1, 4);
 
-        allyArmySize += 1;
+            switch (randomOption)
+            {
+                case 1:
+                    CompanionList.Add(HumanTemplate);
+                    break;
+                case 2:
+                    CompanionList.Add(OgreTemplate);
+                    break;
+                case 3:
+                    CompanionList.Add(DwarfTemplate);
+                    break;
+            }
 
-        ClickMove player = FindObjectOfType<ClickMove>();
-        if (player != null)
-        {
-            player.SetPlayerArmySize(allyArmySize+1);
+            allyArmySize += 1;
+
+            ClickMove player = FindObjectOfType<ClickMove>();
+            if (player != null)
+            {
+                player.SetPlayerArmySize(allyArmySize + 1);
+            }
         }
 
     }
 
     public void RecruitRangedCompanion()
     {
-        CompanionList.Add(ElfTemplate);
-        allyArmySize += 1;
-
-        ClickMove player = FindObjectOfType<ClickMove>();
-        if (player != null)
+        if (allyArmySize <= 20)
         {
-            player.SetPlayerArmySize(allyArmySize+1);
+            CompanionList.Add(ElfTemplate);
+            allyArmySize += 1;
+
+            ClickMove player = FindObjectOfType<ClickMove>();
+            if (player != null)
+            {
+                player.SetPlayerArmySize(allyArmySize + 1);
+            }
         }
     }
 
