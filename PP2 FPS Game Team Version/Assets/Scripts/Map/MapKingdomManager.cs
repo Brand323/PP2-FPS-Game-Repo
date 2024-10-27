@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MapKingdomManager : MonoBehaviour
@@ -82,6 +83,20 @@ public class MapKingdomManager : MonoBehaviour
         if(mapPlayer == null)
         {
             mapPlayer = GameObject.FindObjectOfType<ClickMove>();
+        }
+        if (SceneManager.GetActiveScene().name == "Map Scene")
+        {
+            foreach (Transform city in citiesInHumanKingdom)
+            {
+                city.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (Transform city in citiesInHumanKingdom)
+            {
+                city.gameObject.SetActive(false);
+            }
         }
     }
     void AssignTownsAndCitiesToKingdoms()
@@ -294,6 +309,7 @@ public class MapKingdomManager : MonoBehaviour
         }
         //currentCity.GetComponent<MapCity>().SpawnCaravanFromNearestCity(currentCity);
         DontDestroyOnLoad(currentCity);
+        currentCity.gameObject.SetActive(false);
     }
 
     public void checkVictory()
