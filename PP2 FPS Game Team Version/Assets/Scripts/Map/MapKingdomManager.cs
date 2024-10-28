@@ -65,10 +65,10 @@ public class MapKingdomManager : MonoBehaviour
         {
             Bounds mapBounds = mapCollider.bounds;
 
-            mapMinX = mapBounds.min.x;
-            mapMaxX = mapBounds.max.x;
-            mapMinZ = mapBounds.min.z;
-            mapMaxZ = mapBounds.max.z;
+            mapMinX = mapBounds.min.x + 130;
+            mapMaxX = mapBounds.max.x - 130;
+            mapMinZ = mapBounds.min.z + 130;
+            mapMaxZ = mapBounds.max.z - 130;
 
             mapMinX += citySpawnOffset;
             mapMaxX -= citySpawnOffset;

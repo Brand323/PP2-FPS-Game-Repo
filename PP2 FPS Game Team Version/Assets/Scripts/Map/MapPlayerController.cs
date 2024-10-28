@@ -19,6 +19,8 @@ public class ClickMove : MonoBehaviour
     //Stores current coroutine so i can interupt
     private Coroutine moveCourtine;
 
+    bool entered;
+
     private void Start()
     {
         GameObject mapCameraObject = GameObject.FindGameObjectWithTag("MapCamera");
@@ -94,7 +96,7 @@ public class ClickMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "City")
+        if(other.tag == "City" && !entered)
         {
             gameManager.instance.currentCity = other.gameObject;
             MapKingdomManager.instance.CurrentCity = other.transform;
@@ -109,7 +111,15 @@ public class ClickMove : MonoBehaviour
                 MapKingdomManager.instance.findNearestCity();
                 gameManager.instance.inBattleForCity = true;
             }
+            entered = true;
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "City")
+        {
+            entered = false;
+        }
+    }
 }
